@@ -3621,28 +3621,11 @@
 
     function applyGeneralLimits() {
       // General User Mode vs Admin Mode
-      // When not in admin mode, restrict and blur proprietary VIP hedge-fund metrics
-      const rbCards = [
-        document.getElementById('rb_1'),
-        document.getElementById('rb_2'),
-        document.getElementById('rb_3'),
-        document.getElementById('rb_4'),
-        document.getElementById('rb_5'),
-        document.getElementById('rb_6'),
-        document.getElementById('rb_7'),
-        document.getElementById('rb_8')
-      ];
-      const stratFooters = [
-        document.getElementById('stratFooter_000660'),
-        document.getElementById('stratFooter_005930'),
-        document.getElementById('stratFooter_089030'),
-        document.getElementById('stratFooter_058470'),
-        document.getElementById('stratFooter_042700'),
-        document.getElementById('stratFooter_240810'),
-        document.getElementById('stratFooter_196170'),
-        document.getElementById('stratFooter_005380')
-      ];
-      const hiddenVipCards = [
+      // 1~8위 전 종목 100% 완전 봉인 VIP 풀 카드 락 적용
+      const allVipCards = [
+        document.getElementById('stockCard_000660'),
+        document.getElementById('stockCard_005930'),
+        document.getElementById('stockCard_089030'),
         document.getElementById('stockCard_058470'),
         document.getElementById('stockCard_042700'),
         document.getElementById('stockCard_240810'),
@@ -3653,19 +3636,7 @@
 
       if (isAdmin) {
         // Unlock all VIP metrics for Admin
-        rbCards.forEach(el => {
-          if (!el) return;
-          el.classList.remove('general-blur');
-          const notice = el.parentElement.querySelector('.general-blur-notice');
-          if (notice) notice.remove();
-        });
-        stratFooters.forEach(el => {
-          if (!el) return;
-          el.classList.remove('general-blur');
-          const notice = el.parentElement.querySelector('.strat-blur-notice');
-          if (notice) notice.remove();
-        });
-        hiddenVipCards.forEach(card => {
+        allVipCards.forEach(card => {
           if (!card) return;
           card.classList.remove('vip-locked');
           const ov = card.querySelector('.stock-card-vip-overlay');
@@ -3677,47 +3648,15 @@
           if (notice) notice.remove();
         }
       } else {
-        // General User Mode: Apply professional blur & VIP access badges
-        // 1. Partial Blur on Cards 1~3 (Preview Stocks: Hynix, Samsung, Techwing)
-        rbCards.forEach((el, idx) => {
-          if (!el) return;
-          el.classList.add('general-blur');
-          if (idx < 3) {
-            if (!el.parentElement.querySelector('.general-blur-notice')) {
-              const div = document.createElement('div');
-              div.className = 'general-blur-notice';
-              div.style.cssText = 'cursor:pointer; background:rgba(2,132,199,0.08); border:1px dashed var(--accent); padding:8px 12px; border-radius:10px; margin-top:8px; text-align:center; font-size:0.75rem; font-weight:800; color:var(--accent); transition:all 0.2s;';
-              div.innerHTML = '🔒 <strong>[VIP 퀀트 분석]</strong> 관리자(윤용규 님) 인증 시 4대 정밀 지표 잠금 해제 (터치)';
-              div.onclick = toggleAdminModal;
-              el.parentElement.appendChild(div);
-            }
-          }
-        });
-
-        stratFooters.forEach((el, idx) => {
-          if (!el) return;
-          el.classList.add('general-blur');
-          if (idx < 3) {
-            if (!el.parentElement.querySelector('.strat-blur-notice')) {
-              const div = document.createElement('div');
-              div.className = 'strat-blur-notice';
-              div.style.cssText = 'cursor:pointer; background:rgba(2,132,199,0.08); border:1px dashed var(--accent); padding:6px 10px; border-radius:8px; margin-top:6px; text-align:center; font-size:0.72rem; font-weight:800; color:var(--accent);';
-              div.innerHTML = '🔒 <strong>[VIP 목표가·손절가]</strong> 관리자 인증 시 정밀 매매선 잠금 해제';
-              div.onclick = toggleAdminModal;
-              el.parentElement.insertBefore(div, el.nextSibling);
-            }
-          }
-        });
-
-        // 2. Full VIP Lock on Hidden Cards 4~8 (Leeno, Hanmi, Wonik, Alteogen, Hyundai)
-        hiddenVipCards.forEach(card => {
+        // General User Mode: 1~8위 전 종목 통째로 100% 블러 및 다크 글래스모피즘 VIP 오버레이 잠금
+        allVipCards.forEach((card, idx) => {
           if (!card) return;
           card.classList.add('vip-locked');
           if (!card.querySelector('.stock-card-vip-overlay')) {
             const ov = document.createElement('div');
             ov.className = 'stock-card-vip-overlay';
             ov.innerHTML = `
-              <div class="stock-card-vip-badge">🔒 VIP 프라이빗 턴어라운드</div>
+              <div class="stock-card-vip-badge">🔒 VIP 프라이빗 랭킹 (${idx + 1}위)</div>
               <div class="stock-card-vip-title">헤지펀드 퀀트 [비공개 종목]</div>
               <div class="stock-card-vip-desc">
                 4대 축 퀀트 모델 100점 검증 및 손익비 1:2 최적화 완료<br>
@@ -3735,7 +3674,7 @@
           }
         });
 
-        // 3. Blur Private Portfolio Allocation in Commentary
+        // Blur Private Portfolio Allocation in Commentary
         if (commPoint3 && !commPoint3.querySelector('.general-blur-notice')) {
           commPoint3.classList.add('general-blur');
           const div = document.createElement('div');
