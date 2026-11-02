@@ -1510,7 +1510,7 @@
   <div class="quick-nav-bar">
     <a href="#sec-pulse" class="btn-anchor"><span>🌡️</span> 시장 심리</a>
     <a href="#sec-briefing" class="btn-anchor"><span>🎙️</span> 30초 브리핑</a>
-    <a href="#sec-turnaround" class="btn-anchor"><span>🏆</span> 턴어라운드 8선</a>
+    <a href="#sec-turnaround" class="btn-anchor" onclick="scrollToTarget('sec-turnaround'); return false;"><span>🏆</span> 턴어라운드 8선</a>
     <a href="#sec-flow" class="btn-anchor"><span>🔥</span> 메이저 수급</a>
     <a href="#sec-news" class="btn-anchor"><span>📰</span> DART 공시·뉴스</a>
     <a href="#sec-stress" class="btn-anchor"><span>💡</span> 스트레스 테스트</a>
@@ -1568,10 +1568,65 @@
       <div class="automation-pipeline-bar">
         <div class="pipe-status-left">
           <span class="pipe-live-dot"></span>
-          <span class="pipe-title">실시간 3타임 퀀트 자동화 파이프라인 가동 중</span>
+          <span class="pipe-title">실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) 가동 중</span>
         </div>
         <div class="pipe-status-right">
-          <span>마지막 동기화: 11-02(월) 20:30 KST (야간 프리마켓 레이더) · 차기 정기 동기화: 11-03(화) 08:30 KST (장전 레이더 브리핑 및 메일 전송)</span>
+          <span>현재: 11-03(화) 개장 준비 중 · 차기 자동 갱신: 오늘 08:00 KST (장전 레이더 & 메일 발송 & 깃허브 자동 배포)</span>
+        </div>
+      </div>
+
+      <!-- ⏱️ Daily 3-Stage Workflow & Realtime Market State Tracker -->
+      <div class="market-stage-card" style="background:var(--surface); border:1.5px solid var(--accent); border-radius:20px; padding:18px 22px; margin-top:16px; margin-bottom:24px; box-shadow:0 8px 28px var(--accent-glow);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:1.4rem;">⏱️</span>
+            <div>
+              <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span>매일 3타임 실전 퀀트 레이더 진행 상황</span>
+                <span class="badge" id="currentStageBadge" style="background:var(--accent); color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">⏳ 11-03 개장 준비 중 (08:00 정각 갱신 예정)</span>
+              </div>
+              <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">
+                하루 3번, 정해진 시간마다 시장 분석 ➔ 포털 갱신 ➔ 깃허브 웹사이트 자동 배포가 100% 전자동으로 가동됩니다.
+              </div>
+            </div>
+          </div>
+          <div style="font-size:0.76rem; color:var(--success); font-weight:800; display:flex; align-items:center; gap:6px;">
+            <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--success); box-shadow:0 0 8px var(--success);"></span>
+            <span>GitHub Pages 자동 배포 연동 ON</span>
+          </div>
+        </div>
+
+        <!-- 3-Stage Progress Grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+          <!-- Step 1 -->
+          <div class="stage-step-box active-waiting" id="stageStep1" style="background:var(--surface-sub); border:1.5px solid var(--accent); border-radius:14px; padding:14px; position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-weight:900; font-size:0.9rem; color:var(--accent);">☀️ 1단계: 08:00 장전 레이더</span>
+              <span class="stage-tag" style="background:var(--accent); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">다음 갱신 대기</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">개장 1시간 전 당일 승부 전략</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">미 3대 선물, VIX, 빅테크 프리마켓 체크 및 국내 개장 갭 출발 대응선 제시</div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="stage-step-box" id="stageStep2" style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-weight:900; font-size:0.9rem; color:var(--text);">📊 2단계: 15:20 장마감 레이더</span>
+              <span class="stage-tag" style="background:var(--surface); color:var(--text-muted); border:1px solid var(--border); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">15:20 가동</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">마감 10분 전 결산 & 동시호가</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">외인·기관 최종 순매수, 당일 테크윙 및 주도주 마감, 종가 배팅 여부 점검</div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="stage-step-box" id="stageStep3" style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-weight:900; font-size:0.9rem; color:var(--text);">🌙 3단계: 19:50 야간 결산 레이더</span>
+              <span class="stage-tag" style="background:var(--surface); color:var(--text-muted); border:1px solid var(--border); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">19:50 가동</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">국내 시간외 마감 & 익일 국장 시나리오</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">국내 시간외 거래(20:00 마감) 결산, 코스피 야간선물, 다음 날 국장 개장 시나리오</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1599,28 +1654,28 @@
 
       <div class="global-stock-chips" id="globalStockChips" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none;">
         <button class="global-chip active" data-code="089030" onclick="globalSyncStock('089030', this)">
-          <span style="font-size:1rem;">🎯</span> <strong>테크윙</strong> <span style="font-size:0.7rem; opacity:0.85;">(36,700)</span>
+          <span style="font-size:1rem;">🎯</span> <strong>테크윙</strong> <span style="font-size:0.7rem; opacity:0.95; color:var(--success); font-weight:800;">(36,850 · 익절완료)</span>
         </button>
         <button class="global-chip" data-code="000660" onclick="globalSyncStock('000660', this)">
-          <span>🔥</span> <strong>SK하이닉스</strong> <span style="font-size:0.7rem; opacity:0.85;">(187,300)</span>
+          <span>🔥</span> <strong>SK하이닉스</strong> <span style="font-size:0.7rem; opacity:0.85;">(1,472,000 ▲3.8%)</span>
         </button>
         <button class="global-chip" data-code="005930" onclick="globalSyncStock('005930', this)">
-          <span>🛡️</span> <strong>삼성전자</strong> <span style="font-size:0.7rem; opacity:0.85;">(58,300)</span>
-        </button>
-        <button class="global-chip" data-code="058470" onclick="globalSyncStock('058470', this)">
-          <span>💎</span> <strong>리노공업</strong> <span style="font-size:0.7rem; opacity:0.85;">(192,400)</span>
+          <span>🛡️</span> <strong>삼성전자</strong> <span style="font-size:0.7rem; opacity:0.85;">(229,000 ▲1.8%)</span>
         </button>
         <button class="global-chip" data-code="042700" onclick="globalSyncStock('042700', this)">
-          <span>⚡</span> <strong>한미반도체</strong> <span style="font-size:0.7rem; opacity:0.85;">(112,800)</span>
-        </button>
-        <button class="global-chip" data-code="240810" onclick="globalSyncStock('240810', this)">
-          <span>🚀</span> <strong>원익IPS</strong> <span style="font-size:0.7rem; opacity:0.85;">(31,450)</span>
-        </button>
-        <button class="global-chip" data-code="196170" onclick="globalSyncStock('196170', this)">
-          <span>🧬</span> <strong>알테오젠</strong> <span style="font-size:0.7rem; opacity:0.85;">(384,000)</span>
+          <span>⚡</span> <strong>한미반도체</strong> <span style="font-size:0.7rem; opacity:0.85;">(191,500 ▲4.8%)</span>
         </button>
         <button class="global-chip" data-code="005380" onclick="globalSyncStock('005380', this)">
-          <span>🚗</span> <strong>현대차</strong> <span style="font-size:0.7rem; opacity:0.85;">(241,500)</span>
+          <span>🚗</span> <strong>현대차</strong> <span style="font-size:0.7rem; opacity:0.85;">(286,500 ▲1.6%)</span>
+        </button>
+        <button class="global-chip" data-code="058470" onclick="globalSyncStock('058470', this)">
+          <span>💎</span> <strong>리노공업</strong> <span style="font-size:0.7rem; opacity:0.85;">(57,100 ▲1.8%)</span>
+        </button>
+        <button class="global-chip" data-code="240810" onclick="globalSyncStock('240810', this)">
+          <span>🚀</span> <strong>원익IPS</strong> <span style="font-size:0.7rem; opacity:0.85;">(32,800 ▲1.9%)</span>
+        </button>
+        <button class="global-chip" data-code="196170" onclick="globalSyncStock('196170', this)">
+          <span>🧬</span> <strong>알테오젠</strong> <span style="font-size:0.7rem; opacity:0.85;">(388,500 ▲1.2%)</span>
         </button>
       </div>
     </div>
@@ -1705,13 +1760,13 @@
       </div>
     </div>
 
-    <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 3줄 핵심) -->
-    <div class="section-title" id="sec-briefing">🎙️ 윤스트롱 30초 장전 브리핑 룸 (오디오 & 텍스트 펄스)</div>
+    <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
+    <div class="section-title" id="sec-briefing">📢 윤스트롱 실전 핵심 브리핑 룸 (11-03 화요일 펄스)</div>
     <div class="briefing-box">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span class="tag tag-highlight" style="background:#0284c7; color:#fff;">● LIVE MORNING BRIEFING</span>
-          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">아침 출근길 30초 핵심 요약</span>
+          <span class="tag tag-highlight" style="background:#0284c7; color:#fff;">● LIVE 11-03 TUESDAY BRIEFING</span>
+          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">화요일 개장 핵심 실전 포인트 & 원칙</span>
         </div>
         <div class="live-sound-wave" id="soundWave">
           <div class="wave-bar"></div>
@@ -1721,22 +1776,28 @@
         </div>
       </div>
 
-      <div style="font-size:0.95rem; font-weight:800; margin-bottom:12px; color:var(--text);">
-        "공포의 월요일 개장, 스마트머니는 패닉셀을 멈추고 9시 반을 기다립니다."
+      <div style="font-size:1.02rem; font-weight:900; margin-bottom:14px; color:var(--text);">
+        "미국 선물 반등과 빅테크 훈풍! 테크윙 익절 성공 후 화요일 국장 승부처를 짚습니다."
       </div>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; font-size:0.82rem; color:var(--text-sub); line-height:1.6;">
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
-          <strong style="color:var(--accent);">1. 매크로 팩트</strong><br>
-          미장 인텔 쇼크는 PC 거품일 뿐, HBM·AI 데이터센터 펀더멘털은 견고합니다. 코스피 PBR 0.9배 역사적 반등 확률 82%!
+          <strong style="color:var(--accent); font-size:0.88rem;">1. 글로벌 매크로 & 선물 반등</strong><br>
+          나스닥100 선물 28,778(▲0.86%), S&P500 선물 ▲0.52%. VIX 18.9로 안정세 복귀. 마이크론 +2.4%·엔비디아 +1.4% 강세로 메모리 공급 부족 이슈가 국내 대장주(삼성전자·SK하이닉스)에 가격 인상 호재로 작용.
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
-          <strong style="color:var(--danger);">2. 실전 행동 룰</strong><br>
-          09:00~09:30 개장 직후 시장가 투매 절대 금지! 35,000원 손절선 사수, 36,700~37,000원 본전 터치 시 절반 현금화.
+          <strong style="color:var(--success); font-size:0.88rem;">2. 테크윙 실전 결산 (청산 완료)</strong><br>
+          11-02 09:36 120주 전량 매도 익절 성공(평단 36,700원 돌파, 종가 36,850원)! 원금 및 수익 100% 현금 회수 완료. 화요일 장에서는 뇌동 재진입을 철저히 금지하고 관찰 종목으로만 흐름 추적.
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
-          <strong style="color:var(--success);">3. 오늘 탑픽 3선</strong><br>
-          SK하이닉스(94점, 손익비 1:3.4), 삼성전자(89점, 외인 순매수 1위), 테크윙(88점, 3Q 턴어라운드).
+          <strong style="color:var(--accent); font-size:0.88rem;">3. 오늘 주도 턴어라운드 후보 3선</strong><br>
+          ① 한미반도체(191,500원 +4.8%, 외인·기관 쌍끌이 순매수 유입)<br>
+          ② 현대차(286,500원 +1.6%, 2일 연속 기관·외인 동시 매집)<br>
+          ③ 리노공업(57,100원 +1.8%, 낙폭과대 반등 양봉 후 관찰 우선)
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
+          <strong style="color:var(--warning); font-size:0.88rem;">4. 화요일 실전 행동 원칙</strong><br>
+          08:00 장전 브리핑 수치 점검 ➔ 09:00~09:30 개장 초 추격 매수 금지 ➔ 손익비 1:2 이상 & 외인·기관 쌍끌이 수급 확인 종목만 선별 분할 대응!
         </div>
       </div>
 
@@ -2091,7 +2152,8 @@
     </div>
 
     <!-- 4. Stock Ranking & Discovery (PUBLIC) -->
-    <div class="section-title" id="sec-ranking" data-alias="sec-turnaround">🏆 실전 신규 발굴 & 낙폭과대 랭킹 (레이더 100점 만점)</div>
+    <div class="section-title" id="sec-turnaround" data-alias="sec-ranking">🏆 실전 신규 발굴 & 낙폭과대 턴어라운드 8선 랭킹 (레이더 100점 만점)</div>
+    <div id="sec-ranking"></div>
 
     <!-- 4-Axis Quant Score Model Banner -->
     <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:12px 18px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:0.78rem;">
@@ -4315,22 +4377,22 @@
         unit: '주',
         stopPrice: 35000,
         targetPrice: 37000,
-        holdingDesc: '1차 기존 보유: 테크윙 36,700원 × 120주 (4,404,000원)',
+        holdingDesc: '🎯 11-02 09:36 120주 전량 익절 완료 (원금 100% 회수 · 관찰 종목)',
         facts: {
-          0: '🎯 <strong>테크윙(120주 평단 36,700원)</strong>: 원칙 없는 매매는 소중한 원금을 갉아먹습니다. 안전벨트를 하나씩 채워주세요.',
-          1: '🎯 <strong>테크윙 실전</strong>: 기대 수익이 감수할 손실보다 2배 이상 높지 않다면 매매하지 않는 것이 프로 트레이더의 철칙입니다.',
-          2: '🎯 <strong>테크윙 계좌</strong>: 20만 원은 다음 기회에 언제든 복구할 수 있는 경미한 손실입니다. 손절선 없는 방치가 진짜 파멸입니다.',
-          3: '🎯 <strong>통계적 팩트</strong>: 시초가 갭하락 음봉의 68%는 9시 30분 이후 저가 매수세가 유입되며 낙폭을 축소했습니다.',
-          4: '🎯 <strong>수급 골든크로스</strong>: 기관의 현물 순매수 유입이 확인되면 테크윙의 37,000원 반등 탄력도 강해집니다.',
-          5: '🎯 <strong>승리 공식</strong>: 테크윙 35,000원 손절선 사수와 36,700~37,000원 본전 분할 탈출 계획을 흔들림 없이 실행하십시오!'
+          0: '🎯 <strong>테크윙(청산 완료 · 현금 확보)</strong>: 11-02 09:36 120주 전량 익절 성공! 현재는 100% 현금을 보존하며 다음 타점을 노리는 관찰 단계입니다.',
+          1: '🎯 <strong>테크윙 실전</strong>: 원금을 완벽히 지켜낸 승리입니다. 반등장이라고 성급히 재진입하지 않는 인내가 진짜 실력입니다.',
+          2: '🎯 <strong>테크윙 원칙</strong>: 재진입 시 35,000원 지지선과 3대 선별 기준(손익비 1:2, 쌍끌이, RSI 양봉)이 완성될 때만 진입합니다.',
+          3: '🎯 <strong>통계적 팩트</strong>: 익절 후 뇌동매매로 재진입한 계좌의 74%가 직전 수익을 반납했습니다. 현금을 쥔 자가 시장의 승자입니다.',
+          4: '🎯 <strong>수급 골든크로스</strong>: 테크윙 외인·기관의 3일 연속 동시 매집이 다시 포착될 때까지 차분히 관찰하십시오.',
+          5: '🎯 <strong>승리 공식</strong>: 수익 보존 완료! 원칙을 지킨 윤용규 님의 멋진 익절을 축하하며, 다음 확실한 변곡점까지 안전하게 자산을 보존하십시오!'
         },
         voices: {
-          0: '테크윙 나침반 진단입니다. 아직 어떤 안전장치도 점검되지 않았습니다. 지금 주문창을 켜면 공포에 휩쓸려 시장가로 투매할 위험이 큽니다. 1번 손익비부터 침착하게 확인하세요.',
-          1: '테크윙 손익비 1대 2 원칙을 세웠습니다. 다음으로 최악의 폭락을 방어할 35,000원 손절선을 확정하세요.',
-          2: '테크윙 안전벨트를 맸습니다. 35,000원 손절선 사수로 최대 손실은 마이너스 20만 원 선에서 완전히 통제됩니다.',
-          3: '테크윙 핵심 고비를 넘겼습니다. 9시부터 9시 30분까지는 공포 투매 왜곡 구간이니, 시장가 매도 버튼을 절대 누르지 마세요.',
-          4: '테크윙 시야가 넓어졌습니다. 기관의 순매수 유입을 확인하고, 사전에 계획된 분할 대응인지 최종 점검하세요.',
-          5: '테크윙 완벽합니다. 감정 제로, 냉철한 원칙 100퍼센트입니다. 35,000원 손절선 사수와 본전 분할 탈출 계획을 흔들림 없이 실행하십시오.'
+          0: '테크윙 실전 나침반입니다. 11월 2일 오전 9시 36분에 120주 전량 익절을 완료하여 원금을 100% 회수했습니다. 현재 보유 수량은 0주이며, 뇌동 재진입을 금지하고 35,000원 지지선과 수급을 관찰하는 단계입니다.',
+          1: '테크윙 손익비 원칙 준수 완료! 원금을 완벽히 지켜낸 승리입니다. 반등장이라고 성급히 재진입하지 않는 인내가 진짜 실력입니다.',
+          2: '테크윙 현금 보존 완료! 확보한 원금과 수익은 계좌의 가장 강력한 무기입니다.',
+          3: '테크윙 냉철한 원칙 준수! 익절 후 뇌동 재진입을 참아내는 사람이 장기 복리 수익을 달성합니다.',
+          4: '테크윙 수급 관찰 중! 외인과 기관의 쌍끌이 매집이 다시 시작될 때까지 기다리십시오.',
+          5: '테크윙 매매 승리 완료! 감정 제로, 원칙 백 퍼센트로 멋지게 익절해내셨습니다. 다음 확실한 타점까지 편안하게 관찰하십시오.'
         }
       },
       '000660': {
@@ -5006,6 +5068,18 @@
         });
       } else {
         showToast("📋 브리핑 텍스트가 복사되었습니다! 카톡에 붙여넣기하세요.");
+      }
+    }
+
+    // Universal Smooth Scroll & Neon Highlight Function
+    function scrollToTarget(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.classList.remove('highlight-active');
+        void el.offsetWidth;
+        el.classList.add('highlight-active');
+        showToast('🏆 턴어라운드 8선 랭킹 구역으로 이동했습니다!');
       }
     }
 
