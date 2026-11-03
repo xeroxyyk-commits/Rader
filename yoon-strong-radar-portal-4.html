@@ -1458,23 +1458,23 @@
   <!-- Top Marquee Ticker -->
   <div class="ticker-bar">
     <div class="ticker-track">
-      <div class="ticker-item"><span>코스피</span> <span class="c-success">5,859.08 ▲2.24%</span></div>
-      <div class="ticker-item"><span>코스닥</span> <span class="c-success">734.36 ▲1.38%</span></div>
+      <div class="ticker-item"><span>코스피</span> <span class="c-danger">5,626.08 ▼3.98%</span></div>
+      <div class="ticker-item"><span>코스닥</span> <span class="c-danger">717.63 ▼2.28%</span></div>
       <div class="ticker-item"><span>나스닥</span> <span class="c-danger">25,164.32 ▼1.07%</span></div>
       <div class="ticker-item"><span>SOX 반도체</span> <span class="c-danger">10,328.33 ▼3.37%</span></div>
       <div class="ticker-item"><span>VIX 변동성</span> <span class="c-danger">21.28 ▲9.58%</span></div>
       <div class="ticker-item"><span>공포탐욕</span> <span class="c-danger">35 (공포)</span></div>
-      <div class="ticker-item"><span>테크윙</span> <span class="c-danger">36,850 ▼0.67%</span></div>
+      <div class="ticker-item"><span>테크윙</span> <span class="c-danger">34,400 ▼6.65%</span></div>
       <div class="ticker-item"><span>삼성전자</span> <span class="c-success">229,000 ▲1.78%</span></div>
       <div class="ticker-item"><span>SK하이닉스</span> <span class="c-success">1,472,000 ▲3.81%</span></div>
       <!-- Loop Items -->
-      <div class="ticker-item"><span>코스피</span> <span class="c-success">5,859.08 ▲2.24%</span></div>
-      <div class="ticker-item"><span>코스닥</span> <span class="c-success">734.36 ▲1.38%</span></div>
+      <div class="ticker-item"><span>코스피</span> <span class="c-danger">5,626.08 ▼3.98%</span></div>
+      <div class="ticker-item"><span>코스닥</span> <span class="c-danger">717.63 ▼2.28%</span></div>
       <div class="ticker-item"><span>나스닥</span> <span class="c-danger">25,164.32 ▼1.07%</span></div>
       <div class="ticker-item"><span>SOX 반도체</span> <span class="c-danger">10,328.33 ▼3.37%</span></div>
       <div class="ticker-item"><span>VIX 변동성</span> <span class="c-danger">21.28 ▲9.58%</span></div>
       <div class="ticker-item"><span>공포탐욕</span> <span class="c-danger">35 (공포)</span></div>
-      <div class="ticker-item"><span>테크윙</span> <span class="c-danger">36,850 ▼0.67%</span></div>
+      <div class="ticker-item"><span>테크윙</span> <span class="c-danger">34,400 ▼6.65%</span></div>
     </div>
   </div>
 
@@ -1487,7 +1487,7 @@
       </div>
       <div class="brand-badges-wrap">
         <span class="nav-tag" id="userRoleBadge">👤 사용자 7일 체험 모드</span>
-        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-03 08:00 장전 레이더</span>
+        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-03 15:20 장 마감 레이더</span>
       </div>
     </div>
     <div class="nav-actions">
@@ -1571,7 +1571,7 @@
           <span class="pipe-title">실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) 가동 중</span>
         </div>
         <div class="pipe-status-right">
-          <span>현재: 11-03(화) 개장 준비 중 · 차기 자동 갱신: 오늘 08:00 KST (장전 레이더 & 메일 발송 & 깃허브 자동 배포)</span>
+          <span>현재: 11-03(화) 15:20 장 마감 결산 완료 · 차기 자동 갱신: 오늘 19:50 KST (야간 프리마켓 레이더 & 메일 발송 & 깃허브 자동 배포)</span>
         </div>
       </div>
 
@@ -1583,7 +1583,7 @@
             <div>
               <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span>매일 3타임 실전 퀀트 레이더 진행 상황</span>
-                <span class="badge" id="currentStageBadge" style="background:var(--accent); color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">✅ 11-03 08:00 장전 레이더 완료 (15:20 마감 결산 예정)</span>
+                <span class="badge" id="currentStageBadge" style="background:var(--accent); color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">✅ 11-03 15:20 장 마감 결산 레이더 완료 (19:50 야간 프리마켓 예정)</span>
               </div>
               <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">
                 하루 3번, 정해진 시간마다 시장 분석 ➔ 포털 갱신 ➔ 깃허브 웹사이트 자동 배포가 100% 전자동으로 가동됩니다.
@@ -1609,10 +1609,10 @@
           </div>
 
           <!-- Step 2 -->
-          <div class="stage-step-box" id="stageStep2" style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:14px;">
+          <div class="stage-step-box active-waiting" id="stageStep2" style="background:var(--surface-sub); border:1.5px solid var(--accent); border-radius:14px; padding:14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <span style="font-weight:900; font-size:0.9rem; color:var(--text);">📊 2단계: 15:20 장마감 레이더</span>
-              <span class="stage-tag" style="background:var(--surface); color:var(--text-muted); border:1px solid var(--border); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">15:20 가동</span>
+              <span class="stage-tag" style="background:var(--surface); color:var(--text-muted); border:1px solid var(--border); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 (15:20 발송)</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">마감 10분 전 결산 & 동시호가</div>
             <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">외인·기관 최종 순매수, 당일 테크윙 및 주도주 마감, 종가 배팅 여부 점검</div>
@@ -1654,7 +1654,7 @@
 
       <div class="global-stock-chips" id="globalStockChips" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none;">
         <button class="global-chip active" data-code="089030" onclick="globalSyncStock('089030', this)">
-          <span style="font-size:1rem;">🎯</span> <strong>테크윙</strong> <span style="font-size:0.7rem; opacity:0.95; color:var(--success); font-weight:800;">(36,850 · 익절완료)</span>
+          <span style="font-size:1rem;">🎯</span> <strong>테크윙</strong> <span style="font-size:0.7rem; opacity:0.95; color:var(--success); font-weight:800;">(34,400 · 익절완료)</span>
         </button>
         <button class="global-chip" data-code="000660" onclick="globalSyncStock('000660', this)">
           <span>🔥</span> <strong>SK하이닉스</strong> <span style="font-size:0.7rem; opacity:0.85;">(1,472,000 ▲3.8%)</span>
@@ -1663,13 +1663,13 @@
           <span>🛡️</span> <strong>삼성전자</strong> <span style="font-size:0.7rem; opacity:0.85;">(229,000 ▲1.8%)</span>
         </button>
         <button class="global-chip" data-code="042700" onclick="globalSyncStock('042700', this)">
-          <span>⚡</span> <strong>한미반도체</strong> <span style="font-size:0.7rem; opacity:0.85;">(191,500 ▲4.8%)</span>
+          <span>⚡</span> <strong>한미반도체</strong> <span style="font-size:0.7rem; opacity:0.85;">(179,900 ▼6.2%)</span>
         </button>
         <button class="global-chip" data-code="005380" onclick="globalSyncStock('005380', this)">
-          <span>🚗</span> <strong>현대차</strong> <span style="font-size:0.7rem; opacity:0.85;">(286,500 ▲1.6%)</span>
+          <span>🚗</span> <strong>현대차</strong> <span style="font-size:0.7rem; opacity:0.85;">(277,000 ▼3.5%)</span>
         </button>
         <button class="global-chip" data-code="058470" onclick="globalSyncStock('058470', this)">
-          <span>💎</span> <strong>리노공업</strong> <span style="font-size:0.7rem; opacity:0.85;">(57,100 ▲1.8%)</span>
+          <span>💎</span> <strong>리노공업</strong> <span style="font-size:0.7rem; opacity:0.85;">(53,500 ▼6.1%)</span>
         </button>
         <button class="global-chip" data-code="240810" onclick="globalSyncStock('240810', this)">
           <span>🚀</span> <strong>원익IPS</strong> <span style="font-size:0.7rem; opacity:0.85;">(32,800 ▲1.9%)</span>
@@ -1681,7 +1681,7 @@
     </div>
 
 <!-- 1. Market Sentiment & Global Macro Gauges (PUBLIC) -->
-    <div class="section-title" id="sec-pulse">🌡️ 실시간 시장 심리 & 글로벌 매크로 지표 (11-03 08:00 장전 레이더 기준)</div>
+    <div class="section-title" id="sec-pulse">🌡️ 실시간 시장 심리 & 글로벌 매크로 지표 (11-03 15:20 장 마감 레이더 기준)</div>
     <div class="pulse-grid">
       <div class="pulse-card">
         <div class="pulse-lbl">
@@ -1704,8 +1704,8 @@
           <span>USD/KRW (원·달러 환율)</span>
           <span>외환 시장</span>
         </div>
-        <div class="pulse-val c-warning">1,343.8원</div>
-        <div class="pulse-sub c-warning">▲9.5원 · 야간 역외 1,341원대 (안정 흐름)</div>
+        <div class="pulse-val c-success">1,340.60원</div>
+        <div class="pulse-sub c-warning">▼5.40원 · 리스크오프 속 원화 강세 (1,340원대 안착)</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl">
@@ -1720,16 +1720,16 @@
           <span>코스피 (KOSPI)</span>
           <span>국내 대형주</span>
         </div>
-        <div class="pulse-val c-success">5,859.08</div>
-        <div class="pulse-sub c-success">+2.24% (기관 1.2조 순매수 주도 V자 반등)</div>
+        <div class="pulse-val c-danger">5,626.08</div>
+        <div class="pulse-sub c-success">-3.98% 급락 (-233.00원, 반도체發 리스크오프 투매)</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl">
           <span>코스닥 (KOSDAQ)</span>
           <span>중소형·소부장</span>
         </div>
-        <div class="pulse-val c-success">734.36</div>
-        <div class="pulse-sub c-success">+1.38% (기관 순매수 반등 전환)</div>
+        <div class="pulse-val c-danger">717.63</div>
+        <div class="pulse-sub c-success">-2.28% (-16.73원, 소부장·중형주 동반 조정)</div>
       </div>
     </div>
 
@@ -1737,36 +1737,36 @@
     <div class="expert-commentary-box" id="sec-market-view">
       <div class="commentary-header">
         <div class="commentary-title">
-          <span>🧠 윤스트롱 퀀트 마켓 뷰: "SOX 급락의 본질과 화요일 국장 시나리오"</span>
+          <span>🧠 윤스트롱 퀀트 마켓 뷰: "코스피 -3.98% 급락 결산과 익절 방어 성과"</span>
         </div>
         <span class="tag tag-highlight">헤지펀드 퀀트 분석 리포트</span>
       </div>
       <p style="font-size:0.86rem; color:var(--text-sub); line-height:1.65;">
-        시장의 집단 공포는 감정적 투매를 부르지만, 스마트머니는 숫자로 증명된 턴어라운드 종목을 저가 매집합니다. EDA·아날로그 반도체發 SOX -3.37% 급락의 본질을 팩트 위주로 해체합니다.
+        시장의 집단 공포는 감정적 투매를 부르지만, 스마트머니는 숫자로 증명된 원칙으로 방어합니다. 야간 SOX -3.37% 급락을 시초로 한 코스피 -3.98% 급락 마감의 본질과 테크윙 전량 익절 방어 성과를 팩트 위주로 해체합니다.
       </p>
       <div class="commentary-grid">
         <div class="comm-point">
-          <h4>📌 팩트 1. PC 쇼크 ≠ HBM 인프라 훼손</h4>
-          <p>인텔의 가이던스 하향은 전통 PC CPU 수요 부진에 기인한 개별 기업의 문제입니다. 마이크로소프트, 알파벳, 메타 등 글로벌 빅테크의 AI 데이터센터 CapEx는 사상 최고치를 갱신 중이며, 고성능 HBM과 테스트 장비(테크윙 큐브프로버) 업황은 여전히 공급 부족 상태입니다.</p>
+          <h4>📌 팩트 1. 급락의 진앙은 해외 반도체 밸류체인</h4>
+          <p>마감 코스피 5,626.08(-233.00p, -3.98%) · 코스닥 717.63(-16.73p, -2.28%)로 급락 조정 마감했습니다. 진앙은 야간 SOX -3.37%(마벨 -13%·루멘텀 -18%)로, 반도체 밸류체인 전반이 동반 조정하면서 국장 대형 기술주로 투매가 확산된 구조입니다.</p>
         </div>
         <div class="comm-point">
           <h4>📌 팩트 2. PBR 0.9배 이하 역사적 반등 확률 82%</h4>
           <p>코스피가 12개월 선행 PBR 0.9배 미만으로 진입했습니다. 과거 10개년 데이터 백테스팅 결과, 이 구간에서 추가 폭락보다는 1~2개월 내 기술적 되돌림 반등이 발생할 확률이 82%를 상회했습니다.</p>
         </div>
         <div class="comm-point">
-          <h4>📌 실전 룰. 시초가 패닉셀 금지 & 수급 확인</h4>
-          <p>월요일 코스피가 기관 1.2조 순매수로 V자 반등한 데 이어, 야간 나스닥 선물도 +0.86%로 반등 출발했습니다. 화요일(11-03) 개장 직후(09:00~09:30)에도 시장가 추격 대신 미장 마감(애플 실적)과 외인·기관 수급을 확인한 뒤 대응하는 것이 원칙입니다.</p>
+          <h4>📌 실전 룰. 급락장 추격 매도 금지 & 야간 수급 확인</h4>
+          <p>현금 100% 상태에서 급락 지수에 휩쓸려 추격 매도·투매하는 것은 금물입니다. 19:50 야간 레이더에서 코스피200 야간선물과 미국 선물 반등 여부, 외인·기관 최종 순매수 방향을 확인한 뒤, 손익비 1:2 이상 + RSI 과매도 반등 양봉 조건으로만 선별 대응하는 것이 원칙입니다.</p>
         </div>
       </div>
     </div>
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
-    <div class="section-title" id="sec-briefing">📢 윤스트롱 실전 핵심 브리핑 룸 (11-03 화요일 펄스)</div>
+    <div class="section-title" id="sec-briefing">📢 윤스트롱 실전 핵심 브리핑 룸 (11-03 화요일 장 마감 결산)</div>
     <div class="briefing-box">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
         <div style="display:flex; align-items:center; gap:8px;">
           <span class="tag tag-highlight" style="background:#0284c7; color:#fff;">● LIVE 11-03 TUESDAY BRIEFING</span>
-          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">화요일 개장 핵심 실전 포인트 & 원칙</span>
+          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">장 마감 결산 핵심 실전 포인트 & 턴어라운드 점검</span>
         </div>
         <div class="live-sound-wave" id="soundWave">
           <div class="wave-bar"></div>
@@ -1777,27 +1777,27 @@
       </div>
 
       <div style="font-size:1.02rem; font-weight:900; margin-bottom:14px; color:var(--text);">
-        "나스닥 반락과 SOX -3.37% 급락! 현금 100% 상태에서 화요일 국장 관전 포인트를 짚습니다."
+        "코스피 -3.98% 급락! 전일 전량 익절 결단이 오늘 테크윙 -6.65% 폭락을 100% 방어했습니다."
       </div>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; font-size:0.82rem; color:var(--text-sub); line-height:1.6;">
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
           <strong style="color:var(--accent); font-size:0.88rem;">1. 글로벌 매크로 & 선물 반등</strong><br>
-          다우 51,983.98(▲0.41%) 가치주·경기민감주 강세, S&P500 7,541.40(▼0.51%), 나스닥 25,164.32(▼1.07%) — 장초반 +1.4% 상승 후 기술주 매물 출회로 반락. SOX 10,328.33(▼3.37%) 급락(마벨 -13%·루멘텀 -18%·엔비디아 -1%), VIX 21.28(▲9.58%), WTI $96.46(▼7.36%), 공포탐욕 35. 국장은 반도체 대형주 갭하락/숨고르기 출발, 자동차·가치주 상대적 견조 전망.
+          코스피 5,626.08(▼3.98%, -233.00원), 코스닥 717.63(▼2.28%, -16.73원) 급락 마감. 원/달러 1,340.60원(▼5.40원). 야간 SOX -3.37% 급락(마벨 -13%·루멘텀 -18%)이 국장 반도체 밸류체인 투매로 직결됐고, 지수는 5,600선에서 마감했습니다.
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
           <strong style="color:var(--success); font-size:0.88rem;">2. 테크윙 실전 결산 (청산 완료)</strong><br>
-          11-02 120주 전량 익절로 원금·수익 100% 현금 확보 완료. 화요일에는 신규 진입 없이 편안한 관찰 유지 — 반도체 갭하락 출발이 예상되니 뇌동 재진입을 철저히 금지합니다.
+          11-02 09:36 120주 전량 익절(평단 36,700원) 덕분에 오늘 테크윙 -6.65% 급락(종가 34,400원)을 노출 0으로 완벽 방어. 원금·수익 100% 현금 확보 상태 유지 중이며, 재진입은 3대 기준 재검증 후 별도 판단입니다.
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
           <strong style="color:var(--accent); font-size:0.88rem;">3. 오늘 주도 턴어라운드 후보 3선</strong><br>
-          ① 한미반도체(191,500원 +4.8%, 외인·기관 쌍끌이 순매수 유입)<br>
-          ② 현대차(286,500원 +1.6%, 2일 연속 기관·외인 동시 매집)<br>
-          ③ 리노공업(57,100원 +1.8%, 낙폭과대 반등 양봉 후 관찰 우선)
+          ① 한미반도체(179,900원 -6.16%, 반도체 동반 조정 속 180,000원 지지 공방)<br>
+          ② 현대차(277,000원 -3.48%, 지수 대비 상대적 선방 & 실적 모멘텀)<br>
+          ③ 리노공업(53,500원 -6.14%, 52주 신저가(53,100원) 부근 RSI 과매도 진입)
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
           <strong style="color:var(--warning); font-size:0.88rem;">4. 화요일 실전 행동 원칙</strong><br>
-          08:00 장전 브리핑 수치 점검 ➔ 09:00~09:30 개장 초 추격 매수 금지 ➔ 손익비 1:2 이상 & 외인·기관 쌍끌이 수급 확인 종목만 선별 분할 대응!
+          19:50 야간 레이더로 야간선물·시간외 결산 점검 ➔ 급락장 추격 매도/투매 금지 ➔ RSI 과매도 반등 양봉 & 손익비 1:2 이상 종목만 선별 분할 대응!
         </div>
       </div>
 
@@ -2354,7 +2354,7 @@
             <div class="rank-badge">3</div>
             <div class="stock-info">
               <div class="stock-title">테크윙 <span class="stock-meta">089030 · 코스닥</span></div>
-              <div style="font-size:0.78rem; color:var(--text-sub);">현재가: 36,850원 (-0.67%)</div>
+              <div style="font-size:0.78rem; color:var(--text-sub);">현재가: 34,400원 (-6.65%)</div>
             </div>
             <div class="score-badge">
               <div class="score-num">88점</div>
@@ -3292,13 +3292,13 @@
               <span class="share-card-title">📊 오늘 퀀트 마켓 뷰</span>
               <span class="tag tag-highlight" style="font-size:0.7rem;">매크로 핵심</span>
             </div>
-            <div class="share-card-desc">코스피 +2.24% V자 반등, 기관 1.2조 순매수, 테크윙 청산 완료 결산</div>
+            <div class="share-card-desc">코스피 -3.98% 급락 마감, 테크윙 -6.65% 폭락 — 전일 전량 익절로 노출 0 방어 성공</div>
             <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 시장 뷰]
-- VIX: 21.8 (단기 투매 급증)
-- 공포탐욕: 32 (과매도 공포 구간)
-- 환율: 1,343.8원
-- 코스피 +2.24% V자 반등 (기관 1.2조 순매수 주도)
-* 핵심 룰: 09:00~09:30 시초가 패닉셀 금지, 9시 반 이후 수급 확인 후 분할 대응!</div>
+- 코스피: 5,626.08 (-3.98% 급락, -233.00원)
+- 코스닥: 717.63 (-2.28%)
+- 환율: 1,340.60원 (▼5.40원)
+- 테크윙 34,400원 (-6.65%) → 전일 전량 익절로 노출 0, 방어 100% 성공
+* 핵심 룰: 급락장 추격 매도/투매 금지, 19:50 야간 레이더에서 야간선물·수급 확인 후 선별 대응!</div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyMarket" onclick="copyMarketReport(this)">
@@ -3438,8 +3438,8 @@
             <div style="font-size:0.84rem; color:var(--text-sub); margin-top:2px;">HBM 전수검사 큐브프로버 빅3 공급 가시화 & 3Q 영업익 180억 턴어라운드</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:0.75rem; color:var(--text-sub);">마감 종가 (11-02)</div>
-            <div style="font-size:1.4rem; font-weight:900; color:var(--danger);">36,850원 (-0.67%)</div>
+            <div style="font-size:0.75rem; color:var(--text-sub);">마감 종가 (11-03)</div>
+            <div style="font-size:1.4rem; font-weight:900; color:var(--danger);">34,400원 (-6.65%)</div>
           </div>
         </div>
 
@@ -3464,8 +3464,8 @@
 
         <!-- Action Box -->
         <div class="action-guide-box guide-exit" id="mainActionBox">
-          <strong>✅ [청산 완료 리포트 · 11-02]</strong><br>
-          11-02(월) 09:36 120주 전량 매도로 포지션 정리를 완료했습니다(진입 평단 36,700원). 당일 시가 36,350원 / 장중 고가 37,800원 / 마감 종가 36,850원. 향후 신규 진입 전까지 테크윙은 관찰 종목으로 추적하며, 35,000원 지지선과 수급 방향을 모니터링합니다.
+          <strong>✅ [11-03 장 마감 결산 · 익절 방어 성과 확인]</strong><br>
+          11-02(월) 09:36 120주 전량 매도(진입 평단 36,700원)가 최고의 한 수로 증명됐습니다. 금일 시가 36,000원 / 장중 고가 36,000원 / 저가 34,250원 / 마감 종가 34,400원(-6.65% 급락). 현금 100% 포지션 덕분에 오늘 폭락을 노출 0으로 완벽히 피했습니다. 보유 0주 유지 — 재진입은 3대 기준(손익비 1:2 · 쌍끌이 · RSI 반등 양봉) 재검증 후 별도 판단합니다.
         </div>
 
         <!-- Simulator -->
@@ -3473,21 +3473,21 @@
           <div class="sim-header-row">
             <div>
               <span style="font-size:0.78rem; color:var(--text-sub); font-weight:700;">월요일 시초가/장중 변동 시뮬레이터:</span>
-              <div style="font-size:1.35rem; font-weight:900; color:var(--accent);" id="simPriceNum">36,850원</div>
+              <div style="font-size:1.35rem; font-weight:900; color:var(--accent);" id="simPriceNum">34,400원</div>
             </div>
             <div style="text-align:right;">
               <span style="font-size:0.78rem; color:var(--text-sub); font-weight:700;">시뮬레이션 손익:</span>
-              <div style="font-size:1rem; font-weight:900;" class="c-success" id="simPnlNum">+18,000원 (+0.41%)</div>
+              <div style="font-size:1rem; font-weight:900;" class="c-danger" id="simPnlNum">-276,000원 (-6.27%)</div>
             </div>
           </div>
-          <input type="range" id="simSlider" min="33500" max="40000" step="100" value="36850">
+          <input type="range" id="simSlider" min="33000" max="40000" step="100" value="34400">
 
           <!-- Quick Presets -->
           <div class="preset-btns">
             <button class="btn-preset" data-price="34800">🚨 손절선 이탈 (34,800원)</button>
             <button class="btn-preset" data-price="35500">⚠️ 시초가 갭하락 (35,500원)</button>
             <button class="btn-preset" data-price="36700">🎯 본전 탈출 (36,700원)</button>
-            <button class="btn-preset" data-price="36850">📌 월요 종가 (36,850원)</button>
+            <button class="btn-preset" data-price="34400">📌 화요 종가 (34,400원)</button>
             <button class="btn-preset" data-price="38500">🚀 단기 반등 (38,500원)</button>
           </div>
         </div>
@@ -3553,7 +3553,7 @@
                 <td><strong>테크윙 (089030)</strong></td>
                 <td><span class="tag tag-highlight">청산완료</span></td>
                 <td>36,700원</td>
-                <td>36,850원</td>
+                <td>34,400원</td>
                 <td>0주</td>
                 <td class="c-success"><strong>익절 청산 완료 (09:36 전량 매도)</strong></td>
                 <td><span class="tag" style="background:var(--success-bg); color:var(--success);">관찰 종목 전환</span></td>
@@ -5085,21 +5085,21 @@
 
     // Dedicated Share Hub Callbacks
     const textMarket = `[YOON STRONG CAPITAL 퀀트 인텔리전스 뷰]
-- VIX 변동성: 21.8 (단기 과열 진정 국면)
-- 공포·탐욕 지수: 32 (역사적 과매도 변곡점)
-- 원/달러 환율: 1,343.8원 (마감 기준, ▲9.5원)
-- 코스피 PBR 0.9배 이하 역사적 반등 확률 82%
-* 실전 대응: 09:00~09:30 시초가 뇌동매매 엄금, 9시 30분 이후 메이저 수급 확인 후 분할 대응!`;
+- 코스피: 5,626.08 (▼3.98%, -233.00원) 급락 마감
+- 코스닥: 717.63 (▼2.28%, -16.73원)
+- 원/달러 환율: 1,340.60원 (▼5.40원)
+- 테크윙: 34,400원 (▼6.65%) — 전일 전량 익절로 오늘 폭락 노출 0
+* 실전 대응: 급락장 추격 매도 엄금, 19:50 야간 레이더에서 야간선물·메이저 수급 확인 후 분할 대응!`;
 
     const stockStrategyMap = {
       '089030': {
         name: "테크윙",
         code: "089030",
-        text: `[테크윙(089030) 포지션 결산 · 11-02]
-1. 11-02 09:36 120주 전량 매도 청산 완료 (진입 평단 36,700원)
-2. 당일 시가 36,350원 / 고가 37,800원 / 마감 종가 36,850원
-3. 재진입 전 관찰: 35,000원 지지선 및 외인·기관 수급 방향 추적
-4. 신규 진입 시 3대 기준(손익비 1:2 · 쌍끌이 · RSI 반등 양봉) 재검증!`
+        text: `[테크윙(089030) 결산 · 11-03]
+1. 11-02 09:36 120주 전량 익절 청산 (평단 36,700원) → 오늘 -6.65% 폭락 노출 0
+2. 당일 시가 36,000원 / 고가 36,000원 / 저가 34,250원 / 종가 34,400원 (-6.65%)
+3. 보유 0주 유지 — 관찰 종목으로 수급·지지선(34,000원선) 추적
+4. 재진입 시 3대 기준(손익비 1:2 · 쌍끌이 · RSI 반등 양봉) 재검증 필수!`
       },
       '000660': {
         name: "SK하이닉스",
@@ -5296,7 +5296,7 @@
 
     // 1. Audio Briefing Engine (Web Speech Synthesis TTS & Waveform)
     let isSpeaking = false;
-    const briefingText = "윤스트롱 장전 퀀트 브리핑입니다. 첫째, 미국 증시는 다우 0.41퍼센트 상승에도 나스닥 1.07퍼센트, 필라델피아 반도체 지수 3.37퍼센트 급락으로 마감했습니다. 둘째, VIX는 21.28로 9.58퍼센트 급등했고 공포탐욕 지수는 35, 공포 구간입니다. 셋째, 테크윙은 전일 전량 익절로 현금 100퍼센트 확보 상태입니다. 오늘은 신규 진입 없이 관찰을 유지하시고, 개장 초 9시부터 9시 30분 사이 뇌동매매를 절대 금지하세요. 반도체 갭하락 구간은 숨고르기를 확인한 뒤 판단하는 것이 원칙입니다.";
+    const briefingText = "윤스트롱 장 마감 퀀트 브리핑입니다. 첫째, 코스피는 5,626포인트, 3.98퍼센트 급락으로 마감했고 코스닥은 2.28퍼센트 하락했습니다. 둘째, 테크윙은 6.65퍼센트 급락한 34,400원에 마감했습니다. 다만 어제 120주 전량 익절로 노출이 제로였기 때문에 오늘 폭락은 수익에 전혀 영향이 없습니다. 셋째, 턴어라운드 후보는 180,000원 지지 공방 중인 한미반도체, 지수 대비 선방한 현대차, 52주 신저가 부근 과매도 진입한 리노공업입니다. 19시 50분 야간 레이더에서 야간선물과 시간외 수급을 확인하실 때까지 추격 매도는 금지입니다.";
 
     function toggleAudioBriefing() {
       if (!('speechSynthesis' in window)) {
