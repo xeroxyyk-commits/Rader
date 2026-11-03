@@ -1465,6 +1465,7 @@
       <div class="ticker-item"><span>VIX 변동성</span> <span class="c-danger">21.28 ▲9.58%</span></div>
       <div class="ticker-item"><span>공포탐욕</span> <span class="c-danger">35 (공포)</span></div>
       <div class="ticker-item"><span>테크윙</span> <span class="c-danger">34,400 ▼6.65%</span></div>
+<div class="ticker-item"><span>야간선물</span> <span class="c-success">895.6p ▲1.12%</span></div>
       <div class="ticker-item"><span>삼성전자</span> <span class="c-success">229,000 ▲1.78%</span></div>
       <div class="ticker-item"><span>SK하이닉스</span> <span class="c-success">1,472,000 ▲3.81%</span></div>
       <!-- Loop Items -->
@@ -1475,6 +1476,7 @@
       <div class="ticker-item"><span>VIX 변동성</span> <span class="c-danger">21.28 ▲9.58%</span></div>
       <div class="ticker-item"><span>공포탐욕</span> <span class="c-danger">35 (공포)</span></div>
       <div class="ticker-item"><span>테크윙</span> <span class="c-danger">34,400 ▼6.65%</span></div>
+<div class="ticker-item"><span>야간선물</span> <span class="c-success">895.6p ▲1.12%</span></div>
     </div>
   </div>
 
@@ -1487,7 +1489,7 @@
       </div>
       <div class="brand-badges-wrap">
         <span class="nav-tag" id="userRoleBadge">👤 사용자 7일 체험 모드</span>
-        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-03 15:20 장 마감 레이더</span>
+        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-03 19:50 야간 레이더</span>
       </div>
     </div>
     <div class="nav-actions">
@@ -1571,7 +1573,7 @@
           <span class="pipe-title">실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) 가동 중</span>
         </div>
         <div class="pipe-status-right">
-          <span>현재: 11-03(화) 15:20 장 마감 결산 완료 · 차기 자동 갱신: 오늘 19:50 KST (야간 프리마켓 레이더 & 메일 발송 & 깃허브 자동 배포)</span>
+          <span>현재: 11-03(화) 19:50 야간 레이더 완료 · 금일 3타임 전체 완주 ✅ · 차기 자동 갱신: 내일(11-04 수) 08:00 KST (장전 레이더 & 메일 발송 & 깃허브 자동 배포)</span>
         </div>
       </div>
 
@@ -1583,7 +1585,7 @@
             <div>
               <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span>매일 3타임 실전 퀀트 레이더 진행 상황</span>
-                <span class="badge" id="currentStageBadge" style="background:var(--accent); color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">✅ 11-03 15:20 장 마감 결산 레이더 완료 (19:50 야간 프리마켓 예정)</span>
+                <span class="badge" id="currentStageBadge" style="background:var(--accent); color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">✅ 11-03 19:50 야간 레이더 완료 (익일 국장 시나리오 반영) · 금일 3타임 전체 완주</span>
               </div>
               <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">
                 하루 3번, 정해진 시간마다 시장 분석 ➔ 포털 갱신 ➔ 깃허브 웹사이트 자동 배포가 100% 전자동으로 가동됩니다.
@@ -1619,10 +1621,10 @@
           </div>
 
           <!-- Step 3 -->
-          <div class="stage-step-box" id="stageStep3" style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:14px;">
+          <div class="stage-step-box active-waiting" id="stageStep3" style="background:var(--surface-sub); border:1.5px solid var(--accent); border-radius:14px; padding:14px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <span style="font-weight:900; font-size:0.9rem; color:var(--text);">🌙 3단계: 19:50 야간 결산 레이더</span>
-              <span class="stage-tag" style="background:var(--surface); color:var(--text-muted); border:1px solid var(--border); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">19:50 가동</span>
+              <span class="stage-tag" style="background:var(--accent); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 (19:50 발송)</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">국내 시간외 마감 & 익일 국장 시나리오</div>
             <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">국내 시간외 거래(20:00 마감) 결산, 코스피 야간선물, 다음 날 국장 개장 시나리오</div>
@@ -1681,7 +1683,7 @@
     </div>
 
 <!-- 1. Market Sentiment & Global Macro Gauges (PUBLIC) -->
-    <div class="section-title" id="sec-pulse">🌡️ 실시간 시장 심리 & 글로벌 매크로 지표 (11-03 15:20 장 마감 레이더 기준)</div>
+    <div class="section-title" id="sec-pulse">🌡️ 실시간 시장 심리 & 글로벌 매크로 지표 (11-03 19:50 야간 레이더 기준)</div>
     <div class="pulse-grid">
       <div class="pulse-card">
         <div class="pulse-lbl">
@@ -1731,42 +1733,50 @@
         <div class="pulse-val c-danger">717.63</div>
         <div class="pulse-sub c-success">-2.28% (-16.73원, 소부장·중형주 동반 조정)</div>
       </div>
+      <div class="pulse-card">
+        <div class="pulse-lbl">
+          <span>코스피200 야간선물 (19:50 기준)</span>
+          <span>Night Futures</span>
+        </div>
+        <div class="pulse-val c-success">895.6p</div>
+        <div class="pulse-sub c-success">▲1.12% (+9.93p) · 정규장 종가 885.67p 대비 기술적 반등 · 코스피 환산 약 5,712p</div>
+      </div>
     </div>
 
     <!-- NEW: Wall-Street Hedge Fund Expert Market Insight -->
     <div class="expert-commentary-box" id="sec-market-view">
       <div class="commentary-header">
         <div class="commentary-title">
-          <span>🧠 윤스트롱 퀀트 마켓 뷰: "코스피 -3.98% 급락 결산과 익절 방어 성과"</span>
+          <span>🧠 윤스트롱 퀀트 마켓 뷰: "야간선물 +1.12% 반등의 무게와 익일 국장 시나리오"</span>
         </div>
         <span class="tag tag-highlight">헤지펀드 퀀트 분석 리포트</span>
       </div>
       <p style="font-size:0.86rem; color:var(--text-sub); line-height:1.65;">
-        시장의 집단 공포는 감정적 투매를 부르지만, 스마트머니는 숫자로 증명된 원칙으로 방어합니다. 야간 SOX -3.37% 급락을 시초로 한 코스피 -3.98% 급락 마감의 본질과 테크윙 전량 익절 방어 성과를 팩트 위주로 해체합니다.
+        급락 다음 날의 반등은 주는 것이 아니라 확인하는 것입니다. 야간선물 +1.12% 반등과 시간외 투매 진정의 의미, 그리고 익일(11-04 수) 국장 갭상승 시나리오의 조건을 팩트 위주로 해체합니다.
       </p>
       <div class="commentary-grid">
         <div class="comm-point">
-          <h4>📌 팩트 1. 급락의 진앙은 해외 반도체 밸류체인</h4>
-          <p>마감 코스피 5,626.08(-233.00p, -3.98%) · 코스닥 717.63(-16.73p, -2.28%)로 급락 조정 마감했습니다. 진앙은 야간 SOX -3.37%(마벨 -13%·루멘텀 -18%)로, 반도체 밸류체인 전반이 동반 조정하면서 국장 대형 기술주로 투매가 확산된 구조입니다.</p>
+          <h4>📌 팩트 1. 야간선물 +1.12% — 기술적 반등 출발</h4>
+          <p>코스피200 야간선물이 정규장 종가 885.67p 대비 +9.93p(+1.12%)인 895.6p로 반등 출발해 코스피 환산 약 5,712p 수준입니다. 오늘 낙폭(-3.98%)이 과도했던 만큼 자율 반등 성격이며, 야간 거래는 새벽 6시까지 계속되고 미장(23:30 KST 개장) 흐름에 따라 변동됩니다.</p>
         </div>
         <div class="comm-point">
-          <h4>📌 팩트 2. PBR 0.9배 이하 역사적 반등 확률 82%</h4>
-          <p>코스피가 12개월 선행 PBR 0.9배 미만으로 진입했습니다. 과거 10개년 데이터 백테스팅 결과, 이 구간에서 추가 폭락보다는 1~2개월 내 기술적 되돌림 반등이 발생할 확률이 82%를 상회했습니다.</p>
+          <h4>📌 팩트 2. 시간외 투매 진정 & 저가 매수세 유입</h4>
+          <p>시간외 단일가·넥스트레이드 야간 거래에서 패닉셀이 진정되고 반도체 대형주 중심 저가 매수세가 유입됐습니다. 테크윙은 시간외 34,500원선에서 지지력을 타진 — 정규장 -6.65% 급락 직후의 투매 폭탄이 소화됐다는 신호입니다.</p>
         </div>
         <div class="comm-point">
-          <h4>📌 실전 룰. 급락장 추격 매도 금지 & 야간 수급 확인</h4>
-          <p>현금 100% 상태에서 급락 지수에 휩쓸려 추격 매도·투매하는 것은 금물입니다. 19:50 야간 레이더에서 코스피200 야간선물과 미국 선물 반등 여부, 외인·기관 최종 순매수 방향을 확인한 뒤, 손익비 1:2 이상 + RSI 과매도 반등 양봉 조건으로만 선별 대응하는 것이 원칙입니다.</p>
+          <h4>📌 실전 룰. 갭상승 추격 매수 금지 & 35,000원 지지 확인</h4>
+          <p>내일 갭상승 시초가 출발이 유력해도 추격 매수는 금물입니다. 미 대선 등 글로벌 변동성이 남아 있어, ① 테크윙 35,000원 지지선 안착 확인 ② 외인·기관 쌍끌이 수급 ③ 손익비 1:2 이상 + RSI 반등 양봉 — 3대 기준 재검증 전까지는 현금 100% 관망이 원칙입니다.</p>
         </div>
       </div>
     </div>
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
-    <div class="section-title" id="sec-briefing">📢 윤스트롱 실전 핵심 브리핑 룸 (11-03 화요일 장 마감 결산)</div>
+    <div class="section-title" id="sec-briefing">📢 윤스트롱 실전 핵심 브리핑 룸 (11-03 화요일 야간 결산 & 익일 시나리오)</div>
     <div class="briefing-box">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
         <div style="display:flex; align-items:center; gap:8px;">
           <span class="tag tag-highlight" style="background:#0284c7; color:#fff;">● LIVE 11-03 TUESDAY BRIEFING</span>
-          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">장 마감 결산 핵심 실전 포인트 & 턴어라운드 점검</span>
+          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">야간선물 반등 & 익일 국장 갭상승 시초가 시나리오</span>
         </div>
         <div class="live-sound-wave" id="soundWave">
           <div class="wave-bar"></div>
@@ -1777,17 +1787,17 @@
       </div>
 
       <div style="font-size:1.02rem; font-weight:900; margin-bottom:14px; color:var(--text);">
-        "코스피 -3.98% 급락! 전일 전량 익절 결단이 오늘 테크윙 -6.65% 폭락을 100% 방어했습니다."
+        "야간선물 +1.12% 반등! 내일 국장은 갭상승 시초가 유력 — 단, 35,000원 지지 확인이 먼저입니다."
       </div>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; font-size:0.82rem; color:var(--text-sub); line-height:1.6;">
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
-          <strong style="color:var(--accent); font-size:0.88rem;">1. 글로벌 매크로 & 선물 반등</strong><br>
-          코스피 5,626.08(▼3.98%, -233.00원), 코스닥 717.63(▼2.28%, -16.73원) 급락 마감. 원/달러 1,340.60원(▼5.40원). 야간 SOX -3.37% 급락(마벨 -13%·루멘텀 -18%)이 국장 반도체 밸류체인 투매로 직결됐고, 지수는 5,600선에서 마감했습니다.
+          <strong style="color:var(--accent); font-size:0.88rem;">1. 야간선물 반등 & 코스피 환산치</strong><br>
+          코스피200 야간선물 895.6p(▲1.12%, +9.93p) — 정규장 종가 885.67p 대비 기술적 반등 출발. 코스피 환산 약 5,712p 수준으로 오늘 마감 5,626.08p 대비 반등을 시도 중입니다. 미장(23:30 KST 개장) 흐름이 관건.
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
-          <strong style="color:var(--success); font-size:0.88rem;">2. 테크윙 실전 결산 (청산 완료)</strong><br>
-          11-02 09:36 120주 전량 익절(평단 36,700원) 덕분에 오늘 테크윙 -6.65% 급락(종가 34,400원)을 노출 0으로 완벽 방어. 원금·수익 100% 현금 확보 상태 유지 중이며, 재진입은 3대 기준 재검증 후 별도 판단입니다.
+          <strong style="color:var(--success); font-size:0.88rem;">2. 테크윙 시간외 결산 (현금 100%)</strong><br>
+          정규장 -6.65% 급락(종가 34,400원) 후 시간외·넥스트레이드에서 투매 진정, 34,500원선에서 지지력 타진 중. 11-02 전량 익절(평단 36,700원) 덕분에 이 폭락도 노출 0 — 현금 100%로 바닥 다지기를 편안하게 관망합니다.
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
           <strong style="color:var(--accent); font-size:0.88rem;">3. 오늘 주도 턴어라운드 후보 3선</strong><br>
@@ -1796,8 +1806,8 @@
           ③ 리노공업(53,500원 -6.14%, 52주 신저가(53,100원) 부근 RSI 과매도 진입)
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
-          <strong style="color:var(--warning); font-size:0.88rem;">4. 화요일 실전 행동 원칙</strong><br>
-          19:50 야간 레이더로 야간선물·시간외 결산 점검 ➔ 급락장 추격 매도/투매 금지 ➔ RSI 과매도 반등 양봉 & 손익비 1:2 이상 종목만 선별 분할 대응!
+          <strong style="color:var(--warning); font-size:0.88rem;">4. 수요일(11-04) 실전 행동 원칙</strong><br>
+          갭상승 시초가 출발해도 추격 매수 금지 ➔ 35,000원 지지선 안착 + 외인·기관 쌍끌이 + 손익비 1:2 이상 3대 기준 확인 종목만 선별 분할 대응!
         </div>
       </div>
 
@@ -3292,13 +3302,13 @@
               <span class="share-card-title">📊 오늘 퀀트 마켓 뷰</span>
               <span class="tag tag-highlight" style="font-size:0.7rem;">매크로 핵심</span>
             </div>
-            <div class="share-card-desc">코스피 -3.98% 급락 마감, 테크윙 -6.65% 폭락 — 전일 전량 익절로 노출 0 방어 성공</div>
+            <div class="share-card-desc">야간선물 +1.12% 반등, 시간외 투매 진정 — 익일 국장 갭상승 시나리오 (테크윙 현금 100% 관망)</div>
             <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 시장 뷰]
-- 코스피: 5,626.08 (-3.98% 급락, -233.00원)
-- 코스닥: 717.63 (-2.28%)
-- 환율: 1,340.60원 (▼5.40원)
-- 테크윙 34,400원 (-6.65%) → 전일 전량 익절로 노출 0, 방어 100% 성공
-* 핵심 룰: 급락장 추격 매도/투매 금지, 19:50 야간 레이더에서 야간선물·수급 확인 후 선별 대응!</div>
+- 야간선물: 895.6p (▲1.12%, +9.93p) · 코스피 환산 약 5,712p
+- 코스피: 5,626.08 (-3.98% 급락 마감)
+- 시간외: 투매 진정 · 테크윙 34,500원선 지지 타진
+- 테크윙: 보유 0주 · 현금 100% 관망 유지
+* 핵심 룰: 익일 갭상승 추격 매수 금지, 35,000원 지지선 안착 확인 후 선별 대응!</div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyMarket" onclick="copyMarketReport(this)">
@@ -5085,11 +5095,11 @@
 
     // Dedicated Share Hub Callbacks
     const textMarket = `[YOON STRONG CAPITAL 퀀트 인텔리전스 뷰]
-- 코스피: 5,626.08 (▼3.98%, -233.00원) 급락 마감
-- 코스닥: 717.63 (▼2.28%, -16.73원)
-- 원/달러 환율: 1,340.60원 (▼5.40원)
-- 테크윙: 34,400원 (▼6.65%) — 전일 전량 익절로 오늘 폭락 노출 0
-* 실전 대응: 급락장 추격 매도 엄금, 19:50 야간 레이더에서 야간선물·메이저 수급 확인 후 분할 대응!`;
+- 야간선물: 895.6p (▲1.12%, +9.93p) — 코스피 환산 약 5,712p
+- 시간외: 투매 진정, 테크윙 34,500원선 지지 타진
+- 익일 국장: 갭상승 시초가 유력 (과도한 낙폭 자율 반등)
+- 테크윙: 보유 0주 · 현금 100% 관망 유지
+* 실전 대응: 갭상승 추격 매수 엄금, 35,000원 지지선 안착 + 쌍끌이 수급 확인 후 선별 대응!`;
 
     const stockStrategyMap = {
       '089030': {
@@ -5296,7 +5306,7 @@
 
     // 1. Audio Briefing Engine (Web Speech Synthesis TTS & Waveform)
     let isSpeaking = false;
-    const briefingText = "윤스트롱 장 마감 퀀트 브리핑입니다. 첫째, 코스피는 5,626포인트, 3.98퍼센트 급락으로 마감했고 코스닥은 2.28퍼센트 하락했습니다. 둘째, 테크윙은 6.65퍼센트 급락한 34,400원에 마감했습니다. 다만 어제 120주 전량 익절로 노출이 제로였기 때문에 오늘 폭락은 수익에 전혀 영향이 없습니다. 셋째, 턴어라운드 후보는 180,000원 지지 공방 중인 한미반도체, 지수 대비 선방한 현대차, 52주 신저가 부근 과매도 진입한 리노공업입니다. 19시 50분 야간 레이더에서 야간선물과 시간외 수급을 확인하실 때까지 추격 매도는 금지입니다.";
+    const briefingText = "윤스트롱 야간 퀀트 브리핑입니다. 첫째, 코스피200 야간선물은 정규장 종가 885.67포인트 대비 1.12퍼센트 상승한 895.6포인트로 반등 출발해 코스피 환산 약 5,712포인트 수준입니다. 둘째, 국내 시간외 거래에서는 투매가 진정되고 테크윙이 34,500원선에서 지지력을 타진하고 있습니다. 셋째, 내일 국장은 갭상승 시초가 출발이 유력하지만, 35,000원 지지선 안착을 확인하기 전까지는 현금 100퍼센트 관망이 원칙입니다. 오늘 3타임 레이더는 모두 완주했습니다. 내일 아침 8시 장전 레이더에서 개장 대응선으로 찾아뵙겠습니다.";
 
     function toggleAudioBriefing() {
       if (!('speechSynthesis' in window)) {
