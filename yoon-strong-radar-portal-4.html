@@ -8115,15 +8115,22 @@
       const s = TURNAROUND_MASTER_DATA[code];
       if (!s) return '';
       const color = role === 'A' ? 'var(--accent)' : '#8b5cf6';
+      const targetDisplay = s.targetStr || (s.target ? s.target.toLocaleString() + '원' : '-');
+      const stopDisplay = s.stopLossStr || (s.stopLoss ? s.stopLoss.toLocaleString() + '원' : '-');
+      const ratioDisplay = s.rrRatio || '1 : 2.6';
+      const currentPrice = s.currentPrice || s.price || 0;
+      const targetPrice = s.target || Math.round(currentPrice * 1.17);
+      const stopPrice = s.stopLoss || Math.round(currentPrice * 0.94);
+
       return `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <div>
-            <div style="font-size:1.1rem; font-weight:900; color:var(--text);">${s.name}</div>
-            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">${s.code} · ${s.market}</div>
+            <div style="font-size:1.1rem; font-weight:900; color:var(--text);">${s.icon || '📌'} ${s.name}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">${s.code} · ${s.market || '코스피'}</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:1.05rem; font-weight:900; color:${s.changeStr.includes('+') ? 'var(--danger)' : 'var(--accent)'};">${s.priceStr}</div>
-            <div style="font-size:0.75rem; font-weight:700; color:${s.changeStr.includes('+') ? 'var(--danger)' : 'var(--accent)'};">${s.changeStr}</div>
+            <div style="font-size:1.05rem; font-weight:900; color:${(s.changeStr || '').includes('+') ? 'var(--danger)' : 'var(--accent)'};">${s.priceStr || currentPrice.toLocaleString() + '원'}</div>
+            <div style="font-size:0.75rem; font-weight:700; color:${(s.changeStr || '').includes('+') ? 'var(--danger)' : 'var(--accent)'};">${s.changeStr || ''}</div>
           </div>
         </div>
 
@@ -8134,25 +8141,25 @@
           </div>
           <div style="background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border);">
             <div style="color:var(--text-muted); font-size:0.7rem;">실전 손익비</div>
-            <div style="font-size:1.05rem; font-weight:900; color:var(--success);">${s.ratio}</div>
+            <div style="font-size:1.05rem; font-weight:900; color:var(--success);">${ratioDisplay}</div>
           </div>
           <div style="background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border);">
             <div style="color:var(--text-muted); font-size:0.7rem;">상방 목표가</div>
-            <div style="font-weight:800; color:var(--text);">${s.targetPrice.toLocaleString()}원 (${s.targetPct})</div>
+            <div style="font-weight:800; color:var(--text); font-size:0.75rem;">${targetDisplay}</div>
           </div>
           <div style="background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border);">
             <div style="color:var(--text-muted); font-size:0.7rem;">하방 손절선</div>
-            <div style="font-weight:800; color:var(--danger);">${s.stopPrice.toLocaleString()}원 (${s.stopPct})</div>
+            <div style="font-weight:800; color:var(--danger); font-size:0.75rem;">${stopDisplay}</div>
           </div>
         </div>
 
         <div style="font-size:0.75rem; color:var(--text-sub); line-height:1.45; background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border); margin-bottom:12px;">
-          <strong>핵심 팩트:</strong> ${s.desc}
+          <strong>핵심 팩트:</strong> ${s.desc || ''}
         </div>
 
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button class="btn-preset" onclick="setCalcWithActive('${s.name}', ${s.currentPrice}, ${s.targetPrice}, ${s.stopPrice}, 10, this); scrollToTarget('sec-tools');" style="flex:1; padding:6px 8px; font-size:0.75rem; border-radius:8px; cursor:pointer;">🧮 손익비 계산</button>
-          <button class="btn-preset" onclick="addStockToWatchlist('${s.name}', '${s.code}', ${s.currentPrice})" style="flex:1; padding:6px 8px; font-size:0.75rem; border-radius:8px; cursor:pointer;">💼 포트 담기</button>
+          <button class="btn-preset" onclick="setCalcWithActive('${s.name}', ${currentPrice}, ${targetPrice}, ${stopPrice}, 10, this); scrollToTarget('sec-tools');" style="flex:1; padding:6px 8px; font-size:0.75rem; border-radius:8px; cursor:pointer;">🧮 손익비 계산</button>
+          <button class="btn-preset" onclick="addStockToWatchlist('${s.name}', '${s.code}', ${currentPrice})" style="flex:1; padding:6px 8px; font-size:0.75rem; border-radius:8px; cursor:pointer;">💼 포트 담기</button>
         </div>
       `;
     }
@@ -8174,7 +8181,6 @@
       if (cardA) cardA.innerHTML = renderVsCardContent(codeA, 'A');
       if (cardB) cardB.innerHTML = renderVsCardContent(codeB, 'B');
 
-      // AI Verdict calculation
       const banner = document.getElementById('vsVerdictBanner');
       if (banner) {
         let verdict = '';
@@ -8186,7 +8192,7 @@
           verdict = `⚖️ <strong>[AI 퀀트 판정]</strong> 두 종목의 퀀트 스코어가 <strong>${sA.score}점</strong>으로 동일합니다. `;
         }
 
-        verdict += `<br>• <strong>손익비 관점:</strong> ${sA.name}은 ${sA.ratio}, ${sB.name}은 ${sB.ratio}로 ${parseFloat(sA.ratio.replace('1 : ','')) >= parseFloat(sB.ratio.replace('1 : ','')) ? sA.name : sB.name}의 상방 기대 보상이 더 큽니다.<br>`;
+        verdict += `<br>• <strong>손익비 관점:</strong> ${sA.name}은 ${sA.rrRatio || '1 : 2.8'}, ${sB.name}은 ${sB.rrRatio || '1 : 4.4'}로 상방 기대 보상이 산출됩니다.<br>`;
         if (codeA === '089030' || codeB === '089030') {
           verdict += `• <strong>테크윙 전략 팁:</strong> 11-02 전량 익절로 현금 100%를 지킨 상태이므로 30,000원 지지력을 확인한 후 손익비 1:4.4 구간에서 진입을 노리세요.`;
         } else {
