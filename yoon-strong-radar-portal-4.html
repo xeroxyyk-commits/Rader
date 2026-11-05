@@ -1438,7 +1438,90 @@
       transform: scale(1.04);
     }
 
-</style>
+
+    /* =========================================================================
+       CONVENIENCE & EFFICIENCY UPGRADES (Portfolio Card Add, Top Button, Table Footer)
+       ========================================================================= */
+    .btn-card-portfolio {
+      width: 100%;
+      margin-top: 8px;
+      background: var(--surface);
+      border: 1px dashed var(--border-accent);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.74rem;
+      padding: 7px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .btn-card-portfolio:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      border-style: solid;
+      transform: translateY(-1px);
+    }
+    .btn-card-portfolio:active {
+      transform: scale(0.98);
+    }
+
+    .btn-back-to-top {
+      position: fixed;
+      bottom: 72px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border-accent);
+      color: var(--accent);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      font-weight: 900;
+      cursor: pointer;
+      z-index: 995;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(12px);
+    }
+    .btn-back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .btn-back-to-top:hover {
+      background: var(--accent);
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 22px var(--accent-glow);
+    }
+    .btn-back-to-top:active {
+      transform: scale(0.95);
+    }
+    @media (min-width: 769px) {
+      .btn-back-to-top {
+        bottom: 24px;
+        right: 24px;
+      }
+    }
+
+    .watch-table tfoot td {
+      background: var(--surface-sub);
+      border-top: 2px solid var(--border);
+      padding: 12px 14px;
+      font-size: 0.82rem;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -1524,6 +1607,7 @@
     <a href="#sec-news" class="btn-anchor"><span>📰</span> DART 공시·뉴스</a>
     <a href="#sec-stress" class="btn-anchor"><span>💡</span> 스트레스 테스트</a>
     <a href="#sec-tools" class="btn-anchor"><span>🧮</span> 실전 3대 도구</a>
+    <a href="#multiPortfolioBox" class="btn-anchor anchor-portfolio" onclick="scrollToTarget('multiPortfolioBox'); return false;"><span>📊</span> 멀티 포트폴리오</a>
     <a href="#sec-share" class="btn-anchor"><span>📋</span> 공유 허브</a>
     <a href="#sec-admin" class="btn-anchor anchor-admin"><span>🔐</span> 관리자 VIP 계좌</a>
   </div>
@@ -3673,6 +3757,12 @@
             <button class="btn-preset" onclick="addCustomWatchlistPrompt()" style="background:var(--accent); color:#ffffff; border:none; font-weight:800; box-shadow:0 2px 8px var(--accent-glow);">
               ➕ 종목 직접 추가
             </button>
+            <button class="btn-preset" onclick="copyPortfolioToClipboard()" title="포트폴리오 현황 텍스트 복사" style="background:var(--surface-sub); border:1px solid var(--border); font-weight:800;">
+              📋 포트 복사
+            </button>
+            <button class="btn-preset" onclick="resyncPortfolioPrices()" title="11-05 최신 확정 시세로 0초 동기화" style="background:var(--surface-sub); border:1px solid var(--border); font-weight:800;">
+              🔄 시세 재동기화
+            </button>
             <button class="btn-preset" onclick="resetDefaultWatchlist()" title="기본 포트폴리오로 재설정" style="background:var(--surface-sub); border:1px solid var(--border);">
               🔄 기본 포트 복원
             </button>
@@ -3699,6 +3789,21 @@
           </div>
         </div>
 
+        <!-- Quick Turnaround Stock Add Bar -->
+        <div id="quickTurnaroundAddBar" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:12px; background:var(--surface-sub); padding:8px 12px; border-radius:12px; border:1px solid var(--border);">
+          <span style="font-size:0.75rem; font-weight:800; color:var(--text-muted); display:flex; align-items:center; gap:4px;">
+            <span>⚡</span> <span>턴어라운드 종목 빠른 담기:</span>
+          </span>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('005380')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ 현대차</button>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('010140')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ 삼성중공업</button>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('042700')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ 한미반도체</button>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('058470')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ 리노공업</button>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('009150')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ 삼성전기</button>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('010950')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ S-Oil</button>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('000660')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ SK하이닉스</button>
+          <button class="btn-preset" onclick="addStockToPortfolioFromCard('089030')" style="font-size:0.72rem; padding:3px 8px; font-weight:800;">+ 테크윙</button>
+        </div>
+
         <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%;">
           <table class="watch-table" id="watchTable" style="min-width: 680px;">
             <thead>
@@ -3716,6 +3821,9 @@
             <tbody id="watchTableBody">
               <!-- Rendered dynamically by renderWatchlistTable() -->
             </tbody>
+            <tfoot id="watchTableFoot">
+              <!-- Dynamically rendered total holdings summary -->
+            </tfoot>
           </table>
         </div>
       </div>
@@ -5295,6 +5403,9 @@
               <button class="btn-preset" onclick="jumpToDart('${code}')">📰 DART</button>
               <button class="btn-preset" onclick="copyAnalysis('${s.name} (${s.code})', ${s.score}, '손익비 ${s.rrRatio}', '${s.stopLossStr}', '${s.targetStr}')">📋 복사</button>
             </div>
+            <button class="btn-card-portfolio" onclick="addStockToPortfolioFromCard('${code}')" title="이 종목을 내 멀티 포트폴리오에 즉시 담기">
+              <span>💼</span> <span>내 멀티 포트폴리오에 담기</span>
+            </button>
           </div>
         </div>
         `;
@@ -5613,11 +5724,12 @@
     const pinInput = document.getElementById('pinInput');
 
     function checkAdminState() {
-      // Always enter as General User mode by default on page entry
-      // Admin mode is unlocked on-demand via the [관리자 로그인] button
-      localStorage.removeItem('yoon_admin_auth');
-      sessionStorage.removeItem('yoon_admin_auth');
-      setAdminMode(false);
+      // Session tab persistence: if admin logged in within this tab session, restore admin mode
+      if (sessionStorage.getItem('yoon_admin_auth') === 'true') {
+        setAdminMode(true);
+      } else {
+        setAdminMode(false);
+      }
     }
 
     function setAdminMode(val) {
@@ -6239,6 +6351,11 @@
         return;
       }
 
+      let totalBuySum = 0;
+      let totalEvalSum = 0;
+      let totalQtySum = 0;
+      let hasHoldingPositions = false;
+
       items.forEach((it, idx) => {
         const resolved = resolveStockCurrentPrice(it);
         const currPrice = resolved.price;
@@ -6253,6 +6370,11 @@
         if (it.tag === '청산완료' || (it.code === '089030' && qty === 0)) {
           pnlHtml = `<span style="color:var(--success); font-weight:800;">익절 완료 (100% 현금화)</span>`;
         } else if (qty > 0) {
+          hasHoldingPositions = true;
+          totalBuySum += (buyPrice * qty);
+          totalEvalSum += (currPrice * qty);
+          totalQtySum += qty;
+
           const totalPnl = diff * qty;
           const color = totalPnl > 0 ? 'var(--danger)' : (totalPnl < 0 ? 'var(--accent-blue, #2563eb)' : 'var(--text)');
           const sign = totalPnl > 0 ? '+' : '';
@@ -6298,6 +6420,34 @@
         tbody.appendChild(tr);
       });
 
+      // Update Table Footer
+      const tfoot = document.getElementById('watchTableFoot');
+      if (tfoot) {
+        if (hasHoldingPositions && totalBuySum > 0) {
+          const netPnl = totalEvalSum - totalBuySum;
+          const netRate = ((netPnl / totalBuySum) * 100).toFixed(2);
+          const pnlColor = netPnl >= 0 ? 'var(--danger)' : 'var(--accent-blue, #2563eb)';
+          const sign = netPnl >= 0 ? '+' : '';
+          tfoot.innerHTML = `
+            <tr>
+              <td colspan="2" style="font-weight:900; color:var(--text);">실보유 합계 (Total)</td>
+              <td style="text-align:right; font-weight:800; color:var(--text);">${totalBuySum.toLocaleString()}원</td>
+              <td style="text-align:right; font-weight:800; color:var(--text);">${totalEvalSum.toLocaleString()}원</td>
+              <td style="text-align:right; font-weight:800; color:var(--text);">${totalQtySum.toLocaleString()}주</td>
+              <td style="text-align:right;">
+                <span style="color:${pnlColor}; font-weight:900;">${sign}${netPnl.toLocaleString()}원</span>
+                <div style="font-size:0.72rem; color:${pnlColor}; font-weight:800;">(${sign}${netRate}%)</div>
+              </td>
+              <td colspan="2" style="font-size:0.72rem; color:var(--text-muted); text-align:center; font-weight:700;">실시간 자동 합산</td>
+            </tr>
+          `;
+          tfoot.style.display = '';
+        } else {
+          tfoot.innerHTML = '';
+          tfoot.style.display = 'none';
+        }
+      }
+
       updatePortfolioKpi(items);
     }
 
@@ -6328,6 +6478,99 @@
           pnlEl.style.color = 'var(--text-muted)';
         }
       }
+    }
+
+    
+    function addStockToPortfolioFromCard(code) {
+      triggerHaptic(15);
+      const s = TURNAROUND_MASTER_DATA[code];
+      if (!s) {
+        showToast("⚠️ 종목 정보를 찾을 수 없습니다.");
+        return;
+      }
+      let items = getWatchlistItems();
+      const exists = items.some(it => it.code === code || (it.name && it.name.includes(code)));
+      if (exists) {
+        showToast(`ℹ️ [${s.name}] 종목은 이미 멀티 포트폴리오에 등록되어 있습니다.`);
+        scrollToSection('multiPortfolioBox');
+        return;
+      }
+
+      const newItem = {
+        id: 'stock_' + code + '_' + Date.now(),
+        name: `${s.name} (${code})`,
+        code: code,
+        tag: '관심/턴어라운드',
+        tagClass: 'tag-highlight',
+        buyPrice: s.currentPrice,
+        qty: 0,
+        note: `${s.market} · ${s.catalyst || '턴어라운드 탑픽'}`
+      };
+
+      items.push(newItem);
+      saveWatchlistItems(items);
+      renderWatchlistTable();
+      showToast(`💼 [${s.name}] 종목이 멀티 포트폴리오에 성공적으로 담겼습니다!`);
+    }
+
+    function copyPortfolioToClipboard() {
+      triggerHaptic(12);
+      const items = getWatchlistItems();
+      if (!items || items.length === 0) {
+        showToast("⚠️ 복사할 포트폴리오 종목이 없습니다.");
+        return;
+      }
+      let text = `[YOON STRONG CAPITAL] 멀티 포트폴리오 자산 관리 리포트 (11-05 마감 기준)\n`;
+      text += `총 관리 종목: ${items.length}개\n----------------------------------------\n`;
+      let totalBuyVal = 0;
+      let totalEvalVal = 0;
+      items.forEach(it => {
+        const res = resolveStockCurrentPrice(it);
+        const currPrice = res.price;
+        const buyPrice = Number(it.buyPrice || 0);
+        const qty = Number(it.qty || 0);
+        if (it.tag === '청산완료' || (it.code === '089030' && qty === 0)) {
+          text += `• ${it.name}: [청산완료] ${currPrice.toLocaleString()}원 (${res.change}) | 익절 완료 (100% 현금화)\n`;
+        } else if (qty > 0) {
+          const diff = currPrice - buyPrice;
+          const pnl = diff * qty;
+          const rate = buyPrice > 0 ? ((diff / buyPrice) * 100).toFixed(2) : '0.00';
+          const sign = pnl >= 0 ? '+' : '';
+          totalBuyVal += (buyPrice * qty);
+          totalEvalVal += (currPrice * qty);
+          text += `• ${it.name}: 현재가 ${currPrice.toLocaleString()}원 (${res.change}) | 매수가 ${buyPrice.toLocaleString()}원 (${qty}주) | 평가손익 ${sign}${pnl.toLocaleString()}원 (${sign}${rate}%)\n`;
+        } else {
+          const diff = currPrice - buyPrice;
+          const rate = buyPrice > 0 ? ((diff / buyPrice) * 100).toFixed(2) : '0.00';
+          const sign = diff >= 0 ? '+' : '';
+          text += `• ${it.name}: 현재가 ${currPrice.toLocaleString()}원 (${res.change}) | 관심 기준가 ${buyPrice.toLocaleString()}원 (단가比 ${sign}${rate}%)\n`;
+        }
+      });
+      text += `----------------------------------------\n`;
+      if (totalBuyVal > 0) {
+        const netPnl = totalEvalVal - totalBuyVal;
+        const netRate = ((netPnl / totalBuyVal) * 100).toFixed(2);
+        const sign = netPnl >= 0 ? '+' : '';
+        text += `실보유 원금: ${totalBuyVal.toLocaleString()}원 | 평가액: ${totalEvalVal.toLocaleString()}원 | 순평가손익: ${sign}${netPnl.toLocaleString()}원 (${sign}${netRate}%)\n`;
+      }
+      text += `\n공식 포털: https://xeroxyyk-commits.github.io/Rader/`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("📋 포트폴리오 리포트가 클립보드에 복사되었습니다!");
+        }).catch(() => {
+          showToast("📋 포트폴리오 리포트 생성 완료");
+        });
+      } else {
+        showToast("📋 포트폴리오 리포트 생성 완료");
+      }
+    }
+
+    function resyncPortfolioPrices() {
+      triggerHaptic(15);
+      syncMasterDataToSubmodules();
+      renderWatchlistTable();
+      showToast("🔄 11-05 공식 확정 시세로 멀티 포트폴리오가 0초 재동기화되었습니다!");
     }
 
     function deleteCustomWatchlistItem(id) {
@@ -7115,13 +7358,20 @@
 
     // Universal Smooth Scroll & Neon Highlight Function
     function scrollToTarget(id) {
+      if ((id === 'multiPortfolioBox' || id === 'sec-admin') && !isAdmin) {
+        pendingScrollTarget = id;
+        showToast("🔐 관리자(윤용규 님) 전용 구역입니다. PIN 로그인이 필요합니다.");
+        toggleAdminModal();
+        return;
+      }
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         el.classList.remove('highlight-active');
         void el.offsetWidth;
         el.classList.add('highlight-active');
-        showToast('🏆 턴어라운드 8선 랭킹 구역으로 이동했습니다!');
+        if (id === 'sec-turnaround') showToast('🏆 턴어라운드 8선 랭킹 구역으로 이동했습니다!');
+        else if (id === 'multiPortfolioBox') showToast('📊 멀티 포트폴리오 구역으로 이동했습니다!');
       }
     }
 
@@ -7778,7 +8028,9 @@
       { id: 'scale', name: '3단계 분할 매수 & 평단가 시뮬레이터', target: 'sec-scale', check: () => typeof updateScaleSim === 'function' },
       { id: 'compass', name: '실시간 퀀트 나침반 & 5대 체크리스트', target: 'sec-compass', check: () => typeof updateChkState === 'function' },
       { id: 'timeline', name: '개장 타임라인별 실전 행동 매뉴얼', target: 'sec-compass', check: () => typeof switchTimelineStock === 'function' },
-      { id: 'share', name: '8대 종목 원클릭 카톡 공유 & 복사 센터', target: 'sec-share', check: () => Object.keys(stockStrategyMap).length >= 8 }
+      { id: 'share', name: '8대 종목 원클릭 카톡 공유 & 복사 센터', target: 'sec-share', check: () => Object.keys(stockStrategyMap).length >= 8 },
+      { id: 'portfolio', name: '나만의 멀티 포트폴리오 및 확정 종가 연동 엔진', target: 'multiPortfolioBox', check: () => typeof renderWatchlistTable === 'function' && getWatchlistItems().length > 0 },
+      { id: 'adminSecurity', name: '슈퍼 관리자 VIP 보안 및 7일 체험 모드 타이머', target: 'sec-admin', check: () => typeof checkAdminState === 'function' && typeof updateTrialDisplay === 'function' }
     ];
 
     let isDiagnosing = false;
@@ -7860,6 +8112,12 @@
     }
 
     function scrollToSection(id) {
+      if ((id === 'multiPortfolioBox' || id === 'sec-admin') && !isAdmin) {
+        pendingScrollTarget = id;
+        showToast("🔐 관리자(윤용규 님) 전용 구역입니다. PIN 로그인이 필요합니다.");
+        toggleAdminModal();
+        return;
+      }
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -7868,6 +8126,21 @@
         el.classList.add('highlight-active');
       }
     }
+
+    function scrollToTop() {
+      triggerHaptic(12);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', function() {
+      const topBtn = document.getElementById('btnBackToTop');
+      if (!topBtn) return;
+      if (window.scrollY > 280) {
+        topBtn.classList.add('show');
+      } else {
+        topBtn.classList.remove('show');
+      }
+    }, { passive: true });
 
 
     // =========================================================================
@@ -8006,8 +8279,15 @@
     <button class="dock-btn" onclick="scrollToSection('sec-stress'); triggerHaptic(12);"><span>💡</span>스트레스</button>
     <button class="dock-btn" onclick="scrollToSection('sec-scale'); triggerHaptic(12);"><span>🛡️</span>분할매수</button>
     <button class="dock-btn" onclick="scrollToSection('sec-compass'); triggerHaptic(12);"><span>🧭</span>나침반</button>
+    <button class="dock-btn" onclick="scrollToSection('multiPortfolioBox'); triggerHaptic(12);"><span>📊</span>포트</button>
     <button class="dock-btn" onclick="scrollToSection('sec-share'); triggerHaptic(12);"><span>📲</span>공유</button>
+    <button class="dock-btn" onclick="scrollToTop(); triggerHaptic(12);"><span>▲</span>TOP</button>
   </div>
+
+  <!-- Floating Back to Top Button -->
+  <button class="btn-back-to-top" id="btnBackToTop" onclick="scrollToTop()" title="맨 위로 이동">
+    <span>▲</span>
+  </button>
 
 </body>
 </html>
