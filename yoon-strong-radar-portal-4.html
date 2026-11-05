@@ -3656,52 +3656,65 @@
       </div>
 
       <!-- Multi-Portfolio Watchlist -->
-      <div class="watchlist-box">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <h3 style="font-size:1.15rem; font-weight:900;">📊 나만의 멀티 포트폴리오 자산 관리</h3>
-          <button class="btn-preset" onclick="addCustomWatchlistPrompt()">+ 종목 직접 추가</button>
+      <div class="watchlist-box" id="multiPortfolioBox">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <h3 style="font-size:1.15rem; font-weight:900; margin:0;">📊 나만의 멀티 포트폴리오 자산 관리</h3>
+              <span class="badge" style="background:var(--success-bg); color:var(--success); font-size:0.72rem; padding:3px 8px; border-radius:6px; font-weight:800; border:1px solid rgba(16,185,129,0.3);">
+                🟢 11-05 확정 종가 100% 자동 연동
+              </span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text-sub); margin-top:4px;">
+              매일 3타임(08:00·15:20·19:50) 레이더에서 발표되는 공식 시세로 현재가와 평가손익이 전자동 갱신됩니다.
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="btn-preset" onclick="addCustomWatchlistPrompt()" style="background:var(--accent); color:#ffffff; border:none; font-weight:800; box-shadow:0 2px 8px var(--accent-glow);">
+              ➕ 종목 직접 추가
+            </button>
+            <button class="btn-preset" onclick="resetDefaultWatchlist()" title="기본 포트폴리오로 재설정" style="background:var(--surface-sub); border:1px solid var(--border);">
+              🔄 기본 포트 복원
+            </button>
+          </div>
         </div>
-        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; margin-top: 14px;">
-          <table class="watch-table" id="watchTable" style="min-width: 540px;">
+
+        <!-- Portfolio Summary KPI Mini Bar -->
+        <div id="portfolioSummaryBar" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:10px; background:var(--surface-sub); padding:12px 16px; border-radius:14px; border:1px solid var(--border); margin-bottom:14px;">
+          <div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">총 관리 종목</div>
+            <div id="portKpiCount" style="font-size:1.1rem; font-weight:900; color:var(--text); margin-top:2px;">4개 종목</div>
+          </div>
+          <div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">실보유 평가손익 (익절포함)</div>
+            <div id="portKpiPnl" style="font-size:1.1rem; font-weight:900; color:var(--danger); margin-top:2px;">+135,000원 (+4.82%)</div>
+          </div>
+          <div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">테크윙 현금 방어</div>
+            <div style="font-size:1.1rem; font-weight:900; color:var(--success); margin-top:2px;">100% 현금 확보 (노출 0)</div>
+          </div>
+          <div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">데이터 동기화 기준</div>
+            <div style="font-size:0.85rem; font-weight:800; color:var(--accent); margin-top:4px;">11-05 마감 확정 종가</div>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%;">
+          <table class="watch-table" id="watchTable" style="min-width: 680px;">
             <thead>
               <tr>
-                <th>종목명</th>
-                <th>구분</th>
-                <th>매수가</th>
-                <th>현재가</th>
-                <th>수량</th>
-                <th>평가손익 (수익률)</th>
-                <th>대응 상태</th>
+                <th style="width:160px;">종목명</th>
+                <th style="width:90px;">구분</th>
+                <th style="width:105px; text-align:right;">매수가</th>
+                <th style="width:115px; text-align:right;">현재 종가</th>
+                <th style="width:75px; text-align:right;">수량</th>
+                <th style="width:145px; text-align:right;">평가손익 (수익률)</th>
+                <th style="width:110px;">대응 상태</th>
+                <th style="width:75px; text-align:center;">관리</th>
               </tr>
             </thead>
             <tbody id="watchTableBody">
-              <tr>
-                <td><strong>테크윙 (089030)</strong></td>
-                <td><span class="tag tag-highlight">청산완료</span></td>
-                <td>36,700원</td>
-                <td>31,200원</td>
-                <td>0주</td>
-                <td class="c-success"><strong>익절 청산 완료 (09:36 전량 매도)</strong></td>
-                <td><span class="tag" style="background:var(--success-bg); color:var(--success);">관찰 종목 전환</span></td>
-              </tr>
-              <tr>
-                <td><strong>SK하이닉스 (000660)</strong></td>
-                <td><span class="tag">관심/턴어라운드</span></td>
-                <td>1,418,000원</td>
-                <td>1,263,000원</td>
-                <td>-</td>
-                <td>-</td>
-                <td><span class="tag tag-highlight">1순위 분할 매수 후보</span></td>
-              </tr>
-              <tr>
-                <td><strong>삼성전자 (005930)</strong></td>
-                <td><span class="tag">관심/쌍끌이</span></td>
-                <td>225,000원</td>
-                <td>201,500원</td>
-                <td>-</td>
-                <td>-</td>
-                <td><span class="tag tag-highlight">2순위 저점 매집 후보</span></td>
-              </tr>
+              <!-- Rendered dynamically by renderWatchlistTable() -->
             </tbody>
           </table>
         </div>
@@ -6112,73 +6125,281 @@
       }
     }
 
-    // Multi-Portfolio Prompt & Persistence
-    function saveCustomWatchlist() {
-      const items = [];
-      const rows = document.querySelectorAll('#watchTableBody tr');
-      rows.forEach(r => {
-        const tds = r.querySelectorAll('td');
-        if (tds.length >= 7) {
-          items.push({
-            name: tds[0].textContent.trim(),
-            tag: tds[1].textContent.trim(),
-            buy: tds[2].textContent.trim(),
-            curr: tds[3].textContent.trim(),
-            qty: tds[4].textContent.trim(),
-            pnl: tds[5].textContent.trim(),
-            status: tds[6].textContent.trim()
-          });
-        }
-      });
-      localStorage.setItem('yoon_custom_watchlist', JSON.stringify(items));
+        // =========================================================================
+    // YOON STRONG 나만의 멀티 포트폴리오 자산 관리 (동적 종가 연동 & 종목 삭제/추가)
+    // =========================================================================
+    const DEFAULT_PORTFOLIO_ITEMS = [
+      {
+        id: 'port_089030',
+        code: '089030',
+        name: '테크윙 (089030)',
+        tag: '청산완료',
+        tagClass: 'tag-highlight',
+        buyPrice: 36700,
+        qty: 0,
+        status: '관찰 종목 전환',
+        statusClass: 'status-success',
+        fixedCurr: 31200,
+        note: '11-02 09:36 120주 전량 익절 완료 (현금 100% 방어)'
+      },
+      {
+        id: 'port_005380',
+        code: '005380',
+        name: '현대차 (005380)',
+        tag: '보유/밸류업',
+        tagClass: 'tag-highlight',
+        buyPrice: 280000,
+        qty: 10,
+        status: '1위 턴어라운드',
+        statusClass: 'tag-highlight',
+        fixedCurr: 293500
+      },
+      {
+        id: 'port_000660',
+        code: '000660',
+        name: 'SK하이닉스 (000660)',
+        tag: '관심/턴어라운드',
+        tagClass: '',
+        buyPrice: 1350000,
+        qty: 0,
+        status: '분할 매수 후보',
+        statusClass: '',
+        fixedCurr: 1263000
+      },
+      {
+        id: 'port_005930',
+        code: '005930',
+        name: '삼성전자 (005930)',
+        tag: '관심/저점매집',
+        tagClass: '',
+        buyPrice: 210000,
+        qty: 0,
+        status: '바닥 지지 관망',
+        statusClass: '',
+        fixedCurr: 201500
+      }
+    ];
+
+    function getWatchlistItems() {
+      const saved = localStorage.getItem('yoon_custom_watchlist_v2');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length >= 0) return parsed;
+        } catch(e) {}
+      }
+      return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_ITEMS));
     }
 
-    function loadCustomWatchlist() {
-      const saved = localStorage.getItem('yoon_custom_watchlist');
-      if (!saved) return;
-      try {
-        const items = JSON.parse(saved);
-        if (Array.isArray(items) && items.length > 0) {
-          const tbody = document.getElementById('watchTableBody');
-          tbody.innerHTML = '';
-          items.forEach(it => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td><strong>${it.name}</strong></td>
-              <td><span class="tag">${it.tag}</span></td>
-              <td>${it.buy}</td>
-              <td>${it.curr}</td>
-              <td>${it.qty}</td>
-              <td>${it.pnl}</td>
-              <td><span class="tag tag-highlight">${it.status}</span></td>
-            `;
-            tbody.appendChild(tr);
-          });
+    function saveWatchlistItems(items) {
+      localStorage.setItem('yoon_custom_watchlist_v2', JSON.stringify(items));
+    }
+
+    function extractStockCode(str) {
+      if (!str) return null;
+      const m = String(str).match(/(\d{6})/);
+      return m ? m[1] : null;
+    }
+
+    function resolveStockCurrentPrice(item) {
+      const code = item.code || extractStockCode(item.name);
+      if (code && typeof TURNAROUND_MASTER_DATA !== 'undefined' && TURNAROUND_MASTER_DATA[code]) {
+        return {
+          price: TURNAROUND_MASTER_DATA[code].currentPrice,
+          change: TURNAROUND_MASTER_DATA[code].changeStr || '',
+          source: 'master'
+        };
+      }
+      const price = Number(item.currentPrice || item.fixedCurr || item.buyPrice || 0);
+      return { price: price, change: '', source: 'manual' };
+    }
+
+    function renderWatchlistTable() {
+      const tbody = document.getElementById('watchTableBody');
+      if (!tbody) return;
+
+      const items = getWatchlistItems();
+      tbody.innerHTML = '';
+
+      if (items.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align:center; padding:32px 16px; color:var(--text-muted); font-size:0.9rem;">
+              <div style="font-size:1.6rem; margin-bottom:8px;">📭</div>
+              <div>등록된 포트폴리오 종목이 없습니다.</div>
+              <div style="margin-top:8px;">
+                <button class="btn-preset" onclick="resetDefaultWatchlist()" style="background:var(--accent); color:#fff; border:none; font-size:0.75rem;">
+                  🔄 기본 포트폴리오 불러오기
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+        updatePortfolioKpi(items);
+        return;
+      }
+
+      items.forEach((it, idx) => {
+        const resolved = resolveStockCurrentPrice(it);
+        const currPrice = resolved.price;
+        const buyPrice = Number(it.buyPrice || 0);
+        const qty = Number(it.qty || 0);
+
+        const diff = currPrice - buyPrice;
+        const rate = buyPrice > 0 ? ((diff / buyPrice) * 100).toFixed(2) : '0.00';
+        const rateNum = parseFloat(rate);
+
+        let pnlHtml = '-';
+        if (it.tag === '청산완료' || (it.code === '089030' && qty === 0)) {
+          pnlHtml = `<span style="color:var(--success); font-weight:800;">익절 완료 (100% 현금화)</span>`;
+        } else if (qty > 0) {
+          const totalPnl = diff * qty;
+          const color = totalPnl > 0 ? 'var(--danger)' : (totalPnl < 0 ? 'var(--accent-blue, #2563eb)' : 'var(--text)');
+          const sign = totalPnl > 0 ? '+' : '';
+          pnlHtml = `<div style="text-align:right;">
+            <span style="color:${color}; font-weight:800;">${sign}${totalPnl.toLocaleString()}원</span>
+            <div style="font-size:0.72rem; color:${color}; font-weight:700;">(${sign}${rate}%)</div>
+          </div>`;
+        } else {
+          const color = rateNum > 0 ? 'var(--danger)' : (rateNum < 0 ? 'var(--accent-blue, #2563eb)' : 'var(--text-muted)');
+          const sign = rateNum > 0 ? '+' : '';
+          pnlHtml = `<div style="text-align:right;">
+            <span style="color:${color}; font-size:0.78rem; font-weight:700;">단가比 ${sign}${rate}%</span>
+          </div>`;
         }
-      } catch (e) {}
+
+        const tagBadge = it.tag === '청산완료' 
+          ? `<span class="tag tag-highlight" style="background:var(--success-bg); color:var(--success); border:1px solid rgba(16,185,129,0.3);">${it.tag}</span>`
+          : `<span class="tag ${it.tagClass || ''}">${it.tag || '보유/관심'}</span>`;
+
+        const tr = document.createElement('tr');
+        tr.id = `watchRow_${it.id || idx}`;
+        tr.innerHTML = `
+          <td>
+            <div style="font-weight:900; color:var(--text);">${it.name}</div>
+            ${it.note ? `<div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">${it.note}</div>` : ''}
+          </td>
+          <td>${tagBadge}</td>
+          <td style="text-align:right; font-weight:700;">${buyPrice ? buyPrice.toLocaleString() + '원' : '-'}</td>
+          <td style="text-align:right;">
+            <div style="font-weight:900; color:var(--text);">${currPrice ? currPrice.toLocaleString() + '원' : '-'}</div>
+            ${resolved.change ? `<div style="font-size:0.7rem; color:${resolved.change.startsWith('+') ? 'var(--danger)' : 'var(--accent-blue, #2563eb)'}; font-weight:700;">${resolved.change}</div>` : ''}
+          </td>
+          <td style="text-align:right; font-weight:700;">${qty > 0 ? qty.toLocaleString() + '주' : (it.tag === '청산완료' ? '0주' : '-')}</td>
+          <td>${pnlHtml}</td>
+          <td><span class="tag ${it.statusClass || ''}">${it.status || '감시 중'}</span></td>
+          <td style="text-align:center;">
+            <button class="btn-del-watch" onclick="deleteCustomWatchlistItem('${it.id || idx}')" title="이 종목을 포트폴리오에서 삭제" style="background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:8px; padding:4px 8px; font-size:0.72rem; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:3px; transition:all 0.15s ease;">
+              <span>🗑️</span>
+              <span>삭제</span>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      updatePortfolioKpi(items);
+    }
+
+    function updatePortfolioKpi(items) {
+      const countEl = document.getElementById('portKpiCount');
+      const pnlEl = document.getElementById('portKpiPnl');
+      if (countEl) countEl.textContent = `${items.length}개 종목`;
+
+      let totalHoldingPnl = 0;
+      let hasHolding = false;
+      items.forEach(it => {
+        const qty = Number(it.qty || 0);
+        if (qty > 0) {
+          hasHolding = true;
+          const resolved = resolveStockCurrentPrice(it);
+          const diff = resolved.price - Number(it.buyPrice || 0);
+          totalHoldingPnl += (diff * qty);
+        }
+      });
+
+      if (pnlEl) {
+        if (hasHolding) {
+          const sign = totalHoldingPnl >= 0 ? '+' : '';
+          pnlEl.textContent = `${sign}${totalHoldingPnl.toLocaleString()}원`;
+          pnlEl.style.color = totalHoldingPnl >= 0 ? 'var(--danger)' : 'var(--accent-blue, #2563eb)';
+        } else {
+          pnlEl.textContent = '보유 평가 중';
+          pnlEl.style.color = 'var(--text-muted)';
+        }
+      }
+    }
+
+    function deleteCustomWatchlistItem(id) {
+      let items = getWatchlistItems();
+      const targetIndex = items.findIndex((x, idx) => (x.id === id || String(idx) === String(id)));
+      if (targetIndex === -1) return;
+
+      const targetName = items[targetIndex].name;
+      if (!confirm(`[${targetName}] 종목을 멀티 포트폴리오에서 삭제하시겠습니까?`)) {
+        return;
+      }
+
+      items.splice(targetIndex, 1);
+      saveWatchlistItems(items);
+      renderWatchlistTable();
+      showToast(`🗑️ [${targetName}] 종목이 포트폴리오에서 삭제되었습니다.`);
+    }
+
+    function resetDefaultWatchlist() {
+      if (!confirm("기본 멀티 포트폴리오(테크윙, 현대차, SK하이닉스, 삼성전자)로 복원하시겠습니까?")) return;
+      localStorage.removeItem('yoon_custom_watchlist_v2');
+      localStorage.removeItem('yoon_custom_watchlist');
+      renderWatchlistTable();
+      showToast("🔄 멀티 포트폴리오가 오늘 확정 종가 기준으로 복원되었습니다.");
     }
 
     function addCustomWatchlistPrompt() {
-      const name = prompt("추가할 종목명과 코드를 입력하세요 (예: 에코프로 086520):");
-      if (!name) return;
-      const buyPrice = prompt("매수가 또는 관심 가격을 입력하세요 (원):", "100000");
-      const currentPrice = prompt("현재가를 입력하세요 (원):", buyPrice);
+      const nameInput = prompt("추가할 종목명과 6자리 코드를 입력하세요\\n(예: 알테오젠 196170 또는 현대차 005380):");
+      if (!nameInput || !nameInput.trim()) return;
 
-      const tbody = document.getElementById('watchTableBody');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><strong>${name}</strong></td>
-        <td><span class="tag">관심 추가</span></td>
-        <td>${parseInt(buyPrice||0).toLocaleString()}원</td>
-        <td>${parseInt(currentPrice||0).toLocaleString()}원</td>
-        <td>-</td>
-        <td>-</td>
-        <td><span class="tag tag-highlight">감시 중</span></td>
-      `;
-      tbody.appendChild(tr);
-      saveCustomWatchlist();
-      showToast(`📋 [${name}] 관심 포트폴리오에 저장되었습니다!`);
+      const code = extractStockCode(nameInput);
+      const buyPriceInput = prompt("매수가 또는 관심 기준가를 입력하세요 (원):", "100000");
+      if (buyPriceInput === null) return;
+      const buyPrice = parseInt(buyPriceInput.replace(/[^0-9]/g, '') || '0', 10);
+
+      const qtyInput = prompt("보유 수량을 입력하세요 (주 단위, 관심종목이면 0 입력):", "0");
+      if (qtyInput === null) return;
+      const qty = parseInt(qtyInput.replace(/[^0-9]/g, '') || '0', 10);
+
+      const tag = qty > 0 ? "실전보유" : "관심종목";
+      const status = qty > 0 ? "실시간 관리 중" : "타점 감시 중";
+
+      let initialCurr = buyPrice;
+      if (code && typeof TURNAROUND_MASTER_DATA !== 'undefined' && TURNAROUND_MASTER_DATA[code]) {
+        initialCurr = TURNAROUND_MASTER_DATA[code].currentPrice;
+      }
+
+      const newItem = {
+        id: 'port_' + Date.now(),
+        code: code,
+        name: nameInput.trim(),
+        tag: tag,
+        tagClass: qty > 0 ? 'tag-highlight' : '',
+        buyPrice: buyPrice,
+        qty: qty,
+        status: status,
+        statusClass: qty > 0 ? 'tag-highlight' : '',
+        fixedCurr: initialCurr,
+        note: `직접 추가 (${new Date().toLocaleDateString('ko-KR')})`
+      };
+
+      const items = getWatchlistItems();
+      items.push(newItem);
+      saveWatchlistItems(items);
+      renderWatchlistTable();
+      showToast(`➕ [${newItem.name}] 멀티 포트폴리오에 성공적으로 추가되었습니다!`);
     }
+
+    function loadCustomWatchlist() {
+      renderWatchlistTable();
+    }
+
 
     // 8-Stock Full Config for Scale-in Simulator & AI Compass
     const scaleStockData = {
