@@ -1602,7 +1602,9 @@
   <div class="quick-nav-bar">
     <a href="#sec-pulse" class="btn-anchor"><span>🌡️</span> 시장 심리</a>
     <a href="#sec-briefing" class="btn-anchor"><span>🎙️</span> 30초 브리핑</a>
+    <a href="#sec-traffic-light" class="btn-anchor"><span>🚦</span> 실전 신호등</a>
     <a href="#sec-turnaround" class="btn-anchor" onclick="scrollToTarget('sec-turnaround'); return false;"><span>🏆</span> 턴어라운드 8선</a>
+    <a href="#sec-vs-battle" class="btn-anchor"><span>⚔️</span> 비교 배틀</a>
     <a href="#sec-flow" class="btn-anchor"><span>🔥</span> 메이저 수급</a>
     <a href="#sec-news" class="btn-anchor"><span>📰</span> DART 공시·뉴스</a>
     <a href="#sec-stress" class="btn-anchor"><span>💡</span> 스트레스 테스트</a>
@@ -1724,7 +1726,36 @@
       </div>
     </div>
 
-        <!-- ⚡ GLOBAL STOCK QUICK SWITCHER (전 모듈 1초 동시 연동 허브) -->
+            <!-- 🤖 Feature 1: Friendly AI Market Coach & Interactive Greeting (윤용규 님 1:1 맞춤 코칭 허브) -->
+    <div class="ai-coach-card" id="aiCoachCard" style="background:linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(139, 92, 246, 0.08) 50%, rgba(16, 185, 129, 0.08) 100%); border:1.5px solid var(--border-accent); border-radius:22px; padding:20px 24px; margin-bottom:28px; box-shadow:var(--shadow-sm); position:relative; overflow:hidden;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg, var(--accent), #8b5cf6); display:flex; align-items:center; justify-content:center; font-size:1.4rem; box-shadow:0 4px 14px rgba(2, 132, 199, 0.35); flex-shrink:0;">
+            🧠
+          </div>
+          <div>
+            <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <span id="aiCoachGreetingTitle">윤용규 님, 오늘도 원칙을 지킨 멋진 하루입니다!</span>
+              <span class="tag tag-highlight" style="font-size:0.72rem; padding:2px 8px;">1:1 AI 코치</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;" id="aiCoachTimeSub">
+              실시간 시장 상황과 심리를 읽어드리는 윤스트롱 프라이빗 멘토링
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="btn-preset active" id="btnCoachMind" onclick="switchCoachTab('mind')" style="padding:6px 14px; border-radius:9999px; font-size:0.78rem; font-weight:700; cursor:pointer;">💡 오늘 멘탈 코칭</button>
+          <button class="btn-preset" id="btnCoachAction" onclick="switchCoachTab('action')" style="padding:6px 14px; border-radius:9999px; font-size:0.78rem; font-weight:700; cursor:pointer;">🎯 3대 실전 수칙</button>
+          <button class="btn-preset" id="btnCoachNight" onclick="switchCoachTab('night')" style="padding:6px 14px; border-radius:9999px; font-size:0.78rem; font-weight:700; cursor:pointer;">🌙 야간 체크포인트</button>
+        </div>
+      </div>
+
+      <div id="aiCoachBubble" style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px 20px; font-size:0.88rem; line-height:1.65; color:var(--text); box-shadow:inset 0 1px 3px rgba(0,0,0,0.02); transition:all 0.25s ease;">
+        <!-- Dynamic message content inserted on load -->
+      </div>
+    </div>
+
+    <!-- ⚡ GLOBAL STOCK QUICK SWITCHER (전 모듈 1초 동시 연동 허브) -->
     <div class="global-sync-container" id="globalSyncBar" style="background:var(--surface); border:1.5px solid var(--accent); border-radius:20px; padding:16px 20px; margin-bottom:28px; box-shadow:0 8px 24px var(--accent-glow);">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
         <div style="display:flex; align-items:center; gap:8px;">
@@ -2321,6 +2352,87 @@
       <div style="color:var(--text-muted); font-weight:700;">* 손익비 1:2 미만 종목은 랭킹에서 자동 제외</div>
     </div>
 
+    
+    <!-- 🚦 Feature 2: 3-Color Action Traffic Light (오늘 8대 주도주 실전 행동 신호등) -->
+    <div class="traffic-light-container" id="sec-traffic-light" style="background:var(--surface); border:1.5px solid var(--border); border-radius:20px; padding:18px 22px; margin-bottom:20px; box-shadow:var(--shadow-sm);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:1.3rem;">🚦</span>
+          <div>
+            <div style="font-size:1.02rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px;">
+              <span>오늘 8대 주도주 실전 행동 신호등 (Market Action Traffic Light)</span>
+              <span class="tag tag-highlight" style="font-size:0.72rem;">1초 빠른 판정</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">
+              복잡한 숫자 대신 '지금 들어가도 되는지, 관망해야 하는지'를 3색 신호등으로 직관 제공합니다.
+            </div>
+          </div>
+        </div>
+        <div style="font-size:0.76rem; color:var(--text-sub); font-weight:700;">
+          * 종목 칩 터치 시 해당 랭킹 카드로 즉시 이동
+        </div>
+      </div>
+
+      <!-- 3 Traffic Light Columns -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+        <!-- Green: Buy / Scaled Entry Eligible -->
+        <div style="background:rgba(16, 185, 129, 0.06); border:1.5px solid var(--success); border-radius:14px; padding:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="display:flex; align-items:center; gap:6px; font-weight:900; color:var(--success); font-size:0.88rem;">
+              <span style="font-size:1rem;">🟢</span> 분할 진입 적합 (1종목)
+            </div>
+            <span class="tag" style="background:var(--success); color:#fff; font-size:0.68rem; padding:2px 8px; border-radius:9999px;">손익비 1:2.8 충족</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-sub); line-height:1.5; margin-bottom:10px;">
+            폭락장 속 나홀로 양봉 반등 및 외인·기관 쌍끌이 매집 유입. 손익비 1:2.8로 상방 보상 우위!
+          </div>
+          <div style="flex:wrap; display:flex; gap:6px;">
+            <button class="btn-preset" onclick="scrollToStockCard('005380')" style="background:var(--surface); border:1.5px solid var(--success); color:var(--text); font-weight:800; padding:6px 12px; border-radius:9999px; font-size:0.8rem; cursor:pointer;">
+              🚗 현대차 (293,500원 ▲3.53%) ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- Yellow: Watch / Support Test -->
+        <div style="background:rgba(245, 158, 11, 0.06); border:1.5px solid #f59e0b; border-radius:14px; padding:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="display:flex; align-items:center; gap:6px; font-weight:900; color:#d97706; font-size:0.88rem;">
+              <span style="font-size:1rem;">🟡</span> 지지선 관망 (6종목)
+            </div>
+            <span class="tag" style="background:#f59e0b; color:#fff; font-size:0.68rem; padding:2px 8px; border-radius:9999px;">과매도 반등 대기</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-sub); line-height:1.5; margin-bottom:10px;">
+            지수 폭락 여파로 지지선 테스트 중. 외인 매도세 진정 및 첫 반등 양봉 확인 전까지 관망!
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <button class="btn-preset" onclick="scrollToStockCard('010140')" style="background:var(--surface); border:1px solid var(--border); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">🚢 삼성중공업</button>
+            <button class="btn-preset" onclick="scrollToStockCard('042700')" style="background:var(--surface); border:1px solid var(--border); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">⚙️ 한미반도체</button>
+            <button class="btn-preset" onclick="scrollToStockCard('058470')" style="background:var(--surface); border:1px solid var(--border); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">💎 리노공업</button>
+            <button class="btn-preset" onclick="scrollToStockCard('009150')" style="background:var(--surface); border:1px solid var(--border); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">⚡ 삼성전기</button>
+            <button class="btn-preset" onclick="scrollToStockCard('010950')" style="background:var(--surface); border:1px solid var(--border); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">🛢️ S-Oil</button>
+            <button class="btn-preset" onclick="scrollToStockCard('000660')" style="background:var(--surface); border:1px solid var(--border); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">⚡ SK하이닉스</button>
+          </div>
+        </div>
+
+        <!-- Red: Protect Cash / Do Not Chase -->
+        <div style="background:rgba(239, 68, 68, 0.06); border:1.5px solid var(--danger); border-radius:14px; padding:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="display:flex; align-items:center; gap:6px; font-weight:900; color:var(--danger); font-size:0.88rem;">
+              <span style="font-size:1rem;">🔴</span> 현금 100% 사수 (1종목)
+            </div>
+            <span class="tag" style="background:var(--danger); color:#fff; font-size:0.68rem; padding:2px 8px; border-radius:9999px;">익절 방어 성공</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-sub); line-height:1.5; margin-bottom:10px;">
+            11-02 120주 전량 익절 완료! 오늘 -9.83% 급락 노출 0 방어. 30,000원 지지 확인 전까지 진입 금지!
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <button class="btn-preset" onclick="scrollToStockCard('089030')" style="background:var(--surface); border:1.5px solid var(--danger); color:var(--text); font-weight:800; padding:6px 12px; border-radius:9999px; font-size:0.8rem; cursor:pointer;">
+              🎯 테크윙 (31,200원 · 현금 100%) ➔
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Toolbar: Search & Filter with PC Shortcut -->
     <div class="toolbar-card">
       <div class="search-box">
@@ -3240,6 +3352,55 @@
         <button class="btn-preset" onclick="jumpToFlow(currentCalcCode)">🔥 메이저 수급</button>
         <button class="btn-preset" onclick="jumpToRanking(currentCalcCode)">🏆 랭킹 팩트</button>
         <button class="btn-preset" onclick="jumpToDart(currentCalcCode)">📰 DART 공시 피드</button>
+      </div>
+    </div>
+
+        <!-- ⚔️ Feature 3: 1:1 Stock Quant Battle Analyzer (원클릭 1:1 종목 퀀트 비교 배틀) -->
+    <div class="section-title" id="sec-vs-battle">⚔️ 1:1 종목 퀀트 비교 배틀 (VS Match Analyzer)</div>
+    <div class="vs-battle-box" style="background:var(--surface); border:1.5px solid var(--accent); border-radius:24px; padding:22px 24px; margin-bottom:30px; box-shadow:var(--shadow-sm);">
+      <div style="font-size:0.85rem; color:var(--text-sub); margin-bottom:16px; line-height:1.55;">
+        다른 포털에는 없는 <strong>YOON STRONG 독점 1:1 비교 허브</strong>입니다. 두 종목을 선택하면 4대 축 퀀트 스코어, 실전 손익비, 외인·기관 수급, 하방 안전마진을 나란히 대조하여 <strong>어느 쪽이 더 유리한지 AI가 즉시 판정</strong>합니다.
+      </div>
+
+      <!-- Selectors & Swap -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px; background:var(--surface-sub); border:1px solid var(--border); border-radius:16px; padding:12px 18px;">
+        <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:200px;">
+          <span style="font-weight:900; color:var(--accent); font-size:0.85rem;">[종목 A]</span>
+          <select id="vsSelectA" onchange="updateVsBattle()" style="width:100%; background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:8px 12px; font-weight:800; font-size:0.88rem; outline:none; cursor:pointer;">
+          </select>
+        </div>
+
+        <button class="btn-preset" onclick="swapVsStocks()" title="두 종목 맞바꾸기" style="background:linear-gradient(135deg, var(--accent), #8b5cf6); color:#fff; font-weight:900; padding:8px 16px; border-radius:9999px; cursor:pointer;">
+          🔄 VS 맞바꾸기
+        </button>
+
+        <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:200px;">
+          <span style="font-weight:900; color:#8b5cf6; font-size:0.85rem;">[종목 B]</span>
+          <select id="vsSelectB" onchange="updateVsBattle()" style="width:100%; background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:8px 12px; font-weight:800; font-size:0.88rem; outline:none; cursor:pointer;">
+          </select>
+        </div>
+      </div>
+
+      <!-- Comparison Cards Grid -->
+      <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:stretch; margin-bottom:16px;" class="vs-cards-grid">
+        <!-- Card A -->
+        <div id="vsCardA" style="background:var(--surface); border:1.5px solid var(--accent); border-radius:16px; padding:16px; box-shadow:0 4px 16px rgba(2, 132, 199, 0.08);">
+        </div>
+
+        <!-- Center VS Badge -->
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px;">
+          <div style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--accent), #ec4899); color:#fff; font-weight:900; font-size:1rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(2, 132, 199, 0.4);">
+            VS
+          </div>
+        </div>
+
+        <!-- Card B -->
+        <div id="vsCardB" style="background:var(--surface); border:1.5px solid #8b5cf6; border-radius:16px; padding:16px; box-shadow:0 4px 16px rgba(139, 92, 246, 0.08);">
+        </div>
+      </div>
+
+      <!-- AI Verdict Banner -->
+      <div id="vsVerdictBanner" style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:14px 18px; font-size:0.85rem; line-height:1.6; color:var(--text);">
       </div>
     </div>
 
@@ -7853,6 +8014,189 @@
       });
     }
 
+    
+    // 🤖 Feature 1: AI Coach Tab Switcher
+    const coachMessages = {
+      mind: {
+        title: "💡 오늘 실전 멘탈 코칭",
+        text: "코스피 -5.37% 폭락장에서 외국인이 3.3조 원을 투매했지만, <strong>윤용규 님은 월요일 테크윙 전량 익절로 원금을 100% 현금으로 사수</strong>하셨습니다! 하락장에서 가장 위대한 투자는 '현금을 쥐고 기회를 기다리는 인내심'입니다. 뇌동매매 충동을 완전히 차단하고, 야간선물과 다음 날 반등 맥점을 여유롭게 관망하세요. ☕"
+      },
+      action: {
+        title: "🎯 3대 실전 수칙",
+        text: "① <strong>테크윙(31,200원)</strong>: 30,000원 심리적 마지노선 지지력 확인 전까지 추격 매수 절대 금지!<br>② <strong>현대차(293,500원)</strong>: 유일한 양봉 반등주이나 275,000원 손절선 사수 준수.<br>③ <strong>손익비 1:2 미충족 종목</strong>: 반등 시그널(RSI 30 탈출 양봉) 전까지 무조건 관망!"
+      },
+      night: {
+        title: "🌙 야간 체크포인트 (19:50 예정)",
+        text: "오늘 밤 19:50 정시 가동될 3단계 야간 레이더에서는 <strong>코스피200 야간선물(현재 901.90pt ▲1.36%)</strong>과 미국 나스닥 선물 추이, 시간외 거래 결산을 종합해 내일 국장의 시초가 갭출발 시나리오를 완벽하게 브리핑해 드립니다. 메일과 포털을 확인해 주세요!"
+      }
+    };
+
+    function switchCoachTab(tabKey) {
+      ['btnCoachMind', 'btnCoachAction', 'btnCoachNight'].forEach(id => {
+        const b = document.getElementById(id);
+        if (b) b.classList.remove('active');
+      });
+      if (tabKey === 'mind') document.getElementById('btnCoachMind')?.classList.add('active');
+      if (tabKey === 'action') document.getElementById('btnCoachAction')?.classList.add('active');
+      if (tabKey === 'night') document.getElementById('btnCoachNight')?.classList.add('active');
+
+      const data = coachMessages[tabKey] || coachMessages.mind;
+      const bubble = document.getElementById('aiCoachBubble');
+      if (bubble) {
+        bubble.style.opacity = '0.3';
+        setTimeout(() => {
+          bubble.innerHTML = `<strong>${data.title}</strong><br><div style="margin-top:6px;">${data.text}</div>`;
+          bubble.style.opacity = '1';
+        }, 120);
+      }
+    }
+
+    // 🚦 Feature 2: Scroll to Stock Card & Flash
+    function scrollToStockCard(code) {
+      const card = document.getElementById(`stockCard_${code}`);
+      if (!card) {
+        scrollToTarget('sec-turnaround');
+        return;
+      }
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      card.style.borderColor = 'var(--accent)';
+      card.style.boxShadow = '0 0 24px var(--accent-glow)';
+      setTimeout(() => {
+        card.style.borderColor = '';
+        card.style.boxShadow = '';
+      }, 2000);
+      const s = TURNAROUND_MASTER_DATA[code];
+      if (s) showToast(`🎯 [${s.name}] 카드로 이동했습니다!`);
+    }
+
+    // ⚔️ Feature 3: 1:1 Stock Quant Battle Analyzer
+    function initVsBattle() {
+      const selA = document.getElementById('vsSelectA');
+      const selB = document.getElementById('vsSelectB');
+      if (!selA || !selB) return;
+
+      selA.innerHTML = '';
+      selB.innerHTML = '';
+
+      const codes = ['005380', '010140', '042700', '058470', '009150', '010950', '000660', '089030', '005930'];
+      codes.forEach(c => {
+        const s = TURNAROUND_MASTER_DATA[c];
+        if (!s) return;
+        const optA = document.createElement('option');
+        optA.value = c;
+        optA.textContent = `${s.name} (${s.code})`;
+        selA.appendChild(optA);
+
+        const optB = document.createElement('option');
+        optB.value = c;
+        optB.textContent = `${s.name} (${s.code})`;
+        selB.appendChild(optB);
+      });
+
+      selA.value = '005380'; // 현대차
+      selB.value = '089030'; // 테크윙
+
+      updateVsBattle();
+    }
+
+    function swapVsStocks() {
+      const selA = document.getElementById('vsSelectA');
+      const selB = document.getElementById('vsSelectB');
+      if (!selA || !selB) return;
+      const tmp = selA.value;
+      selA.value = selB.value;
+      selB.value = tmp;
+      updateVsBattle();
+      showToast('🔄 비교 종목이 서로 맞바뀌었습니다!');
+    }
+
+    function renderVsCardContent(code, role) {
+      const s = TURNAROUND_MASTER_DATA[code];
+      if (!s) return '';
+      const color = role === 'A' ? 'var(--accent)' : '#8b5cf6';
+      return `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div>
+            <div style="font-size:1.1rem; font-weight:900; color:var(--text);">${s.name}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">${s.code} · ${s.market}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:1.05rem; font-weight:900; color:${s.changeStr.includes('+') ? 'var(--danger)' : 'var(--accent)'};">${s.priceStr}</div>
+            <div style="font-size:0.75rem; font-weight:700; color:${s.changeStr.includes('+') ? 'var(--danger)' : 'var(--accent)'};">${s.changeStr}</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.78rem; margin-bottom:12px;">
+          <div style="background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border);">
+            <div style="color:var(--text-muted); font-size:0.7rem;">4대 축 퀀트 총점</div>
+            <div style="font-size:1.05rem; font-weight:900; color:${color};">${s.score}점</div>
+          </div>
+          <div style="background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border);">
+            <div style="color:var(--text-muted); font-size:0.7rem;">실전 손익비</div>
+            <div style="font-size:1.05rem; font-weight:900; color:var(--success);">${s.ratio}</div>
+          </div>
+          <div style="background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border);">
+            <div style="color:var(--text-muted); font-size:0.7rem;">상방 목표가</div>
+            <div style="font-weight:800; color:var(--text);">${s.targetPrice.toLocaleString()}원 (${s.targetPct})</div>
+          </div>
+          <div style="background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border);">
+            <div style="color:var(--text-muted); font-size:0.7rem;">하방 손절선</div>
+            <div style="font-weight:800; color:var(--danger);">${s.stopPrice.toLocaleString()}원 (${s.stopPct})</div>
+          </div>
+        </div>
+
+        <div style="font-size:0.75rem; color:var(--text-sub); line-height:1.45; background:var(--surface-sub); padding:8px 10px; border-radius:10px; border:1px solid var(--border); margin-bottom:12px;">
+          <strong>핵심 팩트:</strong> ${s.desc}
+        </div>
+
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="btn-preset" onclick="setCalcWithActive('${s.name}', ${s.currentPrice}, ${s.targetPrice}, ${s.stopPrice}, 10, this); scrollToTarget('sec-tools');" style="flex:1; padding:6px 8px; font-size:0.75rem; border-radius:8px; cursor:pointer;">🧮 손익비 계산</button>
+          <button class="btn-preset" onclick="addStockToWatchlist('${s.name}', '${s.code}', ${s.currentPrice})" style="flex:1; padding:6px 8px; font-size:0.75rem; border-radius:8px; cursor:pointer;">💼 포트 담기</button>
+        </div>
+      `;
+    }
+
+    function updateVsBattle() {
+      const selA = document.getElementById('vsSelectA');
+      const selB = document.getElementById('vsSelectB');
+      if (!selA || !selB) return;
+
+      const codeA = selA.value;
+      const codeB = selB.value;
+
+      const sA = TURNAROUND_MASTER_DATA[codeA];
+      const sB = TURNAROUND_MASTER_DATA[codeB];
+      if (!sA || !sB) return;
+
+      const cardA = document.getElementById('vsCardA');
+      const cardB = document.getElementById('vsCardB');
+      if (cardA) cardA.innerHTML = renderVsCardContent(codeA, 'A');
+      if (cardB) cardB.innerHTML = renderVsCardContent(codeB, 'B');
+
+      // AI Verdict calculation
+      const banner = document.getElementById('vsVerdictBanner');
+      if (banner) {
+        let verdict = '';
+        if (sA.score > sB.score) {
+          verdict = `🏆 <strong>[AI 퀀트 판정]</strong> 종합 스코어에서 <strong>${sA.name}(${sA.score}점)</strong>이 ${sB.name}(${sB.score}점) 대비 <strong>+${sA.score - sB.score}점</strong> 우세합니다. `;
+        } else if (sB.score > sA.score) {
+          verdict = `🏆 <strong>[AI 퀀트 판정]</strong> 종합 스코어에서 <strong>${sB.name}(${sB.score}점)</strong>이 ${sA.name}(${sA.score}점) 대비 <strong>+${sB.score - sA.score}점</strong> 우세합니다. `;
+        } else {
+          verdict = `⚖️ <strong>[AI 퀀트 판정]</strong> 두 종목의 퀀트 스코어가 <strong>${sA.score}점</strong>으로 동일합니다. `;
+        }
+
+        verdict += `<br>• <strong>손익비 관점:</strong> ${sA.name}은 ${sA.ratio}, ${sB.name}은 ${sB.ratio}로 ${parseFloat(sA.ratio.replace('1 : ','')) >= parseFloat(sB.ratio.replace('1 : ','')) ? sA.name : sB.name}의 상방 기대 보상이 더 큽니다.<br>`;
+        if (codeA === '089030' || codeB === '089030') {
+          verdict += `• <strong>테크윙 전략 팁:</strong> 11-02 전량 익절로 현금 100%를 지킨 상태이므로 30,000원 지지력을 확인한 후 손익비 1:4.4 구간에서 진입을 노리세요.`;
+        } else {
+          verdict += `• <strong>실전 행동:</strong> 하락장 수급 지지력이 높은 쪽으로 분할 매수 시뮬레이터를 먼저 검증하세요.`;
+        }
+
+        banner.innerHTML = verdict;
+      }
+    }
+
     // 2. Major Money Flow Radar (외인·기관 수급 레이더 - 8대 종목 전면 구축)
     const flowData = {
       '089030': {
@@ -8238,7 +8582,10 @@
       { id: 'share', name: '8대 종목 원클릭 카톡 공유 & 복사 센터', target: 'sec-share', check: () => Object.keys(stockStrategyMap).length >= 8 },
       { id: 'portfolio', name: '나만의 멀티 포트폴리오 및 확정 종가 연동 엔진', target: 'multiPortfolioBox', check: () => typeof renderWatchlistTable === 'function' && getWatchlistItems().length > 0 },
       { id: 'adminSecurity', name: '슈퍼 관리자 VIP 보안 및 7일 체험 모드 타이머', target: 'sec-admin', check: () => typeof checkAdminState === 'function' && typeof updateTrialDisplay === 'function' },
-      { id: 'audioBriefing', name: '30초 AI 음성 브리핑 & 하이브리드 오디오 엔진', target: 'sec-briefing', check: () => typeof toggleAudioBriefing === 'function' && (document.getElementById('briefingAudio') !== null || ('speechSynthesis' in window)) }
+      { id: 'audioBriefing', name: '30초 AI 음성 브리핑 & 하이브리드 오디오 엔진', target: 'sec-briefing', check: () => typeof toggleAudioBriefing === 'function' && (document.getElementById('briefingAudio') !== null || ('speechSynthesis' in window)) },
+      { id: 'aiCoach', name: 'AI 1:1 데일리 코칭 & 인사이트 허브', target: 'aiCoachCard', check: () => typeof switchCoachTab === 'function' && document.getElementById('aiCoachBubble') !== null },
+      { id: 'trafficLight', name: '오늘 8대 주도주 실전 행동 신호등', target: 'sec-traffic-light', check: () => document.getElementById('sec-traffic-light') !== null },
+      { id: 'vsBattle', name: '1:1 종목 퀀트 비교 배틀 엔진', target: 'sec-vs-battle', check: () => typeof updateVsBattle === 'function' && document.getElementById('vsSelectA') !== null }
     ];
 
     let isDiagnosing = false;
@@ -8467,6 +8814,16 @@
         }
       } catch (e) {
         console.error('initAudioBriefingListeners failed:', e);
+      }
+      try {
+        if (typeof switchCoachTab === 'function') {
+          switchCoachTab('mind');
+        }
+        if (typeof initVsBattle === 'function') {
+          initVsBattle();
+        }
+      } catch (e) {
+        console.error('Coach or VS init failed:', e);
       }
     });
 
