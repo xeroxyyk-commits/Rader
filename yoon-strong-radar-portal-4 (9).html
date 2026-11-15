@@ -4504,8 +4504,11 @@
         const newExpire = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
         localStorage.setItem('yoon_trial_override_expire', newExpire);
         trialExpireDate = newExpire;
-        updateTrialDisplay();
-        dismissExpiredGate();
+        if (isAdmin) {
+          sessionStorage.removeItem('yoon_admin_auth');
+          localStorage.removeItem('yoon_admin_auth');
+        }
+        setAdminMode(false);
         closeExtendModal();
         showToast("🎉 인증코드 확인 완료! 7일 무료 체험 기간이 오늘부터 성공적으로 연장되었습니다.");
       } else {
@@ -6489,6 +6492,7 @@
       if (isAdmin) {
         adminZone.classList.add('unlocked');
         trialBanner.classList.add('admin-hidden');
+        trialBanner.style.display = 'none';
         if (gate) gate.classList.remove('active');
         document.body.classList.remove('trial-expired-locked');
         applyExpiredSectionLocks(false);
@@ -6503,6 +6507,7 @@
       } else {
         adminZone.classList.remove('unlocked');
         trialBanner.classList.remove('admin-hidden');
+        trialBanner.style.display = '';
         userRoleBadge.textContent = "👤 사용자 7일 체험 모드";
         userRoleBadge.style.background = "var(--accent-glow)";
         userRoleBadge.style.color = "var(--accent)";
@@ -6549,8 +6554,11 @@
         const newExpire = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
         localStorage.setItem('yoon_trial_override_expire', newExpire);
         trialExpireDate = newExpire;
-        updateTrialDisplay();
-        dismissExpiredGate();
+        if (isAdmin) {
+          sessionStorage.removeItem('yoon_admin_auth');
+          localStorage.removeItem('yoon_admin_auth');
+        }
+        setAdminMode(false);
         closeAdminModal();
         showToast("🎉 사용자 인증코드 확인 완료! 7일 무료 체험 기간이 연장되었습니다.");
         return;
