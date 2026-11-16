@@ -813,17 +813,12 @@
       color: #b91c1c !important;
       font-weight: 900 !important;
     }
-    body.trial-expired-locked {
-      overflow: hidden !important;
-      background: #0a0f1d !important;
-    }
     body.trial-expired-locked .container,
     body.trial-expired-locked nav,
     body.trial-expired-locked .ticker-bar,
     body.trial-expired-locked .mobile-bottom-dock,
-    body.trial-expired-locked #quickTopFloating,
-    body.trial-expired-locked #trialBanner {
-      display: none !important;
+    body.trial-expired-locked #quickTopFloating {
+      filter: blur(8px);
       pointer-events: none !important;
       user-select: none !important;
     }
@@ -4159,7 +4154,7 @@
   </div>
 
   <!-- 7-Day Trial Expired / First-Time Visitor VIP Lockout Gate -->
-  <div class="modal-overlay" id="trialExpiredGate" style="z-index: 1010; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); background: rgba(10, 15, 29, 0.98);">
+  <div class="modal-overlay" id="trialExpiredGate" style="z-index: 1010; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: rgba(10, 15, 29, 0.88);">
     <div class="expired-gate-window">
       <div style="font-size:2.8rem; margin-bottom:8px; filter: drop-shadow(0 4px 12px rgba(239,68,68,0.4));">🔒</div>
       <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(239,68,68,0.12); color:#ef4444; border:1px solid rgba(239,68,68,0.3); border-radius:9999px; padding:4px 14px; font-size:0.75rem; font-weight:800; margin-bottom:12px;">
@@ -4194,9 +4189,14 @@
         <div style="font-size:0.78rem; color:var(--text-sub); margin-bottom:8px; font-weight:700;">
           🎟️ 7일 무료 체험 연장 코드가 있으신가요?
         </div>
-        <button type="button" onclick="openExtendModal()" style="background:var(--surface-sub); color:var(--accent); border:1px solid var(--border-accent); padding:8px 18px; border-radius:10px; font-size:0.8rem; font-weight:800; cursor:pointer; transition:all 0.2s;">
-          인증코드 입력하여 7일 체험 연장하기
-        </button>
+        <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+          <button type="button" onclick="openExtendModal()" style="background:var(--surface-sub); color:var(--accent); border:1px solid var(--border-accent); padding:8px 16px; border-radius:10px; font-size:0.8rem; font-weight:800; cursor:pointer; transition:all 0.2s;">
+            인증코드 입력하여 7일 체험 연장하기
+          </button>
+          <button type="button" onclick="dismissExpiredGate()" style="background:transparent; color:var(--text-sub); border:1px solid var(--border); padding:8px 16px; border-radius:10px; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.2s;">
+            👀 포털 둘러보기 (제한 미리보기)
+          </button>
+        </div>
       </div>
     </div>
   </div>
