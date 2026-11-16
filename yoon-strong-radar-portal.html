@@ -4318,10 +4318,45 @@
       });
     }
 
+    // =========================================================================
+    // 방문자 접속·인증 기록 자동 수집 (Google Form -> Google Sheets 연동)
+    // =========================================================================
+    const _ACCESS_LOG_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfvCcmh2f1zVfXWZI4LWNVfQzDiSTiSTCJKCjsG0l3USRj5Ww/formResponse';
+    function getVisitorId() {
+      try {
+        let vid = localStorage.getItem('yoon_visitor_id');
+        if (!vid) {
+          vid = 'v_' + Math.random().toString(36).slice(2, 10) + '_' + Date.now().toString(36);
+          localStorage.setItem('yoon_visitor_id', vid);
+        }
+        return vid;
+      } catch (e) {
+        return 'v_anon';
+      }
+    }
+    function logPortalAccess(eventName, onlyOncePerSession = false) {
+      try {
+        if (onlyOncePerSession && sessionStorage.getItem('yoon_visit_logged')) return;
+        if (onlyOncePerSession) sessionStorage.setItem('yoon_visit_logged', '1');
+        const kst = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19) + ' KST';
+        const isMob = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+        const device = (isMob ? 'Mobile' : 'PC') + ' | ' + window.innerWidth + 'x' + window.innerHeight + ' | ' + navigator.userAgent.slice(0, 100);
+        const ref = (document.referrer || 'direct') + ' | ' + (location.pathname || '/');
+        const fd = new FormData();
+        fd.append('entry.654586890', kst);
+        fd.append('entry.473494670', eventName);
+        fd.append('entry.1579841624', device);
+        fd.append('entry.440415806', ref);
+        fd.append('entry.376193898', getVisitorId());
+        fetch(_ACCESS_LOG_URL, { method: 'POST', mode: 'no-cors', keepalive: true, body: fd }).catch(() => {});
+      } catch (e) {}
+    }
+
     function dismissExpiredGate() {
       const gate = document.getElementById('trialExpiredGate');
       if (gate) gate.classList.remove('active');
       document.body.classList.remove('trial-expired-locked');
+      logPortalAccess('둘러보기클릭');
       showToast("🔒 체험 만료로 주요 퀀트 및 포트폴리오 영역 열람이 제한됩니다.");
     }
 
@@ -4381,6 +4416,7 @@
         }
         applyExpiredSectionLocks(true);
         applyGeneralLimits();
+        logPortalAccess(hasUsedTrial ? '체험만료차단' : '신규방문차단', true);
       } else {
         // 체험 기간 잔여 시 (관리자가 콘솔에서 7일 리셋을 누른 경우)
         if (trialBanner) {
@@ -4405,6 +4441,7 @@
           trialDescText.textContent = "* 8대 주도 종목 퀀트 레이더 & 손익비 계산기 체험 중";
         }
         applyGeneralLimits();
+        logPortalAccess('체험모드방문', true);
       }
 
       updateAdminTrialStatusText();
@@ -4452,8 +4489,10 @@
         }
         setAdminMode(false);
         closeExtendModal();
+        logPortalAccess('체험연장코드성공');
         showToast("🎉 인증코드 확인 완료! 7일 무료 체험 기간이 오늘부터 성공적으로 연장되었습니다.");
       } else {
+        logPortalAccess('체험연장코드실패');
         alert("인증코드가 일치하지 않습니다. 올바른 4자리 코드를 입력해 주세요.");
       }
     }
@@ -6872,6 +6911,7 @@
         }
         setAdminMode(false);
         closeAdminModal();
+        logPortalAccess('체험연장코드성공');
         showToast("🎉 사용자 인증코드 확인 완료! 7일 무료 체험 기간이 연장되었습니다.");
         return;
       }
@@ -6880,12 +6920,14 @@
         sessionStorage.setItem('yoon_admin_auth', 'true');
         setAdminMode(true);
         closeAdminModal();
+        logPortalAccess('관리자로그인성공');
         showToast("👑 최고 관리자(윤용규 님)로 로그인되었습니다! VIP 전용 구역이 활성화되었습니다.");
         const secAdmin = document.getElementById('sec-admin');
         if (secAdmin) {
           secAdmin.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       } else {
+        logPortalAccess('관리자PIN실패');
         alert("보안 PIN 번호가 일치하지 않습니다. 다시 확인해 주세요.");
       }
     }
