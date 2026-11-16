@@ -4219,6 +4219,20 @@
     </div>
   </div>
 
+  <!-- 5회 인증 실패 시 완전 접속 차단 오버레이 -->
+  <div id="securityLockoutOverlay" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(7, 11, 22, 0.99); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); align-items:center; justify-content:center; padding:24px;">
+    <div style="max-width:420px; width:100%; background:#111827; border:2px solid #ef4444; border-radius:22px; padding:32px 24px; text-align:center; color:#f8fafc; box-shadow:0 24px 60px rgba(239,68,68,0.28);">
+      <div style="font-size:3rem; margin-bottom:12px;">🚫</div>
+      <h3 style="font-size:1.3rem; font-weight:900; color:#f87171; margin:0 0 10px; letter-spacing:-0.03em;">보안 접속 차단 (인증 5회 실패)</h3>
+      <p style="font-size:0.88rem; color:#cbd5e1; line-height:1.6; margin:0 0 18px;">
+        비밀번호(PIN) 또는 인증코드 입력이 <strong style="color:#fca5a5;">5회 연속 실패</strong>하여 보안 정책에 따라 이 기기에서의 포털 접속이 즉시 차단되었습니다.
+      </p>
+      <div style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.35); border-radius:12px; padding:12px 14px; font-size:0.8rem; color:#fecaca; line-height:1.5;">
+        🔒 관리자(윤용규 님) 승인 없이는 둘러보기 및 재시도가 불가합니다.<br>접속 및 실패 이력은 보안 로그에 기록되었습니다.
+      </div>
+    </div>
+  </div>
+
   <!-- Admin PIN Modal -->
   <div class="modal-overlay" id="pinModal" style="z-index: 1050;">
     <div class="pin-modal-window">
@@ -4258,6 +4272,7 @@
         // 기본값: 공식 런칭 7일 기준 (11-02 ~ 11-09). 현재(11-10)는 100% 공식 만료 상태
         trialExpireDate = GLOBAL_TRIAL_EXPIRE;
       }
+      if (checkSecurityLockout()) return;
       updateTrialDisplay();
     }
 
@@ -4451,7 +4466,72 @@
     // User 7-Day Trial Extension Code Engine (Base64 난독화: 번호 원천 비공개)
     const _USER_EXT_CODE = "Njc4OQ==";
 
+    // =========================================================================
+    // 5회 연속 인증 실패 시 즉시 접속 차단 (Brute-force Protection)
+    // =========================================================================
+    const MAX_AUTH_FAILS = 5;
+    function getAuthFailCount() {
+      try {
+        return parseInt(localStorage.getItem('yoon_auth_fail_count') || '0', 10) || 0;
+      } catch (e) {
+        return 0;
+      }
+    }
+    function resetAuthFailures() {
+      try {
+        localStorage.removeItem('yoon_auth_fail_count');
+        localStorage.removeItem('yoon_auth_blocked');
+        localStorage.removeItem('yoon_auth_blocked_at');
+      } catch (e) {}
+    }
+    function triggerSecurityLockout(logEvent) {
+      try {
+        localStorage.setItem('yoon_auth_blocked', 'true');
+        localStorage.setItem('yoon_auth_blocked_at', new Date().toISOString());
+        sessionStorage.removeItem('yoon_admin_auth');
+        localStorage.removeItem('yoon_admin_auth');
+        localStorage.removeItem('yoon_trial_override_expire');
+      } catch (e) {}
+      isAdmin = false;
+      closeAdminModal();
+      closeExtendModal();
+      const gate = document.getElementById('trialExpiredGate');
+      if (gate) gate.classList.remove('active');
+      document.querySelectorAll('.container, nav, .ticker-bar, .mobile-bottom-dock, #quickTopFloating, #trialBanner').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+      });
+      document.body.style.overflow = 'hidden';
+      const overlay = document.getElementById('securityLockoutOverlay');
+      if (overlay) overlay.style.display = 'flex';
+      if (logEvent) logPortalAccess(logEvent);
+    }
+    function checkSecurityLockout() {
+      try {
+        if (localStorage.getItem('yoon_auth_blocked') === 'true' || getAuthFailCount() >= MAX_AUTH_FAILS) {
+          triggerSecurityLockout();
+          logPortalAccess('차단기기재접속시도', true);
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    }
+    function recordAuthFailure(kindLabel) {
+      const nextCount = getAuthFailCount() + 1;
+      try {
+        localStorage.setItem('yoon_auth_fail_count', String(nextCount));
+      } catch (e) {}
+      if (nextCount >= MAX_AUTH_FAILS) {
+        triggerSecurityLockout('5회실패접속차단');
+        alert("보안 인증이 5회 연속 실패하여 접속이 즉시 차단되었습니다.");
+      } else {
+        logPortalAccess(kindLabel + '(' + nextCount + '/5)');
+        const remain = MAX_AUTH_FAILS - nextCount;
+        alert("인증 정보가 일치하지 않습니다. (" + nextCount + "/5회 실패 · " + remain + "회 추가 실패 시 접속 차단)");
+      }
+    }
+
     function openExtendModal() {
+      if (checkSecurityLockout()) return;
       const modal = document.getElementById('extendModal');
       const input = document.getElementById('extendCodeInput');
       if (modal) modal.classList.add('active');
@@ -4487,13 +4567,13 @@
           sessionStorage.removeItem('yoon_admin_auth');
           localStorage.removeItem('yoon_admin_auth');
         }
+        resetAuthFailures();
         setAdminMode(false);
         closeExtendModal();
         logPortalAccess('체험연장코드성공');
         showToast("🎉 인증코드 확인 완료! 7일 무료 체험 기간이 오늘부터 성공적으로 연장되었습니다.");
       } else {
-        logPortalAccess('체험연장코드실패');
-        alert("인증코드가 일치하지 않습니다. 올바른 4자리 코드를 입력해 주세요.");
+        recordAuthFailure('체험연장코드실패');
       }
     }
 
@@ -6871,6 +6951,7 @@
     }
 
     function toggleAdminModal() {
+      if (checkSecurityLockout()) return;
       pinModal.classList.add('active');
       pinInput.value = '';
       setTimeout(() => pinInput.focus(), 100);
@@ -6909,6 +6990,7 @@
           sessionStorage.removeItem('yoon_admin_auth');
           localStorage.removeItem('yoon_admin_auth');
         }
+        resetAuthFailures();
         setAdminMode(false);
         closeAdminModal();
         logPortalAccess('체험연장코드성공');
@@ -6917,6 +6999,7 @@
       }
       if (pinInput.value === correctPin || pinInput.value === atob("YWRtaW4=")) {
         // Store in sessionStorage so closing the tab returns to User mode
+        resetAuthFailures();
         sessionStorage.setItem('yoon_admin_auth', 'true');
         setAdminMode(true);
         closeAdminModal();
@@ -6927,8 +7010,7 @@
           secAdmin.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       } else {
-        logPortalAccess('관리자PIN실패');
-        alert("보안 PIN 번호가 일치하지 않습니다. 다시 확인해 주세요.");
+        recordAuthFailure('관리자PIN실패');
       }
     }
 
