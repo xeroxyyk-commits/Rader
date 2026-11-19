@@ -707,6 +707,33 @@
       display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 0.85rem; font-weight: 700;
     }
 
+    /* Mobile & KakaoTalk In-App Readability Boost */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    @media (max-width: 768px) {
+      html {
+        font-size: 16.5px !important;
+      }
+      html.kakao-inapp {
+        font-size: 17.5px !important;
+      }
+      .container {
+        padding: 12px 10px 92px !important;
+      }
+      .hero {
+        padding: 20px 14px !important;
+      }
+    }
+    .trial-banner span[style*="10b981"],
+    .trial-banner strong[style*="10b981"],
+    .trial-banner .verify-pill {
+      color: #ecfdf5 !important;
+      background: rgba(16, 185, 129, 0.28) !important;
+      border-color: rgba(167, 243, 208, 0.5) !important;
+    }
+
     /* 1:1 VS Battle Responsive Fix */
     .vs-cards-grid {
       display: grid;
@@ -1739,6 +1766,11 @@
     }
 
   </style>
+  <script>
+    if (/KAKAOTALK/i.test(navigator.userAgent || '')) {
+      document.documentElement.classList.add('kakao-inapp');
+    }
+  </script>
 </head>
 <body>
 
