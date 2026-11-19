@@ -669,6 +669,42 @@
     /* [NEW PREMIUM & ENTERPRISE FINTECH COMPONENTS] */
     /* ========================================================= */
 
+    /* Core 4 Strategic Stocks Quick Board */
+    .core4-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px; margin-bottom: 24px;
+    }
+    .core4-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+      padding: 16px 18px; box-shadow: var(--shadow-sm); transition: all 0.2s ease;
+      display: flex; flex-direction: column; gap: 10px; position: relative;
+    }
+    .core4-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+    .core4-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .core4-title { font-size: 1.02rem; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 6px; }
+    .core4-sub { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+    .core4-price-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .core4-price { font-size: 1.35rem; font-weight: 900; color: var(--text); }
+    .core4-chg { font-size: 0.85rem; font-weight: 800; padding: 2px 8px; border-radius: 99px; }
+    .core4-chg.up { background: rgba(239,68,68,0.12); color: #ef4444; }
+    .core4-chg.down { background: rgba(59,130,246,0.12); color: #3b82f6; }
+    .core4-chg.flat { background: rgba(148,163,184,0.15); color: var(--text-muted); }
+    .core4-levels {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+      background: var(--bg-soft, rgba(148,163,184,0.08)); border-radius: 10px; padding: 8px 10px;
+      font-size: 0.76rem;
+    }
+    .core4-levels span.lbl { display: block; color: var(--text-muted); font-size: 0.68rem; font-weight: 600; }
+    .core4-levels strong { color: var(--text); font-weight: 800; }
+    .core4-status { font-size: 0.78rem; font-weight: 700; color: var(--accent); line-height: 1.4; }
+    .core4-actions { display: flex; gap: 8px; margin-top: auto; }
+    .core4-btn {
+      flex: 1; padding: 7px 10px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text); font-size: 0.78rem; font-weight: 700;
+      cursor: pointer; transition: all 0.15s; text-align: center;
+    }
+    .core4-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
     /* Quick Jump Anchor Bar (Sub-Nav) */
     .quick-nav-bar {
       position: sticky; top: 58px; z-index: 95;
@@ -1718,6 +1754,7 @@
   <!-- Quick Jump Anchor Bar (Sub-Nav) -->
   <div class="quick-nav-bar">
     <a href="#sec-pulse" class="btn-anchor"><span>🌡️</span> 시장 심리</a>
+    <a href="#sec-core4" class="btn-anchor"><span>🎯</span> 4대 핵심주</a>
     <a href="#sec-briefing" class="btn-anchor"><span>🎙️</span> 30초 브리핑</a>
     <a href="#sec-traffic-light" class="btn-anchor"><span>🚦</span> 실전 신호등</a>
     <a href="#sec-turnaround" class="btn-anchor" onclick="scrollToTarget('sec-turnaround'); return false;"><span>🏆</span> 턴어라운드 8선</a>
@@ -2028,6 +2065,12 @@
         </div>
       </div>
     </div>
+    <!-- 1.5 USER CORE 4 STRATEGIC STOCKS QUICK BOARD -->
+    <div id="sec-core4" style="margin-top:6px;">
+      <div class="section-title">🎯 사용자 지정 4대 핵심 전략주 퀵 보드 <span style="font-size:0.76rem; font-weight:600; color:var(--text-muted);">(실시간 시세·보유·눌림목 통합)</span></div>
+      <div class="core4-grid" id="core4Grid"></div>
+    </div>
+
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
         <div class="section-title" id="sec-briefing">📢 윤스트롱 실전 핵심 브리핑 룸 (11-19 목요일 19:50 야간 결산 &amp; 11-20 개장 시나리오)</div>
     <div class="briefing-box">
@@ -3725,6 +3768,16 @@
             <p>포트폴리오, 알림 트리거 및 개인화 설정을 JSON 데이터로 백업합니다.</p>
             <button class="btn-preset" onclick="exportConfig()">설정 데이터 백업</button>
           </div>
+          <div class="console-tool-card">
+            <h4>📊 포털 접속 기록(Google Form)</h4>
+            <p>방문자 접속·둘러보기·인증 시도 이력을 구글 폼 응답 화면에서 바로 확인합니다.</p>
+            <a class="btn-preset" href="https://docs.google.com/forms/d/17_9NfRG2QrNeDHIJyQKQCHlhQ8vAoq0LMIyJzgQeGjg/edit#responses" target="_blank" rel="noopener" style="display:inline-block; text-decoration:none;">접속 기록 시트/응답 열기 ↗</a>
+          </div>
+          <div class="console-tool-card">
+            <h4>🔓 인증 오입력 차단 초기화</h4>
+            <p>5회 실패로 잠긴 현재 브라우저의 실패 횟수 및 차단 상태를 즉시 초기화합니다.</p>
+            <button class="btn-preset" onclick="resetAuthLockout()">오입력 차단 카운터 초기화</button>
+          </div>
         </div>
       </div>
 
@@ -4084,7 +4137,8 @@
       { id: 'sec-traffic-light', name: '오늘 8대 주도주 실전 행동 신호등' },
       { id: 'sec-vs-battle', name: '1:1 종목 퀀트 비교 배틀 엔진' },
       { id: 'sec-market-view', name: '윤스트롱 퀀트 마켓 뷰 & 전략주 브리핑' },
-      { id: 'rankingGrid', name: '실전 신규 발굴 & 낙폭과대 턴어라운드 8선' }
+      { id: 'rankingGrid', name: '실전 신규 발굴 & 낙폭과대 턴어라운드 8선' },
+      { id: 'sec-core4', name: '4대 핵심 전략주 퀵 보드' }
     ];
 
     function applyExpiredSectionLocks(isLocked) {
@@ -6369,6 +6423,70 @@
     }
 
     // Dynamic Renderers
+    function resetAuthLockout() {
+      localStorage.removeItem('yoon_auth_fail_count');
+      localStorage.removeItem('yoon_auth_blocked');
+      const ov = document.getElementById('securityLockoutOverlay');
+      if (ov) ov.classList.remove('active');
+      if (typeof showToast === 'function') {
+        showToast('🔓 오입력 실패 카운터와 차단 상태가 초기화되었습니다.');
+      } else {
+        alert('오입력 실패 카운터와 차단 상태가 초기화되었습니다.');
+      }
+    }
+
+    function renderCore4Board() {
+      const grid = document.getElementById('core4Grid');
+      if (!grid || typeof TURNAROUND_MASTER_DATA === 'undefined') return;
+      const coreCodes = ['058470', '443060', '0161M0', '010120'];
+      let portfolioMap = {};
+      try {
+        if (typeof getWatchlistItems === 'function') {
+          getWatchlistItems().forEach(p => { if (p && p.code) portfolioMap[p.code] = p; });
+        } else if (typeof DEFAULT_PORTFOLIO_ITEMS !== 'undefined') {
+          DEFAULT_PORTFOLIO_ITEMS.forEach(p => { if (p && p.code) portfolioMap[p.code] = p; });
+        }
+      } catch (e) {}
+
+      grid.innerHTML = coreCodes.map(code => {
+        const d = TURNAROUND_MASTER_DATA[code];
+        if (!d) return '';
+        const chg = d.changeStr || '0.00%';
+        const chgCls = chg.startsWith('+') ? 'up' : (chg.startsWith('-') ? 'down' : 'flat');
+        const pf = portfolioMap[code];
+        let badgeText = d.actionSignalText || '';
+        if (pf && pf.tag) {
+          badgeText = `${pf.tag} (${pf.qty || 0}주) · ${d.actionSignalText || ''}`;
+        }
+        const stopShort = (d.stopLossStr || '').split(' ')[0] || '-';
+        const tgtShort = (d.targetStr || '').split(' ')[0] || '-';
+        return `
+          <div class="core4-card">
+            <div class="core4-head">
+              <div>
+                <div class="core4-title"><span>${d.icon || '📌'}</span><span>${d.name}</span></div>
+                <div class="core4-sub">${d.code} · ${d.market || ''} · 퀀트 ${d.score || '-'}점</div>
+              </div>
+              <span class="core4-chg ${chgCls}">${chg}</span>
+            </div>
+            <div class="core4-price-row">
+              <span class="core4-price">${d.priceStr || '-'}</span>
+            </div>
+            <div class="core4-levels">
+              <div><span class="lbl">지지선</span><strong>${stopShort}</strong></div>
+              <div><span class="lbl">목표가</span><strong>${tgtShort}</strong></div>
+              <div><span class="lbl">손익비</span><strong>${d.rrRatio || '-'}</strong></div>
+            </div>
+            <div class="core4-status">${badgeText}</div>
+            <div class="core4-actions">
+              <button type="button" class="core4-btn" onclick="globalSyncStock('${d.code}'); scrollToTarget('sec-calc');">🧮 계산기·수급 연동</button>
+              <button type="button" class="core4-btn" onclick="globalSyncStock('${d.code}'); scrollToTarget('sec-scale');">🛡️ 분할매수 계산</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     function renderRankingGrid(codes) {
       const grid = document.getElementById('rankingGrid');
       if (!grid) return;
@@ -6576,6 +6694,7 @@
       localStorage.setItem('yoon_active_stocks', JSON.stringify(codes));
 
       syncMasterDataToSubmodules();
+      renderCore4Board();
       renderRankingGrid(codes);
       renderGlobalChips(codes);
       renderCalcPresets(codes);
