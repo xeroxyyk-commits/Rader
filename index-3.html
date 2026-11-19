@@ -669,6 +669,44 @@
     /* [NEW PREMIUM & ENTERPRISE FINTECH COMPONENTS] */
     /* ========================================================= */
 
+    /* Event D-Day Warning Badge */
+    .dday-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 8px;
+      margin-top: 2px;
+    }
+    .dday-badge.danger { background: rgba(239,68,68,0.14); color: #dc2626; border: 1px solid rgba(239,68,68,0.3); }
+    .dday-badge.warn { background: rgba(245,158,11,0.15); color: #d97706; border: 1px solid rgba(245,158,11,0.3); }
+    .dday-badge.info { background: rgba(59,130,246,0.12); color: #2563eb; border: 1px solid rgba(59,130,246,0.25); }
+
+    /* Cash Reinvestment Allocator */
+    .reinvest-box {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      padding: 18px 20px; margin-bottom: 24px; box-shadow: var(--shadow-sm);
+    }
+    .reinvest-top {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .reinvest-input-wrap { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .reinvest-input {
+      width: 150px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); font-weight: 800; font-size: 0.95rem; text-align: right;
+    }
+    .reinvest-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;
+    }
+    .reinvest-item {
+      background: var(--bg-soft, rgba(148,163,184,0.08)); border-radius: 14px; padding: 12px 14px;
+      border: 1px solid var(--border);
+    }
+    .reinvest-item-head { display: flex; justify-content: space-between; font-weight: 800; font-size: 0.88rem; margin-bottom: 6px; }
+    .reinvest-summary {
+      margin-top: 14px; padding: 12px 14px; border-radius: 12px;
+      background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25);
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 0.85rem; font-weight: 700;
+    }
+
     /* Core 4 Strategic Stocks Quick Board */
     .core4-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1755,6 +1793,7 @@
   <div class="quick-nav-bar">
     <a href="#sec-pulse" class="btn-anchor"><span>🌡️</span> 시장 심리</a>
     <a href="#sec-core4" class="btn-anchor"><span>🎯</span> 4대 핵심주</a>
+    <a href="#sec-cash-reinvest" class="btn-anchor"><span>💰</span> 현금 재투자</a>
     <a href="#sec-briefing" class="btn-anchor"><span>🎙️</span> 30초 브리핑</a>
     <a href="#sec-traffic-light" class="btn-anchor"><span>🚦</span> 실전 신호등</a>
     <a href="#sec-turnaround" class="btn-anchor" onclick="scrollToTarget('sec-turnaround'); return false;"><span>🏆</span> 턴어라운드 8선</a>
@@ -2069,6 +2108,25 @@
     <div id="sec-core4" style="margin-top:6px;">
       <div class="section-title">🎯 사용자 지정 4대 핵심 전략주 퀵 보드 <span style="font-size:0.76rem; font-weight:600; color:var(--text-muted);">(실시간 시세·보유·눌림목 통합)</span></div>
       <div class="core4-grid" id="core4Grid"></div>
+    </div>
+
+    <!-- 1.6 CASH REINVESTMENT ALLOCATOR -->
+    <div class="reinvest-box" id="sec-cash-reinvest">
+      <div class="reinvest-top">
+        <div>
+          <div style="font-size:1.05rem; font-weight:900; color:var(--text);">💰 익절 현금 재투자 배분 시뮬레이터</div>
+          <div style="font-size:0.76rem; color:var(--text-muted); margin-top:2px;">확보된 현금을 4대 핵심주 눌림목 기준가에 배분했을 때의 예상 수량·기대 수익을 계산합니다.</div>
+        </div>
+        <div class="reinvest-input-wrap">
+          <span style="font-size:0.82rem; font-weight:700;">가용 현금(원):</span>
+          <input type="number" id="reinvestCashInput" class="reinvest-input" value="1070000" step="10000" oninput="renderCashReinvest()" />
+          <button type="button" class="btn-preset" onclick="setReinvestCash(1070000)">107만(리노익절)</button>
+          <button type="button" class="btn-preset" onclick="setReinvestCash(3000000)">300만</button>
+          <button type="button" class="btn-preset" onclick="setReinvestCash(5000000)">500만</button>
+        </div>
+      </div>
+      <div class="reinvest-grid" id="reinvestGrid"></div>
+      <div class="reinvest-summary" id="reinvestSummary"></div>
     </div>
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
@@ -4138,7 +4196,8 @@
       { id: 'sec-vs-battle', name: '1:1 종목 퀀트 비교 배틀 엔진' },
       { id: 'sec-market-view', name: '윤스트롱 퀀트 마켓 뷰 & 전략주 브리핑' },
       { id: 'rankingGrid', name: '실전 신규 발굴 & 낙폭과대 턴어라운드 8선' },
-      { id: 'sec-core4', name: '4대 핵심 전략주 퀵 보드' }
+      { id: 'sec-core4', name: '4대 핵심 전략주 퀵 보드' },
+      { id: 'sec-cash-reinvest', name: '익절 현금 재투자 배분 시뮬레이터' }
     ];
 
     function applyExpiredSectionLocks(isLocked) {
@@ -6435,6 +6494,91 @@
       }
     }
 
+    const EVENT_DDAY_MAP = {
+      '0161M0': [{ date: '2026-11-21', label: '보호예수 114.4만주 해제(23일 매도가능)', level: 'danger' }],
+      '058470': [{ date: '2026-11-20', label: '48,000원 이하 눌림목 감시', level: 'info' }]
+    };
+
+    function getEventBadgesHtml(code) {
+      const events = EVENT_DDAY_MAP[code];
+      if (!events || !events.length) return '';
+      const now = new Date();
+      const kstNow = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000);
+      const todayStr = kstNow.toISOString().slice(0, 10);
+      const todayMs = new Date(todayStr + 'T00:00:00Z').getTime();
+      return events.map(ev => {
+        const evMs = new Date(ev.date + 'T00:00:00Z').getTime();
+        const diffDays = Math.round((evMs - todayMs) / 86400000);
+        if (diffDays < -1 || diffDays > 7) return '';
+        const dTag = diffDays === 0 ? 'D-DAY' : (diffDays > 0 ? `D-${diffDays}` : `D+${Math.abs(diffDays)}`);
+        const cls = ev.level || (diffDays <= 2 ? 'danger' : 'warn');
+        return `<div class="dday-badge ${cls}">⏰ ${dTag} · ${ev.label}</div>`;
+      }).join('');
+    }
+
+    let REINVEST_WEIGHTS = { '058470': 50, '443060': 30, '010120': 20, '0161M0': 0 };
+    const REINVEST_ENTRY_PRICES = { '058470': 48000, '443060': 174000, '010120': 115000, '0161M0': 4635 };
+
+    function setReinvestCash(val) {
+      const inp = document.getElementById('reinvestCashInput');
+      if (inp) { inp.value = val; renderCashReinvest(); }
+    }
+
+    function updateReinvestWeight(code, val) {
+      REINVEST_WEIGHTS[code] = Math.max(0, Math.min(100, Number(val) || 0));
+      renderCashReinvest();
+    }
+
+    function renderCashReinvest() {
+      const grid = document.getElementById('reinvestGrid');
+      const sumBox = document.getElementById('reinvestSummary');
+      const inp = document.getElementById('reinvestCashInput');
+      if (!grid || !sumBox || !inp || typeof TURNAROUND_MASTER_DATA === 'undefined') return;
+      const totalCash = Math.max(0, Number(inp.value) || 0);
+      const codes = ['058470', '443060', '010120', '0161M0'];
+      let totalWeight = codes.reduce((acc, c) => acc + (REINVEST_WEIGHTS[c] || 0), 0);
+      let totalUsed = 0;
+      let totalExpectedGain = 0;
+
+      grid.innerHTML = codes.map(code => {
+        const d = TURNAROUND_MASTER_DATA[code];
+        if (!d) return '';
+        const w = REINVEST_WEIGHTS[code] || 0;
+        const allocCash = totalWeight > 0 ? Math.floor(totalCash * (w / 100)) : 0;
+        const entryP = REINVEST_ENTRY_PRICES[code] || d.currentPrice || 1;
+        const shares = entryP > 0 ? Math.floor(allocCash / entryP) : 0;
+        const used = shares * entryP;
+        totalUsed += used;
+        const targetP = d.target || entryP;
+        const expGain = shares * Math.max(0, targetP - entryP);
+        totalExpectedGain += expGain;
+        const expPct = used > 0 ? ((expGain / used) * 100).toFixed(1) : '0.0';
+        return `
+          <div class="reinvest-item">
+            <div class="reinvest-item-head">
+              <span>${d.icon || '📌'} ${d.name}</span>
+              <span style="color:var(--accent);">${w}%</span>
+            </div>
+            <input type="range" min="0" max="100" step="5" value="${w}" style="width:100%; margin-bottom:6px;" oninput="updateReinvestWeight('${code}', this.value)" />
+            <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.5;">
+              눌림목 기준: <strong>${entryP.toLocaleString()}원</strong><br>
+              예상 매수: <strong style="color:var(--text);">${shares}주</strong> (${used.toLocaleString()}원)<br>
+              목표가(${targetP.toLocaleString()}원) 시: <strong style="color:#ef4444;">+${expGain.toLocaleString()}원 (+${expPct}%)</strong>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const remain = Math.max(0, totalCash - totalUsed);
+      const weightWarn = totalWeight !== 100 ? `<span style="color:#ef4444;">⚠️ 비중 합계 ${totalWeight}% (100% 권장)</span>` : `<span style="color:#10b981;">✅ 비중 합계 100%</span>`;
+      sumBox.innerHTML = `
+        <span>${weightWarn}</span>
+        <span>실투자 합계: <strong>${totalUsed.toLocaleString()}원</strong></span>
+        <span>잔여 현금: <strong>${remain.toLocaleString()}원</strong></span>
+        <span>목표 도달 시 기대수익: <strong style="color:#ef4444;">+${totalExpectedGain.toLocaleString()}원</strong></span>
+      `;
+    }
+
     function renderCore4Board() {
       const grid = document.getElementById('core4Grid');
       if (!grid || typeof TURNAROUND_MASTER_DATA === 'undefined') return;
@@ -6477,6 +6621,7 @@
               <div><span class="lbl">목표가</span><strong>${tgtShort}</strong></div>
               <div><span class="lbl">손익비</span><strong>${d.rrRatio || '-'}</strong></div>
             </div>
+            ${getEventBadgesHtml(d.code)}
             <div class="core4-status">${badgeText}</div>
             <div class="core4-actions">
               <button type="button" class="core4-btn" onclick="globalSyncStock('${d.code}'); scrollToTarget('sec-calc');">🧮 계산기·수급 연동</button>
@@ -6695,6 +6840,7 @@
 
       syncMasterDataToSubmodules();
       renderCore4Board();
+      renderCashReinvest();
       renderRankingGrid(codes);
       renderGlobalChips(codes);
       renderCalcPresets(codes);
