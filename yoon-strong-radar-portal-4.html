@@ -7344,14 +7344,14 @@
         id: 'port_058470',
         code: '058470',
         name: '리노공업 (058470)',
-        tag: '집중 1순위',
-        tagClass: 'tag-highlight',
+        tag: '전량 익절 완료',
+        tagClass: 'status-success',
         buyPrice: 48700,
         qty: 0,
-        status: '지지선 46,150원 관찰',
+        status: '11-19 20주 53,500원 익절',
         statusClass: 'status-success',
         fixedCurr: 51400,
-        note: '11-19 15:20 기준가 51,400원 · 손익비 1:1.2로 눌림 대기'
+        note: '11-19 20주 @ 53,500원 전량 익절 완료 (매도금 107만원) · 48,000원 이하 눌림 대기'
       },
       {
         id: 'port_005380',
@@ -7396,7 +7396,22 @@
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length >= 0) return parsed;
+          if (Array.isArray(parsed) && parsed.length >= 0) {
+            if (!localStorage.getItem('yoon_leeno_sold_1119_v1')) {
+              const idx = parsed.findIndex(it => it && (it.code === '058470' || it.id === 'port_058470'));
+              if (idx >= 0) {
+                parsed[idx].tag = '전량 익절 완료';
+                parsed[idx].tagClass = 'status-success';
+                parsed[idx].qty = 0;
+                parsed[idx].status = '11-19 20주 53,500원 익절';
+                parsed[idx].statusClass = 'status-success';
+                parsed[idx].note = '11-19 20주 @ 53,500원 전량 익절 완료 (매도금 107만원) · 48,000원 이하 눌림 대기';
+                localStorage.setItem('yoon_custom_watchlist_v2', JSON.stringify(parsed));
+              }
+              localStorage.setItem('yoon_leeno_sold_1119_v1', '1');
+            }
+            return parsed;
+          }
         } catch(e) {}
       }
       return JSON.parse(JSON.stringify(DEFAULT_PORTFOLIO_ITEMS));
