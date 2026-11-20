@@ -9052,6 +9052,9 @@ function updateRankingDiffDiagnosis(filterKey) {
     }
 
     // 1. Dual-Engine Audio Briefing (HTML5 Native MP3 + Web Speech API Fallback)
+    let isTtsBriefingActive = false;
+    let audioCurrentRate = 1.1;
+    let ttsKeepAliveTimer = null;
     const briefingText = "11월 20일 금요일, 야간 결산 레이더입니다. 오늘 코스피는 5.21퍼센트 급락한 4,869.96, 코스닥은 5.71퍼센트 빠진 645.68로 마감했습니다. 확정 수급은 외국인 1조 1,046억, 기관 9,331억 순매도, 개인 1조 5,482억 순매수입니다. 시간외 시장에도 반등은 없었습니다. 리노공업은 4만 5,350원에서 4만 5,300원, HD현대마린솔루션은 18만 4,800원에서 18만 3,400원, LS일렉트릭은 10만 9,700원에서 10만 8,400원으로 밀렸고, 네오사피엔스만 4,320원으로 조금 올랐습니다. 코스피200 야간선물은 747.15로 주간선물보다 0.74퍼센트 낮고, 나스닥100 선물은 1.1퍼센트 하락, 원달러 환율은 1,339원입니다. 월요일은 4,817선 근처에서 출발할 것으로 보입니다. 4,800에서 4,870 박스가 40퍼센트, 4,750 테스트가 40퍼센트, 반등은 20퍼센트입니다. 네오사피엔스는 11월 21일 토요일 보호예수 114만주가 풀려 11월 23일 월요일부터 매도가 가능하니 신규 진입은 금지입니다. 월요일 시초가 30분은 지켜보기만 하시고, 4대 종목의 지지선 사수 여부만 확인하십시오.";
     function formatAudioTime(sec) {
       sec = Math.max(0, Math.floor(sec || 0));
