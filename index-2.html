@@ -1831,7 +1831,7 @@
   <!-- 7-Day User Trial Banner -->
   <div class="trial-banner expired-state" id="trialBanner">
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-      <span id="trialHeaderDateBadge" style="font-size:0.75rem; background:rgba(5,150,105,0.15); color:var(--success); border:1px solid rgba(5,150,105,0.3); border-radius:8px; padding:3px 8px; font-weight:800;">⚡ 네이버 금융 11-20 확정 종가·확정 수급 100% 검증 완료 (11-21 09:00 주말 결산)</span>
+      <span id="trialHeaderDateBadge" style="font-size:0.75rem; background:rgba(5,150,105,0.15); color:var(--success); border:1px solid rgba(5,150,105,0.3); border-radius:8px; padding:3px 8px; font-weight:800;">⚡ 네이버 금융 11-20 확정 종가·확정 수급 + 11-23 08:00 NXT 프리마켓 100% 검증 완료 (11-23 08:00 장전)</span>
       <span>⏳ <strong id="trialModeTitle">[사용자 7일 체험 만료]</strong> 상태: <span class="trial-timer-badge expired-badge" id="trialDaysLeft">0일 0시간 (공식 만료됨)</span></span>
       <span id="trialDescText" style="font-size:0.72rem; opacity:0.88; margin-left:6px;">* 7일 무료 체험 기간이 만료되었습니다. 전체 기능 이용을 위해 관리자 PIN 로그인이 필요합니다.</span>
     </div>
@@ -1877,7 +1877,7 @@
       </div>
       <div class="brand-badges-wrap">
         <span class="nav-tag" id="userRoleBadge">👤 사용자 7일 체험 모드</span>
-        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-21 09:00 주말결산 레이더</span>
+        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-23 08:00 장전 레이더</span>
       </div>
     </div>
     <div class="nav-actions">
@@ -1966,7 +1966,7 @@
           <span class="pipe-live-dot"></span>
           <span class="pipe-title">실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) + 토요일 주말 결산 가동 중</span>
         </div>
-        <div class="pipe-status-right"><span>현재: 11-21(토) 09:00 주말 결산 &amp; 차주 월요일 프리뷰 완료 (4/4단계) · 다음 자동 갱신: 11-23(월) 08:00 KST (주말 휴장 후 장전 레이더)</span></div>
+        <div class="pipe-status-right"><span>현재: 11-23(월) 08:00 장전 레이더 완료 (4/4단계) · 다음 자동 갱신: 11-23(월) 15:20 KST (장 마감 10분 전 결산)</span></div>
       </div>
 
       <!-- ⏱️ Daily 3-Stage Workflow & Realtime Market State Tracker -->
@@ -1977,7 +1977,7 @@
             <div>
               <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span>주간 3타임 + 주말 결산 레이더 진행 상황</span>
-                <span class="badge" id="currentStageBadge" style="background:#16a34a; color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">🏁 11-21 09:00 주말 결산 완료 (4/4단계 · 야간선물 -7.01% · 11-23 이론 4,513)</span>
+                <span class="badge" id="currentStageBadge" style="background:#16a34a; color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">🌅 11-23 08:00 장전 레이더 완료 (야간선물 -7.01% · 이론 4,513 · NXT 프리마켓 -4~7%)</span>
               </div>
               <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">
                 하루 3번 + 주말 1회, 정해진 시간마다 시장 분석 ➔ 포털 갱신 ➔ 깃허브 웹사이트 자동 배포가 100% 전자동으로 가동됩니다.
@@ -2021,7 +2021,7 @@
           <div class="stage-step-box" id="stageStep4" style="background:rgba(22,163,74,0.08); border:1px solid var(--success); border-radius:14px; padding:14px; position:relative;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <span style="font-weight:900; font-size:0.9rem; color:var(--success);">🏁 4단계: 토요일 09:00 주말 결산</span>
-              <span class="stage-tag" style="background:var(--success); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 · 현재 단계 (11-21 09:00 발송)</span>
+              <span class="stage-tag" style="background:var(--success); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 · 현재 단계 (11-23 08:00 발송)</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">금요일 미장 마감 &amp; 차주 월요일 프리뷰</div>
             <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">미장 3대지수·SOX -10.73%·VIX 35.89·F&amp;G 9.67 + 11-20 확정 수급 전수 반영 → 11-23 이론 시초가 4,513·4대주 대응선·시나리오 3종 발송</div>
@@ -2133,9 +2133,14 @@
         <div class="pulse-sub c-warning">코스피 <strong>외인 -1조956억</strong> · <strong>기관 -9,330억</strong> / 코스닥 개인 +2,803억 · 외인 -1,615억 · 기관 -1,065억 · <strong>외국인 7거래일 연속 매도</strong> (잠정치 -1조1,046억에서 확정치로 1,090억 축소)</div>
       </div>
       <div class="pulse-card">
-        <div class="pulse-lbl"><span>코스피200 야간선물 (12월물)</span><span>11-21 06:00 마감</span></div>
+        <div class="pulse-lbl"><span>코스피200 야간선물 (12월물)</span><span>11-21 06:00 마감 · 주말 휴장 최종</span></div>
         <div class="pulse-val c-danger">700.00pt ▼7.01%</div>
         <div class="pulse-sub c-danger">-52.75pt · 시가 752.75 / 고 755.25 / <strong>저 697.50</strong> / 거래량 54,091계약 · 주간선물 752.75(-5.43%) · 현물 755.34 대비 <strong>-7.34% → 11-23 이론 시초가 4,513</strong></div>
+      </div>
+      <div class="pulse-card">
+        <div class="pulse-lbl"><span>NXT 프리마켓 (11-23 08:05 실시간)</span><span>개장 전 시세</span></div>
+        <div class="pulse-val c-danger">리노공업 42,400 ▼6.50%</div>
+        <div class="pulse-sub c-danger">HD현대마린 177,400(-4.00%) · LS ELECTRIC 102,400(-6.65%) · 삼성전자 172,800(-5.63%) · SK하이닉스 1,048,000(-5.84%) · 한미반도체 143,200(-6.89%) · 야간선물(-7.01%)보다는 완만 → <strong>09:00 동시호가 갭 -4~7% 예상</strong>, 시초가 추격매수 금지</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl"><span>간밤 미장 (11-20 마감)</span><span>3대 지수</span></div>
@@ -2149,8 +2154,8 @@
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl"><span>환율 · 원화</span><span>USD/KRW</span></div>
-        <div class="pulse-val c-warning">1,346.50원</div>
-        <div class="pulse-sub c-warning">원/달러 <strong>1,346.50원(▲11.00, +0.82%, 06:28 하나은행 고시)</strong> · 11-20 서울 종가 1,339.00원 대비 <strong>+7.5원</strong> · 엔/달러 842.56원 · 12월 FOMC 추가 인상 경계 지속</div>
+        <div class="pulse-val c-warning">1,345.00원</div>
+        <div class="pulse-sub c-warning">원/달러 <strong>1,345.00원(▲9.50, +0.71%, 11-23 07:58 하나은행 고시)</strong> · 엔/원 <strong>848.26원(+1.43%)</strong> · 개장 전 원화 약세 지속 · 12월 FOMC 추가 인상 경계</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl"><span>폭락 사유 · 이번 주 결산</span><span>AI 밸류체인</span></div>
@@ -2158,15 +2163,15 @@
         <div class="pulse-sub c-danger">SEC의 엔비디아 회계조사 보도 + 앤트로픽 상장 이틀째 -8.50% + 리사 쿡 연준이사 "금리 충분히 높지 않다" → 마이크론 -13.89% · AMD -13.25% · 브로드컴 -12.19% · <strong>SK하이닉스 ADR -13.11%</strong> · 주간 다우 -8.0%/S&amp;P -8.6%/나스닥 -10.0%</div>
       </div>
       <div class="pulse-card">
-        <div class="pulse-lbl"><span>주말 핵심 이벤트</span><span>D-DAY</span></div>
-        <div class="pulse-val c-danger">오늘 락업 해제</div>
-        <div class="pulse-sub c-danger"><strong>11-21(토) 네오사피엔스 2개월 보호예수 1,143,690주(9.36%) 해제 → 11-23(월) 매도 가능</strong> (누적 유통 46.4%) · 11-25(수) 22:30 미 3Q GDP 잠정·10월 PCE · 11-26(목) 한은 금통위 + 미 추수감사절 휴장 · 11-27(금) 미 조기폐장</div>
+        <div class="pulse-lbl"><span>오늘 핵심 이벤트</span><span>D-DAY</span></div>
+        <div class="pulse-val c-danger">네오사피엔스 락업 매도 가능일</div>
+        <div class="pulse-sub c-danger"><strong>오늘(11-23) 네오사피엔스 2개월 보호예수 1,143,690주(9.36%) 매도 가능일</strong>(11-21 해제 · 누적 유통 46.4%) → 신규 진입 금지 · 11-25(수) 22:30 미 3Q GDP 잠정·10월 PCE · 11-26(목) 한은 금통위 + 미 추수감사절 휴장 · 11-27(금) 미 조기폐장</div>
       </div>
     </div>
     <!-- 코스피 vs 코스닥 차별화 진단 패널 -->
                         <div id="kospiKosdaqDiffBox" style="background:var(--surface); border:1px solid var(--border-accent); border-radius:18px; padding:16px 20px; margin-top:14px; margin-bottom:20px; box-shadow:var(--shadow);">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-        <div style="font-size:0.95rem; font-weight:900; color:var(--text);">⚖️ 주말 결산 — 코스피 vs 코스닥 차별화 진단 (정확도·신뢰도·중요도 검증)</div>
+        <div style="font-size:0.95rem; font-weight:900; color:var(--text);">⚖️ 장전 진단 — 코스피 vs 코스닥 차별화 진단 (11-23 08:00 갭 시나리오)</div>
         <span class="tag tag-highlight" style="font-size:0.72rem;">🛡️ 3중 교차 검증 완료 (확정 수급·실적·차트)</span>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
@@ -2190,15 +2195,15 @@
         </div>
       </div>
       <div style="margin-top:10px; font-size:0.78rem; color:var(--text-sub); background:var(--surface-sub); border-radius:12px; padding:10px 12px; line-height:1.55;">
-        💡 <strong>차별화 결론:</strong> 11-20은 <strong>국내 단독 폭락이 아니라 글로벌 AI 밸류체인 청산의 1일차</strong>였습니다. 간밤 미장이 나스닥 -5.28%·SOX -10.73%로 더 크게 무너졌고, <strong>야간선물 -7.01%·F&amp;G 9.67(극단적 공포)·VIX 35.89</strong>가 11-23(월) 갭다운을 예고합니다. 다만 <strong>주간 낙폭(KOSPI -7.95%)이 미장(-8~10%)보다 작았고</strong>, 확정 수급에서 개인 1조5,381억이 받아낸 점은 <strong>패닉 셀링의 1차 소화</strong>로 읽힙니다. 11-23은 사는 날이 아니라 <strong>4,500선과 4대주 지지선을 확인하는 날</strong>입니다.
+        💡 <strong>차별화 결론:</strong> 11-20은 <strong>국내 단독 폭락이 아니라 글로벌 AI 밸류체인 청산의 1일차</strong>였습니다. 간밤 미장이 나스닥 -5.28%·SOX -10.73%로 더 크게 무너졌고, <strong>야간선물 -7.01%·F&amp;G 9.67(극단적 공포)·VIX 35.89</strong>가 11-23(월) 갭다운을 예고합니다. 다만 <strong>주간 낙폭(KOSPI -7.95%)이 미장(-8~10%)보다 작았고</strong>, 확정 수급에서 개인 1조5,381억이 받아낸 점은 <strong>패닉 셀링의 1차 소화</strong>로 읽힙니다. 11-23은 사는 날이 아니라 <strong>4,500선과 4대주 지지선을 확인하는 날</strong>입니다. 08:05 NXT 프리마켓은 리노공업 42,400(-6.50%)·LS ELECTRIC 102,400(-6.65%)·삼성전자 172,800(-5.63%)로 <strong>야간선물(-7.01%)보다 완만</strong>해, 패닉 3차 투매보다 갭 소화 국면으로 봅니다.
       </div>
     </div>
         <div class="expert-commentary-box" id="sec-market-view">
       <div class="commentary-header">
         <div class="commentary-title">
-          <span>🧠 윤스트롱 퀀트 주말 뷰: "야간선물 700.00 — 11-23은 4,500선을 지키는지 보는 날입니다"</span>
+          <span>🧠 윤스트롱 퀀트 장전 뷰: "야간선물 -7.01% · NXT 프리마켓 -4~7% — 오늘은 4,500선 사수 확인이 전부입니다"</span>
         </div>
-        <span class="tag tag-highlight">주말 결산 · 차주 월요일 프리뷰</span>
+        <span class="tag tag-highlight">11-23 08:00 장전 · 갭 대응</span>
       </div>
       <p style="font-size:0.86rem; color:var(--text-sub); line-height:1.65;">
         이번 주 국내 증시는 <strong>코스피 5,290.53 → 4,869.96(-7.95%)</strong>, <strong>코스닥 699.66 → 645.68(-7.72%)</strong>로 마감했습니다. 11-20 하루에만 코스피 <strong>-5.21%(-267.93pt)</strong>, 코스닥 <strong>-5.71%(-39.13pt)</strong>가 빠졌고 <strong>11:54 매도 사이드카</strong>가 발동됐습니다. 확정 수급은 <strong>외국인 -1조956억·기관 -9,330억</strong> 순매도, 개인 +1조5,381억 순매수로 <strong>외국인 7거래일 연속 매도</strong>입니다. 간밤 뉴욕은 더 나빴습니다 — <strong>나스닥 -5.28%·S&amp;P500 -3.70%·다우 -1.93%</strong>, 반도체는 <strong>SOX -10.73%</strong>(엔비디아 -14.01%, SEC 회계조사 보도)로 무너졌고 <strong>VIX 35.89(+26.20%)·CNN 공포탐욕 9.67(극단적 공포)</strong>입니다. <strong>코스피200 야간선물은 700.00(-7.01%)</strong>으로 마감해 <strong>11-23 이론 시초가는 4,513pt</strong>입니다.
@@ -2213,8 +2218,8 @@
           <p><strong>HD현대마린솔루션 183,400원(주간 +4.80%)</strong>은 8선·4대주 통틀어 유일한 주간 상승이자 <strong>20일선(172,210원) 위를 지킨 유일한 종목</strong>입니다. <strong>알테오젠 173,600원(주간 -2.03%, 11-20 +0.52%)</strong>은 폭락장에서 홀로 상승했습니다. 반면 <strong>리노공업 45,300원(-15.17%, 주간 -13.71%)</strong>은 52주 최저(45,000원)에 걸쳤고 <strong>5일 외인 -34.6만·기관 -11.4만</strong> 대량 순매도, <strong>네오사피엔스 4,320원(-9.81%, 주간 -22.58%)</strong>는 RSI 10.6으로 시장 최저입니다. <strong>LS ELECTRIC 108,400원(-10.26%)</strong>은 5일 저가 108,300원에 턱걸이했습니다.</p>
         </div>
         <div class="comm-point">
-          <h4>📌 실전 룰. 11-23(월) — 갭다운은 사는 자리가 아니라 확인하는 자리</h4>
-          <p>① <strong>지수</strong>: 이론 시초가 4,513. 1차 지지 <strong>4,500</strong>, 이탈 시 4,400. 반등 확인은 <strong>4,831.69(11-20 저점) 회복</strong>부터입니다. ② <strong>금지</strong>: 시초가 30분 추격매수, 리노공업·삼성중공업·한미반도체 등 지지선 이탈 종목. ③ <strong>조건부</strong>: HD현대마린 175,000원·알테오젠 166,000원 사수 확인 후 1/3만. ④ <strong>락업</strong>: 네오사피엔스는 오늘 1,143,690주(9.36%) 해제 → <strong>11-23(월)부터 매도 가능</strong>, 신규 진입 절대 금지. ⑤ <strong>일정</strong>: 11-25(수) 22:30 미 10월 PCE·3Q GDP 잠정, <strong>11-26(목) 한은 금통위</strong>(인상 전망)와 미 추수감사절 휴장.</p>
+          <h4>📌 실전 룰. 오늘(11-23 월) — 갭다운은 사는 자리가 아니라 확인하는 자리</h4>
+          <p>① <strong>지수</strong>: 이론 시초가 4,513(야간선물 -7.01%), 08:05 NXT 프리마켓 -4~7%로 완만. 1차 지지 <strong>4,500</strong>, 이탈 시 4,400. 반등 확인은 <strong>4,831.69(11-20 저점) 회복</strong>부터입니다. ② <strong>금지</strong>: 시초가 30분 추격매수, 리노공업·삼성중공업·한미반도체 등 지지선 이탈 종목. ③ <strong>조건부</strong>: HD현대마린 175,000원·알테오젠 166,000원 사수 확인 후 1/3만. ④ <strong>락업</strong>: 네오사피엔스는 오늘 1,143,690주(9.36%) 해제 → <strong>11-23(월)부터 매도 가능</strong>, 신규 진입 절대 금지. ⑤ <strong>일정</strong>: 11-25(수) 22:30 미 10월 PCE·3Q GDP 잠정, <strong>11-26(목) 한은 금통위</strong>(인상 전망)와 미 추수감사절 휴장.</p>
         </div>
       </div>
     </div>
@@ -2258,7 +2263,7 @@
           <button type="button" class="btn-preset" onclick="resetGapPctToZero()">0% 기준가</button>
         </div>
       </div>
-      <div class="gap-latest-note">📡 레이더 최신 야간선물 기준: <strong id="gapNightLabel">11-21 06:00 마감 700.00 (-7.01%)</strong> · 현재 적용 등락률: <strong id="gapCurrentPctTag">-7.01%</strong></div>
+      <div class="gap-latest-note">📡 레이더 최신 야간선물 기준: <strong id="gapNightLabel">11-21 06:00 마감 700.00 (-7.01%) · 주말 휴장 후 최신</strong> · 현재 적용 등락률: <strong id="gapCurrentPctTag">-7.01%</strong></div>
       <div class="gap-tabs">
         <button type="button" class="gap-tab-btn active" data-tab="core4" onclick="switchGapTab('core4', this)">🎯 4대 핵심주</button>
         <button type="button" class="gap-tab-btn" data-tab="turn8" onclick="switchGapTab('turn8', this)">🏆 8대 턴어라운드</button>
@@ -2270,11 +2275,11 @@
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
         <div class="section-title" id="sec-briefing">
-📢 윤스트롱 실전 핵심 브리핑 룸 (11-21 토요일 09:00 주말 결산 &amp; 11-23(월) 개장 전략)</div>
+📢 윤스트롱 실전 핵심 브리핑 룸 (11-23 월요일 08:00 장전 레이더 &amp; 갭 대응 전략)</div>
     <div class="briefing-box">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span class="tag tag-highlight" style="background:#7c3aed; color:#fff;">● LIVE 11-21 SATURDAY WEEKEND RADAR (4/4)</span>
+          <span class="tag tag-highlight" style="background:#7c3aed; color:#fff;">● LIVE 11-23 MONDAY PRE-OPEN RADAR (4/4)</span>
           <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">나스닥 -5.28% · SOX -10.73% · VIX 35.89 · 야간선물 700.00(-7.01%) · 원/달러 1,346.50원</span>
         </div>
         <div class="live-sound-wave" id="soundWave">
@@ -2804,7 +2809,7 @@
             <span class="tag" style="background:var(--danger); color:#fff; font-size:0.68rem; padding:2px 8px; border-radius:9999px;">추격 금지</span>
           </div>
           <div style="font-size:0.78rem; color:var(--text-sub); line-height:1.5; margin-bottom:10px;">
-            <strong>네오사피엔스 4,320원(-9.81%·RSI 10.6)</strong>는 <strong>오늘(11-21) 보호예수 1,143,690주(9.36%) 해제 → 11-23(월)부터 매도 가능</strong>이라 신규 진입 금지. <strong>리노공업 45,300원(-15.17%·52주 최저 45,000)</strong>·<strong>삼성중공업 15,030원(-6.93%·52주 최저)</strong>은 지지선에 걸쳐 있어 반등 첫날 추격 금지. <strong>LS ELECTRIC 108,400원(-10.26%)</strong>도 108,300 사수 전 관망입니다.
+            <strong>네오사피엔스 4,320원(-9.81%·RSI 10.6)</strong>는 <strong>오늘(11-23)부터 보호예수 1,143,690주(9.36%) 매도 가능</strong>이라 신규 진입 금지. <strong>리노공업 45,300원(-15.17%·52주 최저 45,000)</strong>·<strong>삼성중공업 15,030원(-6.93%·52주 최저)</strong>은 지지선에 걸쳐 있어 반등 첫날 추격 금지. <strong>LS ELECTRIC 108,400원(-10.26%)</strong>도 108,300 사수 전 관망입니다.
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:6px;">
             <button class="btn-preset" onclick="scrollToStockCard('0161M0')" style="background:var(--surface); border:1px solid var(--danger); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">🎙️ 네오사피엔스 (4,320 · 락업 해제)</button>
@@ -2980,8 +2985,8 @@
       </div>
 
       <div class="action-guide-box guide-watch" id="stressActionGuide" style="margin-top:16px; margin-bottom:0;">
-        <strong>⚠️ [11-21 09:00 주말결산 · 45,000 사수 여부]</strong><br>
-        리노공업은 52주 최저 45,000원에 걸친 채 <strong>45,300원(-15.17%)</strong>으로 마감했고, 5일 외인 -34.6만·기관 -11.4만 대량 순매도가 나왔습니다.으로 반등하지 못했습니다(장중 저가 45,000원). 5일 외인 -1.9만·기관 +0.8만으로 수급도 엇갈려 <strong>재진입은 43,900원(오늘 저점·손절 기준) 안착 확인 이후로 미루십시오</strong>. 11-23(월) 반등 첫날 추격 금지, 손익비는 1:3.8이지만 지지선이 깨진 상태이므로 계획 수량의 1/3만 조건부 접근입니다.
+        <strong>⚠️ [11-23 08:00 장전 · 45,000 사수 실패]</strong><br>
+        리노공업은 11-20 <strong>45,300원(-15.17%)</strong>으로 52주 최저 45,000원에 걸친 채 마감했고, 5일 외인 -34.6만·기관 -11.4만 대량 순매도가 나왔습니다. 개장 전 NXT 프리마켓은 <strong>42,400원(-6.50%)</strong>으로 45,000원 지지선을 이미 하회했습니다. <strong>보유 0주는 그대로 두고, 재진입은 42,000원 안착 확인 이후로 미루십시오</strong>. 오늘 반등 첫날 추격 금지 — 지지선이 깨진 상태이므로 진입하더라도 계획 수량의 1/3만 조건부입니다.
       </div>
     </div>
 
@@ -3380,7 +3385,7 @@
               <span class="tag tag-highlight" style="font-size:0.7rem;">매크로 핵심</span>
             </div>
             <div class="share-card-desc">코스피 4,869.96(-5.21%)·코스닥 645.68(-5.71%) — 11:54 매도 사이드카 발동, 외인 -1조1,046억·기관 -9,331억 순매도. 알테오젠 +0.52%·HD현대마린솔루션 -0.38%만 생존, 리노공업 -15.17%·LS ELECTRIC -10.26%·네오사피엔스 -9.81%</div>
-                        <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 주말 결산 · 11-21 09:00]
+                        <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 장전 레이더 · 11-23 08:00]
 - 코스피 4,869.96 (-5.21%, -267.93pt) · 주간 -7.95% (11-13 5,290.53 →) · 시가 4,928.51 / 고가 4,971.31 / 저가 4,831.69
 - 코스닥 645.68 (-5.71%, -39.13pt) · 주간 -7.72% · 저가 642.13 · 코스피200 755.34 (-5.53%)
 - 확정 수급(11-20): 코스피 외국인 -1조956억 · 기관 -9,330억 · 개인 +1조5,381억 / 코스닥 외인 -1,615억 · 기관 -1,065억
@@ -3447,7 +3452,7 @@
               <button class="btn-preset" id="btnToggleTop8" style="font-size:0.72rem; padding:4px 10px;" onclick="setTopReportMode('top8', this)">🌟 주도 8선 전 종목</button>
             </div>
 
-                        <div class="share-preview-box" id="prevTopReport">[YOON STRONG 턴어라운드 8선 · 11-21 주말 결산]\n1. HD현대마린솔루션 (79점) 183,400원 -0.38% (주간 +4.80%) - 손익비 1 : 2.63 | RSI 49.5 · 외인 5일 -6.5만 · 지지 175,000원\n2. 알테오젠 (78점) 173,600원 +0.52% - 손익비 1 : 2.75 | RSI 34.4 · 기관 5일 +10.9만 · 지지 166,000원\n3. 현대차 (69점) 253,000원 -5.42% - 손익비 1 : 3.39 | RSI 33.3 · 외인 5일 +8.7만 · 지지 244,000원\n4. 대한항공 (68점·신규) 31,300원 -3.54% - 손익비 1 : 3.45 | 외인 5일 +88.8만·기관 +111.4만 · 지지 30,200원\n5. 한국항공우주 (68점) 100,300원 -3.46% - 손익비 1 : 3.49 | RSI 42.8 · 지지 96,800원\n6. S-Oil (67점) 97,000원 -3.96% - 손익비 1 : 3.38 | RSI 27.0 · 지지 93,600원\n7. 삼성중공업 (62점) 15,030원 -6.93% - 손익비 1 : 3.34 | 52주 최저 · 지지 14,500원\n8. 리노공업 (42점) 45,300원 -15.17% - 손익비 1 : 3.38 | 외인 5일 -34.6만 · 지지 43,700원\n* 교체 1건: 한미반도체 제외(기관 5일 -25.0만주·20일선 -14.8% 이탈) · 대한항공 신규(쌍끌이 수급비 17.7%) · 11-23 이론 시초가 4,513 · 네오사피엔스 신규 진입 금지(락업 114.4만주 해제)</div>
+                        <div class="share-preview-box" id="prevTopReport">[YOON STRONG 턴어라운드 8선 · 11-23 08:00 장전]\n1. HD현대마린솔루션 (79점) 183,400원 -0.38% (주간 +4.80%) - 손익비 1 : 2.63 | RSI 49.5 · 외인 5일 -6.5만 · 지지 175,000원\n2. 알테오젠 (78점) 173,600원 +0.52% - 손익비 1 : 2.75 | RSI 34.4 · 기관 5일 +10.9만 · 지지 166,000원\n3. 현대차 (69점) 253,000원 -5.42% - 손익비 1 : 3.39 | RSI 33.3 · 외인 5일 +8.7만 · 지지 244,000원\n4. 대한항공 (68점·신규) 31,300원 -3.54% - 손익비 1 : 3.45 | 외인 5일 +88.8만·기관 +111.4만 · 지지 30,200원\n5. 한국항공우주 (68점) 100,300원 -3.46% - 손익비 1 : 3.49 | RSI 42.8 · 지지 96,800원\n6. S-Oil (67점) 97,000원 -3.96% - 손익비 1 : 3.38 | RSI 27.0 · 지지 93,600원\n7. 삼성중공업 (62점) 15,030원 -6.93% - 손익비 1 : 3.34 | 52주 최저 · 지지 14,500원\n8. 리노공업 (42점) 45,300원 -15.17% - 손익비 1 : 3.38 | 외인 5일 -34.6만 · 지지 43,700원\n* 교체 1건: 한미반도체 제외(기관 5일 -25.0만주·20일선 -14.8% 이탈) · 대한항공 신규(쌍끌이 수급비 17.7%) · 11-23 이론 시초가 4,513 · 네오사피엔스 신규 진입 금지(락업 114.4만주 해제)</div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyTop" onclick="copyTopReport(this)">
@@ -3629,7 +3634,7 @@
           <div>
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
               <h3 style="font-size:1.15rem; font-weight:900; margin:0;">📊 나만의 멀티 포트폴리오 자산 관리</h3>
-              <span class="badge" id="portSyncBadge" style="background:var(--accent); color:#fff; font-size:0.72rem; padding:2px 8px; border-radius:9999px;">● 11-20 확정 종가·확정 수급 연동됨 (11-21 09:00 주말 결산)</span>
+              <span class="badge" id="portSyncBadge" style="background:var(--accent); color:#fff; font-size:0.72rem; padding:2px 8px; border-radius:9999px;">● 11-20 확정 종가·확정 수급 + 11-23 08:00 NXT 프리마켓 연동됨</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text-sub); margin-top:4px;">
               매일 3타임(08:00·15:20·19:50) 레이더에서 발표되는 공식 시세로 현재가와 평가손익이 전자동 갱신됩니다.
@@ -4212,10 +4217,10 @@
       "changeStr": "-0.38%",
       "score": 79,
       "actionSignal": "BUY",
-      "actionSignalText": "🟢 1위 · 175,000 지지 확인 후 분할",
+      "actionSignalText": "🟢 1위 · 프리마켓 177,400 · 175,000 사수 시 1/3",
       "entry": 183400.0,
       "tags": [
-        "11-20 확정 -0.38% · 주간 +4.80%",
+        "11-23 08:00 프리마켓 177,400(-4.00%) · 11-20 확정 -0.38%",
         "외인 5일 -6.5만 · 기관 5일 +7.6만",
         "RSI 49.5",
         "지지 175,000 / 목표 205,500"
@@ -4338,7 +4343,7 @@
       "actionSignalText": "🟢 2위 · 166,000 사수 시 1/3",
       "entry": 173600.0,
       "tags": [
-        "11-20 확정 +0.52% · 주간 -2.03%",
+        "11-23 08:00 프리마켓 167,600(-3.90%) · 11-20 확정 +0.52%",
         "외인 5일 -2.7만 · 기관 5일 +10.9만",
         "RSI 34.4",
         "지지 166,000 / 목표 194,500"
@@ -4461,7 +4466,7 @@
       "actionSignalText": "🟡 3위 · 252,000(52주 최저) 사수 확인",
       "entry": 253000.0,
       "tags": [
-        "11-20 확정 -5.42% · 주간 -6.47%",
+        "11-23 08:00 프리마켓 242,500(-4.90%) · 11-20 확정 -5.42%",
         "외인 5일 +8.7만 · 기관 5일 +2.8만",
         "RSI 33.3",
         "지지 244,000 / 목표 283,500"
@@ -4584,7 +4589,7 @@
       "actionSignalText": "🟢 4위 신규 편입 · 30,700 지지 · 쌍끌이 1위",
       "entry": 31300.0,
       "tags": [
-        "11-20 확정 -3.54% · 주간 -0.95%",
+        "11-23 프리마켓 거래 없음 · 11-20 확정 -3.54%",
         "외인 5일 +88.8만 · 기관 5일 +111.4만",
         "RSI 56.5",
         "지지 30,200 / 목표 35,100"
@@ -4707,7 +4712,7 @@
       "actionSignalText": "🟡 5위 · 99,700 사수 여부",
       "entry": 100300.0,
       "tags": [
-        "11-20 확정 -3.46% · 주간 -4.02%",
+        "11-23 08:00 프리마켓 96,600(-3.78%) · 11-20 확정 -3.46%",
         "외인 5일 -15.0만 · 기관 5일 +18.1만",
         "RSI 42.8",
         "지지 96,800 / 목표 112,500"
@@ -4830,7 +4835,7 @@
       "actionSignalText": "🟡 6위 · RSI 27.0 과매도 · 96,300 지지",
       "entry": 97000.0,
       "tags": [
-        "11-20 확정 -3.96% · 주간 -7.27%",
+        "11-23 08:00 프리마켓 94,300(-3.08%) · 11-20 확정 -3.96%",
         "외인 5일 +20.3만 · 기관 5일 -9.8만",
         "RSI 27.0",
         "지지 93,600 / 목표 108,500"
@@ -4953,7 +4958,7 @@
       "actionSignalText": "🔴 7위 · 52주 신저가 15,010 · 추격 금지",
       "entry": 15030.0,
       "tags": [
-        "11-20 확정 -6.93% · 주간 -9.40%",
+        "11-23 08:00 프리마켓 14,310(-5.36%) · 11-20 확정 -6.93%",
         "외인 5일 +20.9만 · 기관 5일 -2.7만",
         "RSI 35.4",
         "지지 14,500 / 목표 16,800"
@@ -5073,10 +5078,10 @@
       "changeStr": "-15.17%",
       "score": 42,
       "actionSignal": "WATCH",
-      "actionSignalText": "🔴 8위 · 4대주 보유 0 · 45,000 사수만 관찰",
+      "actionSignalText": "🔴 8위 · 4대주 보유 0주 · 프리마켓 42,400으로 45,000 이탈, 관망",
       "entry": 45300.0,
       "tags": [
-        "11-20 확정 -15.17% · 주간 -13.71%",
+        "11-23 08:00 프리마켓 42,400(-6.50%) · 11-20 확정 -15.17%",
         "외인 5일 -34.6만 · 기관 5일 -11.4만",
         "RSI 37.1",
         "지지 43,700 / 목표 50,700"
@@ -5199,7 +5204,7 @@
       "actionSignalText": "🔴 반도체 투매 · 742,000 지지",
       "entry": 767000.0,
       "tags": [
-        "11-20 확정 -13.33% · 주간 -11.23%",
+        "11-23 08:00 프리마켓 731,000(-5.56%) · 11-20 확정 -13.33%",
         "외인 5일 -47.0만 · 기관 5일 -9.7만",
         "RSI 35.6",
         "지지 742,000 / 목표 859,000"
@@ -5322,7 +5327,7 @@
       "actionSignalText": "🔴 외인 -932만주 · 관망",
       "entry": 180900.0,
       "tags": [
-        "11-20 확정 -8.13% · 주간 -13.44%",
+        "11-23 08:00 프리마켓 172,800(-5.63%) · 11-20 확정 -8.13%",
         "외인 5일 -932.1만 · 기관 5일 +73.1만",
         "RSI 35.8",
         "지지 174,500 / 목표 202,500"
@@ -5445,7 +5450,7 @@
       "actionSignalText": "🔴 ADR -13.11% · 관망",
       "entry": 1100000.0,
       "tags": [
-        "11-20 확정 -7.02% · 주간 -12.06%",
+        "11-23 08:00 프리마켓 1,048,000(-5.84%) · 11-20 확정 -7.02%",
         "외인 5일 -81.9만 · 기관 5일 -89.7만",
         "RSI 38.3",
         "지지 1,062,000 / 목표 1,232,000"
@@ -5568,7 +5573,7 @@
       "actionSignalText": "🔴 반도체 장비 투매 · 관망",
       "entry": 65200.0,
       "tags": [
-        "11-20 확정 -14.99% · 주간 -17.05%",
+        "11-23 프리마켓 거래 없음 · 11-20 확정 -14.99%",
         "외인 5일 +10.2만 · 기관 5일 -36.4만",
         "RSI 36.5",
         "지지 62,900 / 목표 73,000"
@@ -5691,7 +5696,7 @@
       "actionSignalText": "🟢 방어주 · +1.19% 유일한 상승",
       "entry": 25550.0,
       "tags": [
-        "11-20 확정 +1.19% · 주간 -7.43%",
+        "11-23 08:00 프리마켓 24,650(-3.52%) · 11-20 확정 +1.19%",
         "외인 5일 -36.9만 · 기관 5일 +12.0만",
         "RSI 34.0",
         "지지 24,400 / 목표 28,600"
@@ -5811,10 +5816,10 @@
       "changeStr": "-10.26%",
       "score": 46,
       "actionSignal": "WATCH",
-      "actionSignalText": "🔴 4대주 · 108,300 지지 · 이탈 시 104,500",
+      "actionSignalText": "🔴 4대주 · 프리마켓 102,400으로 104,500 손절선 하회, 관망",
       "entry": 108400.0,
       "tags": [
-        "11-20 확정 -10.26% · 주간 -13.21%",
+        "11-23 08:00 프리마켓 102,400(-6.65%) · 11-20 확정 -10.26%",
         "외인 5일 -7.4만 · 기관 5일 -7.8만",
         "RSI 33.7",
         "지지 104,500 / 목표 121,500"
@@ -5934,10 +5939,10 @@
       "changeStr": "-9.81%",
       "score": 63,
       "actionSignal": "BLOCK",
-      "actionSignalText": "⛔ 4대주 · 11-23 매도 가능 · 신규 진입 금지",
+      "actionSignalText": "⛔ 4대주 · 오늘 락업 매도 가능일 · 신규 진입 금지",
       "entry": 4320.0,
       "tags": [
-        "11-20 확정 -9.81% · 주간 -22.58%",
+        "오늘(11-23) 락업 매도 가능일 · 11-20 확정 -9.81%",
         "외인 5일 +3.3만 · 기관 5일 +0.2만",
         "RSI 10.6",
         "지지 4,170 / 목표 4,840"
@@ -6060,7 +6065,7 @@
       "actionSignalText": "🔴 제외 · 기관 5일 -25만주 대량 순매도",
       "entry": 151600.0,
       "tags": [
-        "11-20 확정 -12.06% · 주간 -16.89%",
+        "11-23 08:00 프리마켓 143,200(-6.89%) · 11-20 확정 -12.06%",
         "외인 5일 +0.3만 · 기관 5일 -25.0만",
         "RSI 36.4",
         "지지 146,500 / 목표 170,000"
@@ -6256,14 +6261,13 @@
     }
 
     const EVENT_DDAY_MAP = {
-      '443060': [{ date: '2026-11-23', label: '175,000 지지 확인 · 갭다운 후 1/3 분할 · 20일선 172,210', level: 'info' }],
-      '196170': [{ date: '2026-11-23', label: '166,000 사수 시 1/3 분할 · 이탈 시 163,500', level: 'info' }],
-      '005380': [{ date: '2026-11-23', label: '252,000(52주 최저) 회복 여부 · 미회복 시 관망', level: 'warn' }],
+      '443060': [{ date: '2026-11-23', label: '175,000 사수 확인 · 프리마켓 177,400 · 20일선 172,210', level: 'info' }],
+      '196170': [{ date: '2026-11-23', label: '166,000 사수 확인 · 프리마켓 167,600 · 이탈 시 163,500', level: 'info' }],
+      '005380': [{ date: '2026-11-23', label: '252,000(52주 최저) 회복 여부 · 프리마켓 242,500', level: 'warn' }],
       '003490': [{ date: '2026-11-23', label: '30,700 지지 · 30,200 이탈 시 8선 제외 검토', level: 'warn' }],
-      '0161M0': [{ date: '2026-11-21', label: '보호예수 1,143,690주(9.36%) 해제 D-DAY', level: 'danger' },
-                 { date: '2026-11-23', label: '해제 물량 매도 가능 · 신규 진입 절대 금지', level: 'danger' }],
-      '058470': [{ date: '2026-11-23', label: '45,000(52주 최저) 사수 · 이탈 시 43,700 · 추격 금지', level: 'danger' }],
-      '010120': [{ date: '2026-11-23', label: '108,300 지지 · 104,500 이탈 시 손절', level: 'danger' }],
+      '0161M0': [{ date: '2026-11-23', label: '보호예수 1,143,690주(9.36%) 매도 가능일 D-DAY · 신규 진입 금지', level: 'danger' }],
+      '058470': [{ date: '2026-11-23', label: '45,000 이탈(프리마켓 42,400) · 42,000 지지 확인 · 추격 금지', level: 'danger' }],
+      '010120': [{ date: '2026-11-23', label: '104,500 손절선 하회(프리마켓 102,400) · 101,000 다음 지지', level: 'danger' }],
       '010950': [{ date: '2026-11-26', label: '한은 금통위(11-26) · 정제마진·유가 변수', level: 'warn' }]
     };
     function getEventBadgesHtml(code) {
@@ -6284,7 +6288,7 @@
     }
 
     let REINVEST_WEIGHTS = { '058470': 50, '443060': 30, '010120': 20, '0161M0': 0 };
-    const REINVEST_ENTRY_PRICES = { '058470': 43700, '443060': 175000, '010120': 104500, '0161M0': 4235 };
+    const REINVEST_ENTRY_PRICES = { '058470': 42400, '443060': 177400, '010120': 102400, '0161M0': 4235 };
 
     function setReinvestCash(val) {
       const inp = document.getElementById('reinvestCashInput');
@@ -6404,7 +6408,7 @@
     // ※ 아래 두 상수는 08:00 / 19:50 / 토 09:00 레이더가 매 실행 시 최신 실측치로 갱신한다.
     // =========================================================================
     const NIGHT_FUTURES_CHANGE_PCT = -7.01;
-    const NIGHT_FUTURES_LABEL = '11-21 06:00 마감 700.00 (-7.01%)';
+    const NIGHT_FUTURES_LABEL = '11-21 06:00 마감 700.00 (-7.01%) · 주말 휴장 후 최신';
     let gapAdjustPct = NIGHT_FUTURES_CHANGE_PCT;
     let gapAdjustTab = 'core4';
 
@@ -7234,9 +7238,9 @@
 
                 const DIFF_DIAGNOSIS_MAP = {
       all: {
-        title: "📊 주말 결산 — 8대 전략주 종합 진단 (교체 1건 · 손익비 검증)",
-        metrics: "DART 공시·수급·차트 3중 교차 검증 (11-20 확정 종가 + 확정 수급 + 주간 수익률)",
-        desc: "<strong>11-20 확정 종가·확정 수급</strong>으로 4축 100점을 재산출한 결과 <strong>교체 1건</strong>입니다. <strong>HD현대마린솔루션(79점·183,400원·-0.38%)</strong>이 1위, <strong>알테오젠(78점·173,600원·+0.52%)</strong> 2위, 현대차(69점·253,000원·-5.42%) 3위, <strong>대한항공(68점·31,300원·신규 편입)</strong> 4위, 한국항공우주(68점) 5위, S-Oil(67점) 6위, 삼성중공업(62점) 7위, 리노공업(42점·45,300원) 8위입니다. <strong>한미반도체(45점)는 기관 5일 -25.0만주 대량 순매도·20일선 -14.8% 이탈로 제외</strong>했고, <strong>대한항공은 5일 외인 +88.8만·기관 +111.4만 쌍끌이(수급비 17.7%)</strong>로 신규 편입했습니다. 리노공업·삼성중공업은 52주 최저에 걸쳐 🔴 추격 금지, HD현대마린·알테오젠만 지지선이 살아 있습니다."
+        title: "📊 11-23 장전 — 8대 전략주 종합 진단 (구성·순위 유지 · 갭 손절선 검증)",
+        metrics: "DART 공시·수급·차트 3중 교차 검증 (11-20 확정 종가·수급 + 11-23 08:00 NXT 프리마켓)",
+        desc: "<strong>11-20 확정 종가·확정 수급</strong>으로 4축 100점을 재산출한 결과 <strong>교체 1건</strong>입니다. <strong>HD현대마린솔루션(79점·183,400원·-0.38%)</strong>이 1위, <strong>알테오젠(78점·173,600원·+0.52%)</strong> 2위, 현대차(69점·253,000원·-5.42%) 3위, <strong>대한항공(68점·31,300원·신규 편입)</strong> 4위, 한국항공우주(68점) 5위, S-Oil(67점) 6위, 삼성중공업(62점) 7위, 리노공업(42점·45,300원) 8위입니다. <strong>한미반도체(45점)는 기관 5일 -25.0만주 대량 순매도·20일선 -14.8% 이탈로 제외</strong>했고, <strong>대한항공은 5일 외인 +88.8만·기관 +111.4만 쌍끌이(수급비 17.7%)</strong>로 신규 편입했습니다. 리노공업·삼성중공업은 52주 최저에 걸쳐 🔴 추격 금지, HD현대마린·알테오젠만 지지선이 살아 있습니다. 주말 휴장으로 새 확정 수급이 없어 <strong>8선 구성·순위는 유지</strong>하고, 08:00 NXT 프리마켓으로 갭 손절선만 재검증했습니다 — 프리마켓 기준 손절선 하회는 <strong>리노공업(42,400/43,700)·현대차(242,500/244,000)·한국항공우주(96,600/96,800)·삼성중공업(14,310/14,500)</strong>입니다."
       },
       oversold: {
         title: "📉 낙폭과대 턴어라운드 정밀 진단 (바닥 변곡점 포착)",
@@ -7251,7 +7255,7 @@
       kospi: {
         title: "🏛️ 코스피 대형주 차별화 진단 (확정: 외인·기관 2조 순매도 · 주간 -7.95%)",
         metrics: "확정 수급: 외인 -1조956억 · 기관 -9,330억 vs 개인 +1조5,381억",
-        desc: "11-20 코스피는 <strong>4,869.96pt(-5.21%)</strong>로 4,900선을 내줬고, 장중 <strong>4,831.69pt</strong>까지 밀린 뒤 마감했습니다. 확정 수급은 <strong>외국인 -1조956억·기관 -9,330억</strong> 대 <strong>개인 +1조5,381억</strong>(거래대금 14조9,492억), 외국인 <strong>7거래일 연속 순매도</strong>입니다. 주간으로는 <strong>5,290.53 → 4,869.96(-7.95%)</strong>. 간밤 미장이 나스닥 -5.28%·SOX -10.73%로 더 무너지고 <strong>야간선물이 700.00(-7.01%)</strong>으로 마감해, <strong>11-23 이론 시초가는 4,513pt(-7.33%)</strong>입니다."
+        desc: "11-20 코스피는 <strong>4,869.96pt(-5.21%)</strong>로 4,900선을 내줬고, 장중 <strong>4,831.69pt</strong>까지 밀린 뒤 마감했습니다. 11-23 08:05 NXT 프리마켓은 삼성전자 -5.63%·SK하이닉스 -5.84%로 야간선물(-7.01%)보다 완만합니다. 확정 수급은 <strong>외국인 -1조956억·기관 -9,330억</strong> 대 <strong>개인 +1조5,381억</strong>(거래대금 14조9,492억), 외국인 <strong>7거래일 연속 순매도</strong>입니다. 주간으로는 <strong>5,290.53 → 4,869.96(-7.95%)</strong>. 간밤 미장이 나스닥 -5.28%·SOX -10.73%로 더 무너지고 <strong>야간선물이 700.00(-7.01%)</strong>으로 마감해, <strong>11-23 이론 시초가는 4,513pt(-7.33%)</strong>입니다."
       },
       kosdaq: {
         title: "🔬 코스닥/소부장 차별화 진단 (645.68 · -5.71% · 주간 -7.72%)",
@@ -8741,16 +8745,17 @@
     }
 
     // Dedicated Share Hub Callbacks
-    const textMarket = `[YOON STRONG CAPITAL 주말 결산 · 11-21 09:00]
+    const textMarket = `[YOON STRONG CAPITAL 장전 레이더 · 11-23 08:00]
 - 코스피 4,869.96 (-5.21%) · 주간 -7.95% · 시가 4,928.51 / 고가 4,971.31 / 저가 4,831.69
 - 코스닥 645.68 (-5.71%) · 주간 -7.72% · 저가 642.13 · 코스피200 755.34 (-5.53%)
 - 확정 수급(11-20): 코스피 외국인 -1조956억 · 기관 -9,330억 · 개인 +1조5,381억 / 코스닥 외인 -1,615억 · 기관 -1,065억
 - 간밤 미장(11-20): 다우 48,147.33(-1.93%) · S&P500 6,910.39(-3.70%) · 나스닥 22,617.73(-5.28%) · SOX 8,408.59(-10.73%) · VIX 35.89(+26.20%)
 - 주간 미장: 다우 -8.0% · S&P500 -8.6% · 나스닥 -10.0% (2020년 3월 이후 최악) · CNN 공포탐욕 9.67(극단적 공포)
-- 코스피200 야간선물 700.00 (-7.01%) · 원/달러 1,346.50원(+0.82%) → 11-23 이론 시초가 4,513
-- 4대 집중주: 리노공업 45,300(-15.17%) · HD현대마린 183,400(-0.38%) · 네오사피엔스 4,320(-9.81%, 오늘 락업 해제) · LS ELECTRIC 108,400(-10.26%)
-- 8선: 교체 1건(한미반도체 OUT · 대한항공 IN) — HD현대마린 1위(79점) · 알테오젠 2위(78점) · 리노공업 8위(42점)
-- 11-23 시나리오: A 4,560~4,620 낙폭 축소 30% / B 4,480~4,560·4,500 테스트 50% / C 4,400 이하 패닉 20%
+- 코스피200 야간선물 700.00 (-7.01%, 11-21 06:00 마감) · 원/달러 1,345.00원(+0.71%) → 11-23 이론 시초가 4,513
+- NXT 프리마켓(08:05): 리노공업 42,400(-6.50%) · HD현대마린 177,400(-4.00%) · LS ELECTRIC 102,400(-6.65%) · 삼성전자 172,800(-5.63%)
+- 4대 집중주(11-20 확정): 리노공업 45,300(-15.17%) · HD현대마린 183,400(-0.38%) · 네오사피엔스 4,320(-9.81%, 오늘 매도 가능) · LS ELECTRIC 108,400(-10.26%)
+- 8선: 구성·순위 유지(수급 지지 유효) — HD현대마린 1위(79점) · 알테오젠 2위(78점) · 대한항공 4위(68점) · 리노공업 8위(42점)
+- 오늘 시나리오: A 4,560~4,620 낙폭 축소 25% / B 4,480~4,560·4,500 테스트 55% / C 4,400 이하 패닉 20%
 * 실전 룰: 시초가 30분 추격 금지 · HD현대마린 175,000·알테오젠 166,000 사수 시 1/3만 · 네오사피엔스 신규 진입 금지(락업 114.4만주 해제)`;
 
     const stockStrategyMap = {
@@ -9087,7 +9092,7 @@
       },
       'common': {
         name: "주도 섹터 공통",
-        s1: "11-21(토) 주말 결산: 코스피 4,869.96(-5.21%, 주간 -7.95%) · 코스닥 645.68(-5.71%) · 간밤 미장 나스닥 -5.28%·SOX -10.73%.",
+        s1: "11-23(월) 장전: 코스피 4,869.96(11-20 확정, -5.21%) · 코스닥 645.68(-5.71%) · 야간선물 700.00(-7.01%) · 이론 시초 4,513 · NXT 프리마켓 -4~7%.",
         s2: "11-23(월) 이론 시초가 4,513 — 시초가 30분 뇌동매매 금지, 4,500선 사수 확인 전 시장가 매수 금지.",
         s3: "지지선이 살아 있는 종목은 HD현대마린(175,000)·알테오젠(166,000)뿐입니다. 현대차는 252,000(52주 최저) 회복이 조건입니다.",
         s4: "52주 최저 종목(리노공업 45,000·삼성중공업 15,010)과 반도체(삼성전자·SK하이닉스)는 🔴 관망, 반등 첫날 추격 금지."
@@ -9110,7 +9115,7 @@
     let isTtsBriefingActive = false;
     let audioCurrentRate = 1.1;
     let ttsKeepAliveTimer = null;
-    const briefingText = "11월 21일 토요일, 주말 결산 레이더입니다. 이번 주 코스피는 7.95퍼센트 내린 4,869.96, 코스닥은 7.72퍼센트 내린 645.68로 마감했습니다. 금요일 하루에만 코스피가 5.21퍼센트 빠졌고, 확정 수급은 외국인 1조 956억, 기관 9,330억 순매도, 개인 1조 5,381억 순매수였습니다. 간밤 뉴욕은 더 나빴습니다. 나스닥이 5.28퍼센트, 필라델피아 반도체지수가 10.73퍼센트 폭락했고, 다우는 1.93퍼센트, S&P500은 3.70퍼센트 내렸습니다. VIX는 35.89, 공포탐욕지수는 9.67로 극단적 공포입니다. 코스피200 야간선물은 700으로 7.01퍼센트 급락해, 월요일 이론 시초가는 4,513입니다. 이번 주 4대 핵심주는 HD현대마린솔루션만 4.8퍼센트 올랐고, 리노공업은 13.7퍼센트, 네오사피엔스는 22.6퍼센트 빠졌습니다. 네오사피엔스는 오늘 보호예수 114만주가 풀려 월요일부터 매도가 가능하니 신규 진입은 금지입니다. 월요일은 사는 날이 아니라 4,500선과 지지선을 확인하는 날입니다. 시초가 30분은 지켜보기만 하십시오.";
+    const briefingText = "11월 23일 월요일, 장 시작 전 레이더입니다. 지난 금요일 코스피는 5.21퍼센트 내린 4,869.96, 코스닥은 5.71퍼센트 내린 645.68로 마감했습니다. 간밤 뉴욕은 나스닥 5.28퍼센트, 필라델피아 반도체지수 10.73퍼센트 폭락했고, 브이아이엑스 35.89, 공포탐욕지수 9.67로 극단적 공포입니다. 코스피200 야간선물은 700으로 7.01퍼센트 급락해 오늘 이론 시초가는 4,513입니다. 8시 5분 프리마켓은 리노공업 4만 2,400원 6.5퍼센트 하락, 에이치디현대마린솔루션 177,400원 4퍼센트 하락, 엘에스일렉트릭 102,400원 6.65퍼센트 하락으로 야간선물보다 완만합니다. 네오사피엔스는 오늘부터 보호예수 114만주 매도가 가능해 신규 진입은 금지입니다. 4대주 모두 갭 환산 손절선을 하회할 수 있으니 9시부터 30분은 관찰만 하시고, 추격 매수도 투매도 하지 마십시오.";
     function formatAudioTime(sec) {
       sec = Math.max(0, Math.floor(sec || 0));
       const m = Math.floor(sec / 60);
@@ -9363,12 +9368,12 @@
     // 🤖 Feature 1: AI Coach Tab Switcher
             const coachMessages = {
       mind: {
-        title: "💡 11-21 토요일 주말 멘탈 코칭",
+        title: "💡 11-23 월요일 장전 멘탈 코칭",
         text: "간밤 뉴욕이 더 무너졌습니다 — 나스닥 -5.28%, 필라델피아 반도체 -10.73%, VIX 35.89, 공포탐욕지수 9.67(극단적 공포). 코스피200 야간선물은 700.00(-7.01%)으로 마감해 <strong>월요일 이론 시초가는 4,513</strong>입니다. 이번 주 코스피 -7.95%, 리노공업 -13.71%, 네오사피엔스 -22.58%를 겪은 뒤 주말에 가장 위험한 것은 <strong>'빨리 만회해야 한다'는 조급함</strong>입니다. 월요일 시초가 30분은 관찰만 하십시오. 현금을 들고 있는 것도 포지션입니다."
       },
       action: {
-        title: "🎯 11-23(월) 개장 5대 실전 수칙",
-        text: "① <strong>시초가 30분 뇌동매매 금지</strong>: 이론 시가 4,513, 1차 지지 4,500. 4,831.69(11-20 저점) 회복은 반등 확인 조건입니다.<br>② <strong>추격 금지</strong>: 리노공업(45,000 이탈 시 43,700)·삼성중공업(52주 최저 15,010)·삼성전자·SK하이닉스는 🔴 관망.<br>③ <strong>조건부 1/3만</strong>: HD현대마린솔루션 175,000·알테오젠 166,000 사수 확인 후 분할.<br>④ <strong>금지</strong>: 네오사피엔스 — 오늘 보호예수 1,143,690주(9.36%) 해제, 11-23부터 매도 가능.<br>⑤ <strong>일정</strong>: 11-25 22:30 미 PCE·3Q GDP, 11-26 한은 금통위 + 미 추수감사절 휴장."
+        title: "🎯 오늘(11-23) 개장 5대 실전 수칙",
+        text: "① <strong>시초가 30분 뇌동매매 금지</strong>: 이론 시가 4,513, 1차 지지 4,500. 4,831.69(11-20 저점) 회복은 반등 확인 조건입니다.<br>② <strong>추격 금지</strong>: 리노공업(45,000 이탈 시 43,700)·삼성중공업(52주 최저 15,010)·삼성전자·SK하이닉스는 🔴 관망.<br>③ <strong>조건부 1/3만</strong>: HD현대마린솔루션 175,000·알테오젠 166,000 사수 확인 후 분할.<br>④ <strong>금지</strong>: 네오사피엔스 — 11-21 보호예수 1,143,690주(9.36%) 해제분이 <strong>오늘부터 매도 가능</strong>.<br>⑤ <strong>일정</strong>: 11-25 22:30 미 PCE·3Q GDP, 11-26 한은 금통위 + 미 추수감사절 휴장."
       },
       night: {
         title: "🌙 주말 글로벌 체크포인트",
