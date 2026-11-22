@@ -792,6 +792,59 @@
     }
     .core4-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 
+    /* Night Futures Gap-Adjusted Base Price (#sec-gap-adjust) */
+    .gap-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .gap-range {
+      flex: 1 1 200px; min-width: 0; max-width: 100%; height: 26px;
+      accent-color: var(--accent); cursor: pointer;
+    }
+    .gap-pct-input { width: 96px; }
+    .gap-latest-note { font-size: 0.74rem; font-weight: 700; color: var(--text-muted); margin-top: 6px; line-height: 1.5; overflow-wrap: anywhere; }
+    .gap-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 12px; }
+    .gap-tab-btn {
+      padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text-sub); font-size: 0.8rem; font-weight: 800;
+      cursor: pointer; transition: all 0.15s; max-width: 100%; white-space: normal;
+    }
+    .gap-tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .gap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 12px; }
+    .gap-card {
+      min-width: 0; background: var(--surface-sub); border: 1px solid var(--border); border-radius: 16px;
+      padding: 14px; display: flex; flex-direction: column; gap: 10px;
+    }
+    .gap-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+    .gap-card-head > div { min-width: 0; }
+    .gap-card-title { font-size: 0.96rem; font-weight: 900; color: var(--text); overflow-wrap: anywhere; }
+    .gap-card-sub { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; margin-top: 2px; overflow-wrap: anywhere; }
+    .gap-card-price { font-size: 1.1rem; font-weight: 900; color: var(--accent); text-align: right; white-space: nowrap; }
+    .gap-card-price span { display: block; font-size: 0.64rem; color: var(--text-muted); font-weight: 700; }
+    .gap-rows { display: flex; flex-direction: column; gap: 6px; }
+    .gap-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 8px; font-size: 0.8rem; min-width: 0; }
+    .gap-row .lbl { color: var(--text-muted); font-weight: 700; font-size: 0.73rem; }
+    .gap-row strong { color: var(--text); font-weight: 900; overflow-wrap: anywhere; }
+    .gap-row em { font-style: normal; color: var(--text-muted); font-weight: 700; font-size: 0.68rem; overflow-wrap: anywhere; }
+    .gap-row em.up { color: var(--danger); }
+    .gap-row em.down { color: #3b82f6; }
+    .gap-badges { display: flex; flex-direction: column; gap: 6px; }
+    .gap-badge { font-size: 0.73rem; font-weight: 800; padding: 6px 9px; border-radius: 9px; line-height: 1.4; overflow-wrap: anywhere; }
+    .gap-badge.danger { background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
+    .gap-badge.warn { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
+    .gap-badge.info { background: rgba(99,102,241,0.10); color: var(--accent); border: 1px solid var(--border-accent); }
+    .gap-summary {
+      margin-top: 12px; padding: 12px 14px; border-radius: 12px;
+      background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25);
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 14px; font-size: 0.82rem; font-weight: 700;
+    }
+    .gap-summary span { overflow-wrap: anywhere; }
+    .gap-footnote { margin-top: 10px; font-size: 0.72rem; color: var(--text-muted); font-weight: 600; line-height: 1.55; overflow-wrap: anywhere; }
+    @media (max-width: 480px) {
+      .gap-grid { grid-template-columns: minmax(0, 1fr); }
+      .gap-card-head { flex-direction: column; }
+      .gap-card-price { text-align: left; }
+      .gap-range { flex: 1 1 100%; }
+      .gap-pct-input { width: 84px; }
+    }
+
     /* Quick Jump Anchor Bar (Sub-Nav) */
     .quick-nav-bar {
       position: sticky; top: 58px; z-index: 95;
@@ -1847,6 +1900,7 @@
     <a href="#sec-pulse" class="btn-anchor"><span>🌡️</span> 시장 심리</a>
     <a href="#sec-core4" class="btn-anchor"><span>🎯</span> 4대 핵심주</a>
     <a href="#sec-cash-reinvest" class="btn-anchor"><span>💰</span> 현금 재투자</a>
+    <a href="#sec-gap-adjust" class="btn-anchor"><span>📐</span> 갭 기준가</a>
     <a href="#sec-briefing" class="btn-anchor"><span>🎙️</span> 30초 브리핑</a>
     <a href="#sec-traffic-light" class="btn-anchor"><span>🚦</span> 실전 신호등</a>
     <a href="#sec-turnaround" class="btn-anchor" onclick="scrollToTarget('sec-turnaround'); return false;"><span>🏆</span> 턴어라운드 8선</a>
@@ -2186,6 +2240,31 @@
       </div>
       <div class="reinvest-grid" id="reinvestGrid"></div>
       <div class="reinvest-summary" id="reinvestSummary"></div>
+    </div>
+
+    <!-- 1.7 NIGHT FUTURES GAP-ADJUSTED BASE PRICE RADAR -->
+    <div class="reinvest-box" id="sec-gap-adjust">
+      <div class="reinvest-top">
+        <div>
+          <div style="font-size:1.05rem; font-weight:900; color:var(--text);">📐 야간선물 갭 반영 기준가 자동 환산</div>
+          <div style="font-size:0.76rem; color:var(--text-muted); margin-top:2px;">코스피200 야간선물 등락률을 그대로 먹여 4대 핵심주·8대 턴어라운드의 예상 시초가·손절선·목표가를 호가 단위로 환산합니다. <strong>[최신 야간선물]</strong>을 누르면 레이더 최신 실측치로 리셋됩니다.</div>
+        </div>
+        <div class="reinvest-input-wrap gap-controls">
+          <span style="font-size:0.82rem; font-weight:700;">야간선물 등락률(%):</span>
+          <input type="range" id="gapPctRange" class="gap-range" min="-15" max="15" step="0.1" value="-7.01" oninput="setGapPct(this.value)" aria-label="야간선물 등락률 슬라이더" />
+          <input type="number" id="gapPctInput" class="reinvest-input gap-pct-input" min="-15" max="15" step="0.1" value="-7.01" oninput="setGapPct(this.value)" aria-label="야간선물 등락률 직접 입력" />
+          <button type="button" class="btn-preset" onclick="applyLatestNightFutures()">최신 야간선물(<span id="gapLatestPct">-7.01%</span>) 적용</button>
+          <button type="button" class="btn-preset" onclick="resetGapPctToZero()">0% 기준가</button>
+        </div>
+      </div>
+      <div class="gap-latest-note">📡 레이더 최신 야간선물 기준: <strong id="gapNightLabel">11-21 06:00 마감 700.00 (-7.01%)</strong> · 현재 적용 등락률: <strong id="gapCurrentPctTag">-7.01%</strong></div>
+      <div class="gap-tabs">
+        <button type="button" class="gap-tab-btn active" data-tab="core4" onclick="switchGapTab('core4', this)">🎯 4대 핵심주</button>
+        <button type="button" class="gap-tab-btn" data-tab="turn8" onclick="switchGapTab('turn8', this)">🏆 8대 턴어라운드</button>
+      </div>
+      <div class="gap-grid" id="gapAdjustGrid"></div>
+      <div class="gap-summary" id="gapAdjustSummary"></div>
+      <div class="gap-footnote">※ 호가 단위는 한국거래소 기준(2천원 미만 1원 · 5천원 미만 5원 · 2만원 미만 10원 · 5만원 미만 50원 · 20만원 미만 100원 · 50만원 미만 500원 · 50만원 이상 1,000원)으로 자동 정렬했습니다. 기존 손절선·목표가를 야간선물 등락률만큼 단순 비례(베타 1.0) 환산한 참고치이며, 종목별 베타·수급·공시 갭은 반영되지 않습니다. 실제 주문 전 호가창과 함께 확인하십시오.</div>
     </div>
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
@@ -3802,7 +3881,8 @@
       { id: 'sec-market-view', name: '윤스트롱 퀀트 마켓 뷰 & 전략주 브리핑' },
       { id: 'rankingGrid', name: '실전 신규 발굴 & 낙폭과대 턴어라운드 8선' },
       { id: 'sec-core4', name: '4대 핵심 전략주 퀵 보드' },
-      { id: 'sec-cash-reinvest', name: '익절 현금 재투자 배분 시뮬레이터' }
+      { id: 'sec-cash-reinvest', name: '익절 현금 재투자 배분 시뮬레이터' },
+      { id: 'sec-gap-adjust', name: '야간선물 갭 반영 기준가 자동 환산' }
     ];
 
     function applyExpiredSectionLocks(isLocked) {
@@ -6318,6 +6398,176 @@
       }).join('');
     }
 
+    // =========================================================================
+    // 야간선물 갭 반영 기준가 자동 환산 엔진 (Night Futures Gap-Adjusted Levels)
+    // ※ 아래 두 상수는 08:00 / 19:50 / 토 09:00 레이더가 매 실행 시 최신 실측치로 갱신한다.
+    // =========================================================================
+    const NIGHT_FUTURES_CHANGE_PCT = -7.01;
+    const NIGHT_FUTURES_LABEL = '11-21 06:00 마감 700.00 (-7.01%)';
+    let gapAdjustPct = NIGHT_FUTURES_CHANGE_PCT;
+    let gapAdjustTab = 'core4';
+
+    function roundToKrxTick(price) {
+      const p = Math.abs(Number(price) || 0);
+      let tick = 1000;
+      if (p < 2000) tick = 1;
+      else if (p < 5000) tick = 5;
+      else if (p < 20000) tick = 10;
+      else if (p < 50000) tick = 50;
+      else if (p < 200000) tick = 100;
+      else if (p < 500000) tick = 500;
+      else tick = 1000;
+      const sign = Number(price) < 0 ? -1 : 1;
+      return Math.round(p / tick) * tick * sign;
+    }
+
+    function gapPctText(v) {
+      const n = Number(v) || 0;
+      return (n > 0 ? '+' : '') + n.toFixed(2) + '%';
+    }
+
+    function setGapPct(val) {
+      if (val === '' || val === null || val === undefined) return;
+      let v = Number(val);
+      if (!isFinite(v)) return;
+      v = Math.max(-15, Math.min(15, v));
+      v = Math.round(v * 100) / 100;
+      gapAdjustPct = v;
+      const range = document.getElementById('gapPctRange');
+      const num = document.getElementById('gapPctInput');
+      if (range && String(range.value) !== String(v)) range.value = String(v);
+      if (num && String(num.value) !== String(v)) num.value = String(v);
+      renderGapAdjust();
+    }
+
+    function applyLatestNightFutures() {
+      setGapPct(NIGHT_FUTURES_CHANGE_PCT);
+      if (typeof showToast === 'function') {
+        showToast(`📡 최신 야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)} 기준가로 환산했습니다.`);
+      }
+    }
+
+    function resetGapPctToZero() {
+      setGapPct(0);
+      if (typeof showToast === 'function') {
+        showToast('0% 기준 — 전일 확정 종가·원래 손절선·목표가를 그대로 표시합니다.');
+      }
+    }
+
+    function switchGapTab(tab, btn) {
+      gapAdjustTab = (tab === 'turn8') ? 'turn8' : 'core4';
+      const btns = document.querySelectorAll('.gap-tab-btn');
+      if (btns && btns.length) {
+        btns.forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === gapAdjustTab));
+      }
+      renderGapAdjust();
+    }
+
+    function renderGapAdjust() {
+      const grid = document.getElementById('gapAdjustGrid');
+      const sumBox = document.getElementById('gapAdjustSummary');
+      if (!grid) return;
+
+      const latestEl = document.getElementById('gapLatestPct');
+      if (latestEl) latestEl.textContent = gapPctText(NIGHT_FUTURES_CHANGE_PCT);
+      const labelEl = document.getElementById('gapNightLabel');
+      if (labelEl) labelEl.textContent = NIGHT_FUTURES_LABEL;
+      const curTag = document.getElementById('gapCurrentPctTag');
+      if (curTag) curTag.textContent = gapPctText(gapAdjustPct);
+      const range = document.getElementById('gapPctRange');
+      const num = document.getElementById('gapPctInput');
+      if (range && String(range.value) !== String(gapAdjustPct)) range.value = String(gapAdjustPct);
+      if (num && String(num.value) !== String(gapAdjustPct)) num.value = String(gapAdjustPct);
+
+      if (typeof TURNAROUND_MASTER_DATA === 'undefined') {
+        grid.innerHTML = '<div class="gap-badge info">⏳ 종목 데이터 로딩 대기 중입니다.</div>';
+        if (sumBox) sumBox.innerHTML = '';
+        return;
+      }
+
+      const coreCodes = ['058470', '443060', '0161M0', '010120'];
+      const codes = (gapAdjustTab === 'turn8')
+        ? ((typeof DEFAULT_TURNAROUND_CODES !== 'undefined' && DEFAULT_TURNAROUND_CODES.length) ? DEFAULT_TURNAROUND_CODES : Object.keys(TURNAROUND_MASTER_DATA))
+        : coreCodes;
+
+      const won = n => String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      const factor = 1 + gapAdjustPct / 100;
+      let breachCount = 0, rrSum = 0, rrCnt = 0;
+
+      const cards = codes.map(code => {
+        const d = TURNAROUND_MASTER_DATA[code];
+        if (!d) return '';
+        const base = Number(d.currentPrice) || 0;
+        const stop = Number(d.stopLoss) || 0;
+        const tgt = Number(d.target) || 0;
+        if (!base) return '';
+
+        const gapOpen = roundToKrxTick(base * factor);
+        const stopAdj = roundToKrxTick(stop * factor);
+        const tgtAdj = roundToKrxTick(tgt * factor);
+        const gapPctReal = ((gapOpen - base) / base) * 100;
+        const stopFromOpen = gapOpen > 0 ? ((stopAdj - gapOpen) / gapOpen) * 100 : 0;
+        const tgtFromOpen = gapOpen > 0 ? ((tgtAdj - gapOpen) / gapOpen) * 100 : 0;
+        const origRR = (base - stop) > 0 ? (tgt - base) / (base - stop) : 0;
+        const newRR = (gapOpen - stopAdj) > 0 ? (tgtAdj - gapOpen) / (gapOpen - stopAdj) : 0;
+        const breach = gapOpen < stop;
+        if (breach) breachCount += 1;
+        if (newRR > 0) { rrSum += newRR; rrCnt += 1; }
+
+        const gapCls = gapPctReal > 0 ? 'up' : (gapPctReal < 0 ? 'down' : '');
+        let badges = '';
+        if (breach) {
+          badges += `<div class="gap-badge danger">⚠️ 갭하락 손절선 하회 예상 — 예상 시초가 ${won(gapOpen)}원이 원래 손절선 ${won(stop)}원을 하회합니다. 동시호가·시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
+        } else if (gapAdjustPct < 0) {
+          badges += `<div class="gap-badge info">🔵 갭다운 반영 — 예상 시초가가 환산 손절선 위 ${stopFromOpen.toFixed(1)}% 여유입니다.</div>`;
+        }
+        if (gapAdjustPct > 0) {
+          badges += `<div class="gap-badge warn">🔴 갭업 반영 — 시초가 추격매수 금지, 원래 기준가 눌림 대기.</div>`;
+        }
+        if (gapAdjustPct !== 0 && origRR > 0 && newRR > 0 && newRR < origRR - 0.01) {
+          badges += `<div class="gap-badge warn">⚠️ 손익비 악화 — 1 : ${origRR.toFixed(2)} → 1 : ${newRR.toFixed(2)} (갭 반영 후).</div>`;
+        } else if (gapAdjustPct !== 0 && newRR > origRR + 0.01) {
+          badges += `<div class="gap-badge info">🟢 손익비 개선 — 1 : ${origRR.toFixed(2)} → 1 : ${newRR.toFixed(2)} (갭 반영 후).</div>`;
+        }
+        if (gapAdjustPct === 0) {
+          badges = `<div class="gap-badge info">➖ 0% 기준 — 전일 확정 종가와 원래 손절선·목표가를 그대로 씁니다.</div>`;
+        }
+
+        return `
+          <div class="gap-card" data-code="${code}">
+            <div class="gap-card-head">
+              <div>
+                <div class="gap-card-title">${d.icon || '📌'} ${d.name}</div>
+                <div class="gap-card-sub">${d.code} · ${d.market || ''}</div>
+              </div>
+              <div class="gap-card-price">${won(gapOpen)}원<span>예상 갭 시초가</span></div>
+            </div>
+            <div class="gap-rows">
+              <div class="gap-row"><span class="lbl">기준가 (전일 확정 종가)</span><strong>${won(base)}원</strong><em>${d.changeStr || ''}</em></div>
+              <div class="gap-row"><span class="lbl">예상 갭 시초가</span><strong>${won(gapOpen)}원</strong><em class="${gapCls}">${gapPctText(gapPctReal)}</em></div>
+              <div class="gap-row"><span class="lbl">갭 반영 손절선</span><strong>${won(stopAdj)}원</strong><em>원래 ${won(stop)}원 · 시초가 대비 ${stopFromOpen.toFixed(1)}%</em></div>
+              <div class="gap-row"><span class="lbl">갭 반영 목표가</span><strong>${won(tgtAdj)}원</strong><em>원래 ${won(tgt)}원 · 시초가 대비 +${tgtFromOpen.toFixed(1)}%</em></div>
+              <div class="gap-row"><span class="lbl">갭 반영 손익비</span><strong>1 : ${newRR > 0 ? newRR.toFixed(2) : '-'}</strong><em>원래 ${d.rrRatio || '-'}</em></div>
+            </div>
+            <div class="gap-badges">${badges}</div>
+          </div>
+        `;
+      }).filter(Boolean);
+
+      grid.innerHTML = cards.length ? cards.join('') : '<div class="gap-badge info">표시할 종목이 없습니다.</div>';
+
+      if (sumBox) {
+        const avgRR = rrCnt > 0 ? (rrSum / rrCnt) : 0;
+        sumBox.innerHTML = `
+          <span>적용 등락률: <strong>${gapPctText(gapAdjustPct)}</strong></span>
+          <span>레이더 최신: <strong>${NIGHT_FUTURES_LABEL}</strong></span>
+          <span>대상: <strong>${cards.length}종목</strong></span>
+          <span>손절선 하회 예상: <strong style="color:${breachCount > 0 ? 'var(--danger)' : 'var(--success)'};">${breachCount}종목</strong></span>
+          <span>평균 환산 손익비: <strong>1 : ${avgRR > 0 ? avgRR.toFixed(2) : '-'}</strong></span>
+        `;
+      }
+    }
+
     function renderRankingGrid(codes) {
       const grid = document.getElementById('rankingGrid');
       if (!grid) return;
@@ -6527,6 +6777,7 @@
       syncMasterDataToSubmodules();
       renderCore4Board();
       renderCashReinvest();
+      renderGapAdjust();
       renderRankingGrid(codes);
       renderGlobalChips(codes);
       renderCalcPresets(codes);
