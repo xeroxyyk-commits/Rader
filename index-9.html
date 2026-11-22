@@ -831,6 +831,10 @@
     .gap-badge.danger { background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
     .gap-badge.warn { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
     .gap-badge.info { background: rgba(99,102,241,0.10); color: var(--accent); border: 1px solid var(--border-accent); }
+    .gap-badge.ok { background: rgba(5,150,105,0.12); color: var(--success); border: 1px solid rgba(5,150,105,0.32); }
+    .gap-mode-btn { border-color: var(--border-accent); color: var(--accent); font-weight: 800; }
+    .gap-mode-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .gap-premarket-note { font-size: 0.72rem; font-weight: 700; color: var(--text-sub); margin-top: 4px; line-height: 1.55; overflow-wrap: anywhere; }
     .gap-summary {
       margin-top: 12px; padding: 12px 14px; border-radius: 12px;
       background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25);
@@ -844,6 +848,8 @@
       .gap-card-price { text-align: left; }
       .gap-range { flex: 1 1 100%; }
       .gap-pct-input { width: 84px; }
+      .gap-controls .btn-preset { max-width: 100%; white-space: normal; }
+      .gap-mode-btn { flex: 1 1 100%; }
     }
 
     /* Quick Jump Anchor Bar (Sub-Nav) */
@@ -2261,16 +2267,18 @@
           <input type="number" id="gapPctInput" class="reinvest-input gap-pct-input" min="-15" max="15" step="0.1" value="-7.01" oninput="setGapPct(this.value)" aria-label="야간선물 등락률 직접 입력" />
           <button type="button" class="btn-preset" onclick="applyLatestNightFutures()">최신 야간선물(<span id="gapLatestPct">-7.01%</span>) 적용</button>
           <button type="button" class="btn-preset" onclick="resetGapPctToZero()">0% 기준가</button>
+          <button type="button" class="btn-preset gap-mode-btn" id="gapPremarketBtn" onclick="applyPremarketPrices()">📊 프리마켓 실측 대입</button>
         </div>
       </div>
-      <div class="gap-latest-note">📡 레이더 최신 야간선물 기준: <strong id="gapNightLabel">11-21 06:00 마감 700.00 (-7.01%) · 주말 휴장 후 최신</strong> · 현재 적용 등락률: <strong id="gapCurrentPctTag">-7.01%</strong></div>
+      <div class="gap-latest-note">📡 레이더 최신 야간선물 기준: <strong id="gapNightLabel">11-21 06:00 마감 700.00 (-7.01%) · 주말 휴장 후 최신</strong> · 현재 모드/등락률: <strong id="gapCurrentPctTag">-7.01%</strong></div>
+      <div class="gap-premarket-note" id="gapPremarketNote">📊 NXT 프리마켓 실측(<strong>11-23 08:05</strong>): 리노공업 42,400(-6.50%) · HD현대마린 177,400(-4.00%) · LS ELECTRIC 102,400(-6.65%) · 알테오젠 167,600(-3.90%) · 현대차 242,500(-4.90%) · 한국항공우주 96,600(-3.78%) · S-Oil 94,300(-3.08%) · 삼성중공업 14,310(-5.36%) · 삼성전자 172,800(-5.63%) · SK하이닉스 1,048,000(-5.84%) · 한미반도체 143,200(-6.89%) · 한국전력 24,650(-3.52%) · 삼성전기 731,000(-5.56%) · <strong>네오사피엔스·대한항공·원익IPS는 프리마켓 미체결</strong></div>
       <div class="gap-tabs">
         <button type="button" class="gap-tab-btn active" data-tab="core4" onclick="switchGapTab('core4', this)">🎯 4대 핵심주</button>
         <button type="button" class="gap-tab-btn" data-tab="turn8" onclick="switchGapTab('turn8', this)">🏆 8대 턴어라운드</button>
       </div>
       <div class="gap-grid" id="gapAdjustGrid"></div>
       <div class="gap-summary" id="gapAdjustSummary"></div>
-      <div class="gap-footnote">※ 호가 단위는 한국거래소 기준(2천원 미만 1원 · 5천원 미만 5원 · 2만원 미만 10원 · 5만원 미만 50원 · 20만원 미만 100원 · 50만원 미만 500원 · 50만원 이상 1,000원)으로 자동 정렬했습니다. 기존 손절선·목표가를 야간선물 등락률만큼 단순 비례(베타 1.0) 환산한 참고치이며, 종목별 베타·수급·공시 갭은 반영되지 않습니다. 실제 주문 전 호가창과 함께 확인하십시오.</div>
+      <div class="gap-footnote">※ 호가 단위는 한국거래소 기준(2천원 미만 1원 · 5천원 미만 5원 · 2만원 미만 10원 · 5만원 미만 50원 · 20만원 미만 100원 · 50만원 미만 500원 · 50만원 이상 1,000원)으로 자동 정렬했습니다. 기존 손절선·목표가를 야간선물 등락률만큼 단순 비례(베타 1.0) 환산한 참고치이며, 종목별 베타·수급·공시 갭은 반영되지 않습니다. 실제 주문 전 호가창과 함께 확인하십시오. <strong>[📊 프리마켓 실측 대입]</strong>은 08:00 장전 NXT 실측 체결가를 종목별로 그대로 쓰고(손절선·목표가는 기존 기준 유지), 미체결 종목만 야간선물 환산치로 대체합니다. 슬라이더를 움직이거나 [최신 야간선물]·[0% 기준가]를 누르면 일괄 환산 모드로 돌아옵니다.</div>
     </div>
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
@@ -6409,8 +6417,30 @@
     // =========================================================================
     const NIGHT_FUTURES_CHANGE_PCT = -7.01;
     const NIGHT_FUTURES_LABEL = '11-21 06:00 마감 700.00 (-7.01%) · 주말 휴장 후 최신';
+    // 08:00 장전 레이더가 매 실행 시 아래 상수를 NXT 프리마켓 실측치로 갱신한다.
+    // null = 해당 종목 프리마켓 체결 없음(야간선물 갭 환산으로 대체).
+    const PREMARKET_ASOF = '11-23 08:05';
+    const PREMARKET_PRICES = {
+      '058470': { price: 42400, pct: -6.50, time: '08:05' },   // 리노공업
+      '443060': { price: 177400, pct: -4.00, time: '08:05' },  // HD현대마린솔루션
+      '010120': { price: 102400, pct: -6.65, time: '08:05' },  // LS ELECTRIC
+      '0161M0': null,                                          // 네오사피엔스 (프리마켓 거래 없음)
+      '196170': { price: 167600, pct: -3.90, time: '08:05' },  // 알테오젠
+      '005380': { price: 242500, pct: -4.90, time: '08:05' },  // 현대차
+      '047810': { price: 96600, pct: -3.78, time: '08:05' },   // 한국항공우주
+      '010950': { price: 94300, pct: -3.08, time: '08:05' },   // S-Oil
+      '010140': { price: 14310, pct: -5.36, time: '08:05' },   // 삼성중공업
+      '003490': null,                                          // 대한항공 (프리마켓 거래 없음)
+      '005930': { price: 172800, pct: -5.63, time: '08:05' },  // 삼성전자
+      '000660': { price: 1048000, pct: -5.84, time: '08:05' }, // SK하이닉스
+      '042700': { price: 143200, pct: -6.89, time: '08:05' },  // 한미반도체
+      '015760': { price: 24650, pct: -3.52, time: '08:05' },   // 한국전력
+      '009150': { price: 731000, pct: -5.56, time: '08:05' },  // 삼성전기
+      '240810': null                                           // 원익IPS (프리마켓 거래 없음)
+    };
     let gapAdjustPct = NIGHT_FUTURES_CHANGE_PCT;
     let gapAdjustTab = 'core4';
+    let gapAdjustMode = 'pct'; // 'pct' = 야간선물 일괄 환산 · 'premarket' = NXT 프리마켓 실측 대입
 
     function roundToKrxTick(price) {
       const p = Math.abs(Number(price) || 0);
@@ -6438,6 +6468,7 @@
       v = Math.max(-15, Math.min(15, v));
       v = Math.round(v * 100) / 100;
       gapAdjustPct = v;
+      gapAdjustMode = 'pct'; // 슬라이더·직접입력·[최신 야간선물]·[0% 기준가] 조작 시 일괄 환산 모드로 복귀
       const range = document.getElementById('gapPctRange');
       const num = document.getElementById('gapPctInput');
       if (range && String(range.value) !== String(v)) range.value = String(v);
@@ -6468,17 +6499,31 @@
       renderGapAdjust();
     }
 
+    function applyPremarketPrices() {
+      gapAdjustMode = 'premarket';
+      renderGapAdjust();
+      if (typeof showToast === 'function') {
+        showToast(`📊 ${PREMARKET_ASOF} NXT 프리마켓 실측가를 종목별로 그대로 대입했습니다. 미체결 종목은 야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)} 환산으로 대체합니다.`);
+      }
+    }
+
     function renderGapAdjust() {
       const grid = document.getElementById('gapAdjustGrid');
       const sumBox = document.getElementById('gapAdjustSummary');
       if (!grid) return;
+
+      const isPm = (gapAdjustMode === 'premarket');
+      const pmAsofEl = document.getElementById('gapPremarketNote');
+      if (pmAsofEl) pmAsofEl.setAttribute('data-mode', isPm ? 'premarket' : 'pct');
 
       const latestEl = document.getElementById('gapLatestPct');
       if (latestEl) latestEl.textContent = gapPctText(NIGHT_FUTURES_CHANGE_PCT);
       const labelEl = document.getElementById('gapNightLabel');
       if (labelEl) labelEl.textContent = NIGHT_FUTURES_LABEL;
       const curTag = document.getElementById('gapCurrentPctTag');
-      if (curTag) curTag.textContent = gapPctText(gapAdjustPct);
+      if (curTag) curTag.textContent = isPm ? ('📊 프리마켓 실측(' + PREMARKET_ASOF + ')') : gapPctText(gapAdjustPct);
+      const pmBtn = document.getElementById('gapPremarketBtn');
+      if (pmBtn) pmBtn.classList.toggle('active', isPm);
       const range = document.getElementById('gapPctRange');
       const num = document.getElementById('gapPctInput');
       if (range && String(range.value) !== String(gapAdjustPct)) range.value = String(gapAdjustPct);
@@ -6498,6 +6543,7 @@
       const won = n => String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       const factor = 1 + gapAdjustPct / 100;
       let breachCount = 0, rrSum = 0, rrCnt = 0;
+      let pmHold = 0, pmBreach = 0, pmNone = 0;
 
       const cards = codes.map(code => {
         const d = TURNAROUND_MASTER_DATA[code];
@@ -6507,36 +6553,78 @@
         const tgt = Number(d.target) || 0;
         if (!base) return '';
 
-        const gapOpen = roundToKrxTick(base * factor);
-        const stopAdj = roundToKrxTick(stop * factor);
-        const tgtAdj = roundToKrxTick(tgt * factor);
-        const gapPctReal = ((gapOpen - base) / base) * 100;
+        const pm = (typeof PREMARKET_PRICES !== 'undefined' && PREMARKET_PRICES[code]) ? PREMARKET_PRICES[code] : null;
+        const pmPrice = (pm && Number(pm.price) > 0) ? Number(pm.price) : 0;
+        const usePm = isPm && pmPrice > 0;
+        const pmPct = usePm ? (Number(pm.pct) || 0) : 0;
+
+        let gapOpen, openLabel, gapPctReal;
+        if (usePm) {
+          gapOpen = pmPrice;                       // 실측 체결가를 그대로 시초가로 사용
+          openLabel = '프리마켓 실측가';
+          gapPctReal = pmPct;                      // NXT 프리마켓 등락률(전일 NXT 종가 기준)
+        } else {
+          gapOpen = roundToKrxTick(base * factor);
+          openLabel = isPm ? '야간선물 갭 환산 시초가' : '예상 갭 시초가';
+          gapPctReal = ((gapOpen - base) / base) * 100;
+        }
+
+        // 프리마켓 모드는 원래 손절선·목표가를 그대로 기준으로 삼고, 실측 시초가로 손익비·사수 여부만 판정한다.
+        const stopAdj = usePm ? stop : roundToKrxTick(stop * factor);
+        const tgtAdj = usePm ? tgt : roundToKrxTick(tgt * factor);
         const stopFromOpen = gapOpen > 0 ? ((stopAdj - gapOpen) / gapOpen) * 100 : 0;
         const tgtFromOpen = gapOpen > 0 ? ((tgtAdj - gapOpen) / gapOpen) * 100 : 0;
         const origRR = (base - stop) > 0 ? (tgt - base) / (base - stop) : 0;
         const newRR = (gapOpen - stopAdj) > 0 ? (tgtAdj - gapOpen) / (gapOpen - stopAdj) : 0;
         const breach = gapOpen < stop;
+
+        if (usePm) {
+          if (breach) { pmBreach += 1; } else { pmHold += 1; }
+        } else if (isPm) {
+          pmNone += 1;
+        }
         if (breach) breachCount += 1;
         if (newRR > 0) { rrSum += newRR; rrCnt += 1; }
 
         const gapCls = gapPctReal > 0 ? 'up' : (gapPctReal < 0 ? 'down' : '');
         let badges = '';
-        if (breach) {
-          badges += `<div class="gap-badge danger">⚠️ 갭하락 손절선 하회 예상 — 예상 시초가 ${won(gapOpen)}원이 원래 손절선 ${won(stop)}원을 하회합니다. 동시호가·시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
-        } else if (gapAdjustPct < 0) {
-          badges += `<div class="gap-badge info">🔵 갭다운 반영 — 예상 시초가가 환산 손절선 위 ${stopFromOpen.toFixed(1)}% 여유입니다.</div>`;
+        if (usePm) {
+          if (breach) {
+            badges += `<div class="gap-badge danger">🔴 프리마켓 손절선 하회 — ${PREMARKET_ASOF} NXT 실측 ${won(gapOpen)}원이 기존 손절선 ${won(stop)}원을 ${Math.abs(stopFromOpen).toFixed(1)}% 하회합니다. 시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
+          } else {
+            badges += `<div class="gap-badge ok">🟢 프리마켓 손절선 사수 — ${PREMARKET_ASOF} NXT 실측 ${won(gapOpen)}원이 손절선 ${won(stop)}원 위 ${stopFromOpen.toFixed(1)}% 여유입니다. 사수 확인 전에는 계획 수량 1/3 이내.</div>`;
+          }
+          if (newRR > 0) {
+            badges += `<div class="gap-badge info">손익비 — 실측 시초가 기준 1 : ${newRR.toFixed(2)} (원래 1 : ${origRR > 0 ? origRR.toFixed(2) : '-'}) · 목표 ${won(tgt)}원까지 ${tgtFromOpen >= 0 ? '+' : ''}${tgtFromOpen.toFixed(1)}%.</div>`;
+          }
+        } else if (isPm) {
+          badges += `<div class="gap-badge info">➖ 프리마켓 미체결(야간선물 갭 적용) — ${PREMARKET_ASOF} 프리마켓 체결이 확인되지 않아 야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)} 환산 시초가 ${won(gapOpen)}원으로 대신 계산했습니다.</div>`;
+          if (breach) {
+            badges += `<div class="gap-badge danger">⚠️ 환산 시초가가 기존 손절선 ${won(stop)}원을 ${Math.abs(stopFromOpen).toFixed(1)}% 하회 — 동시호가 추격 금지.</div>`;
+          }
+          if (newRR > 0) {
+            badges += `<div class="gap-badge warn">환산 손익비 1 : ${newRR.toFixed(2)} (원래 1 : ${origRR > 0 ? origRR.toFixed(2) : '-'})</div>`;
+          }
+        } else {
+          if (breach) {
+            badges += `<div class="gap-badge danger">⚠️ 갭하락 손절선 하회 예상 — 예상 시초가 ${won(gapOpen)}원이 원래 손절선 ${won(stop)}원을 하회합니다. 동시호가·시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
+          } else if (gapAdjustPct < 0) {
+            badges += `<div class="gap-badge info">🔵 갭다운 반영 — 예상 시초가가 환산 손절선 위 ${stopFromOpen.toFixed(1)}% 여유입니다.</div>`;
+          }
+          if (gapAdjustPct > 0) {
+            badges += `<div class="gap-badge warn">🔴 갭업 반영 — 시초가 추격매수 금지, 원래 기준가 눌림 대기.</div>`;
+          }
+          if (gapAdjustPct !== 0 && origRR > 0 && newRR > 0 && newRR < origRR - 0.01) {
+            badges += `<div class="gap-badge warn">⚠️ 손익비 악화 — 1 : ${origRR.toFixed(2)} → 1 : ${newRR.toFixed(2)} (갭 반영 후).</div>`;
+          } else if (gapAdjustPct !== 0 && newRR > origRR + 0.01) {
+            badges += `<div class="gap-badge info">🟢 손익비 개선 — 1 : ${origRR.toFixed(2)} → 1 : ${newRR.toFixed(2)} (갭 반영 후).</div>`;
+          }
+          if (gapAdjustPct === 0) {
+            badges = `<div class="gap-badge info">➖ 0% 기준 — 전일 확정 종가와 원래 손절선·목표가를 그대로 씁니다.</div>`;
+          }
         }
-        if (gapAdjustPct > 0) {
-          badges += `<div class="gap-badge warn">🔴 갭업 반영 — 시초가 추격매수 금지, 원래 기준가 눌림 대기.</div>`;
-        }
-        if (gapAdjustPct !== 0 && origRR > 0 && newRR > 0 && newRR < origRR - 0.01) {
-          badges += `<div class="gap-badge warn">⚠️ 손익비 악화 — 1 : ${origRR.toFixed(2)} → 1 : ${newRR.toFixed(2)} (갭 반영 후).</div>`;
-        } else if (gapAdjustPct !== 0 && newRR > origRR + 0.01) {
-          badges += `<div class="gap-badge info">🟢 손익비 개선 — 1 : ${origRR.toFixed(2)} → 1 : ${newRR.toFixed(2)} (갭 반영 후).</div>`;
-        }
-        if (gapAdjustPct === 0) {
-          badges = `<div class="gap-badge info">➖ 0% 기준 — 전일 확정 종가와 원래 손절선·목표가를 그대로 씁니다.</div>`;
-        }
+
+        const openRowLabel = usePm ? ('프리마켓 실측가 (' + PREMARKET_ASOF + ' NXT)') : (isPm ? '야간선물 갭 환산 시초가' : '예상 갭 시초가');
 
         return `
           <div class="gap-card" data-code="${code}">
@@ -6545,14 +6633,14 @@
                 <div class="gap-card-title">${d.icon || '📌'} ${d.name}</div>
                 <div class="gap-card-sub">${d.code} · ${d.market || ''}</div>
               </div>
-              <div class="gap-card-price">${won(gapOpen)}원<span>예상 갭 시초가</span></div>
+              <div class="gap-card-price">${won(gapOpen)}원<span>${openLabel}</span></div>
             </div>
             <div class="gap-rows">
               <div class="gap-row"><span class="lbl">기준가 (전일 확정 종가)</span><strong>${won(base)}원</strong><em>${d.changeStr || ''}</em></div>
-              <div class="gap-row"><span class="lbl">예상 갭 시초가</span><strong>${won(gapOpen)}원</strong><em class="${gapCls}">${gapPctText(gapPctReal)}</em></div>
-              <div class="gap-row"><span class="lbl">갭 반영 손절선</span><strong>${won(stopAdj)}원</strong><em>원래 ${won(stop)}원 · 시초가 대비 ${stopFromOpen.toFixed(1)}%</em></div>
-              <div class="gap-row"><span class="lbl">갭 반영 목표가</span><strong>${won(tgtAdj)}원</strong><em>원래 ${won(tgt)}원 · 시초가 대비 +${tgtFromOpen.toFixed(1)}%</em></div>
-              <div class="gap-row"><span class="lbl">갭 반영 손익비</span><strong>1 : ${newRR > 0 ? newRR.toFixed(2) : '-'}</strong><em>원래 ${d.rrRatio || '-'}</em></div>
+              <div class="gap-row"><span class="lbl">${openRowLabel}</span><strong>${won(gapOpen)}원</strong><em class="${gapCls}">${gapPctText(gapPctReal)}${usePm ? ' · NXT' : ''}</em></div>
+              <div class="gap-row"><span class="lbl">손절선${usePm ? ' (기존 기준 유지)' : ' (갭 반영)'}</span><strong>${won(stopAdj)}원</strong><em>${usePm ? ('원래 ' + won(stop) + '원 · 실측가 ' + (breach ? Math.abs(((gapOpen - stop) / stop) * 100).toFixed(1) + '% 하회' : (((gapOpen - stop) / stop) * 100).toFixed(1) + '% 위')) : ('원래 ' + won(stop) + '원 · 시초가 대비 ' + stopFromOpen.toFixed(1) + '%')}</em></div>
+              <div class="gap-row"><span class="lbl">목표가${usePm ? ' (기존 기준 유지)' : ' (갭 반영)'}</span><strong>${won(tgtAdj)}원</strong><em>${usePm ? '원래 ' + won(tgt) + '원 · 실측가 대비 +' + tgtFromOpen.toFixed(1) + '%' : '원래 ' + won(tgt) + '원 · 시초가 대비 +' + tgtFromOpen.toFixed(1) + '%'}</em></div>
+              <div class="gap-row"><span class="lbl">손익비${usePm ? ' (프리마켓 기준)' : ' (갭 반영)'}</span><strong>1 : ${newRR > 0 ? newRR.toFixed(2) : '-'}</strong><em>원래 ${d.rrRatio || '-'}</em></div>
             </div>
             <div class="gap-badges">${badges}</div>
           </div>
@@ -6563,13 +6651,24 @@
 
       if (sumBox) {
         const avgRR = rrCnt > 0 ? (rrSum / rrCnt) : 0;
-        sumBox.innerHTML = `
-          <span>적용 등락률: <strong>${gapPctText(gapAdjustPct)}</strong></span>
-          <span>레이더 최신: <strong>${NIGHT_FUTURES_LABEL}</strong></span>
-          <span>대상: <strong>${cards.length}종목</strong></span>
-          <span>손절선 하회 예상: <strong style="color:${breachCount > 0 ? 'var(--danger)' : 'var(--success)'};">${breachCount}종목</strong></span>
-          <span>평균 환산 손익비: <strong>1 : ${avgRR > 0 ? avgRR.toFixed(2) : '-'}</strong></span>
-        `;
+        if (isPm) {
+          sumBox.innerHTML = `
+            <span>모드: <strong>📊 프리마켓 실측 대입 (${PREMARKET_ASOF} NXT)</strong></span>
+            <span>대상: <strong>${cards.length}종목</strong></span>
+            <span>🟢 손절선 사수: <strong style="color:var(--success);">${pmHold}종목</strong></span>
+            <span>🔴 손절선 하회: <strong style="color:${pmBreach > 0 ? 'var(--danger)' : 'var(--success)'};">${pmBreach}종목</strong></span>
+            <span>➖ 미체결(야간선물 갭 대체): <strong>${pmNone}종목</strong></span>
+            <span>평균 손익비(계산 가능): <strong>1 : ${avgRR > 0 ? avgRR.toFixed(2) : '-'}</strong></span>
+          `;
+        } else {
+          sumBox.innerHTML = `
+            <span>적용 등락률: <strong>${gapPctText(gapAdjustPct)}</strong></span>
+            <span>레이더 최신: <strong>${NIGHT_FUTURES_LABEL}</strong></span>
+            <span>대상: <strong>${cards.length}종목</strong></span>
+            <span>손절선 하회 예상: <strong style="color:${breachCount > 0 ? 'var(--danger)' : 'var(--success)'};">${breachCount}종목</strong></span>
+            <span>평균 환산 손익비: <strong>1 : ${avgRR > 0 ? avgRR.toFixed(2) : '-'}</strong></span>
+          `;
+        }
       }
     }
 
