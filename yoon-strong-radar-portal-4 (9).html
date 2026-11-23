@@ -163,6 +163,164 @@
       background: rgba(255, 255, 255, 0.2); padding: 2px 8px; border-radius: 9999px; margin-left: 6px;
     }
 
+
+    /* =====================================================================
+       👑 ADMIN MASTER BRAND BAR (#adminMasterBrandBar / .admin-master-brand)
+       관리자 로그인(body.admin-logged-in) 시에만 페이지 맨 최상단 1번 위치에 노출.
+       일반 방문자·미인증 보안 화면에서는 display:none !important 로 완전 숨김.
+       ※ 이 블록과 #adminMasterBrandBar 마크업은 절대 삭제하지 말 것.
+       ===================================================================== */
+    .admin-master-brand { display: none !important; }
+    body.admin-logged-in .admin-master-brand { display: flex !important; }
+    body.admin-logged-in nav .brand-title-wrap { display: none !important; }
+
+    .admin-master-brand {
+      position: relative;
+      width: 100%; max-width: 100%; box-sizing: border-box;
+      align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 7px 14px;
+      padding: 10px 18px;
+      color: #eaf2ff;
+      letter-spacing: -0.02em;
+      background:
+        radial-gradient(130% 220% at 0% -20%, rgba(56,189,248,0.26) 0%, rgba(56,189,248,0) 58%),
+        radial-gradient(110% 200% at 100% -30%, rgba(212,175,55,0.24) 0%, rgba(212,175,55,0) 60%),
+        linear-gradient(102deg, #081229 0%, #0d1c3b 34%, #14264b 58%, #0a1430 82%, #060d1e 100%);
+      border-bottom: 1px solid rgba(125,211,252,0.42);
+      box-shadow: 0 1px 0 rgba(212,175,55,0.40), 0 10px 28px -12px rgba(2,8,23,0.85), inset 0 1px 0 rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px) saturate(135%);
+      -webkit-backdrop-filter: blur(12px) saturate(135%);
+      overflow: hidden;
+    }
+    .admin-master-brand::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(115deg, transparent 16%, rgba(255,255,255,0.10) 32%, rgba(255,255,255,0.02) 44%, transparent 58%);
+    }
+    .amb-left, .amb-right {
+      display: flex; align-items: center; gap: 10px; min-width: 0;
+      position: relative; z-index: 1;
+    }
+    .amb-left { flex: 1 1 auto; }
+    .amb-right { flex: 0 1 auto; flex-wrap: wrap; justify-content: flex-end; }
+    .amb-badge {
+      flex: 0 0 auto; width: 36px; height: 36px; border-radius: 12px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; line-height: 1;
+      background: linear-gradient(145deg, rgba(56,189,248,0.30), rgba(9,17,34,0.92) 68%);
+      border: 1px solid rgba(125,211,252,0.55);
+      box-shadow: 0 0 18px rgba(56,189,248,0.35), 0 0 34px rgba(212,175,55,0.16), inset 0 1px 0 rgba(255,255,255,0.18);
+      text-shadow: 0 0 12px rgba(125,211,252,0.85);
+    }
+    .amb-titles { min-width: 0; }
+    .amb-title {
+      font-size: 1.06rem; font-weight: 900; line-height: 1.16; white-space: nowrap;
+      letter-spacing: 0.005em;
+      background: linear-gradient(92deg, #ffffff 0%, #e6f4ff 36%, #ffe9a8 76%, #d4af37 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 1px 6px rgba(56,189,248,0.22));
+    }
+    .amb-title span { font-weight: 800; letter-spacing: 0.02em; }
+    .amb-sub {
+      font-size: 0.56rem; font-weight: 800; letter-spacing: 0.15em;
+      color: rgba(186,214,255,0.80); margin-top: 3px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      text-transform: uppercase;
+    }
+    .amb-vip {
+      font-size: 0.65rem; font-weight: 900; letter-spacing: 0.03em; white-space: nowrap;
+      padding: 4px 10px; border-radius: 9999px; color: #231a00;
+      background: linear-gradient(135deg, #fff0bd 0%, #d4af37 55%, #f7e484 100%);
+      border: 1px solid rgba(255,236,168,0.8);
+      box-shadow: 0 2px 10px rgba(212,175,55,0.35), inset 0 1px 0 rgba(255,255,255,0.65);
+    }
+    .amb-sync {
+      font-size: 0.65rem; font-weight: 800; white-space: nowrap;
+      padding: 4px 10px; border-radius: 9999px;
+      color: #c7f0ff; background: rgba(56,189,248,0.12);
+      border: 1px solid rgba(125,211,252,0.42);
+      max-width: 100%; overflow: hidden; text-overflow: ellipsis;
+    }
+    .amb-btn {
+      font-size: 0.64rem; font-weight: 800; white-space: nowrap; cursor: pointer;
+      padding: 4px 10px; border-radius: 9999px;
+      color: #dbeafe; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.22);
+      transition: all 0.18s ease;
+    }
+    .amb-btn:hover { background: rgba(255,255,255,0.16); border-color: rgba(125,211,252,0.7); color: #ffffff; }
+    .amb-btn.amb-lock { color: #ffe4e6; border-color: rgba(248,113,113,0.45); }
+    .amb-btn.amb-lock:hover { background: rgba(248,113,113,0.18); }
+    @media (max-width: 720px) {
+      .admin-master-brand { padding: 9px 12px; gap: 6px 10px; }
+      .amb-badge { width: 31px; height: 31px; border-radius: 10px; font-size: 0.95rem; }
+      .amb-title { font-size: 0.95rem; }
+      .amb-sub { font-size: 0.5rem; letter-spacing: 0.12em; }
+      .amb-right { gap: 6px; }
+      .amb-vip, .amb-sync, .amb-btn { font-size: 0.6rem; padding: 3px 8px; }
+    }
+    @media (max-width: 460px) {
+      .amb-right { flex: 1 1 100%; justify-content: flex-start; gap: 5px; }
+      .amb-sub { letter-spacing: 0.1em; }
+      .amb-sync { max-width: 46vw; }
+    }
+    @media (max-width: 360px) {
+      .amb-title { font-size: 0.88rem; }
+      .amb-sub { font-size: 0.46rem; letter-spacing: 0.06em; }
+      .amb-btn.amb-console { display: none; }
+    }
+
+    /* =====================================================================
+       📊 BOTTOM STOCK TICKER (#bottomStockTicker / .bottom-ticker-bar)
+       TURNAROUND_MASTER_DATA 대표 종목 현재가·등락률 무한 루프 마키.
+       ※ renderBottomStockTicker() 가 동적 렌더링하며, 이 마크업·CSS는 절대 삭제 금지.
+       ===================================================================== */
+    .bottom-ticker-bar {
+      display: flex; align-items: stretch; width: 100%; max-width: 100%; box-sizing: border-box;
+      margin: 26px 0 4px; border: 1px solid var(--border); border-radius: 14px;
+      background: var(--surface); box-shadow: var(--shadow-md); overflow: hidden;
+      position: relative;
+    }
+    body.dark .bottom-ticker-bar { background: linear-gradient(100deg, #0b1424 0%, #111d33 100%); }
+    .bt-label {
+      flex: 0 0 auto; display: inline-flex; flex-direction: column; justify-content: center; gap: 1px;
+      padding: 8px 13px; font-size: 0.68rem; font-weight: 900; letter-spacing: -0.01em;
+      color: #ffffff; white-space: nowrap; z-index: 2;
+      background: linear-gradient(135deg, #0b2a4a 0%, #0284c7 62%, #0ea5e9 100%);
+      border-right: 1px solid rgba(255,255,255,0.18);
+    }
+    .bt-label em { font-style: normal; font-size: 0.56rem; font-weight: 700; opacity: 0.86; letter-spacing: 0; }
+    .bt-viewport {
+      position: relative; flex: 1 1 auto; min-width: 0; overflow: hidden;
+      display: flex; align-items: center;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+    }
+    .bt-track {
+      display: inline-flex; align-items: center; white-space: nowrap; will-change: transform;
+      animation: btTicker 42s linear infinite;
+    }
+    @keyframes btTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .bt-item {
+      display: inline-flex; align-items: baseline; gap: 5px; padding: 0 14px;
+      font-size: 0.76rem; font-weight: 800; letter-spacing: -0.02em; line-height: 2.3;
+    }
+    .bt-item + .bt-item { border-left: 1px solid var(--border); }
+    .bt-name { color: var(--text); font-weight: 900; }
+    .bt-price { color: var(--text-sub); font-variant-numeric: tabular-nums; }
+    .bt-chg { font-weight: 900; font-variant-numeric: tabular-nums; }
+    .bt-chg.up { color: #ef4444; }
+    .bt-chg.down { color: #3b82f6; }
+    .bt-chg.flat { color: var(--text-muted); }
+    body.trial-expired-locked .bottom-ticker-bar {
+      filter: blur(8px); pointer-events: none !important; user-select: none !important;
+    }
+    @media (max-width: 480px) {
+      .bt-label { padding: 6px 9px; font-size: 0.62rem; }
+      .bt-label em { font-size: 0.5rem; }
+      .bt-item { font-size: 0.71rem; padding: 0 10px; }
+    }
+
     /* Top Nav */
     nav {
       position: sticky; top: 0; z-index: 100;
@@ -1879,6 +2037,27 @@
   </script>
 </head>
 <body>
+
+  <!-- =====================================================================
+       👑 관리자 전용 최상단 프리미엄 브랜드 헤더 (#adminMasterBrandBar)
+       body.admin-logged-in 일 때만 노출된다. 일반 방문자·미인증 화면에서는 완전 숨김.
+       ※ 이 블록은 절대 삭제·덮어쓰기 금지 (회차 문구만 자동 동기화).
+       ===================================================================== -->
+  <div class="admin-master-brand" id="adminMasterBrandBar" aria-hidden="true">
+    <div class="amb-left">
+      <span class="amb-badge" aria-hidden="true">📡</span>
+      <div class="amb-titles">
+        <div class="amb-title">YOON STRONG <span>CAPITAL</span></div>
+        <div class="amb-sub">Quant Intelligence · Enterprise Master Edition</div>
+      </div>
+    </div>
+    <div class="amb-right">
+      <span class="amb-vip">👑 VIP MASTER ADMIN</span>
+      <span class="amb-sync" id="adminMasterSyncLabel">🟢 동기화 11-23 19:50 야간 레이더</span>
+      <button type="button" class="amb-btn amb-console" onclick="scrollToTarget('sec-admin')">⚙️ 콘솔</button>
+      <button type="button" class="amb-btn amb-lock" onclick="logoutAdmin()">🔒 잠금</button>
+    </div>
+  </div>
 
   <!-- 7-Day User Trial Banner -->
   <div class="trial-banner expired-state" id="trialBanner">
@@ -3769,6 +3948,18 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- ===================================================================
+         📊 대표 종목 실시간 현재가 전광판 (#bottomStockTicker)
+         renderBottomStockTicker() 가 TURNAROUND_MASTER_DATA에서 자동 렌더링.
+         ※ 이 마크업은 절대 삭제·덮어쓰기 금지.
+         =================================================================== -->
+    <div class="bottom-ticker-bar" id="bottomStockTicker" aria-label="대표 종목 실시간 현재가 전광판">
+      <span class="bt-label">📡 LIVE QUOTES<em>대표 종목 실시간 현재가 · <span id="btAsOf">11-23 19:50 야간</span></em></span>
+      <div class="bt-viewport">
+        <div class="bt-track" id="bottomTickerTrack"><!-- renderBottomStockTicker() --></div>
+      </div>
     </div>
 
     <!-- Footer -->
@@ -6474,6 +6665,86 @@
       }).join('');
     }
 
+
+    // =========================================================================
+    // 👑 관리자 전용 프리미엄 브랜드 헤더 동기화 (#adminMasterBrandBar)
+    // body.admin-logged-in 클래스(setAdminMode)로 노출이 제어되며, 동기화 회차 라벨은
+    // #lastUpdateBadge 와 자동으로 맞춘다. 절대 삭제하지 말 것.
+    // =========================================================================
+    function syncAdminMasterBrandBar() {
+      const bar = document.getElementById('adminMasterBrandBar');
+      if (!bar) return;
+      const lbl = document.getElementById('adminMasterSyncLabel');
+      const badge = document.getElementById('lastUpdateBadge');
+      if (lbl && badge) {
+        const txt = (badge.textContent || '').replace(/\s+/g, ' ').trim();
+        if (txt) lbl.textContent = '🟢 동기화 ' + txt;
+      }
+      const isOn = document.body.classList.contains('admin-logged-in');
+      bar.setAttribute('aria-hidden', isOn ? 'false' : 'true');
+    }
+    function initAdminMasterBrandObserver() {
+      const badge = document.getElementById('lastUpdateBadge');
+      syncAdminMasterBrandBar();
+      if (!badge || typeof MutationObserver === 'undefined') return;
+      try {
+        new MutationObserver(function () { syncAdminMasterBrandBar(); })
+          .observe(badge, { childList: true, characterData: true, subtree: true });
+      } catch (e) { /* noop */ }
+    }
+
+    // =========================================================================
+    // 📊 하단 대표 종목 실시간 현재가 전광판 (#bottomStockTicker)
+    // TURNAROUND_MASTER_DATA 단일 소스에서 4대 핵심주 → 마스터 등록 대표주 순으로
+    // 종목명·현재가(원)·등락률(%)을 읽어 무한 루프 마키로 렌더링한다.
+    // ※ renderBottomStockTicker() 함수와 #bottomStockTicker 마크업은 절대 삭제 금지.
+    // =========================================================================
+    const BOTTOM_TICKER_CORE_CODES = ['058470', '443060', '0161M0', '010120'];
+    function renderBottomStockTicker() {
+      const bar = document.getElementById('bottomStockTicker');
+      const track = document.getElementById('bottomTickerTrack');
+      if (!bar || !track || typeof TURNAROUND_MASTER_DATA === 'undefined') return;
+      const allCodes = Object.keys(TURNAROUND_MASTER_DATA);
+      const coreCodes = BOTTOM_TICKER_CORE_CODES.filter(function (c) { return allCodes.indexOf(c) !== -1; });
+      const codes = coreCodes.concat(allCodes.filter(function (c) { return coreCodes.indexOf(c) === -1; }));
+      const items = codes.map(function (code) {
+        const d = TURNAROUND_MASTER_DATA[code];
+        if (!d) return '';
+        const chg = d.changeStr || '0.00%';
+        const cls = chg.charAt(0) === '+' ? 'up' : (chg.charAt(0) === '-' ? 'down' : 'flat');
+        const price = d.priceStr || (d.currentPrice ? Number(d.currentPrice).toLocaleString('ko-KR') + '원' : '-');
+        return '<span class="bt-item">'
+          + '<span class="bt-name">' + (d.name || code) + '</span>'
+          + '<span class="bt-price">' + price + '</span>'
+          + '<span class="bt-chg ' + cls + '">' + chg + '</span>'
+          + '</span>';
+      }).join('');
+      // 이음새 없는 무한 루프: 동일 목록 2회 반복 + translateX(-50%)
+      track.innerHTML = items + items;
+      track.style.animationDuration = Math.max(30, Math.round(codes.length * 3.2)) + 's';
+      track.style.animationPlayState = 'running';
+      bar.setAttribute('data-count', String(codes.length));
+      const asOf = document.getElementById('btAsOf');
+      if (asOf && typeof getLatestRadarDateInfo === 'function') {
+        try {
+          const info = getLatestRadarDateInfo();
+          if (info && info.full) asOf.textContent = info.full;
+        } catch (e) { /* noop */ }
+      }
+    }
+    function initBottomStockTickerPause() {
+      const bar = document.getElementById('bottomStockTicker');
+      const track = document.getElementById('bottomTickerTrack');
+      if (!bar || !track) return;
+      const pause = function () { track.style.animationPlayState = 'paused'; };
+      const resume = function () { track.style.animationPlayState = 'running'; };
+      bar.addEventListener('mouseenter', pause);
+      bar.addEventListener('mouseleave', resume);
+      bar.addEventListener('touchstart', pause, { passive: true });
+      bar.addEventListener('touchend', resume, { passive: true });
+      bar.addEventListener('touchcancel', resume, { passive: true });
+    }
+
     // =========================================================================
     // 야간선물 갭 반영 기준가 자동 환산 엔진 (Night Futures Gap-Adjusted Levels)
     // ※ 아래 두 상수는 08:00 / 19:50 / 토 09:00 레이더가 매 실행 시 최신 실측치로 갱신한다.
@@ -7088,6 +7359,7 @@
       renderTimelineTabs(codes);
       renderShareTabs(codes);
       renderDartFilterPills(codes);
+      if (typeof renderBottomStockTicker === 'function') renderBottomStockTicker();
 
       // Re-initialize primary views to 1st stock in list
       const firstCode = codes[0];
@@ -7274,6 +7546,8 @@
 
     function setAdminMode(val) {
       isAdmin = val;
+      // 👑 관리자 전용 최상단 브랜드 헤더 노출 토글 (일반 방문자/미인증 화면에는 영향 없음)
+      document.body.classList.toggle('admin-logged-in', !!val);
       const gate = document.getElementById('trialExpiredGate');
       if (isAdmin) {
         adminZone.classList.add('unlocked');
@@ -7303,7 +7577,12 @@
         btnAdminAuth.onclick = toggleAdminModal;
         updateTrialDisplay();
       }
+      try { if (typeof syncAdminMasterBrandBar === 'function') syncAdminMasterBrandBar(); } catch (e) { /* noop */ }
     }
+
+    // 호환용 별칭: 자동화·검증 스크립트의 setAdminState(true|false) 호출을 그대로 지원한다.
+    function setAdminState(val) { setAdminMode(val); }
+    if (typeof window !== 'undefined') { window.setAdminState = setAdminState; }
 
     function toggleAdminModal() {
       if (checkSecurityLockout()) return;
@@ -10345,6 +10624,18 @@ function switchCoachTab(tabKey) {
         }
       } catch (e) {
         console.error('renderMarketPulseBadge failed:', e);
+      }
+      try {
+        if (typeof renderBottomStockTicker === 'function') renderBottomStockTicker();
+        if (typeof initBottomStockTickerPause === 'function') initBottomStockTickerPause();
+      } catch (e) {
+        console.error('renderBottomStockTicker failed:', e);
+      }
+      try {
+        if (typeof initAdminMasterBrandObserver === 'function') initAdminMasterBrandObserver();
+        if (typeof syncAdminMasterBrandBar === 'function') syncAdminMasterBrandBar();
+      } catch (e) {
+        console.error('adminMasterBrandBar init failed:', e);
       }
       try {
         if (typeof initAudioBriefingListeners === 'function') {
