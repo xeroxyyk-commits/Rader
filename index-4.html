@@ -2319,6 +2319,7 @@
           <button type="button" class="btn-preset" onclick="applyLatestNightFutures()">최신 야간선물(<span id="gapLatestPct">-7.01%</span>) 적용</button>
           <button type="button" class="btn-preset" onclick="resetGapPctToZero()">0% 기준가</button>
           <button type="button" class="btn-preset gap-mode-btn" id="gapPremarketBtn" onclick="applyPremarketPrices()">📊 프리마켓 실측 대입</button>
+          <button type="button" class="btn-preset gap-mode-btn" id="gapAfterhoursBtn" onclick="applyAfterhoursMomentum()">🌙 시간외 모멘텀 반영</button>
         </div>
       </div>
       <div class="gap-latest-note">📡 레이더 최신 야간선물 기준: <strong id="gapNightLabel">11-21 06:00 마감 700.00 (-7.01%) · 주말 휴장 후 최신</strong> · 현재 모드/등락률: <strong id="gapCurrentPctTag">-7.01%</strong></div>
@@ -2329,7 +2330,7 @@
       </div>
       <div class="gap-grid" id="gapAdjustGrid"></div>
       <div class="gap-summary" id="gapAdjustSummary"></div>
-      <div class="gap-footnote">※ 호가 단위는 한국거래소 기준(2천원 미만 1원 · 5천원 미만 5원 · 2만원 미만 10원 · 5만원 미만 50원 · 20만원 미만 100원 · 50만원 미만 500원 · 50만원 이상 1,000원)으로 자동 정렬했습니다. 기존 손절선·목표가를 야간선물 등락률만큼 단순 비례(베타 1.0) 환산한 참고치이며, 종목별 베타·수급·공시 갭은 반영되지 않습니다. 실제 주문 전 호가창과 함께 확인하십시오. <strong>[📊 프리마켓 실측 대입]</strong>은 08:00 장전 NXT 실측 체결가를 종목별로 그대로 쓰고(손절선·목표가는 기존 기준 유지), 미체결 종목만 야간선물 환산치로 대체합니다. 슬라이더를 움직이거나 [최신 야간선물]·[0% 기준가]를 누르면 일괄 환산 모드로 돌아옵니다.</div>
+      <div class="gap-footnote">※ 호가 단위는 한국거래소 기준(2천원 미만 1원 · 5천원 미만 5원 · 2만원 미만 10원 · 5만원 미만 50원 · 20만원 미만 100원 · 50만원 미만 500원 · 50만원 이상 1,000원)으로 자동 정렬했습니다. 기존 손절선·목표가를 야간선물 등락률만큼 단순 비례(베타 1.0) 환산한 참고치이며, 종목별 베타·수급·공시 갭은 반영되지 않습니다. 실제 주문 전 호가창과 함께 확인하십시오. <strong>[📊 프리마켓 실측 대입]</strong>은 08:00 장전 NXT 실측 체결가를 종목별로 그대로 쓰고(손절선·목표가는 기존 기준 유지), 미체결 종목만 야간선물 환산치로 대체합니다. <strong>[🌙 시간외 모멘텀 반영]</strong>은 19:50 시간외 등락률(정규장 종가 대비)과 야간선물 등락률을 50:50으로 혼합해 예상 시초가를 만들고, 시간외 데이터가 없는 종목만 야간선물 100%로 환산합니다. 슬라이더를 움직이거나 [최신 야간선물]·[0% 기준가]를 누르면 일괄 환산 모드로 돌아옵니다.</div>
     </div>
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
@@ -6501,6 +6502,32 @@
       '240810': null                                           // 원익IPS (프리마켓 거래 없음)
     };
     // =========================================================================
+    // 🌙 시간외(NXT) 모멘텀 모드 상수 (Afterhours Momentum Blend)
+    // ※ 19:50 야간 결산 레이더가 매 실행 시 당일 정규장 종가 대비 19:50 시간외 등락률(%)로 갱신한다.
+    //    null = 해당 종목 19:50 시간외 데이터 없음 → 야간선물 등락률 100%로 대체.
+    // ※ AFTERHOURS_MOMENTUM_ASOF·AFTERHOURS_MOMENTUM_PCT·gapAfterhoursBtn·applyAfterhoursMomentum()은
+    //    절대 삭제하지 말고 수치만 최신화한다.
+    // =========================================================================
+    const AFTERHOURS_MOMENTUM_ASOF = '11-23 19:50';
+    const AFTERHOURS_MOMENTUM_PCT = {
+      '058470': 2.35,    // 리노공업 (44,700 → 45,750)
+      '443060': -0.34,   // HD현대마린솔루션 (176,400 → 175,800)
+      '0161M0': 2.17,    // 네오사피엔스 (4,385 → 4,480)
+      '010120': 1.54,    // LS ELECTRIC (110,200 → 111,900)
+      '005930': 1.92,    // 삼성전자 (177,500 → 180,900)
+      '000660': 1.84,    // SK하이닉스 (1,085,000 → 1,105,000)
+      '009150': 2.44,    // 삼성전기 (778,000 → 797,000)
+      '240810': 2.44,    // 원익IPS (65,600 → 67,200)
+      '047810': 1.93,    // 한국항공우주 (93,100 → 94,900)
+      '010140': 1.11,    // 삼성중공업 (14,350 → 14,510)
+      '003490': 0.17,    // 대한항공 (30,300 → 30,350)
+      '005380': 0.20,    // 현대차 (247,500 → 248,000)
+      '196170': 0.12,    // 알테오젠 (168,500 → 168,700)
+      '010950': -0.21,   // S-Oil (93,300 → 93,100)
+      '042700': null,    // 한미반도체 (19:50 시간외 데이터 미확인)
+      '015760': null     // 한국전력 (19:50 시간외 데이터 미확인)
+    };
+    // =========================================================================
     // 상단 시장 반등·수급 전환 펄스 배지 (Intraday Rebound & Supply Pulse)
     // ※ 15:20 장마감 / 19:50 야간 결산 레이더가 매 실행 시 아래 상수를 실측치로 갱신한다.
     // ※ MARKET_PULSE_BADGE 상수와 renderMarketPulseBadge() 함수·#intradayReboundBadge 바는
@@ -6556,7 +6583,7 @@
 
     let gapAdjustPct = NIGHT_FUTURES_CHANGE_PCT;
     let gapAdjustTab = 'core4';
-    let gapAdjustMode = 'pct'; // 'pct' = 야간선물 일괄 환산 · 'premarket' = NXT 프리마켓 실측 대입
+    let gapAdjustMode = 'pct'; // 'pct' = 야간선물 일괄 환산 · 'premarket' = NXT 프리마켓 실측 대입 · 'afterhours' = 야간선물 50% + 19:50 시간외 50% 혼합
 
     function roundToKrxTick(price) {
       const p = Math.abs(Number(price) || 0);
@@ -6623,23 +6650,35 @@
       }
     }
 
+    // 🌙 시간외 모멘텀 반영 모드: 야간선물 등락률 50% + 19:50 시간외 등락률 50% 혼합 시초가
+    function applyAfterhoursMomentum() {
+      gapAdjustMode = 'afterhours';
+      renderGapAdjust();
+      if (typeof showToast === 'function') {
+        showToast(`🌙 ${AFTERHOURS_MOMENTUM_ASOF} 시간외 등락률과 야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)}를 50:50으로 혼합한 예상 시초가입니다. 시간외 미확인 종목은 야간선물 100%로 환산합니다.`);
+      }
+    }
+
     function renderGapAdjust() {
       const grid = document.getElementById('gapAdjustGrid');
       const sumBox = document.getElementById('gapAdjustSummary');
       if (!grid) return;
 
       const isPm = (gapAdjustMode === 'premarket');
+      const isAh = (gapAdjustMode === 'afterhours');
       const pmAsofEl = document.getElementById('gapPremarketNote');
-      if (pmAsofEl) pmAsofEl.setAttribute('data-mode', isPm ? 'premarket' : 'pct');
+      if (pmAsofEl) pmAsofEl.setAttribute('data-mode', isPm ? 'premarket' : (isAh ? 'afterhours' : 'pct'));
 
       const latestEl = document.getElementById('gapLatestPct');
       if (latestEl) latestEl.textContent = gapPctText(NIGHT_FUTURES_CHANGE_PCT);
       const labelEl = document.getElementById('gapNightLabel');
       if (labelEl) labelEl.textContent = NIGHT_FUTURES_LABEL;
       const curTag = document.getElementById('gapCurrentPctTag');
-      if (curTag) curTag.textContent = isPm ? ('📊 프리마켓 실측(' + PREMARKET_ASOF + ')') : gapPctText(gapAdjustPct);
+      if (curTag) curTag.textContent = isPm ? ('📊 프리마켓 실측(' + PREMARKET_ASOF + ')') : (isAh ? ('🌙 시간외 혼합(' + AFTERHOURS_MOMENTUM_ASOF + ')') : gapPctText(gapAdjustPct));
       const pmBtn = document.getElementById('gapPremarketBtn');
       if (pmBtn) pmBtn.classList.toggle('active', isPm);
+      const ahBtn = document.getElementById('gapAfterhoursBtn');
+      if (ahBtn) ahBtn.classList.toggle('active', isAh);
       const range = document.getElementById('gapPctRange');
       const num = document.getElementById('gapPctInput');
       if (range && String(range.value) !== String(gapAdjustPct)) range.value = String(gapAdjustPct);
@@ -6660,6 +6699,7 @@
       const factor = 1 + gapAdjustPct / 100;
       let breachCount = 0, rrSum = 0, rrCnt = 0;
       let pmHold = 0, pmBreach = 0, pmNone = 0;
+      let ahKnown = 0, ahNone = 0;
 
       const cards = codes.map(code => {
         const d = TURNAROUND_MASTER_DATA[code];
@@ -6674,11 +6714,23 @@
         const usePm = isPm && pmPrice > 0;
         const pmPct = usePm ? (Number(pm.pct) || 0) : 0;
 
+        // 🌙 시간외 모드: 19:50 시간외 등락률(정규장 종가 대비 %)과 야간선물 등락률을 50:50 혼합.
+        const ahRaw = (typeof AFTERHOURS_MOMENTUM_PCT !== 'undefined' && AFTERHOURS_MOMENTUM_PCT
+          && Object.prototype.hasOwnProperty.call(AFTERHOURS_MOMENTUM_PCT, code)) ? AFTERHOURS_MOMENTUM_PCT[code] : null;
+        const ahPct = (ahRaw === null || ahRaw === undefined || !isFinite(Number(ahRaw))) ? null : Number(ahRaw);
+        const useAh = isAh;
+        const blendPct = useAh ? (ahPct === null ? NIGHT_FUTURES_CHANGE_PCT : ((NIGHT_FUTURES_CHANGE_PCT + ahPct) / 2)) : null;
+        const modeFactor = useAh ? (1 + blendPct / 100) : factor;
+
         let gapOpen, openLabel, gapPctReal;
         if (usePm) {
           gapOpen = pmPrice;                       // 실측 체결가를 그대로 시초가로 사용
           openLabel = '프리마켓 실측가';
           gapPctReal = pmPct;                      // NXT 프리마켓 등락률(전일 NXT 종가 기준)
+        } else if (useAh) {
+          gapOpen = roundToKrxTick(base * (1 + blendPct / 100));
+          openLabel = (ahPct === null) ? '시간외 미확인(야간선물 100%)' : '시간외 혼합 시초가';
+          gapPctReal = ((gapOpen - base) / base) * 100;
         } else {
           gapOpen = roundToKrxTick(base * factor);
           openLabel = isPm ? '야간선물 갭 환산 시초가' : '예상 갭 시초가';
@@ -6686,8 +6738,8 @@
         }
 
         // 프리마켓 모드는 원래 손절선·목표가를 그대로 기준으로 삼고, 실측 시초가로 손익비·사수 여부만 판정한다.
-        const stopAdj = usePm ? stop : roundToKrxTick(stop * factor);
-        const tgtAdj = usePm ? tgt : roundToKrxTick(tgt * factor);
+        const stopAdj = usePm ? stop : roundToKrxTick(stop * modeFactor);
+        const tgtAdj = usePm ? tgt : roundToKrxTick(tgt * modeFactor);
         const stopFromOpen = gapOpen > 0 ? ((stopAdj - gapOpen) / gapOpen) * 100 : 0;
         const tgtFromOpen = gapOpen > 0 ? ((tgtAdj - gapOpen) / gapOpen) * 100 : 0;
         const origRR = (base - stop) > 0 ? (tgt - base) / (base - stop) : 0;
@@ -6699,11 +6751,29 @@
         } else if (isPm) {
           pmNone += 1;
         }
+        if (useAh) {
+          if (ahPct === null) { ahNone += 1; } else { ahKnown += 1; }
+        }
         if (breach) breachCount += 1;
         if (newRR > 0) { rrSum += newRR; rrCnt += 1; }
 
         const gapCls = gapPctReal > 0 ? 'up' : (gapPctReal < 0 ? 'down' : '');
         let badges = '';
+        if (useAh) {
+          if (ahPct === null) {
+            badges += `<div class="gap-badge info">➖ 시간외 미확인 → 야간선물 100% — ${AFTERHOURS_MOMENTUM_ASOF} 시간외 체결이 확인되지 않아 야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)}로 환산한 시초가 ${won(gapOpen)}원입니다.</div>`;
+          } else {
+            badges += `<div class="gap-badge info">🌙 시간외 혼합 50:50 — 야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)} × 50% + ${AFTERHOURS_MOMENTUM_ASOF} 시간외 ${gapPctText(ahPct)} × 50% = 혼합 ${gapPctText(blendPct)}(종가 대비).</div>`;
+          }
+          if (breach) {
+            badges += `<div class="gap-badge danger">🔴 손절선 하회 — 혼합 시초가 ${won(gapOpen)}원이 기존 손절선 ${won(stop)}원을 ${Math.abs(stopFromOpen).toFixed(1)}% 하회합니다. 시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
+          } else {
+            badges += `<div class="gap-badge ok">🟢 손절선 사수 — 혼합 시초가가 기존 손절선 ${won(stop)}원 위 ${stopFromOpen.toFixed(1)}% 여유입니다. 사수 확인 전에는 계획 수량 1/3 이내.</div>`;
+          }
+          if (newRR > 0) {
+            badges += `<div class="gap-badge warn">혼합 손익비 1 : ${newRR.toFixed(2)} (원래 1 : ${origRR > 0 ? origRR.toFixed(2) : '-'}) · 목표 ${won(tgt)}원까지 ${tgtFromOpen >= 0 ? '+' : ''}${tgtFromOpen.toFixed(1)}%.</div>`;
+          }
+        }
         if (usePm) {
           if (breach) {
             badges += `<div class="gap-badge danger">🔴 프리마켓 손절선 하회 — ${PREMARKET_ASOF} NXT 실측 ${won(gapOpen)}원이 기존 손절선 ${won(stop)}원을 ${Math.abs(stopFromOpen).toFixed(1)}% 하회합니다. 시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
@@ -6740,7 +6810,8 @@
           }
         }
 
-        const openRowLabel = usePm ? ('프리마켓 실측가 (' + PREMARKET_ASOF + ' NXT)') : (isPm ? '야간선물 갭 환산 시초가' : '예상 갭 시초가');
+        const openRowLabel = usePm ? ('프리마켓 실측가 (' + PREMARKET_ASOF + ' NXT)') : (useAh ? ('시간외 혼합 시초가 (' + AFTERHOURS_MOMENTUM_ASOF + ')') : (isPm ? '야간선물 갭 환산 시초가' : '예상 갭 시초가'));
+        const lvlTag = usePm ? ' (기존 기준 유지)' : (useAh ? ' (혼합 반영)' : ' (갭 반영)');
 
         return `
           <div class="gap-card" data-code="${code}">
@@ -6754,9 +6825,9 @@
             <div class="gap-rows">
               <div class="gap-row"><span class="lbl">기준가 (전일 확정 종가)</span><strong>${won(base)}원</strong><em>${d.changeStr || ''}</em></div>
               <div class="gap-row"><span class="lbl">${openRowLabel}</span><strong>${won(gapOpen)}원</strong><em class="${gapCls}">${gapPctText(gapPctReal)}${usePm ? ' · NXT' : ''}</em></div>
-              <div class="gap-row"><span class="lbl">손절선${usePm ? ' (기존 기준 유지)' : ' (갭 반영)'}</span><strong>${won(stopAdj)}원</strong><em>${usePm ? ('원래 ' + won(stop) + '원 · 실측가 ' + (breach ? Math.abs(((gapOpen - stop) / stop) * 100).toFixed(1) + '% 하회' : (((gapOpen - stop) / stop) * 100).toFixed(1) + '% 위')) : ('원래 ' + won(stop) + '원 · 시초가 대비 ' + stopFromOpen.toFixed(1) + '%')}</em></div>
-              <div class="gap-row"><span class="lbl">목표가${usePm ? ' (기존 기준 유지)' : ' (갭 반영)'}</span><strong>${won(tgtAdj)}원</strong><em>${usePm ? '원래 ' + won(tgt) + '원 · 실측가 대비 +' + tgtFromOpen.toFixed(1) + '%' : '원래 ' + won(tgt) + '원 · 시초가 대비 +' + tgtFromOpen.toFixed(1) + '%'}</em></div>
-              <div class="gap-row"><span class="lbl">손익비${usePm ? ' (프리마켓 기준)' : ' (갭 반영)'}</span><strong>1 : ${newRR > 0 ? newRR.toFixed(2) : '-'}</strong><em>원래 ${d.rrRatio || '-'}</em></div>
+              <div class="gap-row"><span class="lbl">손절선${lvlTag}</span><strong>${won(stopAdj)}원</strong><em>${usePm ? ('원래 ' + won(stop) + '원 · 실측가 ' + (breach ? Math.abs(((gapOpen - stop) / stop) * 100).toFixed(1) + '% 하회' : (((gapOpen - stop) / stop) * 100).toFixed(1) + '% 위')) : ('원래 ' + won(stop) + '원 · 시초가 대비 ' + stopFromOpen.toFixed(1) + '%')}</em></div>
+              <div class="gap-row"><span class="lbl">목표가${lvlTag}</span><strong>${won(tgtAdj)}원</strong><em>${usePm ? '원래 ' + won(tgt) + '원 · 실측가 대비 +' + tgtFromOpen.toFixed(1) + '%' : '원래 ' + won(tgt) + '원 · 시초가 대비 +' + tgtFromOpen.toFixed(1) + '%'}</em></div>
+              <div class="gap-row"><span class="lbl">손익비${usePm ? ' (프리마켓 기준)' : (useAh ? ' (혼합 반영)' : ' (갭 반영)')}</span><strong>1 : ${newRR > 0 ? newRR.toFixed(2) : '-'}</strong><em>원래 ${d.rrRatio || '-'}</em></div>
             </div>
             <div class="gap-badges">${badges}</div>
           </div>
@@ -6767,7 +6838,17 @@
 
       if (sumBox) {
         const avgRR = rrCnt > 0 ? (rrSum / rrCnt) : 0;
-        if (isPm) {
+        if (isAh) {
+          sumBox.innerHTML = `
+            <span>모드: <strong>🌙 시간외 모멘텀 반영 (50:50 혼합)</strong></span>
+            <span>기준: <strong>야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)} × 50% + ${AFTERHOURS_MOMENTUM_ASOF} 시간외 × 50%</strong></span>
+            <span>대상: <strong>${cards.length}종목</strong></span>
+            <span>🌙 시간외 확인: <strong style="color:var(--accent);">${ahKnown}종목</strong></span>
+            <span>➖ 시간외 미확인(야간선물 100%): <strong>${ahNone}종목</strong></span>
+            <span>손절선 하회: <strong style="color:${breachCount > 0 ? 'var(--danger)' : 'var(--success)'};">${breachCount}종목</strong></span>
+            <span>평균 혼합 손익비: <strong>1 : ${avgRR > 0 ? avgRR.toFixed(2) : '-'}</strong></span>
+          `;
+        } else if (isPm) {
           sumBox.innerHTML = `
             <span>모드: <strong>📊 프리마켓 실측 대입 (${PREMARKET_ASOF} NXT)</strong></span>
             <span>대상: <strong>${cards.length}종목</strong></span>
