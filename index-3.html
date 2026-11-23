@@ -324,8 +324,9 @@
       filter: blur(8px); pointer-events: none !important; user-select: none !important;
     }
     @media (max-width: 480px) {
+      /* 모바일에서는 라벨을 한 줄로 줄여 마키 표시 폭을 확보한다 (잘림 방지) */
       .bt-label { padding: 6px 9px; font-size: 0.62rem; }
-      .bt-label em { font-size: 0.5rem; }
+      .bt-label em { display: none; }
       .bt-item { font-size: 0.71rem; padding: 0 10px; }
     }
 
