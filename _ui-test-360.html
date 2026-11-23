@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><title>UI 360 viewport test</title>
+<style>
+  body{margin:0;padding:10px;background:#2b3242;display:flex;gap:12px;align-items:flex-start;font-family:sans-serif;color:#fff}
+  .col{display:flex;flex-direction:column;gap:6px}
+  .cap{font-size:12px;opacity:.8}
+  iframe{width:360px;height:820px;border:2px solid #7dd3fc;background:#fff;border-radius:6px}
+</style></head>
+<body>
+  <div class="col"><div class="cap">360px (mobile) — admin brand bar top</div><iframe id="f" src="index.html"></iframe></div>
+<script>
+  var f = document.getElementById('f');
+  f.addEventListener('load', function () {
+    try { f.contentWindow.setAdminState(true); } catch (e) { document.title = 'ERR ' + e; }
+  });
+</script>
+</body></html>

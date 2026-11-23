@@ -173,6 +173,9 @@
     .admin-master-brand { display: none !important; }
     body.admin-logged-in .admin-master-brand { display: flex !important; }
     body.admin-logged-in nav .brand-title-wrap { display: none !important; }
+    /* 관리자 모드에서는 <nav>가 퀵 네비게이션 + 배지 바 역할만 하도록 한 줄 정리 */
+    body.admin-logged-in nav { flex-wrap: wrap; row-gap: 8px; }
+    body.admin-logged-in nav .nav-brand { width: auto; flex: 1 1 auto; min-width: 0; }
 
     .admin-master-brand {
       position: relative;
