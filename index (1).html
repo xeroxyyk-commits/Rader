@@ -1264,6 +1264,57 @@
     }
     .gap-summary span { overflow-wrap: anywhere; }
     .gap-footnote { margin-top: 10px; font-size: 0.72rem; color: var(--text-muted); font-weight: 600; line-height: 1.55; overflow-wrap: anywhere; }
+
+    /* 📡 종목별 갭 괴리 레이더 (프리마켓 vs 야간선물) — 모바일 360px·카톡 인앱 가로 잘림 없음 */
+    #gapDivergenceBox {
+      margin-top: 16px; padding: 14px; border-radius: 16px; min-width: 0;
+      background: rgba(56, 189, 248, 0.07); border: 1px solid rgba(56, 189, 248, 0.28);
+    }
+    .gap-div-head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 6px 10px; margin-bottom: 4px; }
+    .gap-div-head > div { min-width: 0; flex: 1 1 220px; }
+    .gap-div-title { font-size: 0.98rem; font-weight: 900; color: var(--text); overflow-wrap: anywhere; }
+    .gap-div-sub { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 3px; line-height: 1.5; overflow-wrap: anywhere; }
+    .gap-div-base {
+      font-size: 0.72rem; font-weight: 800; color: var(--accent);
+      background: rgba(99, 102, 241, 0.10); border: 1px solid var(--border-accent);
+      border-radius: 999px; padding: 3px 10px; max-width: 100%; overflow-wrap: anywhere; line-height: 1.45;
+    }
+    .gap-div-summary { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 10px 0; }
+    .gap-div-chip {
+      font-size: 0.71rem; font-weight: 800; padding: 3px 9px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text-sub);
+      max-width: 100%; overflow-wrap: anywhere;
+    }
+    .gap-div-chip.over { color: var(--danger); border-color: rgba(239, 68, 68, 0.32); background: rgba(239, 68, 68, 0.10); }
+    .gap-div-chip.sync { color: var(--success); border-color: rgba(5, 150, 105, 0.32); background: rgba(5, 150, 105, 0.10); }
+    .gap-div-chip.under { color: #2563eb; border-color: rgba(59, 130, 246, 0.32); background: rgba(59, 130, 246, 0.10); }
+    .gap-div-chip.none { color: var(--text-muted); }
+    .gap-div-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); gap: 8px; }
+    .gap-div-card {
+      min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 9px 10px; display: flex; flex-direction: column; gap: 5px;
+    }
+    .gap-div-card.over { border-color: rgba(239, 68, 68, 0.40); background: rgba(239, 68, 68, 0.05); }
+    .gap-div-card.under { border-color: rgba(59, 130, 246, 0.40); background: rgba(59, 130, 246, 0.05); }
+    .gap-div-card.sync { border-color: rgba(5, 150, 105, 0.36); background: rgba(5, 150, 105, 0.05); }
+    .gap-div-name { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; font-size: 0.8rem; font-weight: 900; color: var(--text); min-width: 0; overflow-wrap: anywhere; }
+    .gap-div-name .code { font-size: 0.64rem; font-weight: 700; color: var(--text-muted); }
+    .gap-div-nums { display: flex; flex-wrap: wrap; gap: 2px 8px; font-size: 0.68rem; font-weight: 700; color: var(--text-muted); min-width: 0; }
+    .gap-div-nums b { font-weight: 900; color: var(--text); }
+    .gap-div-nums b.up { color: var(--danger); }
+    .gap-div-nums b.down { color: #2563eb; }
+    .gap-div-verdict { font-size: 0.71rem; font-weight: 900; line-height: 1.35; overflow-wrap: anywhere; }
+    .gap-div-verdict.over { color: var(--danger); }
+    .gap-div-verdict.under { color: #2563eb; }
+    .gap-div-verdict.sync { color: var(--success); }
+    .gap-div-verdict.none { color: var(--text-muted); }
+    body.dark .gap-div-nums b.down, body.dark .gap-div-verdict.under, body.dark .gap-div-chip.under { color: #7dd3fc; }
+    @media (max-width: 480px) {
+      #gapDivergenceBox { padding: 12px 11px; }
+      .gap-div-grid { grid-template-columns: minmax(0, 1fr); }
+      .gap-div-base { font-size: 0.68rem; }
+    }
+
     @media (max-width: 480px) {
       .gap-grid { grid-template-columns: minmax(0, 1fr); }
       .gap-card-head { flex-direction: column; }
@@ -2423,9 +2474,9 @@
       <div class="automation-pipeline-bar">
         <div class="pipe-status-left">
           <span class="pipe-live-dot"></span>
-          <span class="pipe-title">실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) + 토요일 주말 결산 가동 중</span>
+          <span class="pipe-title" id="pipelineTitleLabel">실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) + 토요일 주말 결산 가동 중</span>
         </div>
-        <div class="pipe-status-right"><span>현재: 11-24(화) 08:00 장전 레이더 완료 (1/3단계) · 다음 자동 갱신: 11-24(화) 15:20 KST (장 마감 10분 전 결산)</span></div>
+        <div class="pipe-status-right"><span id="pipelineNextLabel">현재: 11-24(화) 08:00 장전 레이더 완료 (1/3단계) · 다음 자동 갱신: 11-24(화) 15:20 KST (장 마감 10분 전 결산)</span></div>
       </div>
 
       <!-- ⏱️ Daily 3-Stage Workflow & Realtime Market State Tracker -->
@@ -2450,37 +2501,37 @@
         </div>
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
-          <div class="stage-step-box" id="stageStep1" style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:14px; position:relative;">
+          <div class="stage-step-box" id="stageStep1" style="background:rgba(22,163,74,0.08); border:1px solid var(--success); border-radius:14px; padding:14px; position:relative;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <span style="font-weight:900; font-size:0.9rem; color:var(--text-sub);">☀️ 1단계: 08:00 장전 레이더</span>
-              <span class="stage-tag" style="background:var(--border); color:var(--text-sub); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 (11-23 08:00 발송)</span>
+              <span class="stage-tag" style="background:var(--success); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 · 현재 단계 (11-24 08:00 발송)</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">개장 1시간 전 당일 승부 전략</div>
-            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">야간선물 -7.01%·이론 시초 4,513 대응 브리핑 발송 — 결과: 시가 4,734.90(-2.77%)로 갭 절반 소화, 종가 4,708.54(-3.31%)</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">미장 폭등(나스닥 +6.51% · SOX +14.03%) · 야간선물 777.95(+7.06%) · NXT 프리마켓 4대주 전원 손절선 사수(리노공업 48,800 +6.67% · HD현대마린 181,000 +2.72% · LS ELECTRIC 120,700 +7.77% · 네오사피엔스 미체결)</div>
           </div>
 
           <div class="stage-step-box" id="stageStep2" style="background:var(--surface-sub); border:1px solid var(--accent); border-radius:14px; padding:14px; position:relative;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <span style="font-weight:900; font-size:0.9rem; color:var(--accent);">📊 2단계: 15:20 장마감 레이더</span>
-              <span class="stage-tag" style="background:var(--border); color:var(--text-sub); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 (11-23 15:20 발송)</span>
+              <span class="stage-tag" style="background:var(--border); color:var(--text-sub); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">오늘 15:20 예정</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">마감 결산 &amp; 기관 순매수 전환</div>
-            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">코스피 4,708.54(-3.31%)·코스닥 635.45(-1.58%) — 기관 +1,872억 순매수 전환(잠정), 네오사피엔스 +2.45%·LS ELECTRIC +0.46% 반등 → 19:50 확정 +1,759억</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">직전 11-23 마감: 코스피 4,708.54(-3.31%) · 기관 +1,759억 순매수 전환(외인 -2,558억) — 오늘 15:20 확정치로 갱신 예정</div>
           </div>
 
           <div class="stage-step-box" id="stageStep3" style="background:var(--surface-sub); border:1px solid var(--accent); border-radius:14px; padding:14px; position:relative;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <span style="font-weight:900; font-size:0.9rem; color:var(--accent);">🌙 3단계: 19:50 야간 결산 레이더</span>
-              <span class="stage-tag" style="background:var(--success); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 · 현재 단계 (11-23 19:50 발송)</span>
+              <span class="stage-tag" style="background:var(--border); color:var(--text-sub); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">오늘 19:50 예정</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">국내 시간외 마감 &amp; 익일 프리마켓</div>
-            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">시간외 단일가·NXT(20:00 마감 직전) 결산 — 반도체·전력기기 시간외 반등(삼성전기 +2.97%·SK하이닉스 -0.72%) · 코스피200 야간선물 738.05(+1.57%)로 내일 갭 기준가 갱신</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">직전 11-23 야간 결산 반영 완료 — 오늘 19:50 시간외·NXT 결산과 야간선물 마감으로 익일 갭 기준가를 갱신 예정</div>
           </div>
 
-          <div class="stage-step-box" id="stageStep4" style="background:rgba(22,163,74,0.08); border:1px solid var(--success); border-radius:14px; padding:14px; position:relative;">
+          <div class="stage-step-box" id="stageStep4" style="background:var(--surface-sub); border:1px solid var(--accent); border-radius:14px; padding:14px; position:relative;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <span style="font-weight:900; font-size:0.9rem; color:var(--success);">🏁 4단계: 토요일 09:00 주말 결산</span>
-              <span class="stage-tag" style="background:var(--border); color:var(--text-sub); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 (11-21 09:00 발송)</span>
+              <span style="font-weight:900; font-size:0.9rem; color:var(--accent);">🏁 4단계: 토요일 09:00 주말 결산</span>
+              <span class="stage-tag" style="background:var(--border); color:var(--text-sub); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">11-28(토) 09:00 예정</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">금요일 미장 마감 &amp; 차주 월요일 프리뷰</div>
             <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">11-21(토) 주말 결산 발송 완료 → 오늘 실제 시가 4,734.90으로 갭 절반 소화 · 다음 주말 결산은 <strong>11-28(토) 09:00</strong> (금요일 미장 마감 & 12-01 차주 프리뷰)</div>
@@ -2497,11 +2548,11 @@
           </div>
           <div>
             <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-              <span id="aiCoachGreetingTitle">윤용규 님, 오늘도 원칙을 지킨 멋진 하루입니다!</span>
+              <span id="aiCoachGreetingTitle" data-asof="11-24 08:00">11월 24일(화) · 갭상승 출발일, 오늘도 원칙을 지키는 윤용규 님!</span>
               <span class="tag tag-highlight" style="font-size:0.72rem; padding:2px 8px;">1:1 AI 코치</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;" id="aiCoachTimeSub">
-              실시간 시장 상황과 심리를 읽어드리는 윤스트롱 프라이빗 멘토링
+              야간선물 +7.06% 갭업 출발 · 실시간 시장 상황과 심리를 읽어드리는 윤스트롱 프라이빗 멘토링 (11-24 08:00 장전 기준)
             </div>
           </div>
         </div>
@@ -2732,6 +2783,18 @@
       </div>
       <div class="gap-grid" id="gapAdjustGrid"></div>
       <div class="gap-summary" id="gapAdjustSummary"></div>
+      <!-- 📡 종목별 갭 괴리 레이더 (프리마켓 vs 야간선물) — renderGapDivergence()가 단일 소스에서 자동 렌더 · 절대 삭제 금지 -->
+      <div class="gap-divergence-box" id="gapDivergenceBox">
+        <div class="gap-div-head">
+          <div>
+            <div class="gap-div-title">📡 종목별 갭 괴리 레이더 (프리마켓 vs 야간선물)</div>
+            <div class="gap-div-sub">NXT 프리마켓 등락률에서 코스피200 야간선물 등락률을 뺀 <strong>괴리(%p)</strong>로 오늘 시초가의 되돌림·추격 위험을 판정합니다. <strong>±2.0%p</strong>를 넘으면 갭 초과(되돌림 주의)/갭 미달(추격 금지), 그 사이는 동조 흐름입니다.</div>
+          </div>
+          <span class="gap-div-base" id="gapDivergenceBase">야간선물 +7.06% · 프리마켓 11-24 08:05</span>
+        </div>
+        <div class="gap-div-summary" id="gapDivergenceSummary"></div>
+        <div class="gap-div-grid" id="gapDivergenceGrid"></div>
+      </div>
       <div class="gap-footnote">※ 호가 단위는 한국거래소 기준(2천원 미만 1원 · 5천원 미만 5원 · 2만원 미만 10원 · 5만원 미만 50원 · 20만원 미만 100원 · 50만원 미만 500원 · 50만원 이상 1,000원)으로 자동 정렬했습니다. 기존 손절선·목표가를 야간선물 등락률만큼 단순 비례(베타 1.0) 환산한 참고치이며, 종목별 베타·수급·공시 갭은 반영되지 않습니다. 실제 주문 전 호가창과 함께 확인하십시오. <strong>[📊 프리마켓 실측 대입]</strong>은 08:00 장전 NXT 실측 체결가를 종목별로 그대로 쓰고(손절선·목표가는 기존 기준 유지), 미체결 종목만 야간선물 환산치로 대체합니다. <strong>[🌙 시간외 모멘텀 반영]</strong>은 19:50 시간외 등락률(정규장 종가 대비)과 야간선물 등락률을 50:50으로 혼합해 예상 시초가를 만들고, 시간외 데이터가 없는 종목만 야간선물 100%로 환산합니다. 슬라이더를 움직이거나 [최신 야간선물]·[0% 기준가]를 누르면 일괄 환산 모드로 돌아옵니다.</div>
     </div>
 
@@ -7202,6 +7265,109 @@
     }
 
     // =========================================================================
+    // 📅 주간 3타임 + 주말 결산 레이더 진행 상황 타임라인 · 1:1 AI 코치 인사말 (단일 소스)
+    // ※ 08:00 · 15:20 · 19:50 · 토 09:00 레이더가 매 회차 실행 직후 이 객체의 asOf · dayLabel ·
+    //    currentStage · stages(status/badge/headline/summary) · badgeText · pipelineRight ·
+    //    AI_COACH_GREETING(title/sub)을 당일 날짜·회차 실측치로 갱신하고
+    //    renderStageTimeline() · updateAiCoachGreeting()을 호출한다.
+    // ※ RADAR_STAGE_TIMELINE · renderStageTimeline() · AI_COACH_GREETING · updateAiCoachGreeting() ·
+    //    #stageStep1~4 · #currentStageBadge · #pipelineNextLabel · #aiCoachGreetingTitle 은
+    //    절대 삭제하거나 덮어쓰지 말고 값만 최신화한다.
+    //    status: 'current'(방금 완료·현재 단계) | 'done'(이번 주기 완료) | 'pending'(예정)
+    // =========================================================================
+    const RADAR_STAGE_TIMELINE = {
+      asOf: '11-24 08:00',
+      dayLabel: '11-24(화)',
+      currentStage: '1',
+      badgeText: '🌅 11-24 08:00 장전 레이더 완료 (야간선물 <strong>+7.06%</strong> · NXT 프리마켓 <strong>+2~11%</strong>)',
+      badgeColor: '#16a34a',
+      pipelineLeft: '실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) + 토요일 주말 결산 가동 중',
+      pipelineRight: '현재: 11-24(화) 08:00 장전 레이더 완료 (1/3단계) · 다음 자동 갱신: 11-24(화) 15:20 KST (장 마감 10분 전 결산)',
+      stages: [
+        {
+          id: 1, icon: '☀️', title: '1단계: 08:00 장전 레이더', status: 'current',
+          badge: '완료 · 현재 단계 (11-24 08:00 발송)',
+          headline: '개장 1시간 전 당일 승부 전략',
+          summary: '미장 폭등(나스닥 +6.51% · SOX +14.03%) · 야간선물 777.95(+7.06%) · NXT 프리마켓 4대주 전원 손절선 사수(리노공업 48,800 +6.67% · HD현대마린 181,000 +2.72% · LS ELECTRIC 120,700 +7.77% · 네오사피엔스 미체결)'
+        },
+        {
+          id: 2, icon: '📊', title: '2단계: 15:20 장마감 레이더', status: 'pending',
+          badge: '오늘 15:20 예정',
+          headline: '마감 결산 & 기관 순매수 전환',
+          summary: '직전 11-23 마감: 코스피 4,708.54(-3.31%) · 기관 +1,759억 순매수 전환(외인 -2,558억) — 오늘 15:20 확정치로 갱신 예정'
+        },
+        {
+          id: 3, icon: '🌙', title: '3단계: 19:50 야간 결산 레이더', status: 'pending',
+          badge: '오늘 19:50 예정',
+          headline: '국내 시간외 마감 & 익일 프리마켓',
+          summary: '직전 11-23 야간 결산 반영 완료 — 오늘 19:50 시간외·NXT 결산과 야간선물 마감으로 익일 갭 기준가를 갱신 예정'
+        },
+        {
+          id: 4, icon: '🏁', title: '4단계: 토요일 09:00 주말 결산', status: 'pending',
+          badge: '11-28(토) 09:00 예정',
+          headline: '금요일 미장 마감 & 차주 월요일 프리뷰',
+          summary: '직전 11-21(토) 09:00 주말 결산 완료 — 다음 결산은 11-28(토) 09:00 (금요일 미장 마감 & 12-01 차주 프리뷰)'
+        }
+      ]
+    };
+
+    function renderStageTimeline() {
+      if (typeof RADAR_STAGE_TIMELINE === 'undefined' || !RADAR_STAGE_TIMELINE || !Array.isArray(RADAR_STAGE_TIMELINE.stages)) return;
+      const tl = RADAR_STAGE_TIMELINE;
+      tl.stages.forEach((st, i) => {
+        const box = document.getElementById('stageStep' + (st.id || (i + 1)));
+        if (!box) return;
+        const isCur = (st.status === 'current');
+        const isPend = (st.status === 'pending');
+        const accent = isCur ? 'var(--success)' : (isPend ? 'var(--accent)' : 'var(--text-sub)');
+        const led = isCur ? 'green' : (isPend ? 'amber' : 'emerald');
+        box.style.background = isCur ? 'rgba(22,163,74,0.08)' : (isPend ? 'var(--surface-sub)' : 'var(--surface-sub)');
+        box.style.border = isCur ? '1px solid var(--success)' : (isPend ? '1px solid var(--accent)' : '1px solid var(--border)');
+        box.style.borderRadius = '14px';
+        box.style.padding = '14px';
+        box.style.position = 'relative';
+        box.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+            <span style="font-weight:900; font-size:0.9rem; color:${accent}; display:inline-flex; align-items:center; gap:5px; min-width:0; overflow-wrap:anywhere;"><span class="led-dot ${led} sm" aria-hidden="true"></span>${st.icon || ''} ${st.title}</span>
+            <span class="stage-tag" style="background:${isCur ? 'var(--success)' : 'var(--border)'}; color:${isCur ? '#fff' : 'var(--text-sub)'}; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800; overflow-wrap:anywhere;">${st.badge}</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px; overflow-wrap:anywhere;">${st.headline}</div>
+          <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4; overflow-wrap:anywhere;">${st.summary}</div>
+        `;
+        box.setAttribute('data-stage-status', st.status || '');
+      });
+      const badge = document.getElementById('currentStageBadge');
+      if (badge && tl.badgeText) {
+        badge.innerHTML = tl.badgeText;
+        if (tl.badgeColor) badge.style.background = tl.badgeColor;
+        badge.setAttribute('data-asof', tl.asOf || '');
+      }
+      const nextLabel = document.getElementById('pipelineNextLabel');
+      if (nextLabel && tl.pipelineRight) nextLabel.textContent = tl.pipelineRight;
+      const pipeTitle = document.getElementById('pipelineTitleLabel');
+      if (pipeTitle && tl.pipelineLeft) pipeTitle.textContent = tl.pipelineLeft;
+    }
+
+    const AI_COACH_GREETING = {
+      asOf: '11-24 08:00',
+      dateLabel: '11월 24일(화)',
+      contextLabel: '갭상승 출발일',
+      title: '11월 24일(화) · 갭상승 출발일, 오늘도 원칙을 지키는 윤용규 님!',
+      sub: '야간선물 +7.06% 갭업 출발 · 실시간 시장 상황과 심리를 읽어드리는 윤스트롱 프라이빗 멘토링 (11-24 08:00 장전 기준)'
+    };
+
+    function updateAiCoachGreeting() {
+      if (typeof AI_COACH_GREETING === 'undefined' || !AI_COACH_GREETING) return;
+      const title = document.getElementById('aiCoachGreetingTitle');
+      if (title && AI_COACH_GREETING.title) {
+        title.textContent = AI_COACH_GREETING.title;
+        title.setAttribute('data-asof', AI_COACH_GREETING.asOf || '');
+      }
+      const sub = document.getElementById('aiCoachTimeSub');
+      if (sub && AI_COACH_GREETING.sub) sub.textContent = AI_COACH_GREETING.sub;
+    }
+
+    // =========================================================================
     // 야간선물 갭 반영 기준가 자동 환산 엔진 (Night Futures Gap-Adjusted Levels)
     // ※ 아래 두 상수는 08:00 / 19:50 / 토 09:00 레이더가 매 실행 시 최신 실측치로 갱신한다.
     // =========================================================================
@@ -7596,6 +7762,96 @@
       }
     }
 
+    // =========================================================================
+    // 📡 종목별 갭 괴리 레이더 (프리마켓 vs 야간선물)
+    // ※ divPct = PREMARKET_PRICES[code].pct − NIGHT_FUTURES_CHANGE_PCT
+    //    divPct ≥ +2.0%p → 🔥 갭 초과(되돌림 주의) / ≤ −2.0%p → 📉 갭 미달(추격 금지) / 그 사이 → ✅ 동조 흐름
+    //    프리마켓 미체결(null) → ➖ 미체결 · 야간선물 100%
+    // ※ 대상: 4대 핵심주 + 8선(DEFAULT_TURNAROUND_CODES). 08:00 장전 회차가 PREMARKET_PRICES를 갱신하면
+    //    이 레이더도 자동으로 따라온다.
+    // ※ #gapDivergenceBox · renderGapDivergence() · gapDivergenceState() · GAP_DIVERGENCE_THRESHOLD 는
+    //    절대 삭제·덮어쓰기 금지. 판정 기준과 CSS 클래스(.gap-div-*)를 유지한 채 수치만 자동 반영된다.
+    // =========================================================================
+    const GAP_DIVERGENCE_THRESHOLD = 2.0;
+
+    function gapDivergenceState(divPct) {
+      if (divPct === null || divPct === undefined || !isFinite(Number(divPct))) {
+        return { key: 'none', label: '➖ 미체결 · 야간선물 100%', led: 'gray' };
+      }
+      const v = Number(divPct);
+      if (v >= GAP_DIVERGENCE_THRESHOLD) return { key: 'over', label: '🔥 갭 초과 (되돌림 주의)', led: 'red' };
+      if (v <= -GAP_DIVERGENCE_THRESHOLD) return { key: 'under', label: '📉 갭 미달 (추격 금지)', led: 'blue' };
+      return { key: 'sync', label: '✅ 동조 흐름', led: 'green' };
+    }
+
+    function renderGapDivergence() {
+      const grid = document.getElementById('gapDivergenceGrid');
+      const sumBox = document.getElementById('gapDivergenceSummary');
+      const baseEl = document.getElementById('gapDivergenceBase');
+      if (!grid) return;
+
+      const nightPct = (typeof NIGHT_FUTURES_CHANGE_PCT !== 'undefined' && isFinite(Number(NIGHT_FUTURES_CHANGE_PCT)))
+        ? Number(NIGHT_FUTURES_CHANGE_PCT) : 0;
+      const pmAsof = (typeof PREMARKET_ASOF !== 'undefined' && PREMARKET_ASOF) ? PREMARKET_ASOF : '-';
+      if (baseEl) baseEl.textContent = `야간선물 ${gapPctText(nightPct)} · 프리마켓 ${pmAsof}`;
+
+      if (typeof TURNAROUND_MASTER_DATA === 'undefined') {
+        grid.innerHTML = '<div class="gap-badge info">⏳ 종목 데이터 로딩 대기 중입니다.</div>';
+        if (sumBox) sumBox.innerHTML = '';
+        return;
+      }
+
+      const core4 = ['058470', '443060', '0161M0', '010120'];
+      const extra8 = ((typeof DEFAULT_TURNAROUND_CODES !== 'undefined' && DEFAULT_TURNAROUND_CODES.length)
+        ? DEFAULT_TURNAROUND_CODES : []).filter(c => core4.indexOf(c) < 0);
+      const codes = core4.concat(extra8);
+
+      let cntOver = 0, cntSync = 0, cntUnder = 0, cntNone = 0;
+
+      const cards = codes.map(code => {
+        const d = TURNAROUND_MASTER_DATA[code];
+        if (!d) return '';
+        const pm = (typeof PREMARKET_PRICES !== 'undefined' && PREMARKET_PRICES) ? PREMARKET_PRICES[code] : null;
+        const pmPct = (pm && Number(pm.price) > 0 && isFinite(Number(pm.pct))) ? Number(pm.pct) : null;
+        const divPct = (pmPct === null) ? null : Math.round((pmPct - nightPct) * 100) / 100;
+        const st = gapDivergenceState(divPct);
+        if (st.key === 'over') cntOver += 1;
+        else if (st.key === 'sync') cntSync += 1;
+        else if (st.key === 'under') cntUnder += 1;
+        else cntNone += 1;
+
+        const isCore = core4.indexOf(code) >= 0;
+        const pmTxt = (pmPct === null) ? '미체결' : gapPctText(pmPct);
+        const pmCls = (pmPct === null) ? '' : (pmPct > 0 ? 'up' : (pmPct < 0 ? 'down' : ''));
+        const divTxt = (divPct === null) ? '—' : ((divPct > 0 ? '+' : '') + divPct.toFixed(2) + '%p');
+        const divCls = (divPct === null) ? '' : (divPct > 0 ? 'up' : (divPct < 0 ? 'down' : ''));
+
+        return `
+          <div class="gap-div-card ${st.key}" data-code="${code}" data-state="${st.key}" data-divpct="${divPct === null ? '' : divPct}">
+            <div class="gap-div-name"><span class="led-dot ${st.led} sm" aria-hidden="true"></span>${d.icon || '📌'} ${d.name}${isCore ? ' <span class="code">4대주</span>' : ''}<span class="code">${code}</span></div>
+            <div class="gap-div-nums">
+              <span>프리마켓 <b class="${pmCls}">${pmTxt}</b></span>
+              <span>야간선물 <b>${gapPctText(nightPct)}</b></span>
+              <span>괴리 <b class="${divCls}">${divTxt}</b></span>
+            </div>
+            <div class="gap-div-verdict ${st.key}">${st.label}</div>
+          </div>
+        `;
+      }).filter(Boolean);
+
+      grid.innerHTML = cards.length ? cards.join('') : '<div class="gap-badge info">표시할 종목이 없습니다.</div>';
+
+      if (sumBox) {
+        sumBox.innerHTML = `
+          <span class="gap-div-chip over">🔥 갭 초과 ${cntOver}</span>
+          <span class="gap-div-chip sync">✅ 동조 ${cntSync}</span>
+          <span class="gap-div-chip under">📉 갭 미달 ${cntUnder}</span>
+          <span class="gap-div-chip none">➖ 미체결 ${cntNone}</span>
+          <span class="gap-div-chip">대상 ${cards.length}종목 (4대 핵심주 + 8선) · 기준 ${pmAsof} NXT vs 야간선물 ${gapPctText(nightPct)}</span>
+        `;
+      }
+    }
+
     function renderRankingGrid(codes) {
       const grid = document.getElementById('rankingGrid');
       if (!grid) return;
@@ -7818,6 +8074,9 @@
       renderCore4Board();
       renderCashReinvest();
       renderGapAdjust();
+      if (typeof renderGapDivergence === 'function') renderGapDivergence();
+      if (typeof renderStageTimeline === 'function') renderStageTimeline();
+      if (typeof updateAiCoachGreeting === 'function') updateAiCoachGreeting();
       renderRankingGrid(codes);
       renderGlobalChips(codes);
       renderCalcPresets(codes);
@@ -9891,18 +10150,48 @@
 
     
     // 🤖 Feature 1: AI Coach Tab Switcher
+    // =========================================================================
+    // 🧠 AI 코치 3탭 — 날짜·회차 라벨 단일 소스 연동 (2026-11-24 정비)
+    // ※ 제목의 날짜("11-24")·요일("화")은 RADAR_STAGE_TIMELINE(단일 소스)에서, 야간선물 등락률은
+    //    NIGHT_FUTURES_CHANGE_PCT에서 파생한다. 제목에 날짜를 직접 하드코딩하지 않는다.
+    //    레이더가 매 회차 RADAR_STAGE_TIMELINE.asOf · dayLabel과 NIGHT_FUTURES_CHANGE_PCT만 갱신하면
+    //    3탭 제목의 날짜 라벨이 자동으로 따라와 어제 날짜가 남지 않는다.
+    // ※ mind · action · night 3개 탭 본문은 매 회차(08:00 · 15:20 · 19:50 · 토 09:00) 레이더가
+    //    당일 시황 실측치로 함께 갱신한다. coachMessages · switchCoachTab · btnCoachMind/Action/Night ·
+    //    #aiCoachBubble 은 절대 삭제하지 말고 값만 최신화한다.
+    // =========================================================================
+    const COACH_ASOF = (typeof RADAR_STAGE_TIMELINE !== 'undefined' && RADAR_STAGE_TIMELINE && RADAR_STAGE_TIMELINE.asOf)
+      ? String(RADAR_STAGE_TIMELINE.asOf) : '11-24 08:00';
+    const COACH_DAY_LABEL = { date: '11-24', weekday: '화' };
+    (function deriveCoachDayLabel() {
+      const dl = (typeof RADAR_STAGE_TIMELINE !== 'undefined' && RADAR_STAGE_TIMELINE && RADAR_STAGE_TIMELINE.dayLabel)
+        ? String(RADAR_STAGE_TIMELINE.dayLabel) : '';
+      const m = dl.match(/(\d{2}-\d{2})\s*\(?([가-힣])\)?/);
+      if (m) {
+        COACH_DAY_LABEL.date = m[1];
+        COACH_DAY_LABEL.weekday = m[2] || COACH_DAY_LABEL.weekday;
+      } else if (/^\d{2}-\d{2}/.test(COACH_ASOF)) {
+        COACH_DAY_LABEL.date = COACH_ASOF.slice(0, 5);
+      }
+    })();
+    const COACH_DATE = COACH_DAY_LABEL.date;
+    const COACH_WEEKDAY = COACH_DAY_LABEL.weekday;
+    const COACH_GAP_PCT = (typeof NIGHT_FUTURES_CHANGE_PCT === 'number' && isFinite(NIGHT_FUTURES_CHANGE_PCT))
+      ? NIGHT_FUTURES_CHANGE_PCT : 7.06;
+    const COACH_GAP_TXT = (COACH_GAP_PCT > 0 ? '+' : '') + COACH_GAP_PCT.toFixed(2) + '%';
+
             const coachMessages = {
       mind: {
-        title: "💡 11-23 월요일 장전 멘탈 코칭",
-        text: "간밤 뉴욕이 더 무너졌습니다 — 나스닥 -5.28%, 필라델피아 반도체 -10.73%, VIX 35.89, 공포탐욕지수 9.67(극단적 공포). 코스피200 야간선물은 700.00(-7.01%)으로 마감해 <strong>월요일 이론 시초가는 4,513</strong>입니다. 이번 주 코스피 -7.95%, 리노공업 -13.71%, 네오사피엔스 -22.58%를 겪은 뒤 주말에 가장 위험한 것은 <strong>'빨리 만회해야 한다'는 조급함</strong>입니다. 월요일 시초가 30분은 관찰만 하십시오. 현금을 들고 있는 것도 포지션입니다."
+        title: `💡 ${COACH_DATE} ${COACH_WEEKDAY}요일 장전 멘탈 코칭`,
+        text: `간밤 뉴욕이 폭등했습니다 — <strong>나스닥 +6.51% · 필라델피아 반도체 +14.03% · VIX 26.62(▼25.83%) · CNN 공포탐욕 16.97(극단적 공포)</strong>. 코스피200 야간선물은 <strong>777.95(${COACH_GAP_TXT})</strong>로 마감해 <strong>이론 시초가는 5,041</strong>입니다. 하루 만에 방향이 뒤집힌 갭업 출발일에서 가장 위험한 것은 조급함이 아니라 <strong>'시초가 추격 매수'</strong>입니다. <strong>09:00~09:30 30분은 관찰만</strong> 하시고, 어제 고점 <strong>4,759.88(11-23)</strong>이 갭을 넘어 지지로 전환되는지 먼저 확인하십시오. 리노공업은 11-19 53,500원 전량 익절로 보유 0주 — 지금은 <strong>현금 보유 자체가 여유이자 포지션</strong>입니다.`
       },
       action: {
-        title: "🎯 오늘(11-23) 개장 5대 실전 수칙",
-        text: "① <strong>시초가 30분 뇌동매매 금지</strong>: 이론 시가 4,513, 1차 지지 4,500. 4,831.69(11-20 저점) 회복은 반등 확인 조건입니다.<br>② <strong>추격 금지</strong>: 리노공업(45,000 이탈 시 43,700)·삼성중공업(52주 최저 15,010)·삼성전자·SK하이닉스는 🔴 관망.<br>③ <strong>조건부 1/3만</strong>: HD현대마린솔루션 175,000·알테오젠 166,000 사수 확인 후 분할.<br>④ <strong>금지</strong>: 네오사피엔스 — 11-21 보호예수 1,143,690주(9.36%) 해제분이 <strong>오늘부터 매도 가능</strong>.<br>⑤ <strong>일정</strong>: 11-25 22:30 미 PCE·3Q GDP, 11-26 한은 금통위 + 미 추수감사절 휴장."
+        title: `🎯 ${COACH_DATE} 3대 실전 수칙`,
+        text: `① <strong>시초가 추격 금지</strong>: 갭 괴리 레이더 기준 8선 중 <strong>6종목이 프리마켓 갭 미달</strong>(현대차·S-Oil·알테오젠·삼성중공업·한국항공우주·HD현대마린)입니다. 이론 시초 5,041에서 사지 말고 <strong>09:30 이후 눌림목에서 1/3 분할</strong>만.<br>② <strong>4대 핵심주</strong>: 리노공업 <strong>48,000원 이하 눌림 대기</strong>(프리마켓 48,800 추격 금지) · HD현대마린 <strong>170,900 지지</strong> 사수 · LS ELECTRIC 프리마켓 120,700으로 <strong>목표 128,700까지 6.6% 남은 분할 익절 구간</strong> · 네오사피엔스 <strong>락업 매도 가능 구간 신규 진입 금지</strong>.<br>③ <strong>금지</strong>: <strong>손익비 1:2 미만</strong> 자리, <strong>외인 수급 미확인</strong> 상태의 추격 매수.`
       },
       night: {
-        title: "🌙 주말 글로벌 체크포인트",
-        text: "코스피200 야간선물 <strong>700.00(-52.75, -7.01%)</strong> · 야간 시 752.75 / 고 755.25 / 저 697.50 / 54,091계약 · 주간선물 752.75(-5.43%). 미장(11-20): 다우 <strong>48,147.33(-1.93%)</strong>·S&amp;P500 <strong>6,910.39(-3.70%)</strong>·나스닥 <strong>22,617.73(-5.28%)</strong>·SOX <strong>8,408.59(-10.73%)</strong>·VIX <strong>35.89(+26.20%)</strong>. 원/달러 <strong>1,346.50원(+0.82%)</strong>. 주간 다우 -8.0%·S&amp;P500 -8.6%·나스닥 -10.0%."
+        title: `🌙 ${COACH_DATE} 장중·야간 체크포인트`,
+        text: `오늘 15:20 장마감 레이더·19:50 야간 결산에서 확인할 4가지 — ① 코스피가 <strong>4,759.88(11-23 고점) 위에 안착</strong>하는지(이탈 시 갭 소화로 보고 신규 매수 전면 보류) ② <strong>외국인 7거래일 만의 순매수 전환</strong> 여부(11-23 -2,558억) ③ 원/달러 <strong>1,342원대 하향 안정</strong> 지속 여부(06:59 하나은행 1,342.50원) ④ <strong>4대주 확정 종가·시간외 수급</strong>(리노공업 48,000 이하 재진입 자리 · HD현대마린 170,900 · LS ELECTRIC 128,700 목표 근접 · 네오사피엔스 락업 물량).`
       }
     };
 function switchCoachTab(tabKey) {
@@ -10554,6 +10843,13 @@ function switchCoachTab(tabKey) {
         }
       } catch (e) {
         console.error('renderMarketPulseBadge failed:', e);
+      }
+      try {
+        if (typeof renderStageTimeline === 'function') renderStageTimeline();
+        if (typeof updateAiCoachGreeting === 'function') updateAiCoachGreeting();
+        if (typeof renderGapDivergence === 'function') renderGapDivergence();
+      } catch (e) {
+        console.error('renderStageTimeline / greeting / gapDivergence failed:', e);
       }
       try {
         if (typeof renderBottomStockTicker === 'function') renderBottomStockTicker();

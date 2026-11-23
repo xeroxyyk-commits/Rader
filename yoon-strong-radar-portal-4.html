@@ -10150,18 +10150,48 @@
 
     
     // 🤖 Feature 1: AI Coach Tab Switcher
+    // =========================================================================
+    // 🧠 AI 코치 3탭 — 날짜·회차 라벨 단일 소스 연동 (2026-11-24 정비)
+    // ※ 제목의 날짜("11-24")·요일("화")은 RADAR_STAGE_TIMELINE(단일 소스)에서, 야간선물 등락률은
+    //    NIGHT_FUTURES_CHANGE_PCT에서 파생한다. 제목에 날짜를 직접 하드코딩하지 않는다.
+    //    레이더가 매 회차 RADAR_STAGE_TIMELINE.asOf · dayLabel과 NIGHT_FUTURES_CHANGE_PCT만 갱신하면
+    //    3탭 제목의 날짜 라벨이 자동으로 따라와 어제 날짜가 남지 않는다.
+    // ※ mind · action · night 3개 탭 본문은 매 회차(08:00 · 15:20 · 19:50 · 토 09:00) 레이더가
+    //    당일 시황 실측치로 함께 갱신한다. coachMessages · switchCoachTab · btnCoachMind/Action/Night ·
+    //    #aiCoachBubble 은 절대 삭제하지 말고 값만 최신화한다.
+    // =========================================================================
+    const COACH_ASOF = (typeof RADAR_STAGE_TIMELINE !== 'undefined' && RADAR_STAGE_TIMELINE && RADAR_STAGE_TIMELINE.asOf)
+      ? String(RADAR_STAGE_TIMELINE.asOf) : '11-24 08:00';
+    const COACH_DAY_LABEL = { date: '11-24', weekday: '화' };
+    (function deriveCoachDayLabel() {
+      const dl = (typeof RADAR_STAGE_TIMELINE !== 'undefined' && RADAR_STAGE_TIMELINE && RADAR_STAGE_TIMELINE.dayLabel)
+        ? String(RADAR_STAGE_TIMELINE.dayLabel) : '';
+      const m = dl.match(/(\d{2}-\d{2})\s*\(?([가-힣])\)?/);
+      if (m) {
+        COACH_DAY_LABEL.date = m[1];
+        COACH_DAY_LABEL.weekday = m[2] || COACH_DAY_LABEL.weekday;
+      } else if (/^\d{2}-\d{2}/.test(COACH_ASOF)) {
+        COACH_DAY_LABEL.date = COACH_ASOF.slice(0, 5);
+      }
+    })();
+    const COACH_DATE = COACH_DAY_LABEL.date;
+    const COACH_WEEKDAY = COACH_DAY_LABEL.weekday;
+    const COACH_GAP_PCT = (typeof NIGHT_FUTURES_CHANGE_PCT === 'number' && isFinite(NIGHT_FUTURES_CHANGE_PCT))
+      ? NIGHT_FUTURES_CHANGE_PCT : 7.06;
+    const COACH_GAP_TXT = (COACH_GAP_PCT > 0 ? '+' : '') + COACH_GAP_PCT.toFixed(2) + '%';
+
             const coachMessages = {
       mind: {
-        title: "💡 11-23 월요일 장전 멘탈 코칭",
-        text: "간밤 뉴욕이 더 무너졌습니다 — 나스닥 -5.28%, 필라델피아 반도체 -10.73%, VIX 35.89, 공포탐욕지수 9.67(극단적 공포). 코스피200 야간선물은 700.00(-7.01%)으로 마감해 <strong>월요일 이론 시초가는 4,513</strong>입니다. 이번 주 코스피 -7.95%, 리노공업 -13.71%, 네오사피엔스 -22.58%를 겪은 뒤 주말에 가장 위험한 것은 <strong>'빨리 만회해야 한다'는 조급함</strong>입니다. 월요일 시초가 30분은 관찰만 하십시오. 현금을 들고 있는 것도 포지션입니다."
+        title: `💡 ${COACH_DATE} ${COACH_WEEKDAY}요일 장전 멘탈 코칭`,
+        text: `간밤 뉴욕이 폭등했습니다 — <strong>나스닥 +6.51% · 필라델피아 반도체 +14.03% · VIX 26.62(▼25.83%) · CNN 공포탐욕 16.97(극단적 공포)</strong>. 코스피200 야간선물은 <strong>777.95(${COACH_GAP_TXT})</strong>로 마감해 <strong>이론 시초가는 5,041</strong>입니다. 하루 만에 방향이 뒤집힌 갭업 출발일에서 가장 위험한 것은 조급함이 아니라 <strong>'시초가 추격 매수'</strong>입니다. <strong>09:00~09:30 30분은 관찰만</strong> 하시고, 어제 고점 <strong>4,759.88(11-23)</strong>이 갭을 넘어 지지로 전환되는지 먼저 확인하십시오. 리노공업은 11-19 53,500원 전량 익절로 보유 0주 — 지금은 <strong>현금 보유 자체가 여유이자 포지션</strong>입니다.`
       },
       action: {
-        title: "🎯 오늘(11-23) 개장 5대 실전 수칙",
-        text: "① <strong>시초가 30분 뇌동매매 금지</strong>: 이론 시가 4,513, 1차 지지 4,500. 4,831.69(11-20 저점) 회복은 반등 확인 조건입니다.<br>② <strong>추격 금지</strong>: 리노공업(45,000 이탈 시 43,700)·삼성중공업(52주 최저 15,010)·삼성전자·SK하이닉스는 🔴 관망.<br>③ <strong>조건부 1/3만</strong>: HD현대마린솔루션 175,000·알테오젠 166,000 사수 확인 후 분할.<br>④ <strong>금지</strong>: 네오사피엔스 — 11-21 보호예수 1,143,690주(9.36%) 해제분이 <strong>오늘부터 매도 가능</strong>.<br>⑤ <strong>일정</strong>: 11-25 22:30 미 PCE·3Q GDP, 11-26 한은 금통위 + 미 추수감사절 휴장."
+        title: `🎯 ${COACH_DATE} 3대 실전 수칙`,
+        text: `① <strong>시초가 추격 금지</strong>: 갭 괴리 레이더 기준 8선 중 <strong>6종목이 프리마켓 갭 미달</strong>(현대차·S-Oil·알테오젠·삼성중공업·한국항공우주·HD현대마린)입니다. 이론 시초 5,041에서 사지 말고 <strong>09:30 이후 눌림목에서 1/3 분할</strong>만.<br>② <strong>4대 핵심주</strong>: 리노공업 <strong>48,000원 이하 눌림 대기</strong>(프리마켓 48,800 추격 금지) · HD현대마린 <strong>170,900 지지</strong> 사수 · LS ELECTRIC 프리마켓 120,700으로 <strong>목표 128,700까지 6.6% 남은 분할 익절 구간</strong> · 네오사피엔스 <strong>락업 매도 가능 구간 신규 진입 금지</strong>.<br>③ <strong>금지</strong>: <strong>손익비 1:2 미만</strong> 자리, <strong>외인 수급 미확인</strong> 상태의 추격 매수.`
       },
       night: {
-        title: "🌙 주말 글로벌 체크포인트",
-        text: "코스피200 야간선물 <strong>700.00(-52.75, -7.01%)</strong> · 야간 시 752.75 / 고 755.25 / 저 697.50 / 54,091계약 · 주간선물 752.75(-5.43%). 미장(11-20): 다우 <strong>48,147.33(-1.93%)</strong>·S&amp;P500 <strong>6,910.39(-3.70%)</strong>·나스닥 <strong>22,617.73(-5.28%)</strong>·SOX <strong>8,408.59(-10.73%)</strong>·VIX <strong>35.89(+26.20%)</strong>. 원/달러 <strong>1,346.50원(+0.82%)</strong>. 주간 다우 -8.0%·S&amp;P500 -8.6%·나스닥 -10.0%."
+        title: `🌙 ${COACH_DATE} 장중·야간 체크포인트`,
+        text: `오늘 15:20 장마감 레이더·19:50 야간 결산에서 확인할 4가지 — ① 코스피가 <strong>4,759.88(11-23 고점) 위에 안착</strong>하는지(이탈 시 갭 소화로 보고 신규 매수 전면 보류) ② <strong>외국인 7거래일 만의 순매수 전환</strong> 여부(11-23 -2,558억) ③ 원/달러 <strong>1,342원대 하향 안정</strong> 지속 여부(06:59 하나은행 1,342.50원) ④ <strong>4대주 확정 종가·시간외 수급</strong>(리노공업 48,000 이하 재진입 자리 · HD현대마린 170,900 · LS ELECTRIC 128,700 목표 근접 · 네오사피엔스 락업 물량).`
       }
     };
 function switchCoachTab(tabKey) {
