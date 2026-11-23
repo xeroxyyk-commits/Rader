@@ -6809,7 +6809,7 @@
           }
         }
 
-        const openRowLabel = usePm ? ('프리마켓 실측가 (' + PREMARKET_ASOF + ' NXT)') : (useAh ? ('시간외 혼합 시초가 (' + AFTERHOURS_MOMENTUM_ASOF + ')') : (isPm ? '야간선물 갭 환산 시초가' : '예상 갭 시초가'));
+        const openRowLabel = usePm ? ('프리마켓 실측가 (' + PREMARKET_ASOF + ' NXT)') : (useAh ? (ahPct === null ? ('야간선물 100% 환산 (' + AFTERHOURS_MOMENTUM_ASOF + ' 기준)') : ('시간외 혼합 시초가 (' + AFTERHOURS_MOMENTUM_ASOF + ')')) : (isPm ? '야간선물 갭 환산 시초가' : '예상 갭 시초가'));
         const lvlTag = usePm ? ' (기존 기준 유지)' : (useAh ? ' (혼합 반영)' : ' (갭 반영)');
 
         return `
