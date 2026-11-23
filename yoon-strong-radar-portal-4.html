@@ -96,9 +96,10 @@
     /* Top Marquee Bar */
     .ticker-bar {
       background: var(--surface); border-bottom: 1px solid var(--border);
-      overflow: hidden; white-space: nowrap; padding: 8px 0; font-size: 0.78rem; font-weight: 700;
+      overflow: hidden; white-space: nowrap; padding: 9px 0; font-size: 0.8rem; font-weight: 700;
       width: 100%; max-width: 100%; box-sizing: border-box;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.015em; line-height: 1.55; color: var(--text);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .ticker-track { display: inline-block; animation: ticker 40s linear infinite; }
     .ticker-item { display: inline-flex; align-items: center; gap: 6px; margin: 0 18px; }
@@ -108,12 +109,13 @@
     .market-pulse-bar {
       display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
       width: 100%; max-width: 100%; box-sizing: border-box;
-      padding: 8px 16px; background: var(--surface-sub);
+      padding: 8px 18px; background: var(--surface-sub);
       border-bottom: 1px solid var(--border);
-      font-size: 0.76rem; font-weight: 800; letter-spacing: -0.015em; overflow-x: clip;
+      font-size: 0.78rem; font-weight: 800; letter-spacing: -0.015em; overflow-x: clip;
+      line-height: 1.55;
     }
     .market-pulse-bar .mp-label {
-      font-size: 0.68rem; font-weight: 900; color: var(--text-muted);
+      font-size: 0.7rem; font-weight: 900; color: var(--text-sub);
       display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex: 0 0 auto;
     }
     .mp-pill {
@@ -136,9 +138,10 @@
     }
     .mp-pill.mp-foreign-out { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger); }
     .mp-pill.mp-asof {
-      background: transparent; border-style: dashed; color: var(--text-muted);
-      font-weight: 700; font-size: 0.68rem;
+      background: transparent; border-style: dashed; color: var(--text-sub);
+      font-weight: 800; font-size: 0.7rem;
     }
+    body.dark .market-pulse-bar .mp-label { color: #c3d4ea; }
     body.dark .mp-pill.mp-strong,
     body.dark .mp-pill.mp-inst-turn { color: #6ee7b7; }
     body.dark .mp-pill.mp-up { color: #6ee7b7; }
@@ -165,26 +168,34 @@
 
 
     /* =====================================================================
-       👑 ADMIN MASTER BRAND BAR (#adminMasterBrandBar / .admin-master-brand)
-       관리자 로그인(body.admin-logged-in) 시에만 페이지 맨 최상단 1번 위치에 노출.
-       일반 방문자·미인증 보안 화면에서는 display:none !important 로 완전 숨김.
+       👑 BRAND HEADER (#adminMasterBrandBar / .admin-master-brand)
+       노출 조건: 관리자 로그인(body.admin-logged-in) 또는 인증 통과 사용자(body.vip-authenticated)
+       → 두 경우 모두 body.brand-header-active 가 함께 붙어 페이지 맨 최상단 1번 위치에 노출된다.
+       일반 방문자·미인증·만료 차단·둘러보기 화면에서는 display:none !important 로 완전 숨김.
        ※ 이 블록과 #adminMasterBrandBar 마크업은 절대 삭제하지 말 것.
        ===================================================================== */
     .admin-master-brand { display: none !important; }
-    body.admin-logged-in .admin-master-brand { display: flex !important; }
-    body.admin-logged-in nav .brand-title-wrap { display: none !important; }
-    /* 관리자 모드에서는 <nav>가 퀵 네비게이션 + 배지 바 역할만 하도록 한 줄 정리 */
-    body.admin-logged-in nav { flex-wrap: wrap; row-gap: 8px; }
-    body.admin-logged-in nav .nav-brand { width: auto; flex: 1 1 auto; min-width: 0; }
+    body.admin-logged-in .admin-master-brand,
+    body.brand-header-active .admin-master-brand { display: flex !important; }
+    /* 만료 차단·5회 오입력 차단 상태에서는 어떤 클래스가 남아 있어도 절대 노출 금지 */
+    body.trial-expired-locked .admin-master-brand { display: none !important; }
+    body.admin-logged-in nav .brand-title-wrap,
+    body.brand-header-active nav .brand-title-wrap { display: none !important; }
+    /* 브랜드 바가 최상단을 맡으므로 <nav>는 퀵 네비게이션 + 배지 바 역할만 하도록 정리 */
+    body.admin-logged-in nav,
+    body.brand-header-active nav { flex-wrap: wrap; row-gap: 8px; }
+    body.admin-logged-in nav .nav-brand,
+    body.brand-header-active nav .nav-brand { width: auto; flex: 1 1 auto; min-width: 0; }
 
     .admin-master-brand {
       position: relative;
       width: 100%; max-width: 100%; box-sizing: border-box;
       align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 7px 14px;
-      padding: 10px 18px;
+      padding: 11px 18px;
       color: #eaf2ff;
       letter-spacing: -0.02em;
+      isolation: isolate;
       background:
         radial-gradient(130% 220% at 0% -20%, rgba(56,189,248,0.26) 0%, rgba(56,189,248,0) 58%),
         radial-gradient(110% 200% at 100% -30%, rgba(212,175,55,0.24) 0%, rgba(212,175,55,0) 60%),
@@ -225,57 +236,92 @@
     }
     .amb-title span { font-weight: 800; letter-spacing: 0.02em; }
     .amb-sub {
-      font-size: 0.56rem; font-weight: 800; letter-spacing: 0.15em;
-      color: rgba(186,214,255,0.80); margin-top: 3px;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.11em;
+      color: rgba(212,232,255,0.94); margin-top: 4px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       text-transform: uppercase;
+      text-shadow: 0 1px 3px rgba(2,8,23,0.85);
     }
     .amb-vip {
-      font-size: 0.65rem; font-weight: 900; letter-spacing: 0.03em; white-space: nowrap;
-      padding: 4px 10px; border-radius: 9999px; color: #231a00;
+      font-size: 0.72rem; font-weight: 900; letter-spacing: 0.03em; white-space: nowrap;
+      padding: 4px 11px; border-radius: 9999px; color: #231a00;
       background: linear-gradient(135deg, #fff0bd 0%, #d4af37 55%, #f7e484 100%);
       border: 1px solid rgba(255,236,168,0.8);
       box-shadow: 0 2px 10px rgba(212,175,55,0.35), inset 0 1px 0 rgba(255,255,255,0.65);
     }
+    /* 인증 통과 일반 사용자 배지: 선명한 시안·에메랄드 (관리자 골드와 명확히 구분) */
+    .amb-vip.amb-member {
+      color: #04231f;
+      background: linear-gradient(135deg, #d1fae5 0%, #34d399 48%, #67e8f9 100%);
+      border-color: rgba(167,243,208,0.9);
+      box-shadow: 0 2px 12px rgba(16,185,129,0.42), inset 0 1px 0 rgba(255,255,255,0.7);
+    }
     .amb-sync {
-      font-size: 0.65rem; font-weight: 800; white-space: nowrap;
-      padding: 4px 10px; border-radius: 9999px;
-      color: #c7f0ff; background: rgba(56,189,248,0.12);
-      border: 1px solid rgba(125,211,252,0.42);
+      font-size: 0.72rem; font-weight: 800; white-space: nowrap;
+      padding: 4px 11px; border-radius: 9999px;
+      color: #ddf5ff; background: rgba(56,189,248,0.18);
+      border: 1px solid rgba(125,211,252,0.52);
+      text-shadow: 0 1px 2px rgba(2,8,23,0.7);
       max-width: 100%; overflow: hidden; text-overflow: ellipsis;
     }
-    .amb-btn {
-      font-size: 0.64rem; font-weight: 800; white-space: nowrap; cursor: pointer;
-      padding: 4px 10px; border-radius: 9999px;
-      color: #dbeafe; background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.22);
-      transition: all 0.18s ease;
+    /* 모바일에서는 동기화 회차 라벨을 짧게 바꿔 2줄 구성 안에 들어오게 한다 */
+    .amb-sync-short { display: none; }
+    @media (max-width: 460px) {
+      .amb-sync-long { display: none; }
+      .amb-sync-short { display: inline; }
     }
-    .amb-btn:hover { background: rgba(255,255,255,0.16); border-color: rgba(125,211,252,0.7); color: #ffffff; }
-    .amb-btn.amb-lock { color: #ffe4e6; border-color: rgba(248,113,113,0.45); }
-    .amb-btn.amb-lock:hover { background: rgba(248,113,113,0.18); }
+    .amb-btn {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 0.7rem; font-weight: 800; white-space: nowrap; cursor: pointer;
+      padding: 4px 11px; border-radius: 9999px;
+      color: #e6f0ff; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.26);
+      transition: all 0.18s ease;
+      font-family: inherit;
+    }
+    .amb-btn:hover { background: rgba(255,255,255,0.18); border-color: rgba(125,211,252,0.72); color: #ffffff; }
+    .amb-btn:active { transform: scale(0.96); }
+    .amb-btn:focus-visible { outline: 2px solid rgba(125,211,252,0.85); outline-offset: 2px; }
+    .amb-btn.amb-lock { color: #ffe4e6; border-color: rgba(248,113,113,0.5); }
+    .amb-btn.amb-lock:hover { background: rgba(248,113,113,0.2); }
+    .amb-btn.amb-switch { color: #dcfce7; border-color: rgba(52,211,153,0.55); background: rgba(16,185,129,0.14); }
+    .amb-btn.amb-switch:hover { background: rgba(16,185,129,0.26); border-color: rgba(110,231,183,0.85); color: #ffffff; }
+    /* 관리자 전용 버튼 ↔ 사용자 전용 버튼 분리 노출 (관리자 콘솔은 일반 사용자에게 절대 노출 금지) */
+    .amb-btn.amb-console, .amb-btn.amb-lock { display: none; }
+    body.admin-logged-in .amb-btn.amb-console,
+    body.admin-logged-in .amb-btn.amb-lock { display: inline-flex; }
+    .amb-btn.amb-switch { display: none; }
+    body.vip-authenticated:not(.admin-logged-in) .amb-btn.amb-switch { display: inline-flex; }
     @media (max-width: 720px) {
       .admin-master-brand { padding: 9px 12px; gap: 6px 10px; }
       .amb-badge { width: 31px; height: 31px; border-radius: 10px; font-size: 0.95rem; }
-      .amb-title { font-size: 0.95rem; }
-      .amb-sub { font-size: 0.5rem; letter-spacing: 0.12em; }
+      .amb-title { font-size: 0.98rem; }
+      .amb-sub { font-size: 0.62rem; letter-spacing: 0.09em; }
       .amb-right { gap: 6px; }
-      .amb-vip, .amb-sync, .amb-btn { font-size: 0.6rem; padding: 3px 8px; }
+      .amb-vip, .amb-sync, .amb-btn { font-size: 0.67rem; padding: 3px 9px; }
     }
     @media (max-width: 460px) {
-      /* 360px 모바일: 브랜드(1줄) + VIP·동기화·잠금(2줄)의 2줄 구성으로 압축 */
-      .amb-right { flex: 0 1 auto; justify-content: flex-start; gap: 5px; }
-      .amb-vip, .amb-sync, .amb-btn { font-size: 0.55rem; padding: 2px 7px; }
+      /* 360px 모바일: 브랜드(1줄) + VIP·동기화·버튼(2줄) 구성으로 압축하되 글씨는 읽히게 유지 */
+      .amb-right { flex: 1 1 100%; justify-content: flex-start; gap: 5px; }
+      .amb-vip, .amb-sync, .amb-btn { font-size: 0.63rem; padding: 3px 8px; }
+      .amb-vip { letter-spacing: 0.01em; }
       .amb-sync { max-width: none; }
-      .amb-sub { letter-spacing: 0.1em; }
+      .amb-sub { font-size: 0.58rem; letter-spacing: 0.06em; }
     }
     @media (max-width: 380px) {
-      .admin-master-brand { padding: 7px 9px; gap: 4px 7px; }
-      .amb-badge { width: 26px; height: 26px; border-radius: 9px; font-size: 0.82rem; }
-      .amb-title { font-size: 0.86rem; }
-      .amb-sub { font-size: 0.44rem; letter-spacing: 0.05em; }
-      .amb-vip, .amb-sync, .amb-btn { font-size: 0.52rem; padding: 2px 6px; }
-      .amb-btn.amb-console { display: none; }
+      .admin-master-brand { padding: 8px 10px; gap: 5px 8px; }
+      .amb-badge { width: 27px; height: 27px; border-radius: 9px; font-size: 0.86rem; }
+      .amb-title { font-size: 0.92rem; }
+      .amb-sub { font-size: 0.6rem; letter-spacing: 0.03em; margin-top: 3px; }
+      .amb-vip, .amb-sync, .amb-btn { font-size: 0.6rem; padding: 2px 7px; }
+      body.admin-logged-in .amb-btn.amb-console { display: none; }
+    }
+    /* 카카오톡 인앱 브라우저: 축소 렌더링 대비 브랜드 바 글씨를 한 단계 더 키운다 */
+    html.kakao-inapp .amb-sub { font-size: 0.74rem; }
+    html.kakao-inapp .amb-sync, html.kakao-inapp .amb-vip, html.kakao-inapp .amb-btn { font-size: 0.76rem; }
+    @media (max-width: 460px) {
+      html.kakao-inapp .amb-sub { font-size: 0.62rem; }
+      html.kakao-inapp .amb-sync, html.kakao-inapp .amb-vip, html.kakao-inapp .amb-btn { font-size: 0.66rem; }
     }
 
     /* =====================================================================
@@ -285,19 +331,21 @@
        ===================================================================== */
     .bottom-ticker-bar {
       display: flex; align-items: stretch; width: 100%; max-width: 100%; box-sizing: border-box;
-      margin: 26px 0 4px; border: 1px solid var(--border); border-radius: 14px;
+      margin: 30px 0 8px; border: 1px solid var(--border); border-radius: 16px;
       background: var(--surface); box-shadow: var(--shadow-md); overflow: hidden;
       position: relative;
     }
     body.dark .bottom-ticker-bar { background: linear-gradient(100deg, #0b1424 0%, #111d33 100%); }
     .bt-label {
-      flex: 0 0 auto; display: inline-flex; flex-direction: column; justify-content: center; gap: 1px;
-      padding: 8px 13px; font-size: 0.68rem; font-weight: 900; letter-spacing: -0.01em;
+      flex: 0 0 auto; display: inline-flex; flex-direction: column; justify-content: center; gap: 2px;
+      padding: 9px 15px; font-size: 0.76rem; font-weight: 900; letter-spacing: 0.01em;
       color: #ffffff; white-space: nowrap; z-index: 2;
       background: linear-gradient(135deg, #0b2a4a 0%, #0284c7 62%, #0ea5e9 100%);
-      border-right: 1px solid rgba(255,255,255,0.18);
+      border-right: 1px solid rgba(255,255,255,0.22);
+      text-shadow: 0 1px 3px rgba(2,8,23,0.55);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
     }
-    .bt-label em { font-style: normal; font-size: 0.56rem; font-weight: 700; opacity: 0.86; letter-spacing: 0; }
+    .bt-label em { font-style: normal; font-size: 0.63rem; font-weight: 700; opacity: 0.94; letter-spacing: 0; }
     .bt-viewport {
       position: relative; flex: 1 1 auto; min-width: 0; overflow: hidden;
       display: flex; align-items: center;
@@ -312,24 +360,33 @@
     /* 마우스 호버 시 일시정지 (JS 인라인 상태와 무관하게 항상 동작하도록 !important) */
     .bottom-ticker-bar:hover .bt-track { animation-play-state: paused !important; }
     .bt-item {
-      display: inline-flex; align-items: baseline; gap: 5px; padding: 0 14px;
-      font-size: 0.76rem; font-weight: 800; letter-spacing: -0.02em; line-height: 2.3;
+      display: inline-flex; align-items: baseline; gap: 6px; padding: 0 16px;
+      font-size: 0.85rem; font-weight: 800; letter-spacing: -0.02em; line-height: 2.45;
     }
     .bt-item + .bt-item { border-left: 1px solid var(--border); }
     .bt-name { color: var(--text); font-weight: 900; }
-    .bt-price { color: var(--text-sub); font-variant-numeric: tabular-nums; }
+    .bt-price { color: var(--text-sub); font-weight: 800; font-variant-numeric: tabular-nums; }
     .bt-chg { font-weight: 900; font-variant-numeric: tabular-nums; }
-    .bt-chg.up { color: #ef4444; }
-    .bt-chg.down { color: #3b82f6; }
-    .bt-chg.flat { color: var(--text-muted); }
+    .bt-chg.up { color: #dc2626; }
+    .bt-chg.down { color: #2563eb; }
+    .bt-chg.flat { color: var(--text-sub); }
+    body.dark .bt-chg.up { color: #f87171; }
+    body.dark .bt-chg.down { color: #60a5fa; }
+    body.dark .bt-name { color: #f1f5fb; }
+    body.dark .bt-price { color: #b6c6dc; }
     body.trial-expired-locked .bottom-ticker-bar {
       filter: blur(8px); pointer-events: none !important; user-select: none !important;
     }
     @media (max-width: 480px) {
       /* 모바일에서는 라벨을 한 줄로 줄여 마키 표시 폭을 확보한다 (잘림 방지) */
-      .bt-label { padding: 6px 9px; font-size: 0.62rem; }
+      .bt-label { padding: 7px 10px; font-size: 0.7rem; }
       .bt-label em { display: none; }
-      .bt-item { font-size: 0.71rem; padding: 0 10px; }
+      .bt-item { font-size: 0.8rem; padding: 0 12px; line-height: 2.4; }
+    }
+    /* 하단 전광판·푸터·플로팅 독 사이 간격 정리 (겹침 방지) */
+    @media (max-width: 768px) {
+      .bottom-ticker-bar { margin: 22px 0 10px; border-radius: 14px; }
+      footer { padding-bottom: 6px; }
     }
 
     /* Top Nav */
@@ -337,8 +394,9 @@
       position: sticky; top: 0; z-index: 100;
       background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 18px; display: flex; justify-content: space-between; align-items: center;
       transition: background 0.3s;
+      box-shadow: 0 2px 12px -8px rgba(15,23,42,0.35);
     }
     body.dark nav { background: rgba(15, 23, 42, 0.94); }
     .nav-brand {
@@ -941,6 +999,7 @@
       }
     }
     .trial-banner span[style*="10b981"],
+    .trial-banner span[style*="5,150,105"],
     .trial-banner strong[style*="10b981"],
     .trial-banner .verify-pill {
       color: #ecfdf5 !important;
@@ -1715,6 +1774,8 @@
       .trial-banner {
         flex-direction: column; gap: 6px; text-align: center; padding: 10px 12px; font-size: 0.74rem;
       }
+      /* 모바일에서는 동기화 회차가 상단 브랜드 바·배지와 중복되므로 배너의 검증 배지를 숨겨 세로 길이를 줄인다 */
+      .trial-banner #trialHeaderDateBadge { display: none !important; }
       .trial-banner > div:first-child { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 
       /* Nav on Mobile */
@@ -2050,11 +2111,12 @@
 <body>
 
   <!-- =====================================================================
-       👑 관리자 전용 최상단 프리미엄 브랜드 헤더 (#adminMasterBrandBar)
-       body.admin-logged-in 일 때만 노출된다. 일반 방문자·미인증 화면에서는 완전 숨김.
-       ※ 이 블록은 절대 삭제·덮어쓰기 금지 (회차 문구만 자동 동기화).
+       👑 최상단 프리미엄 브랜드 헤더 (#adminMasterBrandBar)
+       body.brand-header-active (관리자 body.admin-logged-in + 인증 통과 사용자 body.vip-authenticated)
+       일 때만 노출된다. 일반 방문자·미인증·만료 차단 화면에서는 완전 숨김.
+       ※ 이 블록은 절대 삭제·덮어쓰기 금지 (회차 문구·배지·버튼은 JS가 자동 전환).
        ===================================================================== -->
-  <div class="admin-master-brand" id="adminMasterBrandBar" aria-hidden="true">
+  <div class="admin-master-brand" id="adminMasterBrandBar" aria-hidden="true" role="banner">
     <div class="amb-left">
       <span class="amb-badge" aria-hidden="true">📡</span>
       <div class="amb-titles">
@@ -2063,10 +2125,11 @@
       </div>
     </div>
     <div class="amb-right">
-      <span class="amb-vip">👑 VIP MASTER ADMIN</span>
-      <span class="amb-sync" id="adminMasterSyncLabel">🟢 동기화 11-23 19:50 야간 레이더</span>
-      <button type="button" class="amb-btn amb-console" onclick="scrollToTarget('sec-admin')">⚙️ 콘솔</button>
-      <button type="button" class="amb-btn amb-lock" onclick="logoutAdmin()">🔒 잠금</button>
+      <span class="amb-vip" id="ambVipBadge">👑 VIP MASTER ADMIN</span>
+      <span class="amb-sync" id="adminMasterSyncLabel"><span class="amb-sync-long">🟢 동기화 11-23 19:50 야간 레이더</span><span class="amb-sync-short">🟢 11-23 19:50 야간</span></span>
+      <button type="button" class="amb-btn amb-console" id="ambConsoleBtn" onclick="scrollToTarget('sec-admin')">⚙️ 콘솔</button>
+      <button type="button" class="amb-btn amb-lock" id="ambLockBtn" onclick="logoutAdmin()">🔒 잠금</button>
+      <button type="button" class="amb-btn amb-switch" id="ambSwitchBtn" onclick="toggleAdminModal()">🔑 관리자 전환</button>
     </div>
   </div>
 
@@ -4229,6 +4292,7 @@
         const gate = document.getElementById('trialExpiredGate');
         if (gate) gate.classList.remove('active');
         document.body.classList.remove('trial-expired-locked');
+        try { if (typeof applyBrandHeaderState === 'function') applyBrandHeaderState(); } catch (e) {}
         return;
       }
 
@@ -4309,6 +4373,8 @@
       }
 
       updateAdminTrialStatusText();
+      // 인증 통과 사용자(체험 유효)에게만 최상단 브랜드 헤더를 열어 준다 (미인증·만료·둘러보기 제외)
+      try { if (typeof applyBrandHeaderState === 'function') applyBrandHeaderState(); } catch (e) {}
     }
 
 
@@ -4342,6 +4408,8 @@
         localStorage.removeItem('yoon_trial_override_expire');
       } catch (e) {}
       isAdmin = false;
+      trialExpireDate = new Date().getTime() - 1000;
+      document.body.classList.remove('admin-logged-in', 'vip-authenticated', 'brand-header-active');
       closeAdminModal();
       closeExtendModal();
       const gate = document.getElementById('trialExpiredGate');
@@ -6678,10 +6746,44 @@
 
 
     // =========================================================================
-    // 👑 관리자 전용 프리미엄 브랜드 헤더 동기화 (#adminMasterBrandBar)
-    // body.admin-logged-in 클래스(setAdminMode)로 노출이 제어되며, 동기화 회차 라벨은
-    // #lastUpdateBadge 와 자동으로 맞춘다. 절대 삭제하지 말 것.
+    // 👑 최상단 브랜드 헤더 상태 동기화 (#adminMasterBrandBar)
+    //  - 관리자(isAdmin)           → body.admin-logged-in + brand-header-active,
+    //                                 👑 VIP MASTER ADMIN · ⚙️ 콘솔 · 🔒 잠금
+    //  - 인증 통과 일반 사용자     → body.vip-authenticated + brand-header-active,
+    //                                 💎 VIP MEMBER · 🔑 관리자 전환 (관리자 콘솔 버튼 숨김)
+    //  - 그 외(미인증·만료·둘러보기·5회 차단) → 아무 클래스도 붙지 않고 완전 숨김
+    // 동기화 회차 라벨은 #lastUpdateBadge 와 자동으로 맞춘다. 절대 삭제하지 말 것.
     // =========================================================================
+    function isUserAuthenticated() {
+      try {
+        if (isAdmin) return false;
+        if (localStorage.getItem('yoon_auth_blocked') === 'true') return false;
+        const ov = document.getElementById('securityLockoutOverlay');
+        if (ov && ov.style && ov.style.display === 'flex') return false;
+        if (typeof trialExpireDate !== 'number' || !isFinite(trialExpireDate)) return false;
+        return trialExpireDate > Date.now();
+      } catch (e) { return false; }
+    }
+    function applyBrandHeaderState() {
+      const adminOn = !!isAdmin;
+      const authed = !adminOn && isUserAuthenticated();
+      const on = adminOn || authed;
+      const b = document.body;
+      b.classList.toggle('vip-authenticated', authed);
+      b.classList.toggle('brand-header-active', on);
+      const bar = document.getElementById('adminMasterBrandBar');
+      if (bar) bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+      const vip = document.getElementById('ambVipBadge');
+      if (vip) {
+        vip.classList.toggle('amb-member', authed);
+        vip.textContent = adminOn ? '👑 VIP MASTER ADMIN' : '💎 VIP MEMBER';
+      }
+      const role = document.getElementById('userRoleBadge');
+      if (role) {
+        if (authed) role.textContent = '💎 VIP MEMBER · 인증 완료';
+        else if (!adminOn) role.textContent = '👤 사용자 7일 체험 모드';
+      }
+    }
     function syncAdminMasterBrandBar() {
       const bar = document.getElementById('adminMasterBrandBar');
       if (!bar) return;
@@ -6689,9 +6791,16 @@
       const badge = document.getElementById('lastUpdateBadge');
       if (lbl && badge) {
         const txt = (badge.textContent || '').replace(/\s+/g, ' ').trim();
-        if (txt) lbl.textContent = '🟢 동기화 ' + txt;
+        const longEl = lbl.querySelector('.amb-sync-long');
+        const shortEl = lbl.querySelector('.amb-sync-short');
+        if (txt) {
+          if (longEl) longEl.textContent = '🟢 동기화 ' + txt;
+          if (shortEl) shortEl.textContent = '🟢 ' + txt.replace(/\s*레이더\s*$/, '');
+          if (!longEl && !shortEl) lbl.textContent = '🟢 동기화 ' + txt;
+        }
       }
-      const isOn = document.body.classList.contains('admin-logged-in');
+      try { applyBrandHeaderState(); } catch (e) { /* noop */ }
+      const isOn = document.body.classList.contains('brand-header-active');
       bar.setAttribute('aria-hidden', isOn ? 'false' : 'true');
     }
     function initAdminMasterBrandObserver() {
