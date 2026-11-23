@@ -104,6 +104,51 @@
     .ticker-item { display: inline-flex; align-items: center; gap: 6px; margin: 0 18px; }
     @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+    /* Intraday Rebound & Supply-Turnaround Pulse Badge Bar (MARKET_PULSE_BADGE) */
+    .market-pulse-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+      width: 100%; max-width: 100%; box-sizing: border-box;
+      padding: 8px 16px; background: var(--surface-sub);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.76rem; font-weight: 800; letter-spacing: -0.015em; overflow-x: clip;
+    }
+    .market-pulse-bar .mp-label {
+      font-size: 0.68rem; font-weight: 900; color: var(--text-muted);
+      display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex: 0 0 auto;
+    }
+    .mp-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 11px; border-radius: 9999px;
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      max-width: 100%; min-width: 0; overflow-wrap: break-word; word-break: keep-all;
+      line-height: 1.4; white-space: normal;
+    }
+    .mp-pill.mp-strong {
+      background: rgba(5, 150, 105, 0.16); border-color: rgba(5, 150, 105, 0.5);
+      color: #047857; font-weight: 900; box-shadow: 0 1px 6px rgba(5, 150, 105, 0.14);
+    }
+    .mp-pill.mp-up { background: var(--success-bg); border-color: var(--success-border); color: var(--success); }
+    .mp-pill.mp-flat { background: var(--surface); border-color: var(--border); color: var(--text-sub); }
+    .mp-pill.mp-down { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger); }
+    .mp-pill.mp-inst-turn {
+      background: rgba(5, 150, 105, 0.16); border-color: rgba(5, 150, 105, 0.5);
+      color: #047857; font-weight: 900;
+    }
+    .mp-pill.mp-foreign-out { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger); }
+    .mp-pill.mp-asof {
+      background: transparent; border-style: dashed; color: var(--text-muted);
+      font-weight: 700; font-size: 0.68rem;
+    }
+    body.dark .mp-pill.mp-strong,
+    body.dark .mp-pill.mp-inst-turn { color: #6ee7b7; }
+    body.dark .mp-pill.mp-up { color: #6ee7b7; }
+    @media (max-width: 480px) {
+      .market-pulse-bar { padding: 7px 10px; gap: 5px; font-size: 0.7rem; }
+      .market-pulse-bar .mp-label { font-size: 0.64rem; }
+      .mp-pill { padding: 3px 9px; font-size: 0.7rem; line-height: 1.38; }
+      .mp-pill.mp-asof { font-size: 0.64rem; }
+    }
+
     /* 7-Day Trial Floating Notice Bar for General Visitors */
     .trial-banner {
       background: linear-gradient(90deg, #0284c7 0%, #2563eb 100%);
@@ -999,6 +1044,7 @@
     body.trial-expired-locked .container,
     body.trial-expired-locked nav,
     body.trial-expired-locked .ticker-bar,
+    body.trial-expired-locked .market-pulse-bar,
     body.trial-expired-locked .mobile-bottom-dock,
     body.trial-expired-locked #quickTopFloating {
       filter: blur(8px);
@@ -1584,7 +1630,7 @@
     /* Print Styles */
     @media print {
       body { background: white; color: black; }
-      nav, .ticker-bar, .trial-banner, .toolbar-card, .btn-preset, .btn-run-analysis, .btn-chart-open, #btnPrint { display: none !important; }
+      nav, .ticker-bar, .market-pulse-bar, .trial-banner, .toolbar-card, .btn-preset, .btn-run-analysis, .btn-chart-open, #btnPrint { display: none !important; }
       .container { max-width: 100%; padding: 0; }
       .hero, .pulse-card, .stock-card, .portfolio-box, .calc-box { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
     }
@@ -1868,6 +1914,15 @@
       <div class="ticker-item"><span>8선 1·2위</span> <span class="c-success">HD현대마린 72점 (176,400원) · 대한항공 70점 (30,300원 · 쌍끌이 200만주)</span></div>
       <div class="ticker-item"><span>다음 자동 갱신</span> <span class="c-success">11-23(월) 19:50 야간·시간외 결산 레이더</span></div>
         </div>
+  </div>
+
+  <!-- Intraday Rebound & Supply-Turnaround Pulse Badge Bar (rendered from MARKET_PULSE_BADGE) -->
+  <div class="market-pulse-bar" id="intradayReboundBadge" aria-live="polite" data-asof="11-23 15:30 확정">
+    <span class="mp-label">📊 오늘의 시장 펄스</span>
+    <span class="mp-pill mp-strong">📈 저점 대비 반등 +2.65% (4,586.80 → 4,708.54)</span>
+    <span class="mp-pill mp-inst-turn">🟢 기관 +1,872억 순매수 전환</span>
+    <span class="mp-pill mp-foreign-out">🔴 외인 -2,470억</span>
+    <span class="mp-pill mp-asof">11-23 15:30 확정</span>
   </div>
 
   <!-- Nav -->  <!-- Nav -->
@@ -4085,7 +4140,7 @@
       closeExtendModal();
       const gate = document.getElementById('trialExpiredGate');
       if (gate) gate.classList.remove('active');
-      document.querySelectorAll('.container, nav, .ticker-bar, .mobile-bottom-dock, #quickTopFloating, #trialBanner').forEach(el => {
+      document.querySelectorAll('.container, nav, .ticker-bar, .market-pulse-bar, .mobile-bottom-dock, #quickTopFloating, #trialBanner').forEach(el => {
         el.style.setProperty('display', 'none', 'important');
       });
       document.body.style.overflow = 'hidden';
@@ -6426,6 +6481,60 @@
       '009150': { price: 731000, pct: -5.56, time: '08:05' },  // 삼성전기
       '240810': null                                           // 원익IPS (프리마켓 거래 없음)
     };
+    // =========================================================================
+    // 상단 시장 반등·수급 전환 펄스 배지 (Intraday Rebound & Supply Pulse)
+    // ※ 15:20 장마감 / 19:50 야간 결산 레이더가 매 실행 시 아래 상수를 실측치로 갱신한다.
+    // ※ MARKET_PULSE_BADGE 상수와 renderMarketPulseBadge() 함수·#intradayReboundBadge 바는
+    //    절대 삭제하지 말고 수치만 최신화한다. (reboundPct: 저점→종가 반등률 %)
+    // =========================================================================
+    const MARKET_PULSE_BADGE = {
+      reboundPct: 2.65,             // 코스피 저점 대비 종가 반등률(%)
+      kospiLow: '4,586.80',         // 당일 코스피 장중 저점
+      kospiClose: '4,708.54',       // 당일 코스피 확정 종가
+      instNet: '+1,872억',          // 기관 순매수/순매도 금액
+      instTurned: true,             // 직전 순매도(-9,330억) → 순매수 전환 여부
+      foreignNet: '-2,470억',       // 외국인 순매수/순매도 금액
+      foreignTurned: false,         // 외국인 순매수 전환 여부
+      asOf: '11-23 15:30 확정'      // 데이터 기준 시각
+    };
+
+    function renderMarketPulseBadge() {
+      const bar = document.getElementById('intradayReboundBadge');
+      if (!bar || !MARKET_PULSE_BADGE) return;
+      const m = MARKET_PULSE_BADGE;
+      const pct = Number(m.reboundPct);
+      const pctTxt = (isFinite(pct) ? (pct > 0 ? '+' : '') + pct.toFixed(2) : '-') + '%';
+      const reboundTone = !isFinite(pct) ? 'mp-flat'
+        : (pct >= 2 ? 'mp-strong' : (pct > 0 ? 'mp-up' : (pct < 0 ? 'mp-down' : 'mp-flat')));
+      const netTone = (net, turned) => {
+        if (turned) return 'mp-inst-turn';
+        const s = String(net || '').trim();
+        if (s.charAt(0) === '+') return 'mp-up';
+        if (s.charAt(0) === '-') return 'mp-foreign-out';
+        return 'mp-flat';
+      };
+      const netIcon = (net, turned) => (turned || String(net || '').trim().charAt(0) === '+') ? '🟢' : '🔴';
+      const instTxt = `${netIcon(m.instNet, m.instTurned)} 기관 ${m.instNet}${m.instTurned ? ' 순매수 전환' : ' 순매도'}`;
+      const foreignTxt = `${netIcon(m.foreignNet, m.foreignTurned)} 외인 ${m.foreignNet}${m.foreignTurned ? ' 순매수 전환' : ''}`;
+      const makePill = (cls, text) => {
+        const el = document.createElement('span');
+        el.className = 'mp-pill ' + cls;
+        el.textContent = text;
+        return el;
+      };
+      bar.innerHTML = '';
+      const label = document.createElement('span');
+      label.className = 'mp-label';
+      label.textContent = '📊 오늘의 시장 펄스';
+      bar.appendChild(label);
+      bar.appendChild(makePill(reboundTone, `📈 저점 대비 반등 ${pctTxt} (${m.kospiLow} → ${m.kospiClose})`));
+      bar.appendChild(makePill(netTone(m.instNet, m.instTurned), instTxt));
+      bar.appendChild(makePill(netTone(m.foreignNet, m.foreignTurned), foreignTxt));
+      if (m.asOf) bar.appendChild(makePill('mp-asof', m.asOf));
+      bar.setAttribute('data-asof', m.asOf || '');
+      bar.setAttribute('title', `코스피 저점 ${m.kospiLow} → 종가 ${m.kospiClose} (${pctTxt}) · 기관 ${m.instNet} · 외인 ${m.foreignNet} · 기준 ${m.asOf || '-'}`);
+    }
+
     let gapAdjustPct = NIGHT_FUTURES_CHANGE_PCT;
     let gapAdjustTab = 'core4';
     let gapAdjustMode = 'pct'; // 'pct' = 야간선물 일괄 환산 · 'premarket' = NXT 프리마켓 실측 대입
@@ -10129,6 +10238,13 @@ function switchCoachTab(tabKey) {
         }
       } catch (e) {
         console.error('Auto render on DOMContentLoaded failed:', e);
+      }
+      try {
+        if (typeof renderMarketPulseBadge === 'function') {
+          renderMarketPulseBadge();
+        }
+      } catch (e) {
+        console.error('renderMarketPulseBadge failed:', e);
       }
       try {
         if (typeof initAudioBriefingListeners === 'function') {
