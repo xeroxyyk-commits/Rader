@@ -263,13 +263,18 @@
       .amb-vip, .amb-sync, .amb-btn { font-size: 0.6rem; padding: 3px 8px; }
     }
     @media (max-width: 460px) {
-      .amb-right { flex: 1 1 100%; justify-content: flex-start; gap: 5px; }
+      /* 360px 모바일: 브랜드(1줄) + VIP·동기화·잠금(2줄)의 2줄 구성으로 압축 */
+      .amb-right { flex: 0 1 auto; justify-content: flex-start; gap: 5px; }
+      .amb-vip, .amb-sync, .amb-btn { font-size: 0.55rem; padding: 2px 7px; }
+      .amb-sync { max-width: none; }
       .amb-sub { letter-spacing: 0.1em; }
-      .amb-sync { max-width: 46vw; }
     }
-    @media (max-width: 360px) {
-      .amb-title { font-size: 0.88rem; }
-      .amb-sub { font-size: 0.46rem; letter-spacing: 0.06em; }
+    @media (max-width: 380px) {
+      .admin-master-brand { padding: 7px 9px; gap: 4px 7px; }
+      .amb-badge { width: 26px; height: 26px; border-radius: 9px; font-size: 0.82rem; }
+      .amb-title { font-size: 0.86rem; }
+      .amb-sub { font-size: 0.44rem; letter-spacing: 0.05em; }
+      .amb-vip, .amb-sync, .amb-btn { font-size: 0.52rem; padding: 2px 6px; }
       .amb-btn.amb-console { display: none; }
     }
 
