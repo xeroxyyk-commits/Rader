@@ -6959,7 +6959,8 @@
         const stopShort = (d.stopLossStr || '').split(' ')[0] || '-';
         const tgtShort = (d.targetStr || '').split(' ')[0] || '-';
         const ledCls = core4LedClass(d.code);
-        const rrNum = parseFloat(String(d.rrRatio || '').replace(/[^0-9.]/g, '')) || 0;
+        const rrParts = String(d.rrRatio || '').split(':');
+        const rrNum = parseFloat(rrParts.length > 1 ? rrParts[1] : rrParts[0]) || 0;
         return `
           <div class="core4-card" data-code="${d.code}">
             <span class="led-bar thin ${ledCls}" aria-hidden="true"></span>
