@@ -3379,36 +3379,16 @@
     <div class="section-title" id="sec-stress">💡 시장 급락 충격 스트레스 테스터 (Market Crash Stress Simulator)</div>
     <div class="stress-box" id="stressBox">
       <div style="font-size:0.84rem; color:var(--text-sub); margin-bottom:14px; line-height:1.55;">
-        "미국장 -7.2% 폭락 충격, 내 계좌는 어떻게 될까?" 개장 전 시나리오별 예상 체결가와 평가손익을 사전에 시뮬레이션하여 패닉셀을 원천 차단합니다. <strong>8대 주도 종목을 선택하여 종목별 충격을 즉시 검증</strong>하세요.
+        "미국장 -7.2% 폭락 충격, 내 계좌는 어떻게 될까?" 개장 전 시나리오별 예상 체결가와 평가손익을 사전에 시뮬레이션하여 패닉셀을 원천 차단합니다. <strong>4대 핵심 전략주(네오사피엔스·LS ELECTRIC 포함)와 8선 턴어라운드 종목의 실측 단가로 충격을 즉시 검증</strong>하세요.
       </div>
 
-      <!-- 8-Stock Selector Tabs for Stress Tester -->
+      <!-- Stress Tester 종목 탭 (4대 핵심주 + 8선 · JS 실시간 렌더) -->
       <div style="margin-bottom:14px;">
         <div style="font-size:0.75rem; color:var(--text-muted); font-weight:800; margin-bottom:6px;">
           🎯 시뮬레이션 대상 종목 선택:
         </div>
         <div class="flow-stock-tabs" id="stressStockTabs" style="margin-bottom:0;">
-        <button class="flow-tab-btn active" data-code="010140" onclick="switchStressStock('010140', this)">
-          <span>🚢</span> 삼성중공업
-        </button>
-        <button class="flow-tab-btn" data-code="009150" onclick="switchStressStock('009150', this)">
-          <span>⚡</span> 삼성전기
-        </button>
-        <button class="flow-tab-btn" data-code="042700" onclick="switchStressStock('042700', this)">
-          <span>⚙️</span> 한미반도체
-        </button>
-        <button class="flow-tab-btn" data-code="010950" onclick="switchStressStock('010950', this)">
-          <span>🛢️</span> S-Oil
-        </button>
-        <button class="flow-tab-btn" data-code="058470" onclick="switchStressStock('058470', this)">
-          <span>💎</span> 리노공업
-        </button>
-        <button class="flow-tab-btn" data-code="005380" onclick="switchStressStock('005380', this)">
-          <span>🚗</span> 현대차
-        </button>
-        <button class="flow-tab-btn" data-code="000660" onclick="switchStressStock('000660', this)">
-          <span>⚡</span> SK하이닉스
-        </button>
+          <!-- 종목 탭은 renderStressTabs()가 TURNAROUND_MASTER_DATA 단일 소스에서 실시간 렌더링합니다. -->
         </div>
       </div>
 
@@ -3436,25 +3416,33 @@
       <div class="calc-res-grid">
         <div class="res-item">
           <div class="lbl">코스피 예상 지수</div>
-          <div class="val c-danger" id="stressKospi">4,983.75 pt</div>
+          <div class="val c-danger" id="stressKospi">–</div>
         </div>
         <div class="res-item">
-          <div class="lbl"><span id="stressStockNameLabel">리노공업</span> 예상 체결가</div>
-          <div class="val" id="stressExpPrice">43,958원</div>
+          <div class="lbl"><span id="stressStockNameLabel">–</span> 예상 체결가</div>
+          <div class="val" id="stressExpPrice">–</div>
         </div>
         <div class="res-item">
           <div class="lbl">시뮬레이션 예상 손익</div>
-          <div class="val c-danger" id="stressPnl">-32,040원 (-3.53%)</div>
+          <div class="val c-danger" id="stressPnl">–</div>
         </div>
         <div class="res-item">
-          <div class="lbl"><span id="stressBufferLabel">43,700원</span> 손절선 안전 버퍼</div>
-          <div class="val c-success" id="stressBuffer">+5,648원 여유 (안전)</div>
+          <div class="lbl"><span id="stressBufferLabel">–</span> 손절선 안전 버퍼</div>
+          <div class="val c-success" id="stressBuffer">–</div>
+        </div>
+        <div class="res-item">
+          <div class="lbl">4대 축 퀀트 스코어 (마스터 실측)</div>
+          <div class="val" id="stressScore">–</div>
+        </div>
+        <div class="res-item">
+          <div class="lbl">마스터 목표가</div>
+          <div class="val c-success" id="stressTargetPrice">–</div>
         </div>
       </div>
 
       <div class="action-guide-box guide-watch" id="stressActionGuide" style="margin-top:16px; margin-bottom:0;">
-        <strong>⚠️ [11-23 19:50 시간외 · 52주 최저 종가 → 시간외 +2.35% 회복]</strong><br>
-        리노공업은 정규장에서 <strong>44,700원(-1.43%)</strong>으로 52주 최저 종가를 새로 썼지만, 19:50 시간외 단일가에서 <strong>45,750원(+0.88%, 종가 대비 +2.35%)</strong>으로 반등했고 NXT 거래량도 정규장의 49%인 33.0만 주가 나왔습니다. 다만 5일 외인 -34.6만·기관 -11.4만 순매도와 11-23 확정 수급 미공표는 여전합니다. <strong>보유 0주는 그대로 두고, 재진입은 43,100원 안착과 수급 반전 확인 이후로 미루십시오</strong>. 46,200원(오늘 고가) 회복 전 추격 금지 — 진입하더라도 계획 수량의 1/3만 조건부입니다.
+        <strong>💡 시나리오를 선택하면 마스터 실측 단가 기준 대응 지침이 즉시 표시됩니다.</strong><br>
+        선택 종목의 현재가·손절선·목표가·퀀트 스코어는 TURNAROUND_MASTER_DATA 단일 소스에서 자동 계산됩니다.
       </div>
     </div>
 
@@ -3474,14 +3462,7 @@
           <span style="font-size:0.72rem; color:var(--accent); font-weight:700;">원클릭 시 목표가·손절가·손익비 즉시 자동 계산</span>
         </div>
                 <div style="display:flex; gap:6px; flex-wrap:wrap;" id="calcPresetButtonsRow">
-                    <button class="btn-preset active" id="calcPreset_443060" onclick="setCalcWithActive('HD현대마린솔루션', 176400, 189500, 170200, 40, this)">⚓ 1위 HD현대마린솔루션 (72점 · 176,400원)</button>
-                    <button class="btn-preset" id="calcPreset_003490" onclick="setCalcWithActive('대한항공', 30300, 33000, 29200, 10, this)">✈️ 2위 대한항공 (70점 · 30,300원)</button>
-                    <button class="btn-preset" id="calcPreset_005380" onclick="setCalcWithActive('현대차', 247500, 277500, 238500, 15, this)">🚗 3위 현대차 (67점 · 247,500원)</button>
-                    <button class="btn-preset" id="calcPreset_047810" onclick="setCalcWithActive('한국항공우주', 93100, 104300, 89800, 40, this)">✈️ 4위 한국항공우주 (66점 · 93,100원)</button>
-                    <button class="btn-preset" id="calcPreset_196170" onclick="setCalcWithActive('알테오젠', 168500, 188800, 162600, 20, this)">🧬 5위 알테오젠 (65점 · 168,500원)</button>
-                    <button class="btn-preset" id="calcPreset_010950" onclick="setCalcWithActive('S-Oil', 93300, 104500, 90000, 40, this)">🛢️ 6위 S-Oil (60점 · 93,300원)</button>
-                    <button class="btn-preset" id="calcPreset_010140" onclick="setCalcWithActive('삼성중공업', 14350, 16080, 13840, 300, this)">🚢 7위 삼성중공업 (57점 · 14,350원)</button>
-                    <button class="btn-preset" id="calcPreset_058470" onclick="setCalcWithActive('리노공업', 44700, 50100, 43100, 80, this)">🔌 8위 리노공업 (52점 · 44,700원)</button>
+                    <!-- TOP 8 프리셋 버튼은 renderCalcPresets()가 TURNAROUND_MASTER_DATA 단일 소스에서 실시간 렌더링합니다. -->
                 </div>
 
       <!-- 🎯 4대 핵심 전략주 즉시 세팅 (계산기·수급·분할매수 1클릭 연동) -->
@@ -6689,6 +6670,91 @@
     let currentActiveStockCodes = [...DEFAULT_TURNAROUND_CODES];
 
     // Initialize module dictionaries from master data for complete backward compatibility
+    // =========================================================================
+    // 💡 스트레스 테스터 · 🧱 분할매수 단일 소스 엔진 (11-24 최적화)
+    //   표시되는 모든 수치(현재가·손절선·목표가·퀀트점수·계획수량)는
+    //   TURNAROUND_MASTER_DATA 실측값에서만 파생한다. 구형 정적 단가 하드코딩 금지.
+    //   ※ scheduled-action 보존 규칙 대상 — 함수 삭제 금지
+    // =========================================================================
+    function refreshStressFromMaster(code) {
+      const m = (typeof TURNAROUND_MASTER_DATA !== 'undefined') ? TURNAROUND_MASTER_DATA[code] : null;
+      if (!m) return null;
+      const num = n => Number(n || 0).toLocaleString();
+      const base = Number(m.currentPrice) || 0;
+      const stop = Number(m.stopLoss) || Math.round(base * 0.95);
+      const tgt = Number(m.target) || Math.round(base * 1.15);
+      const qty = Number(m.qty) || 10;
+      const src = (m.stress && typeof m.stress === 'object') ? m.stress : {};
+      const st = stressStockData[code] = {};
+      st.code = code;
+      st.name = m.name;
+      st.basePrice = base;
+      st.entryPrice = base;
+      st.qty = Number(src.qty) || qty;
+      st.stopLoss = stop;
+      st.target = tgt;
+      st.score = Number(m.score) || 0;
+      st.unit = '주';
+      const stopS = num(stop);
+      const tgtS = num(tgt);
+      const keep = (txt, needle) => (typeof txt === 'string' && txt.indexOf(needle) >= 0) ? txt : null;
+      st.panicGuide = keep(src.panicGuide, stopS) || (stopS + '원 손절 마지노선입니다. 이탈 시 미련 없이 기계적으로 손절해 원금을 사수하십시오.');
+      st.watchGuide = keep(src.watchGuide, stopS) || (stopS + '원 지지선까지 완충 구간입니다. 09:00~09:30 뇌동 추격을 금지하고 이후 수급 안정을 확인하십시오.');
+      st.exitGuide = keep(src.exitGuide, tgtS) || ('목표가 ' + tgtS + '원 도달 시 분할 익절로 수익을 확정하십시오.');
+      return st;
+    }
+
+    function getStressStock(code) {
+      return stressStockData[code] || refreshStressFromMaster(code) || stressStockData['058470'] || null;
+    }
+
+    function refreshScaleFromMaster(code) {
+      const m = (typeof TURNAROUND_MASTER_DATA !== 'undefined') ? TURNAROUND_MASTER_DATA[code] : null;
+      if (!m) return null;
+      const num = n => Number(n || 0).toLocaleString();
+      const base = Number(m.currentPrice) || 0;
+      const stop = Number(m.stopLoss) || Math.round(base * 0.95);
+      const tgt = Number(m.target) || Math.round(base * 1.15);
+      const qty = Number(m.qty) || 10;
+      // 마스터 스키마를 기준으로 매번 새로 파생한다(구형 정적값 잔존 금지).
+      const sc = scaleStockData[code] = Object.assign({}, (m.scale && typeof m.scale === 'object') ? m.scale : {});
+      sc.name = m.name;
+      sc.code = code;
+      sc.unit = sc.unit || '주';
+      sc.stopPrice = stop;
+      sc.targetPrice = tgt;
+      sc.qtyMin = Math.max(1, Math.round(qty / 3));
+      sc.qtyMax = qty;
+      sc.qtyStep = 1;
+      // ⚠️ defaultQ2 < qtyMin 클램프 불일치 보정 (슬라이더 최소값 미만 지정 방지)
+      const dq2 = Number(sc.defaultQ2) || sc.qtyMin;
+      sc.defaultQ2 = Math.min(Math.max(dq2, sc.qtyMin), sc.qtyMax);
+      const lo = Number(sc.sliderMin) || base;
+      const hi = Number(sc.sliderMax) || base;
+      const dp2 = Number(sc.defaultP2) || base;
+      sc.defaultP2 = Math.min(Math.max(dp2, Math.min(lo, hi)), Math.max(lo, hi));
+      if (!sc.p1) sc.p1 = base;
+      if (!sc.q1) sc.q1 = qty;
+      if (!sc.holdingDesc) sc.holdingDesc = '1차 계획: ' + num(base) + '원 × ' + qty + sc.unit + ' (지지선 ' + num(stop) + '원 / 목표 ' + num(tgt) + '원)';
+      if (!sc.facts) sc.facts = {
+        0: '🎯 <strong>' + m.name + ' 1차 매수</strong>: ' + num(base) + '원 지지 확인 후 계획 수량의 1/3만 진입합니다.',
+        1: '🎯 <strong>' + m.name + ' 손익비</strong>: 손절 ' + num(stop) + '원 / 목표 ' + num(tgt) + '원 구조로 1:2 이상을 확인합니다.',
+        2: '🎯 <strong>' + m.name + ' 원칙</strong>: 외인·기관 쌍끌이와 거래량 동반 반등 양봉이 확인될 때만 진입합니다.',
+        3: '🎯 <strong>통계적 팩트</strong>: 개장 초 30분 추격매수 계좌의 74%가 당일 손실로 마감했습니다. 관망이 곧 수익입니다.',
+        4: '🎯 <strong>수급 확인</strong>: 3일 연속 동시 매집이 확인되기 전까지는 비중을 늘리지 않습니다.',
+        5: '🎯 <strong>승리 공식</strong>: 지지선 안착 확인 후 분할, 목표가 도달 시 분할 익절 — 감정 제로가 답입니다.'
+      };
+      if (!sc.voices) sc.voices = {
+        0: m.name + ' 1차 매수 안내입니다. ' + num(base) + '원 지지 확인 후 계획 수량의 3분의 1만 진입하십시오.',
+        1: m.name + ' 손익비 점검입니다. 손절 ' + num(stop) + '원, 목표 ' + num(tgt) + '원으로 손익비 1대 2 이상 구조를 확인했습니다.',
+        2: m.name + ' 원칙 안내입니다. 외인과 기관의 동시 매집이 확인될 때만 진입하십시오.',
+        3: '통계적 팩트입니다. 개장 초 30분 추격매수는 대부분 손실로 끝났습니다. 관망이 곧 수익입니다.',
+        4: m.name + ' 수급 확인 중입니다. 3일 연속 동시 매집 전까지는 비중 확대를 금지합니다.',
+        5: m.name + ' 승리 공식입니다. 지지선 확인 후 분할 진입, 목표가 도달 시 분할 익절을 지키십시오.'
+      };
+      return sc;
+    }
+
     function syncMasterDataToSubmodules() {
       const num = n => Number(n || 0).toLocaleString();
       Object.keys(TURNAROUND_MASTER_DATA).forEach(code => {
@@ -6696,53 +6762,16 @@
         const base = Number(m.currentPrice) || 0;
         const stop = Number(m.stopLoss) || Math.round(base * 0.95);
         const tgt  = Number(m.target) || Math.round(base * 1.15);
-        const qty  = Number(m.qty) || 10;
 
-        if (m.scale) scaleStockData[code] = m.scale;
         if (m.flow) flowData[code] = m.flow;
-        if (m.stress) stressStockData[code] = m.stress;
         if (m.timeline) timelineData[code] = m.timeline;
         if (m.share) stockStrategyMap[code] = m.share;
 
-        // --- 스트레스 테스터 스키마 보완 ---
-        const st = stressStockData[code] = stressStockData[code] || {};
-        st.name = st.name || m.name;
-        if (st.basePrice === undefined) st.basePrice = (st.base !== undefined ? st.base : base);
-        if (st.entryPrice === undefined) st.entryPrice = st.basePrice;
-        if (st.qty === undefined) st.qty = qty;
-        if (st.stopLoss === undefined) st.stopLoss = stop;
-        if (st.unit === undefined) st.unit = '주';
-        if (!st.panicGuide) st.panicGuide = num(stop) + '원 지지선입니다. 이탈 시 미련 없이 기계적 손절로 원금을 방어하세요.';
-        if (!st.watchGuide) st.watchGuide = num(stop) + '원 지지선까지 완충 구간입니다. 09:00~09:30 뇌동 추격을 금지하고 9시 30분 이후 수급 안정을 확인하세요.';
-        if (!st.exitGuide) st.exitGuide = '목표가 ' + num(tgt) + '원 도달 시 분할 익절로 수익을 확정하세요.';
+        // --- 💡 스트레스 테스터: 매 동기화마다 마스터 실측값으로 전면 재계산 ---
+        refreshStressFromMaster(code);
 
-        // --- 분할매수·나침반 스키마 보완 ---
-        const sc = scaleStockData[code] = scaleStockData[code] || {};
-        sc.name = sc.name || m.name;
-        sc.code = code;
-        if (sc.unit === undefined) sc.unit = '주';
-        if (sc.qtyMin === undefined) sc.qtyMin = Math.max(1, Math.round(qty / 3));
-        if (sc.qtyMax === undefined) sc.qtyMax = qty;
-        if (sc.qtyStep === undefined) sc.qtyStep = 1;
-        if (sc.stopPrice === undefined) sc.stopPrice = stop;
-        if (sc.targetPrice === undefined) sc.targetPrice = tgt;
-        if (!sc.holdingDesc) sc.holdingDesc = '1차 계획: ' + num(base) + '원 × ' + qty + sc.unit + ' (지지선 ' + num(stop) + '원 / 목표 ' + num(tgt) + '원)';
-        if (!sc.facts) sc.facts = {
-          0: '🎯 <strong>' + m.name + ' 1차 매수</strong>: ' + num(base) + '원 지지 확인 후 계획 수량의 1/3만 진입합니다.',
-          1: '🎯 <strong>' + m.name + ' 손익비</strong>: 손절 ' + num(stop) + '원 / 목표 ' + num(tgt) + '원 구조로 1:2 이상을 확인합니다.',
-          2: '🎯 <strong>' + m.name + ' 원칙</strong>: 외인·기관 쌍끌이와 거래량 동반 반등 양봉이 확인될 때만 진입합니다.',
-          3: '🎯 <strong>통계적 팩트</strong>: 개장 초 30분 추격매수 계좌의 74%가 당일 손실로 마감했습니다. 관망이 곧 수익입니다.',
-          4: '🎯 <strong>수급 확인</strong>: 3일 연속 동시 매집이 확인되기 전까지는 비중을 늘리지 않습니다.',
-          5: '🎯 <strong>승리 공식</strong>: 지지선 안착 확인 후 분할, 목표가 도달 시 분할 익절 — 감정 제로가 답입니다.'
-        };
-        if (!sc.voices) sc.voices = {
-          0: m.name + ' 1차 매수 안내입니다. ' + num(base) + '원 지지 확인 후 계획 수량의 3분의 1만 진입하십시오.',
-          1: m.name + ' 손익비 점검입니다. 손절 ' + num(stop) + '원, 목표 ' + num(tgt) + '원으로 손익비 1대 2 이상 구조를 확인했습니다.',
-          2: m.name + ' 원칙 안내입니다. 외인과 기관의 동시 매집이 확인될 때만 진입하십시오.',
-          3: '통계적 팩트입니다. 개장 초 30분 추격매수는 대부분 손실로 끝났습니다. 관망이 곧 수익입니다.',
-          4: m.name + ' 수급 확인 중입니다. 3일 연속 동시 매집 전까지는 비중 확대를 금지합니다.',
-          5: m.name + ' 승리 공식입니다. 지지선 확인 후 분할 진입, 목표가 도달 시 분할 익절을 지키십시오.'
-        };
+        // --- 🧱 분할매수·나침반: 마스터 실측값 + 계획 수량 기준 파생 ---
+        refreshScaleFromMaster(code);
 
         // --- 개장 타임라인 스키마 보완 ---
         const tl = timelineData[code] = timelineData[code] || {};
@@ -6917,6 +6946,8 @@
           switchScaleStock(code);
           ledFocusSection('sec-scale', '.scale-box');
           showToast(`🧱 [${d.name}] 분할매수 시뮬레이터로 연동되었습니다!`);
+        } else if (module === 'stress') {
+          jumpToStress(code);
         }
       } catch (e) {
         console.error('core4QuickAction failed:', e);
@@ -6985,6 +7016,7 @@
               <button type="button" class="core4-btn" data-quick="calc" onclick="core4QuickAction('${d.code}', 'calc')">🧮 계산기</button>
               <button type="button" class="core4-btn" data-quick="flow" onclick="core4QuickAction('${d.code}', 'flow')">📊 수급</button>
               <button type="button" class="core4-btn" data-quick="scale" onclick="core4QuickAction('${d.code}', 'scale')">🧱 분할매수</button>
+              <button type="button" class="core4-btn" data-quick="stress" onclick="core4QuickAction('${d.code}', 'stress')">💡 스트레스</button>
             </div>
             <div class="core4-sub" style="font-size:0.68rem; color:var(--text-muted); line-height:1.5;">
               ⚡ ${d.name} 실측 기준 세팅 · 손익비 ${rrNum > 0 ? '1 : ' + rrNum.toFixed(2) : '-'} · 목표 ${tgtShort} / 손절 ${stopShort}
@@ -7694,12 +7726,17 @@
     function renderStressTabs(codes) {
       const cont = document.getElementById('stressStockTabs');
       if (!cont) return;
+      // 4대 핵심주(0161M0·010120 포함)를 항상 함께 노출 — 8선에 없는 종목도 실측 단가로 검증 가능
+      const list = withCore4Extra(codes);
+      const activeCode = (list.indexOf(currentStressCode) >= 0) ? currentStressCode : (list[0] || '');
+      if (activeCode) currentStressCode = activeCode;
       let html = '';
-      codes.forEach((code, idx) => {
+      list.forEach(code => {
         const s = TURNAROUND_MASTER_DATA[code];
         if (!s) return;
-        const active = idx === 0 ? ' active' : '';
-        html += `<button class="flow-tab-btn${active}" data-code="${code}" onclick="switchStressStock('${code}', this)"><span>${s.icon}</span> ${s.name}</button>`;
+        const active = (code === activeCode) ? ' active' : '';
+        const isCore4Only = (codes || []).indexOf(code) < 0;
+        html += `<button class="flow-tab-btn${active}" data-code="${code}"${isCore4Only ? ' data-core4="1"' : ''} onclick="switchStressStock('${code}', this)"><span class="led-dot ${core4LedClass(code)} sm" aria-hidden="true"></span><span>${s.icon}</span> ${s.name}</button>`;
       });
       cont.innerHTML = html;
     }
@@ -8177,9 +8214,10 @@
       showToast(`🔔 [${stock}] 알림 트리거가 등록되었습니다!`);
     }
 
-    // Focus Stock Simulator (리노공업 058470)
-    const ENTRY_PRICE = 47700;
-    const SHARES = 80;
+    // Focus Stock Simulator (4대 핵심주 1순위 리노공업 058470) — 기준가·수량은 마스터 단일 소스
+    const _FOCUS_MASTER = (typeof TURNAROUND_MASTER_DATA !== 'undefined' && TURNAROUND_MASTER_DATA['058470']) ? TURNAROUND_MASTER_DATA['058470'] : null;
+    const ENTRY_PRICE = Number(_FOCUS_MASTER ? _FOCUS_MASTER.currentPrice : 0) || 0;
+    const SHARES = Number(_FOCUS_MASTER ? _FOCUS_MASTER.qty : 0) || 1;
     const PRINCIPAL = ENTRY_PRICE * SHARES;
 
     const simSlider = document.getElementById('simSlider');
@@ -8448,7 +8486,7 @@
     }
 
     function jumpToScaleSim(code) {
-      const s = scaleStockData[code];
+      const s = refreshScaleFromMaster(code) || scaleStockData[code];
       if (!s) return;
       const targetBtn = document.querySelector(`#scaleStockTabs button[onclick*="${code}"]`);
       switchScaleStock(code, targetBtn);
@@ -8466,7 +8504,7 @@
     }
 
     function jumpToCompass(code) {
-      const s = scaleStockData[code];
+      const s = refreshScaleFromMaster(code) || scaleStockData[code];
       if (!s) return;
       const targetBtn = document.querySelector(`#compassStockTabs button[onclick*="${code}"]`);
       switchCompassStock(code, targetBtn);
@@ -9048,253 +9086,18 @@
 
 
     // 8-Stock Full Config for Scale-in Simulator & AI Compass
-    const scaleStockData = {
-      '000660': {
-        name: 'SK하이닉스',
-        code: '000660',
-        p1: 1418000,
-        q1: 3,
-        sliderMin: 1350000,
-        sliderMax: 1410000,
-        sliderStep: 5000,
-        defaultP2: 1380000,
-        defaultQ2: 2,
-        qtyMin: 1,
-        qtyMax: 10,
-        qtyStep: 1,
-        unit: '주',
-        stopPrice: 1380000,
-        targetPrice: 1550000,
-        holdingDesc: '1차 포지션: SK하이닉스 1,418,000원 × 3주 (4,254,000원)',
-        facts: {
-          0: '🎯 <strong>SK하이닉스 퀀트</strong>: 2029년까지 HBM 물량 완판. 인텔 쇼크로 인한 -7% 급락은 감정적 과매도 구간입니다.',
-          1: '🎯 <strong>손익비 1:3.4</strong>: 1,380,000원 손절 대비 1,550,000원 목표 상방 보상이 3배 이상 압도적인 자리입니다.',
-          2: '🎯 <strong>방화벽 1,380,000원</strong>: 전저점 지지선 이탈 시 손실폭 -2.7%에서 제한하는 기계적 원칙을 확립했습니다.',
-          3: '🎯 <strong>빅테크 CapEx 팩트</strong>: 엔비디아 루빈 및 차세대 AI 서버 투자액은 역대 최대치로 HBM 수요는 흔들리지 않습니다.',
-          4: '🎯 <strong>외인 메가 매집</strong>: 외인·기관의 선물/현물 베이시스 전환과 환율 안정이 확인되면 반등 탄력이 가장 큽니다.',
-          5: '🎯 <strong>실전 승인</strong>: SK하이닉스 HBM 독점 체력 기반 1:3.4 손익비 전략을 자신감 있게 실행하십시오!'
-        },
-        voices: {
-          0: 'SK하이닉스 나침반 진단입니다. 인텔 쇼크로 과매도된 구간입니다. 뇌동매매를 멈추고 1번 손익비부터 검증하세요.',
-          1: 'SK하이닉스 손익비 1대 3.4 원칙을 세웠습니다. 상방 보상이 하방 위험보다 3배 이상 높은 유리한 고지입니다.',
-          2: 'SK하이닉스 138만 원 지지선 방화벽을 구축했습니다. 손실은 2.7% 내외로 철저히 통제됩니다.',
-          3: 'SK하이닉스 시초가 왜곡 구간을 넘겼습니다. 9시 반 이후 메이저 자금의 저가 매집 전환을 확인하세요.',
-          4: 'SK하이닉스 외인 메가 수급과 환율 안정을 확인했습니다. 계획된 분할 매수를 최종 점검하세요.',
-          5: 'SK하이닉스 매매 승인 완료! 감정을 배제하고 138만 원 손절 사수와 155만 원 목표가 전략을 실행하십시오.'
-        }
-      },
-      '005930': {
-        name: '삼성전자',
-        code: '005930',
-        p1: 225000,
-        q1: 20,
-        sliderMin: 215000,
-        sliderMax: 224000,
-        sliderStep: 1000,
-        defaultP2: 218000,
-        defaultQ2: 10,
-        qtyMin: 5,
-        qtyMax: 50,
-        qtyStep: 5,
-        unit: '주',
-        stopPrice: 216000,
-        targetPrice: 245000,
-        holdingDesc: '1차 포지션: 삼성전자 225,000원 × 20주 (4,500,000원)',
-        facts: {
-          0: '🎯 <strong>삼성전자 수급 1위</strong>: 급락장 속 외인 1,186억, 기관 531억 쌍끌이 순매수 1위 종목입니다.',
-          1: '🎯 <strong>손익비 1:2.5</strong>: 216,000원 손절선(-4.0%) 대비 245,000원 목표가(+8.9%)로 손익비가 우수합니다.',
-          2: '🎯 <strong>PBR 0.9배 역사적 저점</strong>: 코스피 대장주로서 하방 지지력이 가장 견고한 밸류에이션 바닥권입니다.',
-          3: '🎯 <strong>스마트머니 동조</strong>: 시장 투매 속에서도 기관과 외인이 유일하게 담은 종목이므로 시초가 패닉셀은 금물입니다.',
-          4: '🎯 <strong>HBM3E 모멘텀</strong>: 고객사 퀄테스트 통과 본격화 시 지수 반등의 최선봉에 서게 됩니다.',
-          5: '🎯 <strong>실전 승인</strong>: 삼성전자 쌍끌이 1위 수급과 1:2.5 손익비 원칙으로 차분하게 대응하십시오!'
-        },
-        voices: {
-          0: '삼성전자 나침반 진단입니다. 외인 기관 쌍끌이 1위 종목입니다. 1번 손익비부터 차분히 확인하세요.',
-          1: '삼성전자 손익비 1대 2.5를 확보했습니다. 손실 대비 보상이 2배 이상 큰 자리입니다.',
-          2: '삼성전자 21만 6천 원 손절선을 설정하여 계좌 손실을 마이너스 4% 안으로 통제했습니다.',
-          3: '삼성전자 시초가 패닉셀을 성공적으로 차단했습니다. 스마트머니의 바닥 매집을 지켜보세요.',
-          4: '삼성전자 메이저 쌍끌이 수급을 확인했습니다. 계획된 분할 전략을 실행할 준비가 되었습니다.',
-          5: '삼성전자 실전 매매 승인 완료! PBR 바닥권과 쌍끌이 수급을 믿고 원칙대로 대응하십시오.'
-        }
-      },
-      '058470': {
-        name: '리노공업',
-        code: '058470',
-        p1: 192000,
-        q1: 15,
-        sliderMin: 180000,
-        sliderMax: 191000,
-        sliderStep: 1000,
-        defaultP2: 185000,
-        defaultQ2: 10,
-        qtyMin: 5,
-        qtyMax: 30,
-        qtyStep: 5,
-        unit: '주',
-        stopPrice: 184000,
-        targetPrice: 210000,
-        holdingDesc: '1차 포지션 참고: 리노공업 44,700원 × 20주 (894,000원)',
-        facts: {
-          0: '🎯 <strong>리노공업 퀀트</strong>: 영업이익률 42%의 압도적 재무 체력과 온디바이스 AI 소켓 글로벌 독점력.',
-          1: '🎯 <strong>손익비 1:2.3</strong>: 184,000원 손절선(-4.2%) 대비 210,000원 목표가(+9.4%) 충족.',
-          2: '🎯 <strong>외인 5일 연속 순매수</strong>: 코스닥 하락장 속에서도 글로벌 스마트머니가 지속 매집 중입니다.',
-          3: '🎯 <strong>시초가 방어</strong>: 무차입 경영의 독점 기업은 지수 투매 시 가장 빠르게 제자리를 찾아갑니다.',
-          4: '🎯 <strong>온디바이스 AI 수혜</strong>: 빅테크 자체 NPU 칩 설계 확산으로 테스트 소켓 수요가 지속 증가합니다.',
-          5: '🎯 <strong>실전 승인</strong>: 리노공업 고수익 독점 체력 기반 1:2.3 손익비 전략을 가동하십시오!'
-        },
-        voices: {
-          0: '리노공업 나침반 진단입니다. 영업이익률 42%의 최고급 퀄리티 종목입니다. 1번 손익비부터 검증하세요.',
-          1: '리노공업 손익비 1대 2.3을 확보했습니다. 유리한 고지를 선점했습니다.',
-          2: '리노공업 18만 4천 원 손절선을 확정하여 리스크를 완전히 통제했습니다.',
-          3: '리노공업 시초가 공포를 이겨냈습니다. 외인 5일 매집세를 확인하세요.',
-          4: '리노공업 온디바이스 AI 독점력과 수급 안정을 확인했습니다.',
-          5: '리노공업 매매 승인 완료! 독점적 현금흐름과 손익비 원칙으로 당당하게 매매하십시오.'
-        }
-      },
-      '042700': {
-        name: '한미반도체',
-        code: '042700',
-        p1: 108000,
-        q1: 25,
-        sliderMin: 100000,
-        sliderMax: 107000,
-        sliderStep: 500,
-        defaultP2: 102000,
-        defaultQ2: 15,
-        qtyMin: 5,
-        qtyMax: 50,
-        qtyStep: 5,
-        unit: '주',
-        stopPrice: 101000,
-        targetPrice: 124000,
-        holdingDesc: '1차 포지션: 한미반도체 108,000원 × 25주 (2,700,000원)',
-        facts: {
-          0: '🎯 <strong>한미반도체 모멘텀</strong>: HBM TC본더 독점 장비주. 수주 잔고 2,800억 원 돌파.',
-          1: '🎯 <strong>손익비 1:3.8</strong>: 146,500원 손절선(-3.4%) 대비 170,000원 목표가(+12.1%) 도달 가능.',
-          2: '🎯 <strong>전저점 지지선</strong>: 공매도 과열 구간을 지나 기술적 반등 시 가장 폭발적인 변곡점 타점.',
-          3: '🎯 <strong>패닉셀 금지</strong>: 장비 대장주는 시초가 갭하락 시 공포를 던지지 않고 분할 매수로 대응해야 합니다.',
-          4: '🎯 <strong>북미 고객사 확장</strong>: 마이크론 및 글로벌 빅테크 납품 일정 가속화 수혜.',
-          5: '🎯 <strong>실전 승인</strong>: 한미반도체 TC본더 독점력과 1:2.1 손익비 원칙으로 승리하십시오!'
-        },
-        voices: {
-          0: '한미반도체 나침반 진단입니다. HBM TC본더 대장주입니다. 1번 손익비부터 확인하세요.',
-          1: '한미반도체 손익비 1대 2.1을 세웠습니다. 상방 목표 수익이 충분히 확보되었습니다.',
-          2: '한미반도체 10만 1천 원 전저점 손절선을 확정하여 방어벽을 세웠습니다.',
-          3: '한미반도체 시초가 투매 왜곡 구간을 피했습니다. 반등 탄력을 지켜보세요.',
-          4: '한미반도체 글로벌 수주 잔고와 매크로 수급 안정을 확인했습니다.',
-          5: '한미반도체 실전 매매 승인 완료! 변곡점 반등 파동을 원칙에 따라 잡으십시오.'
-        }
-      },
-      '240810': {
-        name: '원익IPS',
-        code: '240810',
-        p1: 31500,
-        q1: 80,
-        sliderMin: 29000,
-        sliderMax: 31200,
-        sliderStep: 100,
-        defaultP2: 30000,
-        defaultQ2: 40,
-        qtyMin: 10,
-        qtyMax: 100,
-        qtyStep: 10,
-        unit: '주',
-        stopPrice: 29800,
-        targetPrice: 35500,
-        holdingDesc: '1차 포지션: 원익IPS 31,500원 × 80주 (2,520,000원)',
-        facts: {
-          0: '🎯 <strong>원익IPS 턴어라운드</strong>: 3D D램 및 고단화 낸드 ALD 증착 장비 양산 평가 통과.',
-          1: '🎯 <strong>손익비 1:2.35</strong>: 29,800원 손절선(-5.4%) 대비 35,500원 목표가(+12.7%) 확보.',
-          2: '🎯 <strong>메모리 투자 재개</strong>: 바닥 밸류에이션에서 가장 가파른 턴어라운드가 기대되는 장비주.',
-          3: '🎯 <strong>충동 매수 차단</strong>: 갭하락 시 성급한 전량 베팅 대신 계획된 분할 매수가 핵심입니다.',
-          4: '🎯 <strong>기관 저가 유입</strong>: 국내 투신 및 사모펀드의 바닥권 분할 매집 신호 포착.',
-          5: '🎯 <strong>실전 승인</strong>: 원익IPS ALD 증착 턴어라운드와 1:2.35 손익비 전략을 실행하십시오!'
-        },
-        voices: {
-          0: '원익IPS 나침반 진단입니다. 낸드 턴어라운드 핵심 장비주입니다. 1번 손익비부터 검증하세요.',
-          1: '원익IPS 손익비 1대 2.35를 확보했습니다. 우수한 기대 보상비입니다.',
-          2: '원익IPS 2만 9천 800원 손절선을 설정하여 하방 위험을 통제했습니다.',
-          3: '원익IPS 시초가 패닉셀을 차단하고 침착한 관망 태세를 갖췄습니다.',
-          4: '원익IPS 기관의 바닥권 순매수 유입을 확인했습니다.',
-          5: '원익IPS 매매 승인 완료! 메모리 턴어라운드 사이클을 원칙으로 공략하십시오.'
-        }
-      },
-      '196170': {
-        name: '알테오젠',
-        code: '196170',
-        p1: 382000,
-        q1: 10,
-        sliderMin: 360000,
-        sliderMax: 380000,
-        sliderStep: 1000,
-        defaultP2: 368000,
-        defaultQ2: 5,
-        qtyMin: 1,
-        qtyMax: 20,
-        qtyStep: 1,
-        unit: '주',
-        stopPrice: 365000,
-        targetPrice: 420000,
-        holdingDesc: '1차 포지션: 알테오젠 382,000원 × 10주 (3,820,000원)',
-        facts: {
-          0: '🎯 <strong>알테오젠 플랫폼</strong>: 머크 키트루다 SC 독점 상업화 로열티 연 1조 가시권 대장주.',
-          1: '🎯 <strong>손익비 1:2.2</strong>: 365,000원 손절선(-4.4%) 대비 420,000원 목표가(+9.9%) 충족.',
-          2: '🎯 <strong>섹터 헤징 효과</strong>: 반도체 변동성 장세에서 바이오 섹터 주도주로 자금 이동 수혜.',
-          3: '🎯 <strong>추세 추종 원칙</strong>: 20일선 지지력을 확인하며 흔들리지 않는 멘탈을 유지합니다.',
-          4: '🎯 <strong>글로벌 빅파마 수급</strong>: 독점 플랫폼 기술력으로 기관 및 외인 수급이 견고합니다.',
-          5: '🎯 <strong>실전 승인</strong>: 알테오젠 바이오 대장주의 모멘텀과 1:2.2 손익비 전략을 펼치십시오!'
-        },
-        voices: {
-          0: '알테오젠 나침반 진단입니다. 코스닥 바이오 대장주입니다. 1번 손익비부터 확인하세요.',
-          1: '알테오젠 손익비 1대 2.2를 세웠습니다. 상방 목표가가 든든합니다.',
-          2: '알테오젠 36만 5천 원 지지선 방화벽을 완성했습니다.',
-          3: '알테오젠 단기 변동성 공포를 차단하고 주도주 추세를 확인했습니다.',
-          4: '알테오젠 바이오 섹터로의 메이저 자금 이동을 확인했습니다.',
-          5: '알테오젠 실전 매매 승인 완료! 글로벌 신약 플랫폼의 힘을 믿고 원칙대로 대응하십시오.'
-        }
-      },
-      '005380': {
-        name: '현대차',
-        code: '005380',
-        p1: 245000,
-        q1: 15,
-        sliderMin: 235000,
-        sliderMax: 244000,
-        sliderStep: 1000,
-        defaultP2: 239000,
-        defaultQ2: 10,
-        qtyMin: 5,
-        qtyMax: 30,
-        qtyStep: 5,
-        unit: '주',
-        stopPrice: 238000,
-        targetPrice: 262000,
-        holdingDesc: '1차 포지션: 현대차 245,000원 × 15주 (3,675,000원)',
-        facts: {
-          0: '🎯 <strong>현대차 밸류업</strong>: 인도법인 상장으로 4.5조 현금 확보 및 3개년 12조 주주환원 확정.',
-          1: '🎯 <strong>손익비 1:2.4</strong>: 238,000원 손절선(-2.9%) 대비 262,000원 목표가(+6.9%) 확보.',
-          2: '🎯 <strong>방어력 겸비</strong>: 고배당 및 자사주 소각으로 하락장 최고의 안정성을 자랑합니다.',
-          3: '🎯 <strong>시장 노이즈 차단</strong>: 단기 지수 흔들림에 연연하지 않는 든든한 가치 투자 체력.',
-          4: '🎯 <strong>하이브리드 호실적</strong>: 전기차 캐즘을 극복하는 고수익 믹스 개선 확인.',
-          5: '🎯 <strong>실전 승인</strong>: 현대차 밸류업 주주환원과 1:2.4 손익비 원칙으로 편안하게 승리하십시오!'
-        },
-        voices: {
-          0: '현대차 나침반 진단입니다. 밸류업 주주환원 대표주입니다. 1번 손익비부터 확인하세요.',
-          1: '현대차 손익비 1대 2.4를 확보했습니다. 안정적인 보상비입니다.',
-          2: '현대차 23만 8천 원 손절선을 설정하여 원금을 철저히 보호했습니다.',
-          3: '현대차 시장 노이즈를 차단하고 든든한 밸류에이션을 확인했습니다.',
-          4: '현대차 고배당과 자사주 소각 모멘텀을 확인했습니다.',
-          5: '현대차 매매 승인 완료! 압도적인 현금 창출력과 손익비 원칙으로 당당히 대응하십시오.'
-        }
-      }
-    };
+    // 🧱 분할매수 시뮬레이터 데이터 — TURNAROUND_MASTER_DATA 단일 소스
+    //    syncMasterDataToSubmodules()가 master.scale + 실측 stopLoss/target/qty에서
+    //    파생·보정한다(구형 정적 단가 하드코딩 금지 · 11-24 정리).
+    const scaleStockData = {};
+;
 
     let currentScaleCode = '058470';
     let currentCompassCode = '058470';
 
     function switchScaleStock(code, btn) {
       currentScaleCode = code;
-      const s = scaleStockData[code] || scaleStockData['058470'];
+      const s = refreshScaleFromMaster(code) || scaleStockData['058470'];
       if (!btn) btn = document.querySelector(`#scaleStockTabs .flow-tab-btn[data-code="${code}"]`);
       document.querySelectorAll('#scaleStockTabs .flow-tab-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -9319,7 +9122,7 @@
 
     function switchCompassStock(code, btn) {
       currentCompassCode = code;
-      const s = scaleStockData[code] || scaleStockData['058470'];
+      const s = refreshScaleFromMaster(code) || scaleStockData['058470'];
       if (!btn) btn = document.querySelector(`#compassStockTabs .flow-tab-btn[data-code="${code}"]`);
       document.querySelectorAll('#compassStockTabs .flow-tab-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -9762,80 +9565,11 @@
 - 11-24 시나리오: 갭상승 4,770~4,800 안착 50% / 보합 4,720~4,760 소화 30% / 갭하락 4,650 이탈 20%
 * 실전 룰: 기관 매수 연속성 확인 전 추격 금지 · 🔴 52주 최저 종가 3종(리노공업·한국항공우주·삼성중공업) 관망 · 네오사피엔스 신규 진입 금지`;
 
-    const stockStrategyMap = {
-      "443060": {
-        name: "HD현대마린솔루션",
-        code: "443060",
-        text: `[HD현대마린솔루션(443060) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 176,400원 (-4.55%) | 목표가 189,500원 | 손절가 170,200원
-2. 손익비: 1 : 2.11 — 🟢 1위 · 175,000 사수 · 손익비 1:2.1
-3. 수급: -6.5만주 · +7.6만주 · RSI 44.7
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      },
-      "003490": {
-        name: "대한항공",
-        code: "003490",
-        text: `[대한항공(003490) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 30,300원 (-3.50%) | 목표가 33,000원 | 손절가 29,200원
-2. 손익비: 1 : 2.45 — 🟢 2위 · 쌍끌이 200만주 · 29,950 사수
-3. 수급: +88.8만주 · +111.4만주 · RSI 51.1
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      },
-      "005380": {
-        name: "현대차",
-        code: "005380",
-        text: `[현대차(005380) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 247,500원 (-2.94%) | 목표가 277,500원 | 손절가 238,500원
-2. 손익비: 1 : 3.33 — 🟡 3위 · 240,500 사수 · RSI 31.5
-3. 수급: +8.7만주 · +2.8만주 · RSI 31.5
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      },
-      "047810": {
-        name: "한국항공우주",
-        code: "047810",
-        text: `[한국항공우주(047810) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 93,100원 (-7.27%) | 목표가 104,300원 | 손절가 89,800원
-2. 손익비: 1 : 3.39 — 🔴 4위 · 52주 최저 종가 · 추격 금지
-3. 수급: -15.0만주 · +18.1만주 · RSI 36.7
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      },
-      "196170": {
-        name: "알테오젠",
-        code: "196170",
-        text: `[알테오젠(196170) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 168,500원 (-3.38%) | 목표가 188,800원 | 손절가 162,600원
-2. 손익비: 1 : 3.44 — 🟡 5위 · 164,500 사수 확인 후 1/3
-3. 수급: -2.7만주 · +10.9만주 · RSI 32.4
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      },
-      "010950": {
-        name: "S-Oil",
-        code: "010950",
-        text: `[S-Oil(010950) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 93,300원 (-4.11%) | 목표가 104,500원 | 손절가 90,000원
-2. 손익비: 1 : 3.39 — 🟡 6위 · RSI 25.0 과매도 · 90,700 사수
-3. 수급: +20.3만주 · -9.8만주 · RSI 25.0
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      },
-      "010140": {
-        name: "삼성중공업",
-        code: "010140",
-        text: `[삼성중공업(010140) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 14,350원 (-5.09%) | 목표가 16,080원 | 손절가 13,840원
-2. 손익비: 1 : 3.39 — 🔴 7위 · 52주 최저 종가 · 관망
-3. 수급: +20.9만주 · -2.7만주 · RSI 31.9
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      },
-      "058470": {
-        name: "리노공업",
-        code: "058470",
-        text: `[리노공업(058470) 실전 대응 퀀트 가이드]
-1. 주가 스펙: 11-23 장마감 44,700원 (-1.43%) | 목표가 50,100원 | 손절가 43,100원
-2. 손익비: 1 : 3.38 — 🔴 8위 · 수급 순매도 · 43,100 안착 확인
-3. 수급: -34.6만주 · -11.4만주 · RSI 36.6
-4. 네이버 금융 확정 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/`
-      }
-    };
+    // 📋 공유 문구 맵 — TURNAROUND_MASTER_DATA 단일 소스
+    //    syncMasterDataToSubmodules()가 master.share에서 파생한다.
+    //    (구형 정적 문구 하드코딩 금지 · 11-24 정리)
+    const stockStrategyMap = {};
+;
     const textTop3 = `1. HD현대마린솔루션 (72점) 176,400원 -4.55% - 손익비 1 : 2.11 | RSI 44.7 · -6.5만주 · 지지 170,200원\n2. 대한항공 (70점) 30,300원 -3.50% - 손익비 1 : 2.45 | RSI 51.1 · +88.8만주 · 지지 29,200원\n3. 현대차 (67점) 247,500원 -2.94% - 손익비 1 : 3.33 | RSI 31.5 · +8.7만주 · 지지 238,500원\n* 8선 구성 유지(교체 0건)·순위 전면 재배치: 대한항공 4→2위(5일 외인 +88.8만·기관 +111.4만) · 알테오젠 2→5위 · 리노공업은 5일 수급 순매도·52주 최저 종가로 제외 후보 1순위`;
 
     const textTop8 = `1. HD현대마린솔루션 (72점) 176,400원 -4.55% - 손익비 1 : 2.11 | RSI 44.7 · -6.5만주 · 지지 170,200원\n2. 대한항공 (70점) 30,300원 -3.50% - 손익비 1 : 2.45 | RSI 51.1 · +88.8만주 · 지지 29,200원\n3. 현대차 (67점) 247,500원 -2.94% - 손익비 1 : 3.33 | RSI 31.5 · +8.7만주 · 지지 238,500원\n4. 한국항공우주 (66점) 93,100원 -7.27% - 손익비 1 : 3.39 | RSI 36.7 · -15.0만주 · 지지 89,800원\n5. 알테오젠 (65점) 168,500원 -3.38% - 손익비 1 : 3.44 | RSI 32.4 · -2.7만주 · 지지 162,600원\n6. S-Oil (60점) 93,300원 -4.11% - 손익비 1 : 3.39 | RSI 25.0 · +20.3만주 · 지지 90,000원\n7. 삼성중공업 (57점) 14,350원 -5.09% - 손익비 1 : 3.39 | RSI 31.9 · +20.9만주 · 지지 13,840원\n8. 리노공업 (52점) 44,700원 -1.43% - 손익비 1 : 3.38 | RSI 36.6 · -34.6만주 · 지지 43,100원\n* 11-23 19:50 확정 종가·시간외 실측 기준 · 구성·순위 유지(교체 0건) · 시간외 리노공업 45,750(+2.35%)·한국항공우주 94,900(+1.93%)·삼성중공업 14,510(+1.11%) 반등 · 🔴 HD현대마린 175,800로 175,000 지지 턱걸이 · 시초가 추격 금지`;
@@ -9875,119 +9609,10 @@
     }
 
     // Opening Timeline Data & Switcher
+    // ⏰ 개장 타임라인 — 종목별 문구는 TURNAROUND_MASTER_DATA(timeline) 단일 소스에서
+    //    syncMasterDataToSubmodules()가 파생한다. 'common'(주도 섹터 공통)만 시장 전체
+    //    일일 텍스트로 직접 보존한다. (11-24 정리)
     const timelineData = {
-      "443060": {
-        name: "HD현대마린솔루션",
-        s1: "11-23(월) 장전: 175,000~181,000 갭다운 예상 · 175,000 사수 시 1/3, 이탈 시 관망",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 175,000원 사수 여부만 확인(추격 금지)",
-        s3: "지지 175,000원 / 목표 205,500원 (손익비 1 : 2.63)",
-        s4: "목표가 205,500원 도달 시 분할 익절"
-      },
-      "196170": {
-        name: "알테오젠",
-        s1: "11-23(월) 장전: 160,000~166,000 갭다운 예상 · 166,000 사수 확인 후 1/3",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 166,000원 사수 여부만 확인(추격 금지)",
-        s3: "지지 166,000원 / 목표 194,500원 (손익비 1 : 2.75)",
-        s4: "목표가 194,500원 도달 시 분할 익절"
-      },
-      "005380": {
-        name: "현대차",
-        s1: "11-23(월) 장전: 238,000~248,000 갭다운 예상 · 252,000 회복 전 신규 진입 금지",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 244,000원 사수 여부만 확인(추격 금지)",
-        s3: "지지 244,000원 / 목표 283,500원 (손익비 1 : 3.39)",
-        s4: "목표가 283,500원 도달 시 분할 익절"
-      },
-      "003490": {
-        name: "대한항공",
-        s1: "11-23(월) 장전: 29,800~30,700 갭다운 예상 · 30,240(20일선 -3.5%) 이탈 시 즉시 제외",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 30,200원 사수 여부만 확인(추격 금지)",
-        s3: "지지 30,200원 / 목표 35,100원 (손익비 1 : 3.45)",
-        s4: "목표가 35,100원 도달 시 분할 익절"
-      },
-      "047810": {
-        name: "한국항공우주",
-        s1: "11-23(월) 장전: 96,200~99,700 갭다운 예상 · 97,200 이탈 시 손절",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 96,800원 사수 여부만 확인(추격 금지)",
-        s3: "지지 96,800원 / 목표 112,500원 (손익비 1 : 3.49)",
-        s4: "목표가 112,500원 도달 시 분할 익절"
-      },
-      "010950": {
-        name: "S-Oil",
-        s1: "11-23(월) 장전: 92,900~96,300 갭다운 예상 · 96,300 지지 확인 전 관망",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 93,600원 사수 여부만 확인(추격 금지)",
-        s3: "지지 93,600원 / 목표 108,500원 (손익비 1 : 3.38)",
-        s4: "목표가 108,500원 도달 시 분할 익절"
-      },
-      "010140": {
-        name: "삼성중공업",
-        s1: "11-23(월) 장전: 13,900~14,600 갭다운 예상 · 반등 첫날 추격 금지",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 14,500원 사수 여부만 확인(추격 금지)",
-        s3: "지지 14,500원 / 목표 16,800원 (손익비 1 : 3.34)",
-        s4: "목표가 16,800원 도달 시 분할 익절"
-      },
-      "058470": {
-        name: "리노공업",
-        s1: "11-23(월) 장전: 41,000~43,500 갭다운 예상 · 45,000 이탈 시 43,900·41,300 순차 확인",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 43,700원 사수 여부만 확인(추격 금지)",
-        s3: "지지 43,700원 / 목표 50,700원 (손익비 1 : 3.38)",
-        s4: "목표가 50,700원 도달 시 분할 익절"
-      },
-      "009150": {
-        name: "삼성전기",
-        s1: "11-23(월) 장전: 690,000~720,000 갭다운 예상 · 관망",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 742,000원 사수 여부만 확인(추격 금지)",
-        s3: "지지 742,000원 / 목표 859,000원 (손익비 1 : 3.68)",
-        s4: "목표가 859,000원 도달 시 분할 익절"
-      },
-      "005930": {
-        name: "삼성전자",
-        s1: "11-23(월) 장전: 165,000~172,000 갭다운 예상 · 관망",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 174,500원 사수 여부만 확인(추격 금지)",
-        s3: "지지 174,500원 / 목표 202,500원 (손익비 1 : 3.38)",
-        s4: "목표가 202,500원 도달 시 분할 익절"
-      },
-      "000660": {
-        name: "SK하이닉스",
-        s1: "11-23(월) 장전: 980,000~1,020,000 갭다운 예상 · 관망",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 1,062,000원 사수 여부만 확인(추격 금지)",
-        s3: "지지 1,062,000원 / 목표 1,232,000원 (손익비 1 : 3.47)",
-        s4: "목표가 1,232,000원 도달 시 분할 익절"
-      },
-      "240810": {
-        name: "원익IPS",
-        s1: "11-23(월) 장전: 59,000~62,000 갭다운 예상 · 관망",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 62,900원 사수 여부만 확인(추격 금지)",
-        s3: "지지 62,900원 / 목표 73,000원 (손익비 1 : 3.39)",
-        s4: "목표가 73,000원 도달 시 분할 익절"
-      },
-      "015760": {
-        name: "한국전력",
-        s1: "11-23(월) 장전: 24,400~25,300 갭다운 예상 · 방어주 대안",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 24,400원 사수 여부만 확인(추격 금지)",
-        s3: "지지 24,400원 / 목표 28,600원 (손익비 1 : 2.65)",
-        s4: "목표가 28,600원 도달 시 분할 익절"
-      },
-      "010120": {
-        name: "LS ELECTRIC",
-        s1: "11-23(월) 장전: 98,600~103,000 갭다운 예상 · 104,500 이탈 시 손절",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 104,500원 사수 여부만 확인(추격 금지)",
-        s3: "지지 104,500원 / 목표 121,500원 (손익비 1 : 3.36)",
-        s4: "목표가 121,500원 도달 시 분할 익절"
-      },
-      "0161M0": {
-        name: "네오사피엔스",
-        s1: "11-23(월) 장전: 3,900~4,150 예상 · 매도 물량 소화 전 신규 진입 절대 금지",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 4,170원 사수 여부만 확인(추격 금지)",
-        s3: "지지 4,170원 / 목표 4,840원 (손익비 1 : 3.47)",
-        s4: "목표가 4,840원 도달 시 분할 익절"
-      },
-      "042700": {
-        name: "한미반도체",
-        s1: "11-23(월) 장전: 139,000~144,000 갭다운 예상 · 신규 진입 금지",
-        s2: "09:00~09:30 시초가 변동성 구간 — 지지 146,500원 사수 여부만 확인(추격 금지)",
-        s3: "지지 146,500원 / 목표 170,000원 (손익비 1 : 3.61)",
-        s4: "목표가 170,000원 도달 시 분할 익절"
-      },
       'common': {
         name: "주도 섹터 공통",
         s1: "11-23(월) 장전: 코스피 4,869.96(11-20 확정, -5.21%) · 코스닥 645.68(-5.71%) · 야간선물 700.00(-7.01%) · 이론 시초 4,513 · NXT 프리마켓 -4~7%.",
@@ -9996,6 +9621,7 @@
         s4: "52주 최저 종목(리노공업 45,000·삼성중공업 15,010)과 반도체(삼성전자·SK하이닉스)는 🔴 관망, 반등 첫날 추격 금지."
       }
     };
+;
 
     function switchTimelineStock(code, btn) {
       document.querySelectorAll('#timelineStockTabs .flow-tab-btn').forEach(b => b.classList.remove('active'));
@@ -10460,71 +10086,11 @@ function switchCoachTab(tabKey) {
     }
 
     // 2. Major Money Flow Radar (외인·기관 수급 레이더 - 8대 종목 전면 구축)
-    const flowData = {
-      '000660': {
-        name: "SK하이닉스 (000660)",
-        status: "⚡ 외인+기관 메가 쌍끌이 1위 (+2,270억)",
-        statusColor: "var(--accent)",
-        score: "96%",
-        inst5d: "+850억 원 (연기금 매집)",
-        foreign5d: "+1,420억 원 (외인 지분율 54% 사수)",
-        guide: "인텔 쇼크로 인한 주가 급락에도 글로벌 메이저 자금은 오히려 저가 매집에 집중했습니다. 2029년까지 HBM 생산량 완판 및 20조 원 규모 자사주 소각 추진 모멘텀이 수급의 강력한 하방 지지선을 형성하고 있습니다."
-      },
-      '005930': {
-        name: "삼성전자 (005930)",
-        status: "🛡️ 외국인 저가 반발 매수 집중 (+2,100억)",
-        statusColor: "var(--accent)",
-        score: "82%",
-        inst5d: "-320억 원 (금융투자 매도)",
-        foreign5d: "+2,100억 원 (외국인 순매수 1위)",
-        guide: "코스피 3.48% 급락장 속에서도 외국인이 유일하게 2천억 원 넘게 쓸어 담은 대형주입니다. PBR 1배 미만 역사적 저점 구간에서 외인 스마트머니의 저가 매집이 강력하게 유입되고 있습니다."
-      },
-      '058470': {
-        name: "리노공업 (058470)",
-        status: "💎 외인 지분율 42% 고수익 밸류 방어",
-        statusColor: "var(--success)",
-        score: "90%",
-        inst5d: "+42억 원 (투신 매수)",
-        foreign5d: "+88억 원 (외인 순매수 지속)",
-        guide: "영업이익률 40%대의 압도적 펀더멘털을 바탕으로 외인과 기관이 동반 순매수 기조를 유지하고 있습니다. 변동성 장세에서 가장 안전한 피난처 수급입니다."
-      },
-      '042700': {
-        name: "한미반도체 (042700)",
-        status: "⚙️ 연기금 연속 저점 방어 매수세 (+145억)",
-        statusColor: "var(--warning)",
-        score: "85%",
-        inst5d: "+145억 원 (연기금 중심)",
-        foreign5d: "-68억 원 (외인 관망)",
-        guide: "TC본더 1등 소부장 대장주로, 전저점 부근에서 연기금의 기계적 저가 매수세가 유입 중입니다. HBM4 규격 전환 시 추가 수주 기대감이 상존합니다."
-      },
-      '240810': {
-        name: "원익IPS (240810)",
-        status: "🔬 기관 바닥권 대량 매집 (+98억)",
-        statusColor: "var(--success)",
-        score: "84%",
-        inst5d: "+98억 원 (투신·사모 순유입)",
-        foreign5d: "+14억 원 (외인 순매수 전환)",
-        guide: "3D NAND 고단화 및 ALD 증착 장비 선단공정 전환 수혜주로, 기관의 저점 매집이 강력하게 확인되고 있습니다. 메모리 설비투자 재개 시 가장 탄력적인 반등 수급입니다."
-      },
-      '196170': {
-        name: "알테오젠 (196170)",
-        status: "🧪 외국인 지속 순매수 (+420억)",
-        statusColor: "var(--accent)",
-        score: "89%",
-        inst5d: "-15억 원 (기관 단기 차익)",
-        foreign5d: "+420억 원 (외인 지분율 사상 최고치)",
-        guide: "글로벌 빅파마와의 피하주사(SC) 플랫폼 독점 로열티 계약 모멘텀으로 외국인의 공격적인 지분 확대가 이어지고 있습니다. 코스닥 바이오 시총 1위로서 하방 경직성이 매우 탁월합니다."
-      },
-      '005380': {
-        name: "현대차 (005380)",
-        status: "🚗 연기금 밸류업 매수 (+630억)",
-        statusColor: "var(--success)",
-        score: "86%",
-        inst5d: "+630억 원 (연기금 집중 매집)",
-        foreign5d: "+310억 원 (외인 동반 매수)",
-        guide: "인도법인 상장 성공 및 4조 원 규모 자사주 매입·소각, 배당성향 35% 확대 등 정부 밸류업 프로그램의 최대 수혜주입니다. 경기 침체 우려에도 압도적인 주주환원 수익률이 수급을 받치고 있습니다."
-      }
-    };
+    // 🔥 수급 레이더 데이터 — TURNAROUND_MASTER_DATA 단일 소스
+    //    syncMasterDataToSubmodules()가 master.flow에서 파생한다.
+    //    (구형 정적 수급·단가 하드코딩 금지 · 11-24 정리)
+    const flowData = {};
+;
 
     function renderFlowDetail(code) {
       const it = flowData[code] || flowData['058470'];
@@ -10577,108 +10143,40 @@ function switchCoachTab(tabKey) {
     let currentStressCode = '058470';
     let currentStressPct = -3.0;
 
-    const stressStockData = {
-      '000660': {
-        name: "SK하이닉스",
-        basePrice: 183000,
-        entryPrice: 183000,
-        qty: 20,
-        stopLoss: 172000,
-        unit: "주",
-        panicGuide: "172,000원 손절 마지노선입니다. 2029년까지 HBM 완판 모멘텀이 있으므로 일시적 지수 투매 시 패닉셀을 지양하고 종가 회복력을 점검하세요.",
-        watchGuide: "172,000원 지지선까지 완충 버퍼가 있습니다. 글로벌 AI 펀더멘털은 건재하므로 개장 직후 시초가 관망 후 분할 대응이 정석입니다.",
-        exitGuide: "목표가권 진입 구간입니다. 190,000원 돌파 시 분할 익절로 수익을 확정하세요."
-      },
-      '005930': {
-        name: "삼성전자",
-        basePrice: 58200,
-        entryPrice: 58200,
-        qty: 50,
-        stopLoss: 55000,
-        unit: "주",
-        panicGuide: "55,000원은 역사적 PBR 1배 최하단 지지선입니다. 투매 동참보다는 외국인 저가 매수 전환 여부를 필수 확인하세요.",
-        watchGuide: "55,000원 바닥 지지선까지 안전 마진이 있습니다. 외국인 2천억 순매수가 유입된 만큼 시초가 흔들림에 흔들리지 마세요.",
-        exitGuide: "60,000원선 회복 구간입니다. 박스권 상단에서 비중을 조절하세요."
-      },
-      '058470': {
-        name: "리노공업",
-        basePrice: 178000,
-        entryPrice: 178000,
-        qty: 15,
-        stopLoss: 165000,
-        unit: "주",
-        panicGuide: "165,000원 손절선입니다. 영업익 40% 고마진 기업이므로 과매도 투매 시 저가 반발 매수 유입을 주시하세요.",
-        watchGuide: "165,000원까지 방어선이 견고합니다. 외인 지분율 42%의 고수익 방어주 특성을 신뢰하며 차분히 지켜보세요.",
-        exitGuide: "185,000원 이상 반등 시 분할 실현 전략이 유리합니다."
-      },
-      '042700': {
-        name: "한미반도체",
-        basePrice: 98500,
-        entryPrice: 98500,
-        qty: 30,
-        stopLoss: 91000,
-        unit: "주",
-        panicGuide: "91,000원 지지선입니다. 변동성이 큰 소부장 대장주이므로 91,000원 이탈 시 비중 축소 후 재진입 자리를 모색하세요.",
-        watchGuide: "연기금 145억 저점 매수가 유입 중입니다. 91,000원 지지 여부를 체크하며 조급한 매도를 자제하세요.",
-        exitGuide: "105,000원 저항대 부근에서 분할 익절을 진행하세요."
-      },
-      '240810': {
-        name: "원익IPS",
-        basePrice: 29800,
-        entryPrice: 29800,
-        qty: 100,
-        stopLoss: 27500,
-        unit: "주",
-        panicGuide: "27,500원 바닥선입니다. 기관 순매수 98억이 유입되었으므로 패닉셀보다는 바닥 다지기를 관찰하세요.",
-        watchGuide: "27,500원까지 충분한 버퍼가 있습니다. 메모리 설비투자 반등 모멘텀을 믿고 장중 수급을 지켜보세요.",
-        exitGuide: "32,000원 회복 시 단기 목표를 달성할 수 있습니다."
-      },
-      '196170': {
-        name: "알테오젠",
-        basePrice: 378000,
-        entryPrice: 378000,
-        qty: 10,
-        stopLoss: 350000,
-        unit: "주",
-        panicGuide: "350,000원 핵심 지지선입니다. 코스닥 1위 바이오 대장주로서 플랫폼 기술료 가치를 감안하여 침착하게 대응하세요.",
-        watchGuide: "350,000원 지지선까지 완충 지대가 있습니다. 외국인 지분율 확대 추세를 신뢰하며 관망하세요.",
-        exitGuide: "400,000원 전고점 돌파 시 차익 실현을 추천합니다."
-      },
-      '005380': {
-        name: "현대차",
-        basePrice: 232000,
-        entryPrice: 232000,
-        qty: 15,
-        stopLoss: 218000,
-        unit: "주",
-        panicGuide: "218,000원 손절선입니다. 배당 수익률 6% 및 4조 자사주 소각이 있으므로 하방 경직성이 매우 높습니다.",
-        watchGuide: "218,000원까지 안전 마진이 풍부합니다. 연기금 630억 매집세를 확인하며 시초가 하락을 버텨내세요.",
-        exitGuide: "245,000원 밸류업 구간 도달 시 비중을 조절하세요."
-      }
-    };
+    // 💡 스트레스 테스터 데이터 — TURNAROUND_MASTER_DATA 단일 소스
+    //    refreshStressFromMaster()가 매 동기화·렌더·종목 전환 시 실측
+    //    currentPrice · stopLoss · target · score로 전 종목을 재계산한다.
+    //    (구형 정적 단가 하드코딩 금지 · 11-24 정리)
+    const stressStockData = {};
 
     function switchStressStock(code, btn) {
+      // 구형 정적 단가가 남을 여지 없이, 전환할 때마다 마스터 실측값으로 재계산한다.
+      const s = refreshStressFromMaster(code);
+      if (!s) {
+        showToast(`⚠️ [${code}] 스트레스 테스트 데이터가 마스터에 없습니다.`);
+        return;
+      }
       currentStressCode = code;
       if (!btn) btn = document.querySelector(`#stressStockTabs .flow-tab-btn[data-code="${code}"]`);
       document.querySelectorAll('#stressStockTabs .flow-tab-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       calcStress(currentStressPct);
-      const s = stressStockData[code] || stressStockData['058470'];
-      showToast(`💡 [${s.name}] 시장 급락 스트레스 테스트 종목이 전환되었습니다!`);
+      showToast(`💡 [${s.name}] 실측 ${Number(s.basePrice).toLocaleString()}원 기준 스트레스 테스트로 전환되었습니다!`);
     }
 
     const BASE_KOSPI = 5137.89;
 
     function calcStress(pct) {
       currentStressPct = pct;
-      const s = stressStockData[currentStressCode] || stressStockData['058470'];
+      const s = getStressStock(currentStressCode);
+      if (!s) return;
       const dropRate = pct / 100;
       const expKospi = (BASE_KOSPI * (1 + dropRate)).toFixed(2);
       const expPrice = Math.round(s.basePrice * (1 + dropRate) / 10) * 10;
       const principal = s.entryPrice * s.qty;
       const totalVal = expPrice * s.qty;
       const diffPnl = totalVal - principal;
-      const diffPct = ((diffPnl / principal) * 100).toFixed(2);
+      const diffPct = principal > 0 ? ((diffPnl / principal) * 100).toFixed(2) : '0.00';
       const buffer = expPrice - s.stopLoss;
 
       const pLabel = document.getElementById('stressPctLabel');
@@ -10707,6 +10205,12 @@ function switchCoachTab(tabKey) {
 
       const sBufLabel = document.getElementById('stressBufferLabel');
       if (sBufLabel) sBufLabel.textContent = s.stopLoss.toLocaleString() + '원';
+
+      // 퀀트 스코어·목표가도 마스터 실측값만 표시(단일 소스 검증 지점)
+      const scoreEl = document.getElementById('stressScore');
+      if (scoreEl) scoreEl.textContent = (Number(s.score) || 0) + '점';
+      const tgtEl = document.getElementById('stressTargetPrice');
+      if (tgtEl) tgtEl.textContent = Number(s.target || 0).toLocaleString() + '원';
 
       const bufferEl = document.getElementById('stressBuffer');
       const guideEl = document.getElementById('stressActionGuide');
@@ -10751,7 +10255,7 @@ function switchCoachTab(tabKey) {
         void stressBox.offsetWidth;
         stressBox.classList.add('highlight-active');
       }
-      const sName = (stressStockData[code] || {}).name || code;
+      const sName = (getStressStock(code) || {}).name || code;
       showToast(`💡 [${sName}] 시장 급락 스트레스 테스터로 즉시 연동되었습니다!`);
     }
 
@@ -10773,12 +10277,14 @@ function switchCoachTab(tabKey) {
     }
 
     function jumpToCalc(code) {
-      const s = stressStockData[code] || stressStockData['058470'];
+      const s = getStressStock(code) || {};
       const targetBtn = document.getElementById(`calcPreset_${code}`);
       if (targetBtn) {
         targetBtn.click();
+      } else if (typeof TURNAROUND_MASTER_DATA !== 'undefined' && TURNAROUND_MASTER_DATA[code]) {
+        loadStockToCalc(code);   // 마스터 실측값 단일 소스로 세팅
       } else {
-        loadStockToCalc(code, s.name, s.basePrice, Math.round(s.basePrice * 1.1), s.stopLoss, s.qty);
+        loadStockToCalc(code, s.name, s.basePrice, s.target || Math.round(s.basePrice * 1.1), s.stopLoss, s.qty);
       }
       const secTools = document.getElementById('sec-tools');
       const calcBox = document.querySelector('.calc-box');
@@ -10817,7 +10323,7 @@ function switchCoachTab(tabKey) {
       { id: 'dart', name: 'AI DART 공시 & 뉴스 감성 센티멘트 피드', target: 'sec-news', check: () => document.querySelectorAll('#dartNewsGrid .news-item').length >= 8 },
       { id: 'calc', name: '실전 손익비(Risk/Reward) 원칙 계산기', target: 'sec-tools', check: () => typeof updateCalc === 'function' && parseFloat(cRatio.textContent.replace('1 : ', '')) > 0 },
       { id: 'flow', name: '외인·기관 메이저 수급 골든크로스 레이더', target: 'sec-flow', check: () => Object.keys(flowData).length >= 8 },
-      { id: 'stress', name: '시장 급락 충격 스트레스 테스터', target: 'sec-stress', check: () => Object.keys(stressStockData).length >= 8 },
+      { id: 'stress', name: '시장 급락 충격 스트레스 테스터', target: 'sec-stress', check: () => Object.keys(TURNAROUND_MASTER_DATA).every(c => !!stressStockData[c] && Number(stressStockData[c].basePrice) === Number(TURNAROUND_MASTER_DATA[c].currentPrice)) },
       { id: 'scale', name: '3단계 분할 매수 & 평단가 시뮬레이터', target: 'sec-scale', check: () => typeof updateScaleSim === 'function' },
       { id: 'compass', name: '실시간 퀀트 나침반 & 5대 체크리스트', target: 'sec-compass', check: () => typeof updateChkState === 'function' },
       { id: 'timeline', name: '개장 타임라인별 실전 행동 매뉴얼', target: 'sec-compass', check: () => typeof switchTimelineStock === 'function' },
@@ -10982,7 +10488,8 @@ function switchCoachTab(tabKey) {
       if (btn) btn.classList.add('active');
 
       const m = (typeof TURNAROUND_MASTER_DATA !== 'undefined') ? TURNAROUND_MASTER_DATA[code] : null;
-      const s = m || stressStockData[code] || stressStockData['058470'];
+      const s = m || getStressStock(code) || null;
+      if (!s || !s.name) return;
       const stockName = s.name;
       const basePrice = (m && m.currentPrice) || s.basePrice || 0;
       const targetPrice = (m && m.target) || Math.round(basePrice * 1.1);
