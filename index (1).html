@@ -309,6 +309,8 @@
       animation: btTicker 42s linear infinite;
     }
     @keyframes btTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    /* 마우스 호버 시 일시정지 (JS 인라인 상태와 무관하게 항상 동작하도록 !important) */
+    .bottom-ticker-bar:hover .bt-track { animation-play-state: paused !important; }
     .bt-item {
       display: inline-flex; align-items: baseline; gap: 5px; padding: 0 14px;
       font-size: 0.76rem; font-weight: 800; letter-spacing: -0.02em; line-height: 2.3;
