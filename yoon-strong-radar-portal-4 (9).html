@@ -1064,6 +1064,155 @@
       cursor: pointer; transition: all 0.15s; text-align: center;
     }
     .core4-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .core4-actions { flex-wrap: wrap; }
+    .core4-btn { flex: 1 1 84px; min-width: 84px; }
+    .core4-status { display: flex; align-items: center; gap: 6px; }
+    .core4-levels .lvl-row { display: flex; align-items: center; gap: 4px; }
+    .core4-card > .led-bar { margin: 0 0 2px; }
+
+    /* =========================================================================
+       💡 LED INDICATOR SYSTEM — 핵심 포인트 가시성 (점멸 LED 점 · LED 상태 바)
+       .led-dot  : 은은한 호흡 점멸 발광 점 (green/emerald · amber/gold · red · blue)
+       .led-bar  : 그라데이션 LED 액센트 바 (카드 상단·섹션 머리)
+       .led-focus: 원클릭 퀵 액션 시 대상 섹션 LED 포커스 점멸
+       .led-title: 섹션 제목 좌측 LED 인디케이터
+       ※ prefers-reduced-motion 환경에서는 모든 점멸을 정지(정적 발광 유지)
+       ※ scheduled-action 보존 규칙 대상 — 절대 삭제·덮어쓰기 금지
+       ========================================================================= */
+    @keyframes ledGlow {
+      0%, 100% { opacity: 1; box-shadow: 0 0 5px 1px var(--led-c, #10b981); }
+      50% { opacity: 0.45; box-shadow: 0 0 12px 3px var(--led-c, #10b981); }
+    }
+    @keyframes ledSweep {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(320%); }
+    }
+    @keyframes ledBarBreath {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 1; }
+    }
+    @keyframes ledFocusFlash {
+      0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.60); }
+      40% { box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.22); }
+      100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+    }
+
+    .led-dot {
+      --led-c: #10b981;
+      display: inline-block; width: 9px; height: 9px; min-width: 9px; border-radius: 50%;
+      background: var(--led-c); box-shadow: 0 0 6px 1px var(--led-c);
+      animation: ledGlow 2s ease-in-out infinite;
+      vertical-align: middle; flex: 0 0 auto;
+    }
+    .led-dot.sm { width: 7px; height: 7px; min-width: 7px; }
+    .led-dot.lg { width: 12px; height: 12px; min-width: 12px; }
+    .led-dot.green, .led-dot.emerald { --led-c: #10b981; }
+    .led-dot.amber, .led-dot.gold { --led-c: #f59e0b; }
+    .led-dot.red { --led-c: #ef4444; }
+    .led-dot.blue { --led-c: #38bdf8; }
+    .led-dot.gray { --led-c: #94a3b8; animation: none; opacity: 0.75; }
+    body.dark .led-dot.green, body.dark .led-dot.emerald { --led-c: #34d399; }
+    body.dark .led-dot.amber, body.dark .led-dot.gold { --led-c: #fbbf24; }
+    body.dark .led-dot.red { --led-c: #f87171; }
+
+    .led-bar {
+      --led-c: #10b981;
+      display: block; position: relative; height: 3px; width: 100%; min-width: 0;
+      border-radius: 9999px; overflow: hidden;
+      background: linear-gradient(90deg, var(--led-c) 0%, rgba(148, 163, 184, 0.28) 55%, transparent 100%);
+      animation: ledBarBreath 2.6s ease-in-out infinite;
+    }
+    .led-bar::after {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 34%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+      animation: ledSweep 2.8s linear infinite;
+    }
+    .led-bar.thin { height: 2px; }
+    .led-bar.green, .led-bar.emerald { --led-c: #10b981; }
+    .led-bar.amber, .led-bar.gold { --led-c: #f59e0b; }
+    .led-bar.red { --led-c: #ef4444; }
+    .led-bar.blue { --led-c: #38bdf8; }
+    body.dark .led-bar.green, body.dark .led-bar.emerald { --led-c: #34d399; }
+    body.dark .led-bar.amber, body.dark .led-bar.gold { --led-c: #fbbf24; }
+    body.dark .led-bar.red { --led-c: #f87171; }
+
+    .led-focus { animation: ledFocusFlash 1.5s ease-out 2; }
+    .led-title { position: relative; padding-left: 14px; }
+    .led-title::before {
+      content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+      width: 5px; height: 1.05em; border-radius: 9999px;
+      background: linear-gradient(180deg, #10b981, #38bdf8);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.55);
+      animation: ledBarBreath 2.4s ease-in-out infinite;
+    }
+
+    /* 주요 박스 상단 LED 액센트 */
+    #sec-cash-reinvest, #sec-gap-adjust, #sec-calc, #sec-traffic-light { position: relative; }
+    #sec-cash-reinvest::before, #sec-gap-adjust::before {
+      content: ''; position: absolute; top: 0; left: 18px; right: 18px; height: 3px;
+      border-radius: 0 0 9999px 9999px;
+      background: linear-gradient(90deg, #10b981, #38bdf8 45%, transparent 90%);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+      animation: ledBarBreath 2.6s ease-in-out infinite;
+    }
+    #sec-gap-adjust::before { background: linear-gradient(90deg, #38bdf8, #6366f1 45%, transparent 90%); box-shadow: 0 0 10px rgba(56, 189, 248, 0.35); }
+
+    /* 8대 턴어라운드 TOP 1~3 LED 바 */
+    .stock-card[data-rank="1"]::before,
+    .stock-card[data-rank="2"]::before,
+    .stock-card[data-rank="3"]::before {
+      content: ''; position: absolute; top: 1px; left: 16px; right: 16px; height: 3px;
+      border-radius: 0 0 9999px 9999px; animation: ledBarBreath 2.2s ease-in-out infinite;
+    }
+    .stock-card[data-rank="1"]::before { background: linear-gradient(90deg, #f59e0b, #fbbf24 50%, transparent 92%); box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+    .stock-card[data-rank="2"]::before { background: linear-gradient(90deg, #10b981, #34d399 50%, transparent 92%); box-shadow: 0 0 10px rgba(16, 185, 129, 0.45); }
+    .stock-card[data-rank="3"]::before { background: linear-gradient(90deg, #38bdf8, #60a5fa 50%, transparent 92%); box-shadow: 0 0 10px rgba(56, 189, 248, 0.45); }
+
+    /* 손절선 하회·경보 배지 LED 점 */
+    .gap-badge.danger::before, .gap-badge.ok::before, .gap-badge.warn::before {
+      content: ''; display: inline-block; width: 8px; height: 8px; min-width: 8px;
+      border-radius: 50%; margin-right: 6px; vertical-align: middle;
+      animation: ledGlow 1.8s ease-in-out infinite;
+    }
+    .gap-badge.danger::before { background: #ef4444; box-shadow: 0 0 7px #ef4444; }
+    .gap-badge.ok::before { background: #10b981; box-shadow: 0 0 7px #10b981; }
+    .gap-badge.warn::before { background: #f59e0b; box-shadow: 0 0 7px #f59e0b; }
+    .gap-card { position: relative; }
+    .gap-card > .led-bar { margin-bottom: 0; }
+
+    /* 상단 시장 펄스 바 LED */
+    .market-pulse-bar { position: relative; }
+    .market-pulse-bar::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, #10b981, #38bdf8 40%, transparent 85%);
+      animation: ledBarBreath 2.5s ease-in-out infinite;
+    }
+    .market-pulse-bar .mp-label::before {
+      content: ''; display: inline-block; width: 8px; height: 8px; min-width: 8px;
+      border-radius: 50%; background: #10b981; box-shadow: 0 0 7px #10b981;
+      margin-right: 3px; animation: ledGlow 2s ease-in-out infinite;
+    }
+    #sec-traffic-light::before {
+      content: ''; position: absolute; top: 0; left: 18px; right: 18px; height: 3px;
+      border-radius: 0 0 9999px 9999px;
+      background: linear-gradient(90deg, #10b981, #f59e0b 50%, #ef4444 90%);
+      animation: ledBarBreath 2.6s ease-in-out infinite;
+    }
+    #sec-traffic-light > div:nth-child(2) > div { position: relative; }
+
+    @media (max-width: 480px) {
+      .core4-btn { flex: 1 1 100%; }
+      .led-title { padding-left: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .led-dot, .led-bar, .led-bar::after, .led-title::before, .led-focus,
+      .market-pulse-bar::before, #sec-cash-reinvest::before, #sec-gap-adjust::before,
+      .stock-card[data-rank="1"]::before, .stock-card[data-rank="2"]::before, .stock-card[data-rank="3"]::before,
+      .gap-badge.danger::before, .gap-badge.ok::before, .gap-badge.warn::before {
+        animation: none !important;
+      }
+    }
 
     /* Night Futures Gap-Adjusted Base Price (#sec-gap-adjust) */
     .gap-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-width: 0; }
@@ -3213,6 +3362,12 @@
         <button class="flow-tab-btn" data-code="000660" onclick="switchFlowStock('000660', this)">
           <span>⚡</span> SK하이닉스 (000660)
         </button>
+        <button class="flow-tab-btn" data-code="0161M0" data-core4="1" onclick="switchFlowStock('0161M0', this)">
+          <span>🎙️</span> 네오사피엔스 (0161M0)
+        </button>
+        <button class="flow-tab-btn" data-code="010120" data-core4="1" onclick="switchFlowStock('010120', this)">
+          <span>⚡</span> LS ELECTRIC (010120)
+        </button>
       </div>
 
       <div class="flow-gauge-grid" id="flowDetailContainer">
@@ -3328,6 +3483,17 @@
                     <button class="btn-preset" id="calcPreset_010140" onclick="setCalcWithActive('삼성중공업', 14350, 16080, 13840, 300, this)">🚢 7위 삼성중공업 (57점 · 14,350원)</button>
                     <button class="btn-preset" id="calcPreset_058470" onclick="setCalcWithActive('리노공업', 44700, 50100, 43100, 80, this)">🔌 8위 리노공업 (52점 · 44,700원)</button>
                 </div>
+
+      <!-- 🎯 4대 핵심 전략주 즉시 세팅 (계산기·수급·분할매수 1클릭 연동) -->
+      <div style="margin-bottom:16px; background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:10px 12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:8px;">
+          <span style="font-size:0.75rem; color:var(--text); font-weight:800; display:flex; align-items:center; gap:5px;">
+            <span class="led-dot green sm" aria-hidden="true"></span><span>🎯 4대 핵심 전략주 즉시 세팅 (8선 밖 네오사피엔스·LS ELECTRIC 포함):</span>
+          </span>
+          <span style="font-size:0.72rem; color:var(--accent); font-weight:700;">실측 현재가·목표가·손절가·수량 100% 자동 입력</span>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;" id="calcCore4Row"></div>
+      </div>
 
       <div class="calc-grid">
         <div class="calc-field">
@@ -3448,6 +3614,8 @@
         <button class="flow-tab-btn" data-code="058470" onclick="switchScaleStock('058470', this)">💎 리노공업</button>
         <button class="flow-tab-btn" data-code="005380" onclick="switchScaleStock('005380', this)">🚗 현대차</button>
         <button class="flow-tab-btn" data-code="000660" onclick="switchScaleStock('000660', this)">⚡ SK하이닉스</button>
+        <button class="flow-tab-btn" data-code="0161M0" data-core4="1" onclick="switchScaleStock('0161M0', this)">🎙️ 네오사피엔스</button>
+        <button class="flow-tab-btn" data-code="010120" data-core4="1" onclick="switchScaleStock('010120', this)">⚡ LS ELECTRIC</button>
                 </div>
       </div>
 
@@ -6691,6 +6859,80 @@
       `;
     }
 
+    // =========================================================================
+    // 🎯 4대 핵심 전략주 — 계산기 · 수급 · 분할매수 1클릭 퀵 연동 엔진
+    //  4대 핵심주(리노공업 058470 · HD현대마린솔루션 443060 · 네오사피엔스 0161M0 ·
+    //  LS ELECTRIC 010120)는 8선에 없는 0161M0·010120까지 계산기/수급/분할매수
+    //  전 모듈에 100% 연동한다. 값은 항상 TURNAROUND_MASTER_DATA 실측값만 사용.
+    //  ※ scheduled-action 보존 규칙 대상 — 함수·버튼·LED 클래스를 삭제하지 말 것
+    // =========================================================================
+    const CORE4_CODES = ['058470', '443060', '0161M0', '010120'];
+
+    function withCore4Extra(codes) {
+      const base = Array.isArray(codes) ? codes.slice() : [];
+      CORE4_CODES.forEach(c => { if (base.indexOf(c) < 0) base.push(c); });
+      return base;
+    }
+
+    function core4LedClass(code) {
+      const d = (typeof TURNAROUND_MASTER_DATA !== 'undefined') ? TURNAROUND_MASTER_DATA[code] : null;
+      const t = String((d && d.actionSignalText) || '') + ' ' + String((d && d.actionSignal) || '');
+      if (/(⛔|🔴|SELL)/.test(t)) return 'red';
+      if (/(🟡|주의|관망)/.test(t)) return 'amber';
+      if (/(🟢|BUY|적합)/.test(t)) return 'green';
+      return 'blue';
+    }
+
+    function ledFocusSection(sectionId, boxSelector) {
+      const sec = document.getElementById(sectionId);
+      if (sec && typeof sec.scrollIntoView === 'function') {
+        try { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { sec.scrollIntoView(); }
+      }
+      const box = (boxSelector ? document.querySelector(boxSelector) : null) || sec;
+      if (box) {
+        box.classList.remove('led-focus');
+        void box.offsetWidth;
+        box.classList.add('led-focus');
+      }
+    }
+
+    function core4QuickAction(code, module) {
+      const d = (typeof TURNAROUND_MASTER_DATA !== 'undefined') ? TURNAROUND_MASTER_DATA[code] : null;
+      if (!d) return;
+      try { triggerHaptic(12); } catch (e) {}
+      try {
+        if (module === 'calc') {
+          setCalc(d.currentPrice, d.target, d.stopLoss, d.qty);
+          currentCalcCode = code;
+          document.querySelectorAll('#calcPresetButtonsRow .btn-preset, #calcCore4Row .btn-preset').forEach(b => b.classList.remove('active'));
+          const pb = document.getElementById('calcPreset_' + code) || document.getElementById('calcCore4Preset_' + code);
+          if (pb) pb.classList.add('active');
+          ledFocusSection('sec-calc', '#sec-calc');
+          showToast(`🧮 [${d.name}] 계산기 — 매수 ${Number(d.currentPrice).toLocaleString()}원 · 목표 ${Number(d.target).toLocaleString()}원 · 손절 ${Number(d.stopLoss).toLocaleString()}원 · ${d.qty}주 즉시 세팅`);
+        } else if (module === 'flow') {
+          switchFlowStock(code);
+          ledFocusSection('sec-flow', '.flow-radar-box');
+          showToast(`📊 [${d.name}] 외인·기관 메이저 수급 레이더로 연동되었습니다!`);
+        } else if (module === 'scale') {
+          switchScaleStock(code);
+          ledFocusSection('sec-scale', '.scale-box');
+          showToast(`🧱 [${d.name}] 분할매수 시뮬레이터로 연동되었습니다!`);
+        }
+      } catch (e) {
+        console.error('core4QuickAction failed:', e);
+      }
+    }
+
+    function renderCalcCore4Presets() {
+      const cont = document.getElementById('calcCore4Row');
+      if (!cont || typeof TURNAROUND_MASTER_DATA === 'undefined') return;
+      cont.innerHTML = CORE4_CODES.map(code => {
+        const d = TURNAROUND_MASTER_DATA[code];
+        if (!d) return '';
+        return `<button type="button" class="btn-preset" id="calcCore4Preset_${code}" onclick="core4QuickAction('${code}', 'calc')"><span class="led-dot ${core4LedClass(code)} sm" aria-hidden="true"></span> ${d.icon || '📌'} ${d.name} <span style="opacity:.8;">(${d.priceStr} → ${Number(d.target).toLocaleString()}원)</span></button>`;
+      }).join('');
+    }
+
     function renderCore4Board() {
       const grid = document.getElementById('core4Grid');
       if (!grid || typeof TURNAROUND_MASTER_DATA === 'undefined') return;
@@ -6716,11 +6958,14 @@
         }
         const stopShort = (d.stopLossStr || '').split(' ')[0] || '-';
         const tgtShort = (d.targetStr || '').split(' ')[0] || '-';
+        const ledCls = core4LedClass(d.code);
+        const rrNum = parseFloat(String(d.rrRatio || '').replace(/[^0-9.]/g, '')) || 0;
         return `
-          <div class="core4-card">
+          <div class="core4-card" data-code="${d.code}">
+            <span class="led-bar thin ${ledCls}" aria-hidden="true"></span>
             <div class="core4-head">
               <div>
-                <div class="core4-title"><span>${d.icon || '📌'}</span><span>${d.name}</span></div>
+                <div class="core4-title"><span class="led-dot ${ledCls}" aria-hidden="true"></span><span>${d.icon || '📌'}</span><span>${d.name}</span></div>
                 <div class="core4-sub">${d.code} · ${d.market || ''} · 퀀트 ${d.score || '-'}점</div>
               </div>
               <span class="core4-chg ${chgCls}">${chg}</span>
@@ -6729,21 +6974,78 @@
               <span class="core4-price">${d.priceStr || '-'}</span>
             </div>
             <div class="core4-levels">
-              <div><span class="lbl">지지선</span><strong>${stopShort}</strong></div>
-              <div><span class="lbl">목표가</span><strong>${tgtShort}</strong></div>
+              <div><span class="lbl">지지선</span><strong><span class="led-dot amber sm" aria-hidden="true"></span> ${stopShort}</strong></div>
+              <div><span class="lbl">목표가</span><strong><span class="led-dot green sm" aria-hidden="true"></span> ${tgtShort}</strong></div>
               <div><span class="lbl">손익비</span><strong>${d.rrRatio || '-'}</strong></div>
             </div>
             ${getEventBadgesHtml(d.code)}
-            <div class="core4-status">${badgeText}</div>
+            <div class="core4-status"><span class="led-dot ${ledCls} sm" aria-hidden="true"></span><span>${badgeText}</span></div>
             <div class="core4-actions">
-              <button type="button" class="core4-btn" onclick="globalSyncStock('${d.code}'); scrollToTarget('sec-calc');">🧮 계산기·수급 연동</button>
-              <button type="button" class="core4-btn" onclick="globalSyncStock('${d.code}'); scrollToTarget('sec-scale');">🛡️ 분할매수 계산</button>
+              <button type="button" class="core4-btn" data-quick="calc" onclick="core4QuickAction('${d.code}', 'calc')">🧮 계산기</button>
+              <button type="button" class="core4-btn" data-quick="flow" onclick="core4QuickAction('${d.code}', 'flow')">📊 수급</button>
+              <button type="button" class="core4-btn" data-quick="scale" onclick="core4QuickAction('${d.code}', 'scale')">🧱 분할매수</button>
+            </div>
+            <div class="core4-sub" style="font-size:0.68rem; color:var(--text-muted); line-height:1.5;">
+              ⚡ ${d.name} 실측 기준 세팅 · 손익비 ${rrNum > 0 ? '1 : ' + rrNum.toFixed(2) : '-'} · 목표 ${tgtShort} / 손절 ${stopShort}
             </div>
           </div>
         `;
       }).join('');
+      renderCalcCore4Presets();
     }
 
+
+    // =========================================================================
+    // 💡 LED 인디케이터 데코레이션 — 정적 섹션(섹션 제목·실전 신호등·현금 재투자)에
+    //    LED 점·LED 바를 부여해 포털 전체 중요 포인트의 가시성·위계를 통일한다.
+    //  ※ scheduled-action 보존 규칙 대상 — 함수·클래스(LED) 삭제 금지
+    // =========================================================================
+    function applyLedDecorations() {
+      // 1) 주요 섹션 제목 좌측 LED 인디케이터
+      ['sec-core4', 'sec-traffic-light', 'sec-turnaround', 'sec-flow', 'sec-stress', 'sec-tools', 'sec-scale', 'sec-compass'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const title = el.classList.contains('section-title') ? el : el.querySelector('.section-title');
+        if (title) title.classList.add('led-title');
+      });
+
+      // 2) 실전 행동 신호등 3색 칼럼 LED 점·LED 바
+      const tl = document.getElementById('sec-traffic-light');
+      if (tl) {
+        const grid = tl.children[1];
+        if (grid && grid.children) {
+          const tones = ['green', 'amber', 'red'];
+          Array.prototype.slice.call(grid.children).forEach((col, i) => {
+            if (!col || col.nodeType !== 1) return;
+            const head = col.firstElementChild;
+            if (head && head.classList.contains('led-bar')) return;
+            if (head && !head.querySelector('.led-dot')) {
+              const dot = document.createElement('span');
+              dot.className = 'led-dot lg ' + (tones[i] || 'green');
+              dot.setAttribute('aria-hidden', 'true');
+              head.insertBefore(dot, head.firstChild);
+            }
+            if (!col.querySelector('.led-bar')) {
+              const b = document.createElement('span');
+              b.className = 'led-bar thin ' + (tones[i] || 'green');
+              b.setAttribute('aria-hidden', 'true');
+              b.style.margin = '-4px 0 8px';
+              col.insertBefore(b, col.firstChild);
+            }
+          });
+        }
+      }
+
+      // 3) 익절 현금 재투자 시뮬레이터 타이틀 LED 점
+      const cashTitle = document.querySelector('#sec-cash-reinvest .reinvest-top > div > div');
+      if (cashTitle && !cashTitle.querySelector('.led-dot')) {
+        const dot = document.createElement('span');
+        dot.className = 'led-dot green sm';
+        dot.setAttribute('aria-hidden', 'true');
+        dot.style.marginRight = '6px';
+        cashTitle.insertBefore(dot, cashTitle.firstChild);
+      }
+    }
 
     // =========================================================================
     // 👑 최상단 브랜드 헤더 상태 동기화 (#adminMasterBrandBar)
@@ -7205,6 +7507,7 @@
 
         return `
           <div class="gap-card" data-code="${code}">
+            <span class="led-bar thin ${breach ? 'red' : (usePm || useAh ? 'green' : 'amber')}" aria-hidden="true"></span>
             <div class="gap-card-head">
               <div>
                 <div class="gap-card-title">${d.icon || '📌'} ${d.name}</div>
@@ -7273,10 +7576,10 @@
         });
         const b = s.bars;
         html += `
-        <div class="stock-card" id="stockCard_${code}" data-name="${s.name} ${s.code}" data-category="${s.category}">
+        <div class="stock-card" id="stockCard_${code}" data-rank="${rank}" data-name="${s.name} ${s.code}" data-category="${s.category}">
           <div>
             <div class="stock-top">
-              <div class="rank-badge">${rank}</div>
+              <div class="rank-badge" style="position:relative;">${rank}${rank <= 3 ? `<span class="led-dot ${rank === 1 ? 'gold' : (rank === 2 ? 'emerald' : 'blue')} sm" style="position:absolute; top:-3px; right:-3px;" aria-hidden="true"></span>` : ''}</div>
               <div class="stock-info">
                 <div class="stock-title">${s.name} <span class="stock-meta">${s.code} · ${s.market}</span></div>
                 <div style="font-size:0.78rem; color:var(--text-sub);">현재가: ${s.priceStr} (${s.changeStr})</div>
@@ -7317,9 +7620,9 @@
           </div>
           <div>
             <div class="strategy-footer" id="stratFooter_${code}">
-              <span>손절: ${s.stopLossStr}</span>
+              <span><span class="led-dot amber sm" aria-hidden="true"></span> 손절: ${s.stopLossStr}</span>
               <span style="color:var(--accent); font-weight:800;">손익비 ${s.rrRatio}</span>
-              <span>목표: ${s.targetStr}</span>
+              <span><span class="led-dot green sm" aria-hidden="true"></span> 목표: ${s.targetStr}</span>
             </div>
             <div class="card-actions-row">
               <button class="btn-chart-open" onclick="openTradingView('${s.tvSymbol}', '${s.name} (${s.code})')">📊 차트</button>
@@ -7358,12 +7661,17 @@
     function renderCalcPresets(codes) {
       const cont = document.getElementById('calcPresetButtonsRow');
       if (!cont) return;
+      const list = withCore4Extra(codes);
       let html = '';
-      codes.forEach((code, idx) => {
+      list.forEach((code, idx) => {
         const s = TURNAROUND_MASTER_DATA[code];
         if (!s) return;
-        const active = idx === 0 ? ' active' : '';
-        html += `<button class="btn-preset${active}" id="calcPreset_${code}" onclick="setCalcWithActive('${s.name}', ${s.currentPrice}, ${s.target}, ${s.stopLoss}, ${s.qty}, this)">${s.icon} ${idx + 1}위 ${s.name} (${s.score}점 · ${s.priceStr})</button>`;
+        const isCore4Only = (codes || []).indexOf(code) < 0;
+        const active = (idx === 0) ? ' active' : '';
+        const lead = isCore4Only
+          ? `<span class="led-dot ${core4LedClass(code)} sm" aria-hidden="true"></span> 🎯 4대주`
+          : `${idx + 1}위`;
+        html += `<button class="btn-preset${active}" id="calcPreset_${code}" onclick="setCalcWithActive('${s.name}', ${s.currentPrice}, ${s.target}, ${s.stopLoss}, ${s.qty}, this)">${s.icon} ${lead} ${s.name} (${s.score}점 · ${s.priceStr})</button>`;
       });
       cont.innerHTML = html;
     }
@@ -7372,11 +7680,12 @@
       const cont = document.getElementById('flowStockTabs');
       if (!cont) return;
       let html = '';
-      codes.forEach((code, idx) => {
+      withCore4Extra(codes).forEach((code, idx) => {
         const s = TURNAROUND_MASTER_DATA[code];
         if (!s) return;
+        const isCore4Only = (codes || []).indexOf(code) < 0;
         const active = idx === 0 ? ' active' : '';
-        html += `<button class="flow-tab-btn${active}" data-code="${code}" onclick="switchFlowStock('${code}', this)"><span>${s.icon}</span> ${s.name} (${code})</button>`;
+        html += `<button class="flow-tab-btn${active}" data-code="${code}"${isCore4Only ? ' data-core4="1"' : ''} onclick="switchFlowStock('${code}', this)"><span class="led-dot ${core4LedClass(code)} sm" aria-hidden="true"></span><span>${s.icon}</span> ${s.name} (${code})</button>`;
       });
       cont.innerHTML = html;
     }
@@ -7398,11 +7707,12 @@
       const cont = document.getElementById('scaleStockTabs');
       if (!cont) return;
       let html = '';
-      codes.forEach((code, idx) => {
+      withCore4Extra(codes).forEach((code, idx) => {
         const s = TURNAROUND_MASTER_DATA[code];
         if (!s) return;
+        const isCore4Only = (codes || []).indexOf(code) < 0;
         const active = idx === 0 ? ' active' : '';
-        html += `<button class="flow-tab-btn${active}" data-code="${code}" onclick="switchScaleStock('${code}', this)">${s.icon} ${s.name}</button>`;
+        html += `<button class="flow-tab-btn${active}" data-code="${code}"${isCore4Only ? ' data-core4="1"' : ''} onclick="switchScaleStock('${code}', this)"><span class="led-dot ${core4LedClass(code)} sm" aria-hidden="true"></span>${s.icon} ${s.name}</button>`;
       });
       cont.innerHTML = html;
     }
@@ -8111,14 +8421,15 @@
         stop = s.stopLoss;
         qty = s.qty;
       }
-      document.getElementById('calcName').value = name;
-      document.getElementById('calcEntry').value = entry;
-      document.getElementById('calcTarget').value = target;
-      document.getElementById('calcStop').value = stop;
-      document.getElementById('calcQty').value = qty;
-      updateCalc();
+      setCalc(entry, target, stop, qty);
+      if (code) currentCalcCode = code;
+      try {
+        document.querySelectorAll('#calcPresetButtonsRow .btn-preset, #calcCore4Row .btn-preset').forEach(b => b.classList.remove('active'));
+        const pb = code ? (document.getElementById('calcPreset_' + code) || document.getElementById('calcCore4Preset_' + code)) : null;
+        if (pb) pb.classList.add('active');
+      } catch (e) { /* noop */ }
       scrollToSection('sec-calc');
-      showToast(`🧮 ${name} (${entry.toLocaleString()}원) 실시간 단가 100% 정밀 세팅 완료!`);
+      showToast(`🧮 ${name} (${Number(entry).toLocaleString()}원) 실시간 단가 100% 정밀 세팅 완료!`);
     }
 
     function jumpToDart(code) {
@@ -10665,37 +10976,27 @@ function switchCoachTab(tabKey) {
     // 360-Degree Global Stock Synchronizer (0ms Instant Reaction)
     // =========================================================================
     function globalSyncStock(code, btn) {
-      triggerHaptic(15);
+      try { triggerHaptic(15); } catch (e) { /* noop */ }
       document.querySelectorAll('.global-chip').forEach(c => c.classList.remove('active'));
       if (btn) btn.classList.add('active');
 
-      const s = stressStockData[code] || stressStockData['058470'];
+      const m = (typeof TURNAROUND_MASTER_DATA !== 'undefined') ? TURNAROUND_MASTER_DATA[code] : null;
+      const s = m || stressStockData[code] || stressStockData['058470'];
       const stockName = s.name;
+      const basePrice = (m && m.currentPrice) || s.basePrice || 0;
+      const targetPrice = (m && m.target) || Math.round(basePrice * 1.1);
 
-      // 1. Sync Risk/Reward Calculator
-      loadStockToCalc(code, s.name, s.basePrice, Math.round(s.basePrice * 1.1), s.stopLoss, s.qty);
-
-      // 2. Sync Major Flow Radar
-      const flowBtn = document.querySelector(`.flow-tab-btn[data-code="${code}"]`);
-      switchFlowStock(code, flowBtn);
-
-      // 3. Sync Stress Simulator
-      const stressBtn = document.querySelector(`.stress-stock-tab[data-code="${code}"]`);
-      switchStressStock(code, stressBtn);
-
-      // 4. Sync Scale-in Simulator
-      const scaleBtn = document.querySelector(`.scale-stock-tab[data-code="${code}"]`);
-      switchScaleStock(code, scaleBtn);
-
-      // 5. Sync Compass & Checklist
-      const compassBtn = document.querySelector(`.compass-stock-tab[data-code="${code}"]`);
-      switchCompassStock(code, compassBtn);
-
-      // 6. Sync Timeline Manual
-      switchTimelineStock(code);
-
-      // 7. Sync Kakao Sharing Center
-      switchShareStock(code);
+      // 1~7단계를 각각 격리 실행 — 한 모듈이 실패해도 나머지 연동은 계속된다.
+      const steps = [
+        () => loadStockToCalc(code, s.name, basePrice, targetPrice, s.stopLoss, s.qty),
+        () => switchFlowStock(code),
+        () => switchStressStock(code),
+        () => switchScaleStock(code),
+        () => switchCompassStock(code),
+        () => switchTimelineStock(code),
+        () => switchShareStock(code)
+      ];
+      steps.forEach(fn => { try { fn(); } catch (e) { console.warn('globalSyncStock step failed:', e); } });
 
       // 8. Flash confirmation toast
       showToast(`⚡ [${stockName}] 계산기·수급·스트레스·분할매수·나침반·공유 전 모듈 100% 동기화 완료!`);
@@ -10750,6 +11051,12 @@ function switchCoachTab(tabKey) {
         if (typeof initBottomStockTickerPause === 'function') initBottomStockTickerPause();
       } catch (e) {
         console.error('renderBottomStockTicker failed:', e);
+      }
+      try {
+        if (typeof applyLedDecorations === 'function') applyLedDecorations();
+        if (typeof renderCalcCore4Presets === 'function') renderCalcCore4Presets();
+      } catch (e) {
+        console.error('applyLedDecorations failed:', e);
       }
       try {
         if (typeof initAdminMasterBrandObserver === 'function') initAdminMasterBrandObserver();
