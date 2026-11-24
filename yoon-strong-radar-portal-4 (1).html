@@ -2326,7 +2326,7 @@
     </div>
     <div class="amb-right">
       <span class="amb-vip" id="ambVipBadge">👑 VIP MASTER ADMIN</span>
-      <span class="amb-sync" id="adminMasterSyncLabel"><span class="amb-sync-long">🟢 동기화 11-24 15:20 장마감 레이더</span><span class="amb-sync-short">🟢 11-24 15:20 마감</span></span>
+      <span class="amb-sync" id="adminMasterSyncLabel"><span class="amb-sync-long">🟢 동기화 11-24 19:50 야간 결산</span><span class="amb-sync-short">🟢 11-24 19:50 야간</span></span>
       <button type="button" class="amb-btn amb-console" id="ambConsoleBtn" onclick="scrollToTarget('sec-admin')">⚙️ 콘솔</button>
       <button type="button" class="amb-btn amb-lock" id="ambLockBtn" onclick="logoutAdmin()">🔒 잠금</button>
       <button type="button" class="amb-btn amb-switch" id="ambSwitchBtn" onclick="toggleAdminModal()">🔑 관리자 전환</button>
@@ -2336,7 +2336,7 @@
   <!-- 7-Day User Trial Banner -->
   <div class="trial-banner expired-state" id="trialBanner">
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-      <span id="trialHeaderDateBadge" style="font-size:0.75rem; background:rgba(5,150,105,0.15); color:var(--success); border:1px solid rgba(5,150,105,0.3); border-radius:8px; padding:3px 8px; font-weight:800;">⚡ 네이버 금융 11-24 15:30 확정 종가·잠정 수급 100% 검증 완료 (11-24 15:20 장마감 결산)</span>
+      <span id="trialHeaderDateBadge" style="font-size:0.75rem; background:rgba(2,132,199,0.15); color:var(--accent); border:1px solid rgba(2,132,199,0.3); border-radius:8px; padding:3px 8px; font-weight:800;">⚡ 11-24 15:30 확정 종가·확정 수급 + 19:50 시간외·NXT 실측 100% 검증 완료 (11-24 19:50 야간 결산)</span>
       <span>⏳ <strong id="trialModeTitle">[사용자 7일 체험 만료]</strong> 상태: <span class="trial-timer-badge expired-badge" id="trialDaysLeft">0일 0시간 (공식 만료됨)</span></span>
       <span id="trialDescText" style="font-size:0.72rem; opacity:0.88; margin-left:6px;">* 7일 무료 체험 기간이 만료되었습니다. 전체 기능 이용을 위해 관리자 PIN 로그인이 필요합니다.</span>
     </div>
@@ -2353,29 +2353,28 @@
     <!-- Top Marquee Ticker -->
   <div class="ticker-bar">
     <div class="ticker-track">
-      <div class="ticker-item"><span>코스피 (11-24 확정)</span> <span class="c-success">5,006.03pt (▲6.32% · +297.49pt · 저 4,880.16 → 종가 <strong>+2.58%</strong> · 상승 797 vs 하락 94)</span></div>
+      <div class="ticker-item"><span>코스피 (11-24 확정)</span> <span class="c-success">5,006.03pt (▲6.32% · 시 4,880.16 / 고 5,065.74 · 상승 797 vs 하락 94)</span></div>
       <div class="ticker-item"><span>코스닥 (11-24 확정)</span> <span class="c-success">665.88pt (▲4.79% · 상한가 10 · 상승 1,389 vs 하락 322)</span></div>
-      <div class="ticker-item"><span>코스피200 (확정)</span> <span class="c-success">778.68pt (▲6.55% · 시 759.67 / 고 790.56 / 저 759.35)</span></div>
-      <div class="ticker-item"><span>코스피 수급 (11-24 <strong>잠정</strong>)</span> <span class="c-success">기관 <strong>+8,692억</strong> · 외인 <strong>+7,255억</strong> 쌍끌이 · 개인 -20,430억</span></div>
-      <div class="ticker-item"><span>코스닥 수급 (11-24 <strong>잠정</strong>)</span> <span class="c-success">기관 <strong>+2,064억</strong> · 외인 +1,176억 · 개인 -3,077억</span></div>
-      <div class="ticker-item"><span>프로그램 (11-24 잠정)</span> <span class="c-success">코스피 <strong>+3,541억</strong> 순매수(비차익 +3,086) · 코스닥 +1,817억</span></div>
-      <div class="ticker-item"><span>간밤 미장 (11-23 마감)</span> <span class="c-success">다우 <strong>+3.01%</strong> · S&amp;P500 <strong>+4.73%</strong> · 나스닥 <strong>+6.51%</strong> · <strong>SOX +14.03%</strong></span></div>
-      <div class="ticker-item"><span>VIX · 공포탐욕</span> <span class="c-warning">VIX 26.62 (▼25.83%) · CNN F&amp;G 16.97 (<strong>극단적 공포</strong>) · 지수 급등 vs 심리 미회복</span></div>
-      <div class="ticker-item"><span>코스피200 야간선물 (12월물)</span> <span class="c-success"><strong>777.95 (▲7.06%)</strong> 06:00 마감 · 이론 시초 5,041 → <strong>실제 시가 4,880.16(-3.2%)</strong> 갭 미달 출발</span></div>
-      <div class="ticker-item"><span>환율 USD/KRW</span> <span class="c-warning">1,343.40원 (▲0.90 · 15:35 하나은행 고시) · 엔/원 843.06원</span></div>
-      <div class="ticker-item"><span>4대 핵심주 (11-24 15:30 확정)</span> <span class="c-success">리노공업 <strong>48,500원 (+6.01%)</strong> · HD현대마린 <strong>187,300원 (+6.30%)</strong> · LS ELECTRIC <strong>122,000원 (+8.93%)</strong> · 네오사피엔스 4,555원 (+1.79%)</span></div>
-      <div class="ticker-item"><span>8선 1·2위</span> <span class="c-success">현대차 <strong>79점</strong> (275,000원 · +10.66%) · HD현대마린 69점 (187,300원) · S-Oil 69점 (94,400원)</span></div>
-      <div class="ticker-item"><span>다음 자동 갱신</span> <span class="c-success">11-24(화) 19:50 야간·시간외 결산 레이더 (NXT 20:00 마감 · 야간선물 18:00 재개)</span></div>
+      <div class="ticker-item"><span>코스피 수급 (11-24 <strong>확정</strong>)</span> <span class="c-success">기관 <strong>+8,734억</strong>(2일 연속) · 외인 <strong>+8,090억</strong>(8거래일 만 전환) · 개인 -21,307억</span></div>
+      <div class="ticker-item"><span>코스피200 야간선물 (19:50)</span> <span class="c-danger"><strong>749.55 (▼3.67%)</strong> · 주간 종가 778.10 대비 -28.55pt · 야간 고 769.95 / 저 749.00</span></div>
+      <div class="ticker-item"><span>나스닥100 선물 (19:50)</span> <span class="c-danger"><strong>-1.52%</strong> · S&amp;P500 선물 -0.69% · 다우 선물 -0.31% · 미장 야간 약세</span></div>
+      <div class="ticker-item"><span>VIX · 환율</span> <span class="c-warning">VIX <strong>28.0</strong>(▲5%) · 원/달러 <strong>1,343.2원</strong>(▲0.1%) · 위험회피 재개</span></div>
+      <div class="ticker-item"><span>4대주 19:50 시간외</span> <span class="c-danger">리노공업 <strong>46,650 (-3.81%)</strong> · HD현대마린 <strong>182,000 (-2.83%)</strong> · LS ELECTRIC <strong>116,400 (-4.59%)</strong> · 네오사피엔스 미체결</span></div>
+      <div class="ticker-item"><span>혼합 예상 시초가 (11-25)</span> <span class="c-warning">리노공업 <strong>46,650</strong> · HD현대마린 <strong>181,200</strong> · LS ELECTRIC <strong>116,900</strong> · 네오사피엔스 4,385 (야간 100%)</span></div>
+      <div class="ticker-item"><span>시간외 미확인</span> <span class="c-muted">네오사피엔스 · 대한항공 · 원익IPS 3종목 → 야간선물 -3.67% 100% 대체</span></div>
+      <div class="ticker-item"><span>8선 · 4대주 수급</span> <span class="c-success">11-24 종목별 확정 수급 <strong>미공표</strong>(11-23 기준) · 8선 구성·순위 <strong>유지</strong>(교체 0건)</span></div>
+      <div class="ticker-item"><span>다음 자동 갱신</span> <span class="c-success">11-25(수) 08:00 장전 레이더 (야간선물 06:00 마감 반영 · NXT 프리마켓 실측)</span></div>
         </div>
   </div>
 
   <!-- Intraday Rebound & Supply-Turnaround Pulse Badge Bar (rendered from MARKET_PULSE_BADGE) -->
-  <div class="market-pulse-bar" id="intradayReboundBadge" aria-live="polite" data-asof="11-24 15:30 확정">
+  <div class="market-pulse-bar" id="intradayReboundBadge" aria-live="polite" data-asof="11-24 19:50 야간 확정">
     <span class="mp-label">📊 오늘의 시장 펄스</span>
     <span class="mp-pill mp-strong">📈 저점 대비 반등 +2.58% (4,880.16 → 5,006.03)</span>
-    <span class="mp-pill mp-inst-turn">🟢 기관 +8,692억 순매수 2일 연속</span>
-    <span class="mp-pill mp-inst-turn">🟢 외인 +7,255억 순매수 전환</span>
-    <span class="mp-pill mp-asof">11-24 15:30 확정</span>
+    <span class="mp-pill mp-inst-turn">🟢 기관 +8,734억 순매수 2일 연속</span>
+    <span class="mp-pill mp-inst-turn">🟢 외인 +8,090억 순매수 전환</span>
+    <span class="mp-pill mp-foreign-out">🌙 야간선물 -3.67% (749.55)</span>
+    <span class="mp-pill mp-asof">11-24 19:50 야간 확정</span>
   </div>
 
   <!-- Nav -->  <!-- Nav -->
@@ -2387,7 +2386,7 @@
       </div>
       <div class="brand-badges-wrap">
         <span class="nav-tag" id="userRoleBadge">👤 사용자 7일 체험 모드</span>
-        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-24 15:20 장마감 레이더</span>
+        <span class="sync-badge" id="lastUpdateBadge"><span class="sync-dot"></span>11-24 19:50 야간 결산 레이더</span>
       </div>
     </div>
     <div class="nav-actions">
@@ -2476,7 +2475,7 @@
           <span class="pipe-live-dot"></span>
           <span class="pipe-title" id="pipelineTitleLabel">실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) + 토요일 주말 결산 가동 중</span>
         </div>
-        <div class="pipe-status-right"><span id="pipelineNextLabel">현재: 11-24(화) 15:20 장마감 레이더 완료 (2/3단계) · 다음 자동 갱신: 11-24(화) 19:50 KST (야간·시간외 결산)</span></div>
+        <div class="pipe-status-right"><span id="pipelineNextLabel">현재: 11-24(화) 19:50 야간 결산 완료 (3/3단계) · 다음 자동 갱신: 11-25(수) 08:00 KST (장전 레이더)</span></div>
       </div>
 
       <!-- ⏱️ Daily 3-Stage Workflow & Realtime Market State Tracker -->
@@ -2487,7 +2486,7 @@
             <div>
               <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                 <span>주간 3타임 + 주말 결산 레이더 진행 상황</span>
-                <span class="badge" id="currentStageBadge" style="background:#16a34a; color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">🌇 11-24 15:20 장마감 레이더 완료 (코스피 <strong>+6.32%</strong> 5,006.03 · 기관 +8,692억·외인 +7,255억 쌍끌이)</span></span>
+                <span class="badge" id="currentStageBadge" style="background:#0284c7; color:#ffffff; font-size:0.75rem; padding:3px 10px; border-radius:9999px; font-weight:800;">🌙 11-24 19:50 야간 결산 완료 (야간선물 <strong>-3.67%</strong> 749.55 · 시간외 4대주 -2.8~-4.6% 되돌림)</span></span>
               </div>
               <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">
                 하루 3번 + 주말 1회, 정해진 시간마다 시장 분석 ➔ 포털 갱신 ➔ 깃허브 웹사이트 자동 배포가 100% 전자동으로 가동됩니다.
@@ -2516,20 +2515,19 @@
               <span class="stage-tag" style="background:var(--success); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 (11-24 15:20 발송)</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">마감 결산 &amp; 쌍끌이 수급 확인</div>
-            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">코스피 <strong>5,006.03(+6.32%)</strong>·코스닥 665.88(+4.79%) — 기관 <strong>+8,692억</strong>·외인 <strong>+7,255억</strong> 동반 순매수(외인 8거래일 만 전환), 4대주 전원 상승·HD현대마린 목표 188,800까지 0.8%</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">코스피 <strong>5,006.03(+6.32%)</strong>·코스닥 665.88(+4.79%) — 기관 <strong>+8,734억</strong>·외인 <strong>+8,090억</strong> 동반 순매수(외인 8거래일 만 전환), 4대주 전원 상승·HD현대마린 목표 188,800까지 0.8%</div>
           </div>
 
-          <div class="stage-step-box" id="stageStep3" style="background:var(--surface-sub); border:1px solid var(--accent); border-radius:14px; padding:14px; position:relative;">
+          <div class="stage-step-box" id="stageStep3" style="background:rgba(22,163,74,0.08); border:1px solid var(--success); border-radius:14px; padding:14px; position:relative;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <span style="font-weight:900; font-size:0.9rem; color:var(--accent);">🌙 3단계: 19:50 야간 결산 레이더</span>
-              <span class="stage-tag" style="background:var(--accent); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">오늘 19:50 예정 (다음 단계)</span>
+              <span style="font-weight:900; font-size:0.9rem; color:var(--success);">🌙 3단계: 19:50 야간 결산 레이더</span>
+              <span class="stage-tag" style="background:var(--success); color:#fff; font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">완료 (11-24 19:50 발송)</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text); font-weight:700; margin-bottom:4px;">국내 시간외 마감 &amp; 익일 프리마켓</div>
-            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">시간외 단일가·NXT 야간(20:00 마감) 결산 + 코스피200 야간선물 18:00 재개 등락률로 익일 갭 기준가 갱신 — 오늘 폭등분의 시간외 되돌림·추가 상승 여부 확인</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.4;">NXT 시간외(20:00 마감)에서 4대주 <strong>리노공업 46,650(-3.81%)·HD현대마린 182,000(-2.83%)·LS ELECTRIC 116,400(-4.59%)</strong> 되돌림 · 코스피200 야간선물 <strong>749.55(-3.67%)</strong> → 11-25 예상 시초 <strong>4,822</strong></div>
           </div>
 
-          
-<div class="stage-step-box" id="stageStep4" style="background:var(--surface-sub); border:1px solid var(--accent); border-radius:14px; padding:14px; position:relative;">
+          <div class="stage-step-box" id="stageStep4" style="background:var(--surface-sub); border:1px solid var(--accent); border-radius:14px; padding:14px; position:relative;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <span style="font-weight:900; font-size:0.9rem; color:var(--accent);">🏁 4단계: 토요일 09:00 주말 결산</span>
               <span class="stage-tag" style="background:var(--border); color:var(--text-sub); font-size:0.65rem; padding:2px 6px; border-radius:6px; font-weight:800;">11-28(토) 09:00 예정</span>
@@ -2549,11 +2547,11 @@
           </div>
           <div>
             <div style="font-size:1.05rem; font-weight:900; color:var(--text); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-              <span id="aiCoachGreetingTitle" data-asof="11-24 15:20">11월 24일(화) · +6.32% 폭등 마감, 오늘도 원칙을 지키는 윤용규 님!</span>
+              <span id="aiCoachGreetingTitle" data-asof="11-24 19:50">11월 24일(화) · 야간선물 -3.67% 되돌림, 원칙으로 방어하는 윤용규 님!</span>
               <span class="tag tag-highlight" style="font-size:0.72rem; padding:2px 8px;">1:1 AI 코치</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;" id="aiCoachTimeSub">
-              코스피 5,006.03(+6.32%) · 기관 +8,692억·외인 +7,255억 쌍끌이 · 4대주 전원 상승 · HD현대마린 목표 188,800까지 0.8% (11-24 15:20 마감 결산)
+              코스피200 야간선물 749.55(-3.67%) · 19:50 시간외 4대주 -2.8~-4.6% 되돌림 · 기관 +8,734억·외인 +8,090억 확정 · 내일 예상 시초 4,822 (11-24 19:50 야간 결산)
             </div>
           </div>
         </div>
@@ -2626,7 +2624,7 @@
 
 <!-- 1. Market Sentiment & Global Macro Gauges (PUBLIC) -->
                 <div class="section-title" id="sec-pulse">
-🌇 11-24 장마감 결산 (코스피 <strong>+6.32%</strong> 5,006.03 · 기관 +8,692억·외인 +7,255억 쌍끌이 · 4대주 전원 상승)</div>
+🌙 11-24 야간 결산 (야간선물 <strong>-3.67%</strong> 749.55 · 시간외 4대주 -2.8~-4.6% 되돌림 · 기관 +8,734억·외인 +8,090억 확정)</div>
         <div class="pulse-grid">
       <div class="pulse-card">
         <div class="pulse-lbl"><span>코스피 (11-24 확정)</span><span>KOSPI</span></div>
@@ -2639,14 +2637,14 @@
         <div class="pulse-sub c-success">▲4.79% (+30.42pt) · 시가 654.31 / 고가 670.95 / 저가 652.21 · 거래대금 5조4,032억 · 상승 1,389 vs 하락 322 · 상한가 10</div>
       </div>
       <div class="pulse-card">
-        <div class="pulse-lbl"><span>수급 (11-24 <strong>잠정</strong>)</span><span>코스피 / 코스닥</span></div>
-        <div class="pulse-val c-success">기관 +8,692억 · 외인 +7,255억</div>
-        <div class="pulse-sub c-success">코스피 <strong>기관 +8,692억(2일 연속)·외인 +7,255억(8거래일 만 순매수 전환)</strong>·개인 -20,430억 · 코스닥 기관 +2,064억·외인 +1,176억 · 프로그램 코스피 <strong>+3,541억</strong> · <strong>기관·외인 쌍끌이 매수일</strong></div>
+        <div class="pulse-lbl"><span>수급 (11-24 <strong>확정</strong>)</span><span>코스피 / 코스닥</span></div>
+        <div class="pulse-val c-success">기관 +8,734억 · 외인 +8,090억</div>
+        <div class="pulse-sub c-success">코스피 <strong>기관 +8,734억(2일 연속)·외인 +8,090억(8거래일 만 순매수 전환)</strong>·개인 -21,307억 · 코스닥 기관 +2,224억·외인 +1,285억 · 프로그램 코스피 <strong>+3,541억</strong> · <strong>기관·외인 쌍끌이 매수일</strong></div>
       </div>
       <div class="pulse-card">
-        <div class="pulse-lbl"><span>코스피200 야간선물 (12월물)</span><span>11-24 06:00 마감</span></div>
-        <div class="pulse-val c-success">777.95pt ▲7.06%</div>
-        <div class="pulse-sub c-success">이론 시초 <strong>5,041</strong> 대비 실제 시가 <strong>4,880.16(-3.2%)</strong>로 <strong>갭 미달 출발</strong> → 저가=시가에서 종가 5,006.03까지 상승, 이론치의 89% 소화 · 야간선물 <strong>18:00 재개</strong></div>
+        <div class="pulse-lbl"><span>코스피200 야간선물 (12월물)</span><span>11-24 19:50 현재</span></div>
+        <div class="pulse-val c-danger">749.55pt ▼3.67%</div>
+        <div class="pulse-sub c-danger">18:00 재개 후 <strong>-3.67%(주간 종가 778.10 대비 -28.55pt)</strong> · 야간 시 769.90 / 고 769.95 / <strong>저 749.00</strong> · 거래량 8,658계약 → 코스피 5,006.03 기준 <strong>11-25 예상 시초 4,822</strong>. 오늘 폭등분의 상당 부분을 되돌린 상태</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl"><span>NXT 프리마켓 (11-24 08:05 기록)</span><span>장전 기록 보존</span></div>
@@ -2659,19 +2657,19 @@
         <div class="pulse-sub c-success">다우 <strong>49,595.31(+3.01%)</strong> · S&amp;P500 <strong>7,237.17(+4.73%)</strong> · 나스닥 <strong>24,089.56(+6.51%)</strong> · <strong>SOX 9,588.05(+14.03%)</strong> · 나스닥100 26,746.10(+6.86%) — 젠슨 황 CEO 복귀·엔비디아 +31% 촉매</div>
       </div>
       <div class="pulse-card">
-        <div class="pulse-lbl"><span>심리 온도계</span><span>VIX · CNN 공포탐욕</span></div>
-        <div class="pulse-val c-warning">VIX 26.62 ▼25.83%</div>
-        <div class="pulse-sub c-warning">CNN 공포탐욕 <strong>16.97('극단적 공포')</strong> · 1주 전 25.95 · <strong>지수는 이틀 만에 폭등했지만 심리는 아직 공포 구간</strong> — 추세 전환 확인 전까지 추격 금지 근거</div>
+        <div class="pulse-lbl"><span>심리 온도계</span><span>VIX · 미장 야간 선물</span></div>
+        <div class="pulse-val c-warning">VIX 28.0 ▲5%</div>
+        <div class="pulse-sub c-warning">나스닥100 선물 <strong>26,400(-1.52%)</strong> · S&amp;P500 선물 <strong>7,205(-0.69%)</strong> · 다우 선물 <strong>49,525(-0.31%)</strong> · VIX 28.0으로 반등 — 간밤 폭등(+6.51%)의 되돌림이 진행 중입니다. CNN 공포탐욕은 16.5(극단적 공포) 유지</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl"><span>환율 · 원화</span><span>USD/KRW</span></div>
-        <div class="pulse-val c-warning">1,343.40원</div>
-        <div class="pulse-sub c-warning">원/달러 <strong>1,343.40원(▲0.90, +0.07%, 15:35 하나은행)</strong> · 엔/원 843.06원(-0.16%) · 1,342~1,343원대 횡보 · 원화 강세 되돌림은 외인 수급에 부담 요인</div>
+        <div class="pulse-val c-warning">1,343.2원</div>
+        <div class="pulse-sub c-warning">원/달러 <strong>1,343.2원(▲1.35, +0.10%, 19:50)</strong> · 1,342~1,343원대 횡보 지속 · 야간선물 -3.67%와 함께 <strong>위험회피 신호</strong>가 동시에 나타났습니다</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl"><span>오늘의 반전 포인트</span><span>수급</span></div>
         <div class="pulse-val c-success">외인 8거래일 만 순매수</div>
-        <div class="pulse-sub c-success">11-23 기관 +1,759억에 이어 오늘 <strong>기관 +8,692억</strong>로 2일 연속, 여기에 <strong>외국인 +7,255억</strong>이 8거래일 만에 매수로 돌아섰습니다(11-23 -2,558억). <strong>지수 상승 + 종목 확산(상승 797 vs 하락 94)</strong>이 동시에 나온 첫날입니다</div>
+        <div class="pulse-sub c-success">11-23 기관 +1,759억에 이어 오늘 <strong>기관 +8,734억</strong>로 2일 연속, 여기에 <strong>외국인 +8,090억</strong>이 8거래일 만에 매수로 돌아섰습니다(11-23 -2,558억). <strong>지수 상승 + 종목 확산(상승 797 vs 하락 94)</strong>이 동시에 나온 첫날입니다</div>
       </div>
       <div class="pulse-card">
         <div class="pulse-lbl"><span>오늘 핵심 이벤트</span><span>D-DAY</span></div>
@@ -2683,7 +2681,7 @@
                         <div id="kospiKosdaqDiffBox" style="background:var(--surface); border:1px solid var(--border-accent); border-radius:18px; padding:16px 20px; margin-top:14px; margin-bottom:20px; box-shadow:var(--shadow);">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
         <div style="font-size:0.95rem; font-weight:900; color:var(--text);">⚖️ 장마감 진단 — 코스피 vs 코스닥 차별화 진단 (11-24 15:30 확정)</div>
-        <span class="tag tag-highlight" style="font-size:0.72rem;">🛡️ 4중 교차 검증 완료 (확정 종가·잠정 수급·프로그램·야간선물 대조)</span>
+        <span class="tag tag-highlight" style="font-size:0.72rem;">🛡️ 4중 교차 검증 완료 (확정 종가·확정 수급·프로그램·야간선물 대조)</span>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
         <div style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:12px 14px;">
@@ -2692,7 +2690,7 @@
             <span style="font-size:0.7rem; font-weight:800; color:var(--success);">신뢰도 A · 쌍끌이 + 종목 확산</span>
           </div>
           <div style="font-size:0.78rem; color:var(--text-sub); line-height:1.55;">
-            야간선물(+7.06%)의 이론 시초 5,041에 못 미치는 <strong>4,880.16(-3.2%)</strong>으로 출발했지만 그 가격이 곧 저가였고, 종가 <strong>5,006.03(+6.32%)</strong>까지 밀어 올렸습니다(고가 5,065.74). 잠정 수급은 <strong>기관 +8,692억(2일 연속)·외인 +7,255억(8거래일 만 전환)</strong>·개인 -20,430억, 프로그램 +3,541억입니다. 무엇보다 <strong>상승 797 vs 하락 94</strong>로 종목 확산이 동반됐습니다.
+            야간선물(+7.06%)의 이론 시초 5,041에 못 미치는 <strong>4,880.16(-3.2%)</strong>으로 출발했지만 그 가격이 곧 저가였고, 종가 <strong>5,006.03(+6.32%)</strong>까지 밀어 올렸습니다(고가 5,065.74). 확정 수급은 <strong>기관 +8,734억(2일 연속)·외인 +8,090억(8거래일 만 전환)</strong>·개인 -21,307억, 프로그램 +3,541억입니다. 무엇보다 <strong>상승 797 vs 하락 94</strong>로 종목 확산이 동반됐습니다.
           </div>
         </div>
         <div style="background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:12px 14px;">
@@ -2701,23 +2699,23 @@
             <span style="font-size:0.7rem; font-weight:800; color:var(--success);">신뢰도 A- · 상한가 10</span>
           </div>
           <div style="font-size:0.78rem; color:var(--text-sub); line-height:1.55;">
-            시가 654.31pt에서 저가 652.21pt까지 눌린 뒤 <strong>665.88pt(+4.79%)</strong>로 마감했고, 장중 고가 670.95pt를 기록했습니다. <strong>기관 +2,064억·외인 +1,176억</strong> 동반 순매수(개인 -3,077억), 상승 1,389 vs 하락 322·<strong>상한가 10종목</strong>으로 낙폭과대 종목의 반등이 코스피보다 넓게 나왔습니다. 다만 코스피(+6.32%)보다 상승률은 1.5%p 낮았습니다.
+            시가 654.31pt에서 저가 652.21pt까지 눌린 뒤 <strong>665.88pt(+4.79%)</strong>로 마감했고, 장중 고가 670.95pt를 기록했습니다. <strong>기관 +2,224억·외인 +1,285억</strong> 동반 순매수(개인 -3,352억), 상승 1,389 vs 하락 322·<strong>상한가 10종목</strong>으로 낙폭과대 종목의 반등이 코스피보다 넓게 나왔습니다. 다만 코스피(+6.32%)보다 상승률은 1.5%p 낮았습니다.
           </div>
         </div>
       </div>
       <div style="margin-top:10px; font-size:0.78rem; color:var(--text-sub); background:var(--surface-sub); border-radius:12px; padding:10px 12px; line-height:1.55;">
-        💡 <strong>차별화 결론:</strong> 오늘은 <strong>기관 2일 연속 + 외국인 8거래일 만의 순매수 전환</strong>이 겹친 날입니다. 어제(기관 +1,759억, 상승 71 vs 하락 824)와 달리 <strong>상승 797 vs 하락 94</strong>로 종목 확산이 동반돼, 지수만 오른 반등이 아니라 <strong>수급 주체가 바뀐 날</strong>로 볼 근거가 생겼습니다. 다만 ① 시가가 이론 시초보다 3.2% 낮게 열렸고 ② CNN 공포탐욕이 16.97(극단적 공포)에 머물고 ③ 코스피200 야간선물이 18:00 재개되는 만큼, <strong>하루 폭등을 추세로 단정하지 말고</strong> 5,065.74(오늘 고가) 안착과 기관·외인 3일 연속 매수를 확인한 뒤 대응하십시오. 4대주는 <strong>리노공업 +6.01%·HD현대마린 +6.30%(목표 188,800까지 0.8%)·LS ELECTRIC +8.93%·네오사피엔스 +1.79%</strong>로 전원 상승했습니다.
+        💡 <strong>차별화 결론:</strong> 오늘은 <strong>기관 2일 연속 + 외국인 8거래일 만의 순매수 전환</strong>이 겹친 날입니다. 어제(기관 +1,759억, 상승 71 vs 하락 824)와 달리 <strong>상승 797 vs 하락 94</strong>로 종목 확산이 동반돼, 지수만 오른 반등이 아니라 <strong>수급 주체가 바뀐 날</strong>로 볼 근거가 생겼습니다. 다만 ① 시가가 이론 시초보다 3.2% 낮게 열렸고 ② CNN 공포탐욕이 16.5(극단적 공포)에 머물고 ③ <strong>19:50 야간선물이 -3.67%(749.55)로 되돌렸고</strong> ④ 시간외에서 4대주가 -2.8~-4.6% 밀린 만큼, <strong>하루 폭등을 추세로 단정하지 말고</strong> 내일 <strong>4,880.16(오늘 시가=저가) 회복 여부</strong>와 기관·외인 3일 연속 매수를 확인한 뒤 대응하십시오. 4대주는 <strong>리노공업 +6.01%·HD현대마린 +6.30%(목표 188,800까지 0.8%)·LS ELECTRIC +8.93%·네오사피엔스 +1.79%</strong>로 전원 상승했습니다.
       </div>
     </div>
     <div class="expert-commentary-box" id="sec-market-view">
       <div class="commentary-header">
         <div class="commentary-title">
-          <span>🧠 윤스트롱 퀀트 마감 뷰: "야간선물이 가리킨 5,041을 하루 만에 89% 소화 — 5,006.03 폭등, 이제 5,065.74가 관문"</span>
+          <span>🧠 윤스트롱 퀀트 야간 뷰: "야간선물 -3.67% · 시간외 4대주 -3~4.6% — 내일은 4,880.16 사수가 전부입니다"</span>
         </div>
-        <span class="tag tag-highlight">11-24 15:20 장마감 · 기관 +8,692억·외인 +7,255억 쌍끌이</span>
+        <span class="tag tag-highlight">11-24 19:50 야간 결산 · 야간선물 -3.67% · 시간외 4대주 -2.8~-4.6%</span>
       </div>
       <p style="font-size:0.86rem; color:var(--text-sub); line-height:1.65;">
-        코스피는 <strong>5,006.03pt(+6.32%, +297.49pt)</strong>, 코스닥은 <strong>665.88pt(+4.79%)</strong>로 마감했습니다. 야간선물 <strong>+7.06%(777.95)</strong>가 가리킨 이론 시초 5,041에는 미치지 못하는 <strong>4,880.16(-3.2%)</strong>으로 출발했지만, 그 시가가 곧 저가였고 종가까지 <strong>+2.58%</strong>를 더 올렸습니다. 핵심은 수급입니다 — <strong>기관 +8,692억 2일 연속</strong>, <strong>외국인 +7,255억 8거래일 만의 순매수 전환</strong>, 프로그램 <strong>+3,541억</strong>이 겹쳤고, <strong>상승 797 vs 하락 94</strong>로 종목 확산까지 동반됐습니다.
+        코스피는 <strong>5,006.03pt(+6.32%)</strong>, 코스닥은 <strong>665.88pt(+4.79%)</strong>로 마감하며 <strong>기관 +8,734억(2일 연속)·외인 +8,090억(8거래일 만 전환)</strong>이 확정됐습니다. 그러나 <strong>19:50 야간 결산</strong>의 답은 다릅니다 — 코스피200 야간선물이 <strong>749.55(-3.67%)</strong>로 주간 종가 778.10을 크게 밑돌았고, NXT 시간외에서 4대주가 <strong>리노공업 46,650(-3.81%)·HD현대마린 182,000(-2.83%)·LS ELECTRIC 116,400(-4.59%)</strong>로 되돌려졌습니다. 나스닥100 선물 -1.52%, VIX 28.0 반등까지 겹쳐 <strong>오늘 폭등분의 3~4%를 야간에 반납</strong>한 상태입니다. 내일은 <strong>4,880.16(오늘 시가=저가) 회복 여부</strong>가 관문입니다.
       </p>
       <div class="commentary-grid">
         <div class="comm-point">
@@ -2801,12 +2799,12 @@
 
     <!-- 2. NEW KILLER FEATURE: 30초 장전 모닝 브리핑 룸 (Audio TTS & 4대 핵심) -->
         <div class="section-title" id="sec-briefing">
-📢 윤스트롱 실전 핵심 브리핑 룸 (11-24 화요일 15:20 장마감 결산 &amp; 기관·외인 쌍끌이)</div>
+📢 윤스트롱 실전 핵심 브리핑 룸 (11-24 화요일 19:50 야간 결산 &amp; 야간선물 -3.67%)</div>
     <div class="briefing-box">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span class="tag tag-highlight" style="background:#16a34a; color:#fff;">● LIVE 11-24 TUESDAY CLOSE RADAR (2/3)</span>
-          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">코스피 5,006.03(+6.32%) · 기관 +8,692억·외인 +7,255억 쌍끌이 · 코스닥 665.88(+4.79%) · 원/달러 1,343.40원</span>
+          <span class="tag tag-highlight" style="background:#0284c7; color:#fff;">● LIVE 11-24 TUESDAY NIGHT RADAR (3/3)</span>
+          <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">야간선물 749.55(-3.67%) · 시간외 4대주 -2.8~-4.6% · 코스피 5,006.03(+6.32%) · 기관 +8,734억·외인 +8,090억 확정</span>
         </div>
         <div class="live-sound-wave" id="soundWave">
           <div class="wave-bar"></div>
@@ -2817,7 +2815,7 @@
       </div>
 
       <div style="font-size:1.02rem; font-weight:900; margin-bottom:14px; color:var(--text);">
-        "야간선물이 7퍼센트를 가리켰는데 실제 시가는 이론보다 3.2퍼센트 낮은 4,880.16으로 열렸고, 그 시가가 곧 저가였습니다. 종가까지 2.58퍼센트를 더 올려 5,006.03으로 마감했습니다. 기관이 8,692억으로 이틀 연속 받았고, 외국인이 7,255억으로 8거래일 만에 매수로 돌아섰습니다 — 상승 797 대 하락 94, 종목 확산까지 동반된 첫날입니다. 4대주는 전원 올랐고, 에이치디현대마린솔루션은 목표 188,800원까지 0.8퍼센트만 남았습니다. 내일은 오늘 고가 5,065.74가 지지로 바뀌는지와 기관·외인 매수가 3일 연속 이어지는지만 보십시오."
+        "야간선물이 7퍼센트를 가리켰는데 실제 시가는 이론보다 3.2퍼센트 낮은 4,880.16으로 열렸고, 그 시가가 곧 저가였습니다. 종가까지 2.58퍼센트를 더 올려 5,006.03으로 마감했습니다. 기관이 8,734억으로 이틀 연속 받았고, 외국인이 8,090억으로 8거래일 만에 매수로 돌아섰습니다 — 상승 797 대 하락 94, 종목 확산까지 동반된 첫날입니다. 4대주는 전원 올랐고, 에이치디현대마린솔루션은 목표 188,800원까지 0.8퍼센트만 남았습니다. 내일은 오늘 고가 5,065.74가 지지로 바뀌는지와 기관·외인 매수가 3일 연속 이어지는지만 보십시오."
       </div>
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; font-size:0.82rem; color:var(--text-sub); line-height:1.6;">
@@ -2825,7 +2823,7 @@
           <strong style="color:var(--success); font-size:0.88rem;">1. 11-24 국장 결산 (확정)</strong><br>
           코스피 <strong>5,006.03(+6.32%, +297.49pt)</strong> · 시 <strong>4,880.16</strong> / 고 5,065.74 / 저 4,880.16<br>
           코스닥 <strong>665.88(+4.79%)</strong> · 코스피200 <strong>778.68(+6.55%)</strong> · 상승 797 vs 하락 94(코스피)<br>
-          수급(잠정): <strong>기관 +8,692억(2일 연속)</strong> · <strong>외인 +7,255억(8거래일 만 전환)</strong> · 개인 -20,430억 · 프로그램 +3,541억<br>
+          수급(확정): <strong>기관 +8,734억(2일 연속)</strong> · <strong>외인 +8,090억(8거래일 만 전환)</strong> · 개인 -21,307억 · 프로그램 +3,541억<br>
           거래대금 14조5,589억 · 원/달러 <strong>1,343.40원(+0.07%, 15:35)</strong> · 시가=저가 → 종가 <strong>+2.58%</strong>
         </div>
         <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px;">
@@ -3335,7 +3333,7 @@
             <span class="tag" style="background:var(--danger); color:#fff; font-size:0.68rem; padding:2px 8px; border-radius:9999px;">추격 금지</span>
           </div>
           <div style="font-size:0.78rem; color:var(--text-sub); line-height:1.5; margin-bottom:10px;">
-            <strong>네오사피엔스 4,555원(+1.79%·RSI 13.4)</strong>는 락업 물량 소화 3일차·거래량 0.31배로 <strong>신규 진입 금지</strong>. <strong>리노공업 48,500원(+6.01%)</strong>은 재진입 기준(48,000원 이하)을 넘어섰고 5일 외인 -49.9만주로 <strong>수급 축 3/25</strong> — 46,800원 지지 확인 전 접근 금지. <strong>알테오젠 159,700원(-5.50%)</strong>은 지수 +6.32%에도 <strong>거래량 2.04배로 역주행</strong>, 156,500원 이탈 시 8선 제외 검토. <strong>삼성전자(+4.87%)·SK하이닉스(+5.18%)</strong>는 5일 외인 순매도 지속, <strong>삼성전기(+7.65%)·한미반도체(+6.16%)</strong>는 급등 추격 금지.
+            <strong>네오사피엔스 4,555원(+1.79%·RSI 13.4)</strong>는 락업 물량 소화 3일차·거래량 0.31배·시간외 미체결로 <strong>신규 진입 금지</strong>. <strong>리노공업 48,500원(+6.01%)</strong>은 시간외 <strong>46,650원(-3.81%)</strong>으로 재진입 기준(48,000 이하) 아래로 돌아왔지만 5일 외인 -49.9만주로 <strong>수급 축 3/25</strong> — 46,800원 지지 확인 전 접근 금지. <strong>알테오젠 159,700원(-5.50%)</strong>은 시간외 158,100원으로 지지 156,500까지 1.0% — 이탈 시 8선 제외 검토. <strong>삼성전자·SK하이닉스</strong>는 5일 외인 순매도 지속(시간외 -3.48%·-4.06%), <strong>삼성전기·한미반도체</strong>는 시간외 -4.90%·-4.77%로 추격 금지.
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:6px;">
             <button class="btn-preset" onclick="scrollToStockCard('0161M0')" style="background:var(--surface); border:1px solid var(--danger); color:var(--text); font-size:0.75rem; padding:4px 10px; border-radius:9999px; cursor:pointer;">🎙️ 네오사피엔스 (4,555 · 락업 3일차)</button>
@@ -3371,7 +3369,7 @@
           <span id="diffDiagMetrics" style="font-size:0.72rem; font-weight:800; color:var(--success); background:rgba(16,185,129,0.12); padding:2px 8px; border-radius:9999px;">DART 공시·수급·차트 3중 교차 검증</span>
         </div>
         <div id="diffDiagDesc">
-          <strong>낙폭과대 턴어라운드</strong>(52주 고점 대비 과매도), <strong>신규 모멘텀 발굴</strong>(분기 최대 실적·수주), <strong>코스피/코스닥 수급 차별화</strong>를 통합 검증한 8선입니다. <strong>11-24 15:30 확정 종가 + 잠정 수급</strong>으로 4축 100점을 재산출한 결과 <strong>교체 0건·순위 재배치</strong>입니다 — <strong>현대차(79점·275,000원·+10.66%) 1위</strong>, <strong>HD현대마린솔루션(69점·187,300원·1→2위)</strong>, S-Oil(69점·94,400원), 한국항공우주(65점·99,800원), 삼성중공업(62점·14,970원), 알테오젠(61점·159,700원), 대한항공(59점·31,150원), 리노공업(55점·48,500원)입니다. 신규 편입 3조건(쌍끌이 매집·흑자전환 공시·RSI 30 이하 반등 양봉)을 모두 충족한 종목이 없어 <strong>구성은 유지</strong>했습니다. 리노공업은 5일 외인 -49.9만주 순매도로 <strong>수급 축 3/25·제외 후보 1순위</strong>, 알테오젠은 오늘 -5.50% 역주행(거래량 2.04배)으로 <strong>156,500원 이탈 시 제외 검토</strong>, 한국전력은 64점으로 점수상 상위지만 쌍끌이·공시 조건 미충족으로 제외 유지입니다.
+          <strong>낙폭과대 턴어라운드</strong>(52주 고점 대비 과매도), <strong>신규 모멘텀 발굴</strong>(분기 최대 실적·수주), <strong>코스피/코스닥 수급 차별화</strong>를 통합 검증한 8선입니다. <strong>11-24 15:30 확정 종가 + 확정 수급</strong>으로 4축 100점을 재산출한 결과 <strong>교체 0건·순위 재배치</strong>입니다 — <strong>현대차(79점·275,000원·+10.66%) 1위</strong>, <strong>HD현대마린솔루션(69점·187,300원·1→2위)</strong>, S-Oil(69점·94,400원), 한국항공우주(65점·99,800원), 삼성중공업(62점·14,970원), 알테오젠(61점·159,700원), 대한항공(59점·31,150원), 리노공업(55점·48,500원)입니다. 신규 편입 3조건(쌍끌이 매집·흑자전환 공시·RSI 30 이하 반등 양봉)을 모두 충족한 종목이 없어 <strong>구성은 유지</strong>했습니다. 리노공업은 5일 외인 -49.9만주 순매도로 <strong>수급 축 3/25·제외 후보 1순위</strong>, 알테오젠은 오늘 -5.50% 역주행(거래량 2.04배)으로 <strong>156,500원 이탈 시 제외 검토</strong>, 한국전력은 64점으로 점수상 상위지만 쌍끌이·공시 조건 미충족으로 제외 유지입니다.
         </div>
         <button class="pill" onclick="toggleStockSwitcherHub()" style="padding:4px 10px; font-size:0.75rem;">✕ 닫기</button>
       </div>
@@ -3878,7 +3876,7 @@
             <span class="step-time-badge" style="background:#ca8a04;">09:30 ~ 10:30</span>
             <div class="step-desc">
               <h5>지지선 및 수급 확인: 핵심 마지노선 사수 테스트</h5>
-              <p id="tStep3">오전 10시 이후 방향 확인 구간입니다. 기관(+8,692억)·외인(+7,255억) 매수가 <strong>3일 연속</strong>으로 이어지는지가 관건입니다. 두 주체가 유지되면 손익비가 남은 S-Oil(1:2.09·RSI 26.6)·한국항공우주(1:2.14)·삼성중공업(1:2.13)부터 1/3 분할하고, 리노공업은 46,800원 지지 확인 후 48,000원 이하 눌림에서만 접근합니다.</p>
+              <p id="tStep3">오전 10시 이후 방향 확인 구간입니다. 야간선물 -3.67%로 <strong>4,822 갭하락 출발</strong>이 예상되므로, <strong>4,880.16(오늘 시가=저가) 회복 여부</strong>와 기관·외인 매수 <strong>3일 연속</strong>이 관건입니다. 회복 전에는 신규 매수를 보류하고, 리노공업은 46,650원 시간외 가격 부근(46,800 지지) 확인 후에만 접근합니다.</p>
             </div>
           </div>
           <div class="timeline-step">
@@ -3911,7 +3909,7 @@
               <span class="tag tag-highlight" style="font-size:0.7rem;">매크로 핵심</span>
             </div>
             <div class="share-card-desc">코스피 4,869.96(-5.21%)·코스닥 645.68(-5.71%) — 11:54 매도 사이드카 발동, 외인 -1조1,046억·기관 -9,331억 순매도. 알테오젠 +0.52%·HD현대마린솔루션 -0.38%만 생존, 리노공업 -15.17%·LS ELECTRIC -10.26%·네오사피엔스 -9.81%</div>
-                        <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 시장 뷰 · 11-24 15:20 장마감 레이더]\n- 코스피 5,006.03 (+6.32%, +297.49pt) · 시가 4,880.16 / 고가 5,065.74 / 저가 4,880.16\n- 코스닥 665.88 (+4.79%) · 코스피200 778.68 (+6.55%) · 상승 797 vs 하락 94 · 코스닥 상한가 10\n- 수급(잠정): 기관 +8,692억(2일 연속) · 외인 +7,255억(8거래일 만 순매수 전환) · 개인 -20,430억 · 프로그램 +3,541억\n- 야간선물 +7.06%가 가리킨 이론 시초 5,041 대비 실제 시가 -3.2%(4,880.16)로 갭 미달 출발 → 저가=시가 후 종가까지 +2.58% 상승\n- 4대 집중주: 리노공업 48,500 (+6.01%) · HD현대마린 187,300 (+6.30%, 1차 목표 188,800까지 0.8%) · LS ELECTRIC 122,000 (+8.93%) · 네오사피엔스 4,555 (+1.79%)\n- 8선: 구성 유지(교체 0건)·순위 재배치 — 현대차 1위(79점, 목표 267,500 도달→296,000 상향) · HD현대마린 2위(69점) · 리노공업 8위(55점·수급 3/25)\n* 실전 룰: 급등 추격 금지 · HD현대마린·LS ELECTRIC 목표 근접 분할 익절 · 5,065.74 안착 확인 전 신규 매수 보류</div></div>
+                        <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 시장 뷰 · 11-24 19:50 야간 결산 레이더]\n- 코스피 5,006.03 (+6.32%, +297.49pt) · 코스닥 665.88 (+4.79%) · 코스피200 778.68 (+6.55%) · 상승 797 vs 하락 94\n- 수급(확정): 기관 +8,734억(2일 연속) · 외인 +8,090억(8거래일 만 순매수 전환) · 개인 -21,307억 · 프로그램 +3,541억\n- 코스피200 야간선물 749.55 (-3.67%, 주간 종가 778.10 대비 -28.55pt) · 야간 고 769.95 / 저 749.00 · 거래량 8,658계약\n- NXT 19:50 시간외: 리노공업 46,650 (-3.81%) · HD현대마린 182,000 (-2.83%) · LS ELECTRIC 116,400 (-4.59%) · 네오사피엔스 미체결\n- 혼합 예상 시초가(11-25): 리노공업 46,650 · HD현대마린 181,200 · LS ELECTRIC 116,900 · 네오사피엔스 4,385(야간 100%)\n- 미장 야간: 나스닥100 선물 26,400 (-1.52%) · S&amp;P500 선물 7,205 (-0.69%) · VIX 28.0 · 원/달러 1,343.2원\n* 실전 룰: 내일 4,880.16(오늘 시가=저가) 회복 전 신규 매수 금지 · 시간외 손절선 하회 3종목(현대차·리노공업·알테오젠) 시초 추격 금지</div></div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyMarket" onclick="copyMarketReport(this)">
@@ -3969,7 +3967,7 @@
               <button class="btn-preset" id="btnToggleTop8" style="font-size:0.72rem; padding:4px 10px;" onclick="setTopReportMode('top8', this)">🌟 주도 8선 전 종목</button>
             </div>
 
-                        <div class="share-preview-box" id="prevTopReport">[YOON STRONG 턴어라운드 8선 · 11-24 15:20 장마감 레이더]\n1. 현대차 (79점) 275,000원 +10.66% - 손익비 1 : 2.10 | RSI 46.4 · 지지 265,000원\n2. HD현대마린솔루션 (69점) 187,300원 +6.30% - 손익비 1 : 2.15 | RSI 52.5 · 지지 180,700원\n3. S-Oil (69점) 94,400원 +1.07% - 손익비 1 : 2.09 | RSI 26.6 · 지지 91,000원\n4. 한국항공우주 (65점) 99,800원 +5.05% - 손익비 1 : 2.14 | RSI 44.1 · 지지 96,300원\n5. 삼성중공업 (62점) 14,970원 +3.03% - 손익비 1 : 2.13 | RSI 37.1 · 지지 14,440원\n6. 알테오젠 (61점) 159,700원 -5.50% - 손익비 1 : 6.72 | RSI 29.3 · 지지 156,500원\n7. 대한항공 (59점) 31,150원 +2.47% - 손익비 1 : 2.14 | RSI 55.1 · 지지 30,050원\n8. 리노공업 (55점) 48,500원 +6.01% - 손익비 1 : 2.18 | RSI 41.8 · 지지 46,800원\n* 8선 구성 유지(교체 0건)·순위 재배치 · 현대차 목표 267,500 도달로 296,000 상향 · HD현대마린 1→2위 · 알테오젠 -5.50% 역주행(거래량 2.04배)·156,500 이탈 시 제외 검토 · 리노공업 5일 외인 -49.9만 제외 후보 1순위</div>
+                        <div class="share-preview-box" id="prevTopReport">[YOON STRONG 턴어라운드 8선 · 11-24 19:50 야간 결산]\n1. 현대차 (79점) 275,000원 +10.66% → 시간외 264,500(-3.82%) 손절선 265,000 하회\n2. HD현대마린솔루션 (69점) 187,300원 +6.30% → 시간외 182,000(-2.83%) 지지 180,700 턱걸이\n3. S-Oil (69점) 94,400원 +1.07% → 시간외 93,500(-0.95%) · RSI 26.6\n4. 한국항공우주 (65점) 99,800원 +5.05% → 시간외 97,000(-2.81%)\n5. 삼성중공업 (62점) 14,970원 +3.03% → 시간외 14,600(-2.47%)\n6. 알테오젠 (61점) 159,700원 -5.50% → 시간외 158,100(-1.00%)\n7. 대한항공 (59점) 31,150원 +2.47% → 시간외 미체결\n8. 리노공업 (55점) 48,500원 +6.01% → 시간외 46,650(-3.81%) 손절선 46,800 하회\n* 8선 구성·순위 유지(교체 0건 · 정규 종가 기준 손절선 전원 사수) · 11-24 종목별 확정 수급 미공표(11-23 기준) · 시간외 손절선 하회 3종목은 내일 시초 회복 확인 후 판단</div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyTop" onclick="copyTopReport(this)">
@@ -4080,8 +4078,8 @@
 
         <!-- Action Box -->
         <div class="action-guide-box guide-watch" id="mainActionBox">
-          <strong>🔴 [11-24 15:20 장마감 · 리노공업 48,500원(+6.01%) · 보유 0주 · 재진입 기준 초과]</strong><br>
-          시가 47,600원 → 고가 49,300원 → 저가 47,300원 → 종가 <strong>48,500원(+6.01%)</strong>. 지수(+6.32%)와 함께 반등했지만 20일선(51,802원)까지 -6.4% 남았고, 5일 외인 <strong>-49.9만주</strong> 순매도가 이어져 수급 축이 3/25로 8선 최하입니다. 11-23 확정 수급은 외인 -0.9만·기관 +5.5만이었습니다. RSI 41.8, 거래량 1.05배. <strong>재진입 기준(48,000원 이하)을 종가가 넘어섰으므로 추격 매수 금지</strong> — 46,800원 지지 확인 후 눌림에서만 접근하십시오.
+          <strong>🔴 [11-24 19:50 야간 · 리노공업 시간외 46,650원(-3.81%) · 보유 0주 · 재진입 기준(48,000) 아래로 복귀]</strong><br>
+          시가 47,600원 → 고가 49,300원 → 종가 <strong>48,500원(+6.01%)</strong>이었지만, <strong>19:50 시간외에서 46,650원(-3.81%)</strong>으로 밀려 재진입 기준(48,000원 이하) 아래로 다시 내려왔습니다. 5일 외인 <strong>-49.9만주</strong> 순매도가 이어져 수급 축은 여전히 3/25로 8선 최하이고, 20일선(51,802원)까지 -9.9%입니다. 11-23 확정 수급은 외인 -0.9만·기관 +5.5만. <strong>내일 46,800원 지지 확인 전에는 진입하지 말고</strong>, 야간선물 -3.67% 갭하락이 마감되면 46,000~46,800원 눌림에서만 계획 수량 1/3로 접근하십시오.
         </div>
 
         <!-- Simulator -->
@@ -4151,7 +4149,7 @@
           <div>
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
               <h3 style="font-size:1.15rem; font-weight:900; margin:0;">📊 나만의 멀티 포트폴리오 자산 관리</h3>
-              <span class="badge" id="portSyncBadge" style="background:var(--accent); color:#fff; font-size:0.72rem; padding:2px 8px; border-radius:9999px;">● 11-24 15:30 확정 종가·잠정 수급 연동됨</span>
+              <span class="badge" id="portSyncBadge" style="background:var(--accent); color:#fff; font-size:0.72rem; padding:2px 8px; border-radius:9999px;">● 11-24 19:50 시간외·NXT 실측 연동됨</span>
             </div>
             <div style="font-size:0.78rem; color:var(--text-sub); margin-top:4px;">
               매일 3타임(08:00·15:20·19:50) 레이더에서 발표되는 공식 시세로 현재가와 평가손익이 전자동 갱신됩니다.
@@ -4189,7 +4187,7 @@
           </div>
           <div>
             <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">데이터 동기화 기준</div>
-            <div id="portKpiSyncCriteria" style="font-size:0.85rem; font-weight:800; color:var(--accent); margin-top:4px;">11-24 15:30 확정 종가 기준 (잠정 수급·기관·외인 쌍끌이 반영)</div>
+            <div id="portKpiSyncCriteria" style="font-size:0.85rem; font-weight:800; color:var(--accent); margin-top:4px;">11-24 15:30 확정 종가 + 19:50 시간외 기준 (확정 수급·야간선물 -3.67% 반영)</div>
             <div id="portKpiSyncTime" style="font-size:0.68rem; color:var(--text-muted); margin-top:2px;">최근 동기화: 실시간 자동 연동 ON</div>
           </div>
         </div>
@@ -4241,7 +4239,7 @@
          ※ 이 마크업은 절대 삭제·덮어쓰기 금지.
          =================================================================== -->
     <div class="bottom-ticker-bar" id="bottomStockTicker" aria-label="대표 종목 실시간 현재가 전광판">
-      <span class="bt-label">📡 LIVE QUOTES<em>대표 종목 실시간 현재가 · <span id="btAsOf">11-24 15:20 장마감</span></em></span>
+      <span class="bt-label">📡 LIVE QUOTES<em>대표 종목 실시간 현재가 · <span id="btAsOf">11-24 19:50 야간</span></em></span>
       <div class="bt-viewport">
         <div class="bt-track" id="bottomTickerTrack"><!-- renderBottomStockTicker() --></div>
       </div>
@@ -4742,6 +4740,7 @@
     // =========================================================================
     const TURNAROUND_MASTER_DATA = 
 
+
 {
     "443060": {
         "code": "443060",
@@ -4753,16 +4752,17 @@
         "changeStr": "+6.30%",
         "score": 69,
         "actionSignal": "BUY",
-        "actionSignalText": "🟢 2위 · +6.30% · 1차 목표 188,800까지 0.8% · 분할 익절",
+        "actionSignalText": "🟡 2위 · +6.30% · 시간외 182,000(-2.83%) · 지지 180,700 턱걸이",
         "entry": 187300.0,
         "tags": [
             "11-24 15:30 확정 187,300원 (+6.30%) · 시 177,000 / 고 187,300 / 저 177,000",
             "11-23 확정 외인 +1.6만주 · 기관 -1.3만주 (5일 외인 -3.1만주 · 기관 +3.8만주)",
             "RSI 52.5 · 20일선 대비 +8.2% · 거래량 0.75배",
             "지지 180,700 / 목표 201,500 (손익비 1 : 2.15)",
-            "5일 저가 175,000 · 52주 최저 155,900 (52주 구간 24.0%)"
+            "5일 저가 175,000 · 52주 최저 155,900 (52주 구간 24.0%)",
+            "🌙 11-24 19:50 시간외 182,000원 (-2.83%) · 혼합 예상 시초 181,200원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 177,000원 → 고가 187,300원 → 저가 177,000원 → 종가 187,300원(+6.30%). 수급(11-23 확정)은 외국인 +1.6만주·기관 -1.3만주이고, 5거래일 누적은 외국인 -3.1만주·기관 +3.8만주입니다. RSI(14) 52.5, 20일선(173,110원) 대비 +8.2%, 52주 최저(155,900원) 대비 +20.1% 위치입니다. 손익비는 지지 180,700원(-3.5%) 대비 목표 201,500원(+7.6%)으로 <strong>1 : 2.15</strong>이며 4축 점수 69점, 판정은 '🟢 2위 · +6.30% · 1차 목표 188,800까지 0.8% · 분할 익절'입니다. HD현대마린솔루션은 시가 177,000원이 저가, 종가 187,300원이 고가인 최강 마감으로 20일선(173,110원) 위 +8.2%에 섰습니다. 1차 목표 188,800원까지 0.8%만 남아 사실상 목표 도달 구간입니다. 11-23 확정 수급은 외인 +1.6만·기관 -1.3만으로 엇갈렸고 5일은 외인 -3.1만·기관 +3.8만입니다. 보유자는 목표 근접 분할 익절, 신규 진입은 180,700원 지지 확인 전 금지입니다.",
+        "desc": "11-24 확정: 시가 177,000원 → 고가 187,300원 → 저가 177,000원 → 종가 187,300원(+6.30%). 수급(11-23 확정)은 외국인 +1.6만주·기관 -1.3만주이고, 5거래일 누적은 외국인 -3.1만주·기관 +3.8만주입니다. RSI(14) 52.5, 20일선(173,110원) 대비 +8.2%, 52주 최저(155,900원) 대비 +20.1% 위치입니다. 손익비는 지지 180,700원(-3.5%) 대비 목표 201,500원(+7.6%)으로 <strong>1 : 2.15</strong>이며 4축 점수 69점, 판정은 '🟢 2위 · +6.30% · 1차 목표 188,800까지 0.8% · 분할 익절'입니다. HD현대마린솔루션은 시가 177,000원이 저가, 종가 187,300원이 고가인 최강 마감으로 20일선(173,110원) 위 +8.2%에 섰습니다. 1차 목표 188,800원까지 0.8%만 남아 사실상 목표 도달 구간입니다. 11-23 확정 수급은 외인 +1.6만·기관 -1.3만으로 엇갈렸고 5일은 외인 -3.1만·기관 +3.8만입니다. 보유자는 목표 근접 분할 익절, 신규 진입은 180,700원 지지 확인 전 금지입니다. 🌙 19:50 시간외 단일가는 <strong>182,000원(-2.83%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>181,200원</strong>입니다.",
         "bars": {
             "momentum": "15/25",
             "momPct": "60%",
@@ -4860,10 +4860,10 @@
         },
         "night": {
             "close": 187300.0,
-            "single": null,
+            "single": 182000.0,
             "nxt": null,
             "closePct": "+6.30%",
-            "singlePct": "0.00%",
+            "singlePct": "-2.83%",
             "nxtPct": "0.00%"
         }
     },
@@ -4877,16 +4877,17 @@
         "changeStr": "+2.47%",
         "score": 59,
         "actionSignal": "WATCH",
-        "actionSignalText": "🟡 7위 · 5일 쌍끌이 +177만주 · 52주 최고까지 5.8%",
+        "actionSignalText": "🟡 7위 · +2.47% · 시간외 미체결 · 5일 쌍끌이 +177만주",
         "entry": 31150.0,
         "tags": [
             "11-24 15:30 확정 31,150원 (+2.47%) · 시 30,850 / 고 31,500 / 저 30,450",
             "11-23 확정 외인 -5.5만주 · 기관 +18.5만주 (5일 외인 +59.8만주 · 기관 +117.3만주)",
             "RSI 55.1 · 20일선 대비 +3.2% · 거래량 0.68배",
             "지지 30,050 / 목표 33,500 (손익비 1 : 2.14)",
-            "5일 저가 29,950 · 52주 최저 21,000 (52주 구간 84.9%)"
+            "5일 저가 29,950 · 52주 최저 21,000 (52주 구간 84.9%)",
+            "🌙 11-24 19:50 시간외 체결 미확인 · 야간선물 -3.67% 100% 환산 시초 30,000원"
         ],
-        "desc": "11-24 확정: 시가 30,850원 → 고가 31,500원 → 저가 30,450원 → 종가 31,150원(+2.47%). 수급(11-23 확정)은 외국인 -5.5만주·기관 +18.5만주이고, 5거래일 누적은 외국인 +59.8만주·기관 +117.3만주입니다. RSI(14) 55.1, 20일선(30,172원) 대비 +3.2%, 52주 최저(21,000원) 대비 +48.3% 위치입니다. 손익비는 지지 30,050원(-3.5%) 대비 목표 33,500원(+7.5%)으로 <strong>1 : 2.14</strong>이며 4축 점수 59점, 판정은 '🟡 7위 · 5일 쌍끌이 +177만주 · 52주 최고까지 5.8%'입니다. 대한항공은 +2.47%로 20일선(30,172원) 위를 지켰고 52주 최고(32,950원)까지 5.8% 남았습니다. 5일 외인 +59.8만·기관 +117.3만 쌍끌이는 8선 중 가장 강한 수급입니다. 다만 밸류 축이 9/25로 낮아(52주 위치 84.9%) 7위에 머뭅니다.",
+        "desc": "11-24 확정: 시가 30,850원 → 고가 31,500원 → 저가 30,450원 → 종가 31,150원(+2.47%). 수급(11-23 확정)은 외국인 -5.5만주·기관 +18.5만주이고, 5거래일 누적은 외국인 +59.8만주·기관 +117.3만주입니다. RSI(14) 55.1, 20일선(30,172원) 대비 +3.2%, 52주 최저(21,000원) 대비 +48.3% 위치입니다. 손익비는 지지 30,050원(-3.5%) 대비 목표 33,500원(+7.5%)으로 <strong>1 : 2.14</strong>이며 4축 점수 59점, 판정은 '🟡 7위 · 5일 쌍끌이 +177만주 · 52주 최고까지 5.8%'입니다. 대한항공은 +2.47%로 20일선(30,172원) 위를 지켰고 52주 최고(32,950원)까지 5.8% 남았습니다. 5일 외인 +59.8만·기관 +117.3만 쌍끌이는 8선 중 가장 강한 수급입니다. 다만 밸류 축이 9/25로 낮아(52주 위치 84.9%) 7위에 머뭅니다. 🌙 19:50 시간외 체결이 확인되지 않아 야간선물 -3.67% 100% 환산으로 내일(11-25) 예상 시초가 <strong>30,000원</strong>을 적용했습니다.",
         "bars": {
             "momentum": "9/25",
             "momPct": "36%",
@@ -5001,16 +5002,17 @@
         "changeStr": "+10.66%",
         "score": 79,
         "actionSignal": "BUY",
-        "actionSignalText": "🟢 1위 · +10.66% · 20일선 회복 · 목표 267,500 도달→295,700 상향",
+        "actionSignalText": "🟡 1위 · +10.66% · 시간외 264,500(-3.82%) 손절선 265,000 하회 · 시초 회복 확인",
         "entry": 275000.0,
         "tags": [
             "11-24 15:30 확정 275,000원 (+10.66%) · 시 252,500 / 고 279,000 / 저 252,500",
             "11-23 확정 외인 +1.4만주 · 기관 +4.8만주 (5일 외인 +13.8만주 · 기관 +8,376주)",
             "RSI 46.4 · 20일선 대비 +0.3% · 거래량 1.31배",
             "지지 265,000 / 목표 296,000 (손익비 1 : 2.10)",
-            "5일 저가 240,500 · 52주 최저 240,500 (52주 구간 6.4%)"
+            "5일 저가 240,500 · 52주 최저 240,500 (52주 구간 6.4%)",
+            "🌙 11-24 19:50 시간외 264,500원 (-3.82%) · 혼합 예상 시초 264,500원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 252,500원 → 고가 279,000원 → 저가 252,500원 → 종가 275,000원(+10.66%). 수급(11-23 확정)은 외국인 +1.4만주·기관 +4.8만주이고, 5거래일 누적은 외국인 +13.8만주·기관 +8,376주입니다. RSI(14) 46.4, 20일선(274,075원) 대비 +0.3%, 52주 최저(240,500원) 대비 +14.3% 위치입니다. 손익비는 지지 265,000원(-3.6%) 대비 목표 296,000원(+7.6%)으로 <strong>1 : 2.10</strong>이며 4축 점수 79점, 판정은 '🟢 1위 · +10.66% · 20일선 회복 · 목표 267,500 도달→295,700 상향'입니다. 현대차는 오늘 시장(+6.32%)을 웃도는 +10.66%로 20일선(274,075원)을 하루에 회복했습니다. 갭업 출발(시가 252,500원)이 곧 저가였고 종가 275,000원으로 고가 279,000원 부근에서 마감하는 강한 흐름입니다. 11-23 확정 수급도 외국인 +1.4만·기관 +4.8만 쌍끌이였고 5일 외인 +13.8만입니다. 기존 목표 267,500원을 넘어섰으므로 목표를 고가 저항(309,500원) 아래 295,700원(+7.5%)으로 상향했습니다.",
+        "desc": "11-24 확정: 시가 252,500원 → 고가 279,000원 → 저가 252,500원 → 종가 275,000원(+10.66%). 수급(11-23 확정)은 외국인 +1.4만주·기관 +4.8만주이고, 5거래일 누적은 외국인 +13.8만주·기관 +8,376주입니다. RSI(14) 46.4, 20일선(274,075원) 대비 +0.3%, 52주 최저(240,500원) 대비 +14.3% 위치입니다. 손익비는 지지 265,000원(-3.6%) 대비 목표 296,000원(+7.6%)으로 <strong>1 : 2.10</strong>이며 4축 점수 79점, 판정은 '🟢 1위 · +10.66% · 20일선 회복 · 목표 267,500 도달→295,700 상향'입니다. 현대차는 오늘 시장(+6.32%)을 웃도는 +10.66%로 20일선(274,075원)을 하루에 회복했습니다. 갭업 출발(시가 252,500원)이 곧 저가였고 종가 275,000원으로 고가 279,000원 부근에서 마감하는 강한 흐름입니다. 11-23 확정 수급도 외국인 +1.4만·기관 +4.8만 쌍끌이였고 5일 외인 +13.8만입니다. 기존 목표 267,500원을 넘어섰으므로 목표를 고가 저항(309,500원) 아래 295,700원(+7.5%)으로 상향했습니다. 🌙 19:50 시간외 단일가는 <strong>264,500원(-3.82%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>264,500원</strong>입니다.",
         "bars": {
             "momentum": "16/25",
             "momPct": "64%",
@@ -5108,10 +5110,10 @@
         },
         "night": {
             "close": 275000.0,
-            "single": null,
+            "single": 264500.0,
             "nxt": null,
             "closePct": "+10.66%",
-            "singlePct": "0.00%",
+            "singlePct": "-3.82%",
             "nxtPct": "0.00%"
         }
     },
@@ -5125,16 +5127,17 @@
         "changeStr": "+5.05%",
         "score": 65,
         "actionSignal": "WATCH",
-        "actionSignalText": "🟡 4위 · +5.05% · 20일선 -2.4% · 52주 저가 93,100 방어",
+        "actionSignalText": "🟡 4위 · +5.05% · 시간외 97,000(-2.81%) · 52주 저가 93,100 방어",
         "entry": 99800.0,
         "tags": [
             "11-24 15:30 확정 99,800원 (+5.05%) · 시 94,300 / 고 100,300 / 저 94,200",
             "11-23 확정 외인 -1.6만주 · 기관 +1.1만주 (5일 외인 -12.6만주 · 기관 +11.8만주)",
             "RSI 44.1 · 20일선 대비 -2.4% · 거래량 0.7배",
             "지지 96,300 / 목표 107,300 (손익비 1 : 2.14)",
-            "5일 저가 93,100 · 52주 최저 93,100 (52주 구간 5.5%)"
+            "5일 저가 93,100 · 52주 최저 93,100 (52주 구간 5.5%)",
+            "🌙 11-24 19:50 시간외 97,000원 (-2.81%) · 혼합 예상 시초 96,500원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 94,300원 → 고가 100,300원 → 저가 94,200원 → 종가 99,800원(+5.05%). 수급(11-23 확정)은 외국인 -1.6만주·기관 +1.1만주이고, 5거래일 누적은 외국인 -12.6만주·기관 +11.8만주입니다. RSI(14) 44.1, 20일선(102,250원) 대비 -2.4%, 52주 최저(93,100원) 대비 +7.2% 위치입니다. 손익비는 지지 96,300원(-3.5%) 대비 목표 107,300원(+7.5%)으로 <strong>1 : 2.14</strong>이며 4축 점수 65점, 판정은 '🟡 4위 · +5.05% · 20일선 -2.4% · 52주 저가 93,100 방어'입니다. 한국항공우주는 +5.05%로 반등해 52주 최저(93,100원)에서 7.2% 떨어졌습니다. 시가 94,300원·저가 94,200원으로 저점을 높였고 20일선(102,250원)까지 -2.4%만 남았습니다. 5일 외인 -12.6만 vs 기관 +11.8만으로 수급은 엇갈립니다.",
+        "desc": "11-24 확정: 시가 94,300원 → 고가 100,300원 → 저가 94,200원 → 종가 99,800원(+5.05%). 수급(11-23 확정)은 외국인 -1.6만주·기관 +1.1만주이고, 5거래일 누적은 외국인 -12.6만주·기관 +11.8만주입니다. RSI(14) 44.1, 20일선(102,250원) 대비 -2.4%, 52주 최저(93,100원) 대비 +7.2% 위치입니다. 손익비는 지지 96,300원(-3.5%) 대비 목표 107,300원(+7.5%)으로 <strong>1 : 2.14</strong>이며 4축 점수 65점, 판정은 '🟡 4위 · +5.05% · 20일선 -2.4% · 52주 저가 93,100 방어'입니다. 한국항공우주는 +5.05%로 반등해 52주 최저(93,100원)에서 7.2% 떨어졌습니다. 시가 94,300원·저가 94,200원으로 저점을 높였고 20일선(102,250원)까지 -2.4%만 남았습니다. 5일 외인 -12.6만 vs 기관 +11.8만으로 수급은 엇갈립니다. 🌙 19:50 시간외 단일가는 <strong>97,000원(-2.81%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>96,500원</strong>입니다.",
         "bars": {
             "momentum": "10/25",
             "momPct": "40%",
@@ -5232,10 +5235,10 @@
         },
         "night": {
             "close": 99800.0,
-            "single": null,
+            "single": 97000.0,
             "nxt": null,
             "closePct": "+5.05%",
-            "singlePct": "0.00%",
+            "singlePct": "-2.81%",
             "nxtPct": "0.00%"
         }
     },
@@ -5249,16 +5252,17 @@
         "changeStr": "-5.50%",
         "score": 61,
         "actionSignal": "WATCH",
-        "actionSignalText": "🟡 6위 · 오늘 -5.50% 역주행 · 거래량 2.04배 · 지지 156,500",
+        "actionSignalText": "🟡 6위 · -5.50% · 시간외 158,100(-1.00%) · 지지 156,500 사수",
         "entry": 159700.0,
         "tags": [
             "11-24 15:30 확정 159,700원 (-5.50%) · 시 170,400 / 고 172,900 / 저 158,400",
             "11-23 확정 외인 -4,716주 · 기관 +4.7만주 (5일 외인 -4.4만주 · 기관 +16.8만주)",
             "RSI 29.3 · 20일선 대비 -15.3% · 거래량 2.04배",
             "지지 156,500 / 목표 181,200 (손익비 1 : 6.72)",
-            "5일 저가 158,400 · 52주 최저 152,500 (52주 구간 2.5%)"
+            "5일 저가 158,400 · 52주 최저 152,500 (52주 구간 2.5%)",
+            "🌙 11-24 19:50 시간외 158,100원 (-1.00%) · 혼합 예상 시초 155,900원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 170,400원 → 고가 172,900원 → 저가 158,400원 → 종가 159,700원(-5.50%). 수급(11-23 확정)은 외국인 -4,716주·기관 +4.7만주이고, 5거래일 누적은 외국인 -4.4만주·기관 +16.8만주입니다. RSI(14) 29.3, 20일선(188,635원) 대비 -15.3%, 52주 최저(152,500원) 대비 +4.7% 위치입니다. 손익비는 지지 156,500원(-2.0%) 대비 목표 181,200원(+13.5%)으로 <strong>1 : 6.72</strong>이며 4축 점수 61점, 판정은 '🟡 6위 · 오늘 -5.50% 역주행 · 거래량 2.04배 · 지지 156,500'입니다. 알테오젠은 오늘 유일하게 -5.50% 역주행했습니다. 시가 170,400원에서 저가 158,400원까지 밀렸고 거래량이 20일 평균의 2.04배로 터졌습니다 — 지수 +6.32% 대비 -11.8%p 언더퍼폼입니다. 5일 기관 +16.8만 매집은 유지되지만 RSI 29.3까지 식었고, 오늘 저가 158,400원이 마지막 지지입니다. 이탈 시 8선 제외 검토 대상입니다.",
+        "desc": "11-24 확정: 시가 170,400원 → 고가 172,900원 → 저가 158,400원 → 종가 159,700원(-5.50%). 수급(11-23 확정)은 외국인 -4,716주·기관 +4.7만주이고, 5거래일 누적은 외국인 -4.4만주·기관 +16.8만주입니다. RSI(14) 29.3, 20일선(188,635원) 대비 -15.3%, 52주 최저(152,500원) 대비 +4.7% 위치입니다. 손익비는 지지 156,500원(-2.0%) 대비 목표 181,200원(+13.5%)으로 <strong>1 : 6.72</strong>이며 4축 점수 61점, 판정은 '🟡 6위 · 오늘 -5.50% 역주행 · 거래량 2.04배 · 지지 156,500'입니다. 알테오젠은 오늘 유일하게 -5.50% 역주행했습니다. 시가 170,400원에서 저가 158,400원까지 밀렸고 거래량이 20일 평균의 2.04배로 터졌습니다 — 지수 +6.32% 대비 -11.8%p 언더퍼폼입니다. 5일 기관 +16.8만 매집은 유지되지만 RSI 29.3까지 식었고, 오늘 저가 158,400원이 마지막 지지입니다. 이탈 시 8선 제외 검토 대상입니다. 🌙 19:50 시간외 단일가는 <strong>158,100원(-1.00%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>155,900원</strong>입니다.",
         "bars": {
             "momentum": "0/25",
             "momPct": "0%",
@@ -5356,10 +5360,10 @@
         },
         "night": {
             "close": 159700.0,
-            "single": null,
+            "single": 158100.0,
             "nxt": null,
             "closePct": "-5.50%",
-            "singlePct": "0.00%",
+            "singlePct": "-1.00%",
             "nxtPct": "0.00%"
         }
     },
@@ -5373,16 +5377,17 @@
         "changeStr": "+1.07%",
         "score": 69,
         "actionSignal": "BUY",
-        "actionSignalText": "🟢 3위 · RSI 26.6 과매도 · 5일 외인 +33.3만 · 시장 대비 소외",
+        "actionSignalText": "🟢 3위 · RSI 26.6 과매도 · 시간외 93,500(-0.95%) · 5일 외인 +33.3만",
         "entry": 94400.0,
         "tags": [
             "11-24 15:30 확정 94,400원 (+1.07%) · 시 94,000 / 고 95,400 / 저 92,600",
             "11-23 확정 외인 +11.2만주 · 기관 -4,611주 (5일 외인 +33.3만주 · 기관 -16.0만주)",
             "RSI 26.6 · 20일선 대비 -13.0% · 거래량 0.81배",
             "지지 91,000 / 목표 101,500 (손익비 1 : 2.09)",
-            "5일 저가 90,700 · 52주 최저 75,900 (52주 구간 18.3%)"
+            "5일 저가 90,700 · 52주 최저 75,900 (52주 구간 18.3%)",
+            "🌙 11-24 19:50 시간외 93,500원 (-0.95%) · 혼합 예상 시초 92,200원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 94,000원 → 고가 95,400원 → 저가 92,600원 → 종가 94,400원(+1.07%). 수급(11-23 확정)은 외국인 +11.2만주·기관 -4,611주이고, 5거래일 누적은 외국인 +33.3만주·기관 -16.0만주입니다. RSI(14) 26.6, 20일선(108,480원) 대비 -13.0%, 52주 최저(75,900원) 대비 +24.4% 위치입니다. 손익비는 지지 91,000원(-3.6%) 대비 목표 101,500원(+7.5%)으로 <strong>1 : 2.09</strong>이며 4축 점수 69점, 판정은 '🟢 3위 · RSI 26.6 과매도 · 5일 외인 +33.3만 · 시장 대비 소외'입니다. S-Oil은 +1.07%로 시장(+6.32%)에 크게 뒤졌지만 RSI 26.6의 과매도와 5일 외인 +33.3만주 매집이 남아 있습니다. 20일선(108,480원) 대비 -13.0%로 낙폭이 가장 크고, 기관 5일 -16.0만주가 반등을 막고 있습니다. 오늘 고가 95,400원을 넘어서는지가 첫 확인점입니다.",
+        "desc": "11-24 확정: 시가 94,000원 → 고가 95,400원 → 저가 92,600원 → 종가 94,400원(+1.07%). 수급(11-23 확정)은 외국인 +11.2만주·기관 -4,611주이고, 5거래일 누적은 외국인 +33.3만주·기관 -16.0만주입니다. RSI(14) 26.6, 20일선(108,480원) 대비 -13.0%, 52주 최저(75,900원) 대비 +24.4% 위치입니다. 손익비는 지지 91,000원(-3.6%) 대비 목표 101,500원(+7.5%)으로 <strong>1 : 2.09</strong>이며 4축 점수 69점, 판정은 '🟢 3위 · RSI 26.6 과매도 · 5일 외인 +33.3만 · 시장 대비 소외'입니다. S-Oil은 +1.07%로 시장(+6.32%)에 크게 뒤졌지만 RSI 26.6의 과매도와 5일 외인 +33.3만주 매집이 남아 있습니다. 20일선(108,480원) 대비 -13.0%로 낙폭이 가장 크고, 기관 5일 -16.0만주가 반등을 막고 있습니다. 오늘 고가 95,400원을 넘어서는지가 첫 확인점입니다. 🌙 19:50 시간외 단일가는 <strong>93,500원(-0.95%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>92,200원</strong>입니다.",
         "bars": {
             "momentum": "2/25",
             "momPct": "8%",
@@ -5480,10 +5485,10 @@
         },
         "night": {
             "close": 94400.0,
-            "single": null,
+            "single": 93500.0,
             "nxt": null,
             "closePct": "+1.07%",
-            "singlePct": "0.00%",
+            "singlePct": "-0.95%",
             "nxtPct": "0.00%"
         }
     },
@@ -5497,16 +5502,17 @@
         "changeStr": "+3.03%",
         "score": 62,
         "actionSignal": "WATCH",
-        "actionSignalText": "🟡 5위 · 52주 최저권(14,270) · 5일 외인 +52.5만 vs 기관 -63.2만",
+        "actionSignalText": "🟡 5위 · +3.03% · 시간외 14,600(-2.47%) · 14,440 이탈 시 정리",
         "entry": 14970.0,
         "tags": [
             "11-24 15:30 확정 14,970원 (+3.03%) · 시 14,510 / 고 15,080 / 저 14,510",
             "11-23 확정 외인 +39.5만주 · 기관 -19.4만주 (5일 외인 +52.5만주 · 기관 -63.2만주)",
             "RSI 37.1 · 20일선 대비 -7.5% · 거래량 0.74배",
             "지지 14,440 / 목표 16,100 (손익비 1 : 2.13)",
-            "5일 저가 14,270 · 52주 최저 14,270 (52주 구간 3.3%)"
+            "5일 저가 14,270 · 52주 최저 14,270 (52주 구간 3.3%)",
+            "🌙 11-24 19:50 시간외 14,600원 (-2.47%) · 혼합 예상 시초 14,510원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 14,510원 → 고가 15,080원 → 저가 14,510원 → 종가 14,970원(+3.03%). 수급(11-23 확정)은 외국인 +39.5만주·기관 -19.4만주이고, 5거래일 누적은 외국인 +52.5만주·기관 -63.2만주입니다. RSI(14) 37.1, 20일선(16,188원) 대비 -7.5%, 52주 최저(14,270원) 대비 +4.9% 위치입니다. 손익비는 지지 14,440원(-3.5%) 대비 목표 16,100원(+7.5%)으로 <strong>1 : 2.13</strong>이며 4축 점수 62점, 판정은 '🟡 5위 · 52주 최저권(14,270) · 5일 외인 +52.5만 vs 기관 -63.2만'입니다. 삼성중공업은 +3.03%로 52주 최저(14,270원) 위에서 반등했습니다. 5일 외인 +52.5만주 순매수에도 기관 -63.2만주 매도가 이어져 지수 급등 대비 반등 폭이 작았습니다. 14,440원 이탈 시 즉시 정리 대상입니다.",
+        "desc": "11-24 확정: 시가 14,510원 → 고가 15,080원 → 저가 14,510원 → 종가 14,970원(+3.03%). 수급(11-23 확정)은 외국인 +39.5만주·기관 -19.4만주이고, 5거래일 누적은 외국인 +52.5만주·기관 -63.2만주입니다. RSI(14) 37.1, 20일선(16,188원) 대비 -7.5%, 52주 최저(14,270원) 대비 +4.9% 위치입니다. 손익비는 지지 14,440원(-3.5%) 대비 목표 16,100원(+7.5%)으로 <strong>1 : 2.13</strong>이며 4축 점수 62점, 판정은 '🟡 5위 · 52주 최저권(14,270) · 5일 외인 +52.5만 vs 기관 -63.2만'입니다. 삼성중공업은 +3.03%로 52주 최저(14,270원) 위에서 반등했습니다. 5일 외인 +52.5만주 순매수에도 기관 -63.2만주 매도가 이어져 지수 급등 대비 반등 폭이 작았습니다. 14,440원 이탈 시 즉시 정리 대상입니다. 🌙 19:50 시간외 단일가는 <strong>14,600원(-2.47%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>14,510원</strong>입니다.",
         "bars": {
             "momentum": "6/25",
             "momPct": "24%",
@@ -5604,10 +5610,10 @@
         },
         "night": {
             "close": 14970.0,
-            "single": null,
+            "single": 14600.0,
             "nxt": null,
             "closePct": "+3.03%",
-            "singlePct": "0.00%",
+            "singlePct": "-2.47%",
             "nxtPct": "0.00%"
         }
     },
@@ -5621,16 +5627,17 @@
         "changeStr": "+6.01%",
         "score": 55,
         "actionSignal": "WATCH",
-        "actionSignalText": "🔴 8위 · +6.01% · 5일 외인 -49.9만 · 재진입 48,000 이하 대기",
+        "actionSignalText": "🔴 8위 · +6.01% · 시간외 46,650(-3.81%) · 재진입 48,000 이하 대기",
         "entry": 48500.0,
         "tags": [
             "11-24 15:30 확정 48,500원 (+6.01%) · 시 47,600 / 고 49,300 / 저 47,300",
             "11-23 확정 외인 -9,342주 · 기관 +5.5만주 (5일 외인 -49.9만주 · 기관 +9.7만주)",
             "RSI 41.8 · 20일선 대비 -6.4% · 거래량 1.05배",
             "지지 46,800 / 목표 52,200 (손익비 1 : 2.18)",
-            "5일 저가 43,150 · 52주 최저 43,150 (52주 구간 6.2%)"
+            "5일 저가 43,150 · 52주 최저 43,150 (52주 구간 6.2%)",
+            "🌙 11-24 19:50 시간외 46,650원 (-3.81%) · 혼합 예상 시초 46,650원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 47,600원 → 고가 49,300원 → 저가 47,300원 → 종가 48,500원(+6.01%). 수급(11-23 확정)은 외국인 -9,342주·기관 +5.5만주이고, 5거래일 누적은 외국인 -49.9만주·기관 +9.7만주입니다. RSI(14) 41.8, 20일선(51,802원) 대비 -6.4%, 52주 최저(43,150원) 대비 +12.4% 위치입니다. 손익비는 지지 46,800원(-3.5%) 대비 목표 52,200원(+7.6%)으로 <strong>1 : 2.18</strong>이며 4축 점수 55점, 판정은 '🔴 8위 · +6.01% · 5일 외인 -49.9만 · 재진입 48,000 이하 대기'입니다. 리노공업은 +6.01%로 48,500원에 마감해 20일선(51,802원)까지 -6.4% 남았습니다. 오늘 고가 49,300원까지 올랐지만 5일 외인 -49.9만주 순매도가 이어져 수급 축이 3/25로 8선 최하입니다. 보유 0주 상태에서 재진입 기준(48,000원 이하)을 종가가 넘었으므로 추격하지 말고, 46,800원 지지 확인 후 눌림에서만 접근하십시오.",
+        "desc": "11-24 확정: 시가 47,600원 → 고가 49,300원 → 저가 47,300원 → 종가 48,500원(+6.01%). 수급(11-23 확정)은 외국인 -9,342주·기관 +5.5만주이고, 5거래일 누적은 외국인 -49.9만주·기관 +9.7만주입니다. RSI(14) 41.8, 20일선(51,802원) 대비 -6.4%, 52주 최저(43,150원) 대비 +12.4% 위치입니다. 손익비는 지지 46,800원(-3.5%) 대비 목표 52,200원(+7.6%)으로 <strong>1 : 2.18</strong>이며 4축 점수 55점, 판정은 '🔴 8위 · +6.01% · 5일 외인 -49.9만 · 재진입 48,000 이하 대기'입니다. 리노공업은 +6.01%로 48,500원에 마감해 20일선(51,802원)까지 -6.4% 남았습니다. 오늘 고가 49,300원까지 올랐지만 5일 외인 -49.9만주 순매도가 이어져 수급 축이 3/25로 8선 최하입니다. 정규 종가(48,500원)는 재진입 기준(48,000원 이하)을 넘었지만 19:50 시간외에서 다시 그 아래로 내려왔으므로 추격하지 말고, 46,800원 지지 확인 후 눌림에서만 접근하십시오. 🌙 19:50 시간외 단일가는 <strong>46,650원(-3.81%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>46,650원</strong>입니다.",
         "bars": {
             "momentum": "9/25",
             "momPct": "36%",
@@ -5728,10 +5735,10 @@
         },
         "night": {
             "close": 48500.0,
-            "single": null,
+            "single": 46650.0,
             "nxt": null,
             "closePct": "+6.01%",
-            "singlePct": "0.00%",
+            "singlePct": "-3.81%",
             "nxtPct": "0.00%"
         }
     },
@@ -5745,16 +5752,17 @@
         "changeStr": "+1.79%",
         "score": 66,
         "actionSignal": "BLOCK",
-        "actionSignalText": "⛔ 4대주 · 락업 3일차 · 거래량 0.31배 · 신규 진입 금지",
+        "actionSignalText": "⛔ 4대주 · 락업 3일차 · 시간외 미체결 · 신규 진입 금지",
         "entry": 4555.0,
         "tags": [
             "11-24 15:30 확정 4,555원 (+1.79%) · 시 4,570 / 고 4,705 / 저 4,400",
             "11-23 확정 외인 +1.5만주 · 기관 +317주 (5일 외인 +4.0만주 · 기관 +2,023주)",
             "RSI 13.4 · 20일선 대비 -19.9% · 거래량 0.31배",
             "지지 4,395 / 목표 5,260 (손익비 1 : 4.41)",
-            "5일 저가 4,150 · 52주 최저 4,150 (52주 구간 1.1%)"
+            "5일 저가 4,150 · 52주 최저 4,150 (52주 구간 1.1%)",
+            "🌙 11-24 19:50 시간외 체결 미확인 · 야간선물 -3.67% 100% 환산 시초 4,385원"
         ],
-        "desc": "11-24 확정: 시가 4,570원 → 고가 4,705원 → 저가 4,400원 → 종가 4,555원(+1.79%). 수급(11-23 확정)은 외국인 +1.5만주·기관 +317주이고, 5거래일 누적은 외국인 +4.0만주·기관 +2,023주입니다. RSI(14) 13.4, 20일선(5,684원) 대비 -19.9%, 52주 최저(4,150원) 대비 +9.8% 위치입니다. 손익비는 지지 4,395원(-3.5%) 대비 목표 5,260원(+15.5%)으로 <strong>1 : 4.41</strong>이며 4축 점수 66점, 판정은 '⛔ 4대주 · 락업 3일차 · 거래량 0.31배 · 신규 진입 금지'입니다. 네오사피엔스는 +1.79%로 4,555원에 마감했습니다. 거래량이 20일 평균의 0.31배로 줄어 매수 주체가 확인되지 않았고 RSI 13.4·20일선 -19.9%의 극단 과매도만 남았습니다. 보호예수 1,143,690주 매도 가능 3일차로 신규 진입 금지 유지입니다.",
+        "desc": "11-24 확정: 시가 4,570원 → 고가 4,705원 → 저가 4,400원 → 종가 4,555원(+1.79%). 수급(11-23 확정)은 외국인 +1.5만주·기관 +317주이고, 5거래일 누적은 외국인 +4.0만주·기관 +2,023주입니다. RSI(14) 13.4, 20일선(5,684원) 대비 -19.9%, 52주 최저(4,150원) 대비 +9.8% 위치입니다. 손익비는 지지 4,395원(-3.5%) 대비 목표 5,260원(+15.5%)으로 <strong>1 : 4.41</strong>이며 4축 점수 66점, 판정은 '⛔ 4대주 · 락업 3일차 · 거래량 0.31배 · 신규 진입 금지'입니다. 네오사피엔스는 +1.79%로 4,555원에 마감했습니다. 거래량이 20일 평균의 0.31배로 줄어 매수 주체가 확인되지 않았고 RSI 13.4·20일선 -19.9%의 극단 과매도만 남았습니다. 보호예수 1,143,690주 매도 가능 3일차로 신규 진입 금지 유지입니다. 🌙 19:50 시간외 체결이 확인되지 않아 야간선물 -3.67% 100% 환산으로 내일(11-25) 예상 시초가 <strong>4,385원</strong>을 적용했습니다.",
         "bars": {
             "momentum": "1/25",
             "momPct": "4%",
@@ -5876,9 +5884,10 @@
             "11-23 확정 외인 -4.5만주 · 기관 +66.1만주 (5일 외인 -626.0만주 · 기관 +53.9만주)",
             "RSI 40.8 · 20일선 대비 -7.7% · 거래량 0.84배",
             "지지 182,700 / 목표 204,000 (손익비 1 : 2.18)",
-            "5일 저가 171,500 · 52주 최저 94,500 (52주 구간 33.9%)"
+            "5일 저가 171,500 · 52주 최저 94,500 (52주 구간 33.9%)",
+            "🌙 11-24 19:50 시간외 182,800원 (-3.48%) · 혼합 예상 시초 182,600원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 193,200원 → 고가 193,700원 → 저가 187,500원 → 종가 189,400원(+4.87%). 수급(11-23 확정)은 외국인 -4.5만주·기관 +66.1만주이고, 5거래일 누적은 외국인 -626.0만주·기관 +53.9만주입니다. RSI(14) 40.8, 20일선(205,090원) 대비 -7.7%, 52주 최저(94,500원) 대비 +100.4% 위치입니다. 손익비는 지지 182,700원(-3.5%) 대비 목표 204,000원(+7.7%)으로 <strong>1 : 2.18</strong>이며 4축 점수 51점, 판정은 '🔴 편입 보류 · 5일 외인 -626만'입니다. 삼성전자는 +4.87%로 반등했지만 5일 외인 -626만주 순매도가 여전히 압도적입니다(수급 8/25). 시장 급등에도 20일선(205,090원) 아래 -7.7%입니다.",
+        "desc": "11-24 확정: 시가 193,200원 → 고가 193,700원 → 저가 187,500원 → 종가 189,400원(+4.87%). 수급(11-23 확정)은 외국인 -4.5만주·기관 +66.1만주이고, 5거래일 누적은 외국인 -626.0만주·기관 +53.9만주입니다. RSI(14) 40.8, 20일선(205,090원) 대비 -7.7%, 52주 최저(94,500원) 대비 +100.4% 위치입니다. 손익비는 지지 182,700원(-3.5%) 대비 목표 204,000원(+7.7%)으로 <strong>1 : 2.18</strong>이며 4축 점수 51점, 판정은 '🔴 편입 보류 · 5일 외인 -626만'입니다. 삼성전자는 +4.87%로 반등했지만 5일 외인 -626만주 순매도가 여전히 압도적입니다(수급 8/25). 시장 급등에도 20일선(205,090원) 아래 -7.7%입니다. 🌙 19:50 시간외 단일가는 <strong>182,800원(-3.48%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>182,600원</strong>입니다.",
         "bars": {
             "momentum": "8/25",
             "momPct": "32%",
@@ -5976,10 +5985,10 @@
         },
         "night": {
             "close": 189400.0,
-            "single": null,
+            "single": 182800.0,
             "nxt": null,
             "closePct": "+4.87%",
-            "singlePct": "0.00%",
+            "singlePct": "-3.48%",
             "nxtPct": "0.00%"
         }
     },
@@ -6000,9 +6009,10 @@
             "11-23 확정 외인 +8.6만주 · 기관 -2.2만주 (5일 외인 +11.0만주 · 기관 -29.9만주)",
             "RSI 41.7 · 20일선 대비 -7.8% · 거래량 0.9배",
             "지지 69,000 / 목표 77,000 (손익비 1 : 2.08)",
-            "5일 저가 63,900 · 52주 최저 55,400 (52주 구간 12.2%)"
+            "5일 저가 63,900 · 52주 최저 55,400 (52주 구간 12.2%)",
+            "🌙 11-24 19:50 시간외 체결 미확인 · 야간선물 -3.67% 100% 환산 시초 68,900원"
         ],
-        "desc": "11-24 확정: 시가 71,900원 → 고가 73,300원 → 저가 70,100원 → 종가 71,600원(+6.39%). 수급(11-23 확정)은 외국인 +8.6만주·기관 -2.2만주이고, 5거래일 누적은 외국인 +11.0만주·기관 -29.9만주입니다. RSI(14) 41.7, 20일선(77,655원) 대비 -7.8%, 52주 최저(55,400원) 대비 +29.2% 위치입니다. 손익비는 지지 69,000원(-3.6%) 대비 목표 77,000원(+7.5%)으로 <strong>1 : 2.08</strong>이며 4축 점수 59점, 판정은 '🟡 편입 후보 · +6.39% · 5일 기관 -29.9만'입니다. 원익IPS는 +6.39%로 반등했습니다. 5일 외인 +11.0만 매수에도 기관 -29.9만 순매도가 이어져 편입은 보류입니다.",
+        "desc": "11-24 확정: 시가 71,900원 → 고가 73,300원 → 저가 70,100원 → 종가 71,600원(+6.39%). 수급(11-23 확정)은 외국인 +8.6만주·기관 -2.2만주이고, 5거래일 누적은 외국인 +11.0만주·기관 -29.9만주입니다. RSI(14) 41.7, 20일선(77,655원) 대비 -7.8%, 52주 최저(55,400원) 대비 +29.2% 위치입니다. 손익비는 지지 69,000원(-3.6%) 대비 목표 77,000원(+7.5%)으로 <strong>1 : 2.08</strong>이며 4축 점수 59점, 판정은 '🟡 편입 후보 · +6.39% · 5일 기관 -29.9만'입니다. 원익IPS는 +6.39%로 반등했습니다. 5일 외인 +11.0만 매수에도 기관 -29.9만 순매도가 이어져 편입은 보류입니다. 🌙 19:50 시간외 체결이 확인되지 않아 야간선물 -3.67% 100% 환산으로 내일(11-25) 예상 시초가 <strong>68,900원</strong>을 적용했습니다.",
         "bars": {
             "momentum": "9/25",
             "momPct": "36%",
@@ -6117,16 +6127,17 @@
         "changeStr": "+8.93%",
         "score": 68,
         "actionSignal": "BUY",
-        "actionSignalText": "🟢 4대주 · +8.93% · 목표 128,700까지 5.5% · 분할 익절 구간",
+        "actionSignalText": "🟡 4대주 · +8.93% · 시간외 116,400(-4.59%) · 목표 128,700까지 10.6%",
         "entry": 122000.0,
         "tags": [
             "11-24 15:30 확정 122,000원 (+8.93%) · 시 116,400 / 고 123,600 / 저 116,300",
             "11-23 확정 외인 +6.0만주 · 기관 +2.2만주 (5일 외인 +8.9만주 · 기관 -6.0만주)",
             "RSI 42.3 · 20일선 대비 -6.2% · 거래량 0.94배",
             "지지 117,700 / 목표 131,200 (손익비 1 : 2.14)",
-            "5일 저가 105,000 · 52주 최저 85,600 (52주 구간 14.6%)"
+            "5일 저가 105,000 · 52주 최저 85,600 (52주 구간 14.6%)",
+            "🌙 11-24 19:50 시간외 116,400원 (-4.59%) · 혼합 예상 시초 116,900원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 116,400원 → 고가 123,600원 → 저가 116,300원 → 종가 122,000원(+8.93%). 수급(11-23 확정)은 외국인 +6.0만주·기관 +2.2만주이고, 5거래일 누적은 외국인 +8.9만주·기관 -6.0만주입니다. RSI(14) 42.3, 20일선(129,995원) 대비 -6.2%, 52주 최저(85,600원) 대비 +42.5% 위치입니다. 손익비는 지지 117,700원(-3.5%) 대비 목표 131,200원(+7.5%)으로 <strong>1 : 2.14</strong>이며 4축 점수 68점, 판정은 '🟢 4대주 · +8.93% · 목표 128,700까지 5.5% · 분할 익절 구간'입니다. LS ELECTRIC은 +8.93%로 122,000원에 마감했습니다. 시가 116,400원·저가 116,300원에서 고가 123,600원까지 올라 종가가 고가 부근입니다. 목표 128,700원까지 5.5%만 남아 분할 익절 구간이며, 11-23 확정 수급은 외인 +6.0만·기관 +2.2만 쌍끌이였습니다.",
+        "desc": "11-24 확정: 시가 116,400원 → 고가 123,600원 → 저가 116,300원 → 종가 122,000원(+8.93%). 수급(11-23 확정)은 외국인 +6.0만주·기관 +2.2만주이고, 5거래일 누적은 외국인 +8.9만주·기관 -6.0만주입니다. RSI(14) 42.3, 20일선(129,995원) 대비 -6.2%, 52주 최저(85,600원) 대비 +42.5% 위치입니다. 손익비는 지지 117,700원(-3.5%) 대비 목표 131,200원(+7.5%)으로 <strong>1 : 2.14</strong>이며 4축 점수 68점, 판정은 '🟢 4대주 · +8.93% · 목표 128,700까지 5.5% · 분할 익절 구간'입니다. LS ELECTRIC은 +8.93%로 122,000원에 마감했습니다. 시가 116,400원·저가 116,300원에서 고가 123,600원까지 올라 종가가 고가 부근입니다. 목표 128,700원까지 5.5%만 남아 분할 익절 구간이며, 11-23 확정 수급은 외인 +6.0만·기관 +2.2만 쌍끌이였습니다. 🌙 19:50 시간외 단일가는 <strong>116,400원(-4.59%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>116,900원</strong>입니다.",
         "bars": {
             "momentum": "12/25",
             "momPct": "48%",
@@ -6224,10 +6235,10 @@
         },
         "night": {
             "close": 122000.0,
-            "single": null,
+            "single": 116400.0,
             "nxt": null,
             "closePct": "+8.93%",
-            "singlePct": "0.00%",
+            "singlePct": "-4.59%",
             "nxtPct": "0.00%"
         }
     },
@@ -6248,9 +6259,10 @@
             "11-23 확정 외인 +8.3만주 · 기관 -4.0만주 (5일 외인 +4.9만주 · 기관 -20.6만주)",
             "RSI 42.3 · 20일선 대비 -6.5% · 거래량 0.9배",
             "지지 157,800 / 목표 175,900 (손익비 1 : 2.12)",
-            "5일 저가 145,900 · 52주 최저 113,400 (52주 구간 16.1%)"
+            "5일 저가 145,900 · 52주 최저 113,400 (52주 구간 16.1%)",
+            "🌙 11-24 19:50 시간외 155,800원 (-4.77%) · 혼합 예상 시초 156,600원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 165,100원 → 고가 167,000원 → 저가 162,400원 → 종가 163,600원(+6.16%). 수급(11-23 확정)은 외국인 +8.3만주·기관 -4.0만주이고, 5거래일 누적은 외국인 +4.9만주·기관 -20.6만주입니다. RSI(14) 42.3, 20일선(174,880원) 대비 -6.5%, 52주 최저(113,400원) 대비 +44.3% 위치입니다. 손익비는 지지 157,800원(-3.5%) 대비 목표 175,900원(+7.5%)으로 <strong>1 : 2.12</strong>이며 4축 점수 59점, 판정은 '🔴 편입 보류 · 5일 기관 -20.6만'입니다. 한미반도체는 +6.16%로 반등했지만 5일 기관 -20.6만주 순매도가 계속됐습니다.",
+        "desc": "11-24 확정: 시가 165,100원 → 고가 167,000원 → 저가 162,400원 → 종가 163,600원(+6.16%). 수급(11-23 확정)은 외국인 +8.3만주·기관 -4.0만주이고, 5거래일 누적은 외국인 +4.9만주·기관 -20.6만주입니다. RSI(14) 42.3, 20일선(174,880원) 대비 -6.5%, 52주 최저(113,400원) 대비 +44.3% 위치입니다. 손익비는 지지 157,800원(-3.5%) 대비 목표 175,900원(+7.5%)으로 <strong>1 : 2.12</strong>이며 4축 점수 59점, 판정은 '🔴 편입 보류 · 5일 기관 -20.6만'입니다. 한미반도체는 +6.16%로 반등했지만 5일 기관 -20.6만주 순매도가 계속됐습니다. 🌙 19:50 시간외 단일가는 <strong>155,800원(-4.77%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>156,600원</strong>입니다.",
         "bars": {
             "momentum": "10/25",
             "momPct": "40%",
@@ -6348,10 +6360,10 @@
         },
         "night": {
             "close": 163600.0,
-            "single": null,
+            "single": 155800.0,
             "nxt": null,
             "closePct": "+6.16%",
-            "singlePct": "0.00%",
+            "singlePct": "-4.77%",
             "nxtPct": "0.00%"
         }
     },
@@ -6372,9 +6384,10 @@
             "11-23 확정 외인 +4,291주 · 기관 +4.9만주 (5일 외인 -34.3만주 · 기관 +5.5만주)",
             "RSI 42.0 · 20일선 대비 -10.0% · 거래량 0.84배",
             "지지 827,000 / 목표 930,000 (손익비 1 : 2.32)",
-            "5일 저가 744,000 · 52주 최저 201,000 (52주 구간 29.6%)"
+            "5일 저가 744,000 · 52주 최저 201,000 (52주 구간 29.6%)",
+            "🌙 11-24 19:50 시간외 816,000원 (-4.90%) · 혼합 예상 시초 821,000원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 863,000원 → 고가 885,000원 → 저가 845,000원 → 종가 858,000원(+7.65%). 수급(11-23 확정)은 외국인 +4,291주·기관 +4.9만주이고, 5거래일 누적은 외국인 -34.3만주·기관 +5.5만주입니다. RSI(14) 42.0, 20일선(953,800원) 대비 -10.0%, 52주 최저(201,000원) 대비 +326.9% 위치입니다. 손익비는 지지 827,000원(-3.6%) 대비 목표 930,000원(+8.4%)으로 <strong>1 : 2.32</strong>이며 4축 점수 55점, 판정은 '🟡 편입 보류 · +7.65% · 5일 외인 -34.3만'입니다. 삼성전기는 +7.65%로 8선 밖 종목 중 반등이 강했습니다. 다만 5일 외인 -34.3만주가 남아 있어 편입은 수급 반전 확인 후로 미룹니다.",
+        "desc": "11-24 확정: 시가 863,000원 → 고가 885,000원 → 저가 845,000원 → 종가 858,000원(+7.65%). 수급(11-23 확정)은 외국인 +4,291주·기관 +4.9만주이고, 5거래일 누적은 외국인 -34.3만주·기관 +5.5만주입니다. RSI(14) 42.0, 20일선(953,800원) 대비 -10.0%, 52주 최저(201,000원) 대비 +326.9% 위치입니다. 손익비는 지지 827,000원(-3.6%) 대비 목표 930,000원(+8.4%)으로 <strong>1 : 2.32</strong>이며 4축 점수 55점, 판정은 '🟡 편입 보류 · +7.65% · 5일 외인 -34.3만'입니다. 삼성전기는 +7.65%로 8선 밖 종목 중 반등이 강했습니다. 다만 5일 외인 -34.3만주가 남아 있어 편입은 수급 반전 확인 후로 미룹니다. 🌙 19:50 시간외 단일가는 <strong>816,000원(-4.90%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>821,000원</strong>입니다.",
         "bars": {
             "momentum": "10/25",
             "momPct": "40%",
@@ -6472,10 +6485,10 @@
         },
         "night": {
             "close": 858000.0,
-            "single": null,
+            "single": 816000.0,
             "nxt": null,
             "closePct": "+7.65%",
-            "singlePct": "0.00%",
+            "singlePct": "-4.90%",
             "nxtPct": "0.00%"
         }
     },
@@ -6496,9 +6509,10 @@
             "11-23 확정 외인 -16.8만주 · 기관 -2.7만주 (5일 외인 -82.8만주 · 기관 -23.1만주)",
             "RSI 42.5 · 20일선 대비 -8.0% · 거래량 0.85배",
             "지지 1,117,000 / 목표 1,245,000 (손익비 1 : 2.12)",
-            "5일 저가 1,044,000 · 52주 최저 501,000 (52주 구간 26.4%)"
+            "5일 저가 1,044,000 · 52주 최저 501,000 (52주 구간 26.4%)",
+            "🌙 11-24 19:50 시간외 1,111,000원 (-4.06%) · 혼합 예상 시초 1,113,000원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 1,212,000원 → 고가 1,212,000원 → 저가 1,158,000원 → 종가 1,158,000원(+5.18%). 수급(11-23 확정)은 외국인 -16.8만주·기관 -2.7만주이고, 5거래일 누적은 외국인 -82.8만주·기관 -23.1만주입니다. RSI(14) 42.5, 20일선(1,258,800원) 대비 -8.0%, 52주 최저(501,000원) 대비 +131.1% 위치입니다. 손익비는 지지 1,117,000원(-3.5%) 대비 목표 1,245,000원(+7.5%)으로 <strong>1 : 2.12</strong>이며 4축 점수 52점, 판정은 '🔴 편입 보류 · 시가=고가 마감 · 5일 외인 -82.8만'입니다. SK하이닉스는 +5.18%로 마감했지만 시가 1,212,000원=고가, 종가 1,158,000원=저가로 장중 상승분을 모두 반납했습니다. 5일 외인 -82.8만·기관 -23.1만주 순매도가 이어집니다.",
+        "desc": "11-24 확정: 시가 1,212,000원 → 고가 1,212,000원 → 저가 1,158,000원 → 종가 1,158,000원(+5.18%). 수급(11-23 확정)은 외국인 -16.8만주·기관 -2.7만주이고, 5거래일 누적은 외국인 -82.8만주·기관 -23.1만주입니다. RSI(14) 42.5, 20일선(1,258,800원) 대비 -8.0%, 52주 최저(501,000원) 대비 +131.1% 위치입니다. 손익비는 지지 1,117,000원(-3.5%) 대비 목표 1,245,000원(+7.5%)으로 <strong>1 : 2.12</strong>이며 4축 점수 52점, 판정은 '🔴 편입 보류 · 시가=고가 마감 · 5일 외인 -82.8만'입니다. SK하이닉스는 +5.18%로 마감했지만 시가 1,212,000원=고가, 종가 1,158,000원=저가로 장중 상승분을 모두 반납했습니다. 5일 외인 -82.8만·기관 -23.1만주 순매도가 이어집니다. 🌙 19:50 시간외 단일가는 <strong>1,111,000원(-4.06%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>1,113,000원</strong>입니다.",
         "bars": {
             "momentum": "8/25",
             "momPct": "32%",
@@ -6596,10 +6610,10 @@
         },
         "night": {
             "close": 1158000.0,
-            "single": null,
+            "single": 1111000.0,
             "nxt": null,
             "closePct": "+5.18%",
-            "singlePct": "0.00%",
+            "singlePct": "-4.06%",
             "nxtPct": "0.00%"
         }
     },
@@ -6620,9 +6634,10 @@
             "11-23 확정 외인 +5.7만주 · 기관 +8.9만주 (5일 외인 -12.6만주 · 기관 +31.3만주)",
             "RSI 35.3 · 20일선 대비 -9.6% · 거래량 0.7배",
             "지지 24,500 / 목표 27,350 (손익비 1 : 2.17)",
-            "5일 저가 24,200 · 52주 최저 24,200 (52주 구간 2.6%)"
+            "5일 저가 24,200 · 52주 최저 24,200 (52주 구간 2.6%)",
+            "🌙 11-24 19:50 시간외 25,050원 (-1.38%) · 혼합 예상 시초 24,750원 · NXT 20:00 마감"
         ],
-        "desc": "11-24 확정: 시가 25,200원 → 고가 25,900원 → 저가 25,000원 → 종가 25,400원(+2.01%). 수급(11-23 확정)은 외국인 +5.7만주·기관 +8.9만주이고, 5거래일 누적은 외국인 -12.6만주·기관 +31.3만주입니다. RSI(14) 35.3, 20일선(28,105원) 대비 -9.6%, 52주 최저(24,200원) 대비 +5.0% 위치입니다. 손익비는 지지 24,500원(-3.5%) 대비 목표 27,350원(+7.7%)으로 <strong>1 : 2.17</strong>이며 4축 점수 64점, 판정은 '🟡 제외 유지 · 5일 기관 +31.3만'입니다. 한국전력은 +2.01%로 시장 대비 약했습니다. 기관 5일 +31.3만주 매수에도 외인 -12.6만으로 상쇄됐고 52주 최저(24,200원)에서 3.3% 위입니다.",
+        "desc": "11-24 확정: 시가 25,200원 → 고가 25,900원 → 저가 25,000원 → 종가 25,400원(+2.01%). 수급(11-23 확정)은 외국인 +5.7만주·기관 +8.9만주이고, 5거래일 누적은 외국인 -12.6만주·기관 +31.3만주입니다. RSI(14) 35.3, 20일선(28,105원) 대비 -9.6%, 52주 최저(24,200원) 대비 +5.0% 위치입니다. 손익비는 지지 24,500원(-3.5%) 대비 목표 27,350원(+7.7%)으로 <strong>1 : 2.17</strong>이며 4축 점수 64점, 판정은 '🟡 제외 유지 · 5일 기관 +31.3만'입니다. 한국전력은 +2.01%로 시장 대비 약했습니다. 기관 5일 +31.3만주 매수에도 외인 -12.6만으로 상쇄됐고 52주 최저(24,200원)에서 3.3% 위입니다. 🌙 19:50 시간외 단일가는 <strong>25,050원(-1.38%)</strong>으로 정규장 종가 대비 되돌림이 나왔고, 야간선물 -3.67%와 50:50 혼합한 내일(11-25) 예상 시초가는 <strong>24,750원</strong>입니다.",
         "bars": {
             "momentum": "4/25",
             "momPct": "16%",
@@ -6720,10 +6735,10 @@
         },
         "night": {
             "close": 25400.0,
-            "single": null,
+            "single": 25050.0,
             "nxt": null,
             "closePct": "+2.01%",
-            "singlePct": "0.00%",
+            "singlePct": "-1.38%",
             "nxtPct": "0.00%"
         }
     }
@@ -7279,13 +7294,13 @@
     //    status: 'current'(방금 완료·현재 단계) | 'done'(이번 주기 완료) | 'pending'(예정)
     // =========================================================================
     const RADAR_STAGE_TIMELINE = {
-      asOf: '11-24 15:20',
+      asOf: '11-24 19:50',
       dayLabel: '11-24(화)',
       currentStage: '3',
-      badgeText: '🌇 11-24 15:20 장마감 레이더 완료 (코스피 <strong>+6.32%</strong> 5,006.03 · 기관 +8,692억·외인 +7,255억 쌍끌이)',
-      badgeColor: '#16a34a',
+      badgeText: '🌙 11-24 19:50 야간 결산 완료 (야간선물 <strong>-3.67%</strong> 749.55 · 시간외 4대주 <strong>-2.8~-4.6%</strong> 되돌림 · 기관 +8,734억·외인 +8,090억 확정)',
+      badgeColor: '#0284c7',
       pipelineLeft: '실시간 3타임 퀀트 자동화 파이프라인 (08:00 · 15:20 · 19:50) + 토요일 주말 결산 가동 중',
-      pipelineRight: '현재: 11-24(화) 15:20 장마감 레이더 완료 (2/3단계) · 다음 자동 갱신: 11-24(화) 19:50 KST (야간·시간외 결산)',
+      pipelineRight: '현재: 11-24(화) 19:50 야간 결산 완료 (3/3단계) · 다음 자동 갱신: 11-25(수) 08:00 KST (장전 레이더) · 11-28(토) 09:00 주말 결산',
       stages: [
         {
           id: 1, icon: '☀️', title: '1단계: 08:00 장전 레이더', status: 'done',
@@ -7297,19 +7312,19 @@
           id: 2, icon: '📊', title: '2단계: 15:20 장마감 레이더', status: 'done',
           badge: '완료 (11-24 15:20 발송)',
           headline: '마감 결산 & 쌍끌이 수급 확인',
-          summary: '코스피 5,006.03(+6.32%)·코스닥 665.88(+4.79%) — 기관 +8,692억(2일 연속)·외인 +7,255억(8거래일 만 전환) 쌍끌이, 상승 797 vs 하락 94'
+          summary: '코스피 5,006.03(+6.32%)·코스닥 665.88(+4.79%) — 기관 +8,734억(2일 연속)·외인 +8,090억(8거래일 만 전환) 쌍끌이 확정, 상승 797 vs 하락 94'
         },
         {
-          id: 3, icon: '🌙', title: '3단계: 19:50 야간 결산 레이더', status: 'current',
-          badge: '오늘 19:50 예정 (다음 단계)',
+          id: 3, icon: '🌙', title: '3단계: 19:50 야간 결산 레이더', status: 'done',
+          badge: '완료 (11-24 19:50 발송)',
           headline: '국내 시간외 마감 & 익일 프리마켓',
-          summary: '시간외 단일가·NXT 야간(20:00 마감) 결산 + 코스피200 야간선물 18:00 재개 등락률로 익일 갭 기준가 갱신 — 폭등분 시간외 되돌림 여부 확인'
+          summary: 'NXT 시간외(20:00 마감)에서 4대주 <strong>리노공업 46,650(-3.81%)·HD현대마린 182,000(-2.83%)·LS ELECTRIC 116,400(-4.59%)</strong> 되돌림 · 코스피200 야간선물 <strong>749.55(-3.67%)</strong> → 11-25 예상 시초 5,006.03 기준 <strong>4,822</strong>'
         },
         {
           id: 4, icon: '🏁', title: '4단계: 토요일 09:00 주말 결산', status: 'pending',
           badge: '11-28(토) 09:00 예정',
           headline: '금요일 미장 마감 & 차주 월요일 프리뷰',
-          summary: '11-21(토) 주말 결산 완료 → 11-24(화) 폭등 마감(5,006.03) 반영 · 다음 결산은 11-28(토) 09:00 (금요일 미장 마감 & 12-01 차주 프리뷰)'
+          summary: '11-21(토) 주말 결산 완료 → 11-24(화) 폭등 마감(5,006.03)·야간 -3.67% 반영 · 다음 결산은 <strong>11-28(토) 09:00</strong> (11-27 금요일 미장 마감 & 11-30 차주 프리뷰)'
         }
       ]
     };
@@ -7352,11 +7367,11 @@
     }
 
     const AI_COACH_GREETING = {
-      asOf: '11-24 15:20',
+      asOf: '11-24 19:50',
       dateLabel: '11월 24일(화)',
-      contextLabel: '폭등 마감일',
-      title: '11월 24일(화) · +6.32% 폭등 마감, 오늘도 원칙을 지키는 윤용규 님!',
-      sub: '코스피 5,006.03(+6.32%) · 기관 +8,692억·외인 +7,255억 쌍끌이 · 4대주 전원 상승 · HD현대마린 목표 188,800까지 0.8% (11-24 15:20 마감 결산)'
+      contextLabel: '야간 결산일',
+      title: '11월 24일(화) · 야간선물 -3.67% 되돌림, 원칙으로 방어하는 윤용규 님!',
+      sub: '코스피200 야간선물 749.55(-3.67%) · 19:50 시간외 4대주 -2.8~-4.6% 되돌림 · 기관 +8,734억·외인 +8,090억 확정 · 내일 예상 시초 4,822 (11-24 19:50 야간 결산)'
     };
 
     function updateAiCoachGreeting() {
@@ -7374,8 +7389,8 @@
     // 야간선물 갭 반영 기준가 자동 환산 엔진 (Night Futures Gap-Adjusted Levels)
     // ※ 아래 두 상수는 08:00 / 19:50 / 토 09:00 레이더가 매 실행 시 최신 실측치로 갱신한다.
     // =========================================================================
-    const NIGHT_FUTURES_CHANGE_PCT = 7.06;
-    const NIGHT_FUTURES_LABEL = '11-24 06:00 마감 777.95 (+7.06%) · 야간 시 732.10 / 고 784.75 / 저 726.95 · 주간 종가 726.65 대비 +51.30pt';
+    const NIGHT_FUTURES_CHANGE_PCT = -3.67;
+    const NIGHT_FUTURES_LABEL = '11-24 19:50 현재 749.55 (-3.67%) · 야간 시 769.90 / 고 769.95 / 저 749.00 · 주간 종가 778.10 대비 -28.55pt · 야간 거래량 8,658계약';
     // 08:00 장전 레이더가 매 실행 시 아래 상수를 NXT 프리마켓 실측치로 갱신한다.
     // null = 해당 종목 프리마켓 체결 없음(야간선물 갭 환산으로 대체).
     const PREMARKET_ASOF = '11-24 08:05';
@@ -7404,24 +7419,24 @@
     // ※ AFTERHOURS_MOMENTUM_ASOF·AFTERHOURS_MOMENTUM_PCT·gapAfterhoursBtn·applyAfterhoursMomentum()은
     //    절대 삭제하지 말고 수치만 최신화한다.
     // =========================================================================
-    const AFTERHOURS_MOMENTUM_ASOF = '11-23 19:50';
+    const AFTERHOURS_MOMENTUM_ASOF = '11-24 19:50';
     const AFTERHOURS_MOMENTUM_PCT = {
-      '058470': 2.35,    // 리노공업 (44,700 → 45,750)
-      '443060': -0.34,   // HD현대마린솔루션 (176,400 → 175,800)
-      '0161M0': 2.17,    // 네오사피엔스 (4,385 → 4,480)
-      '010120': 1.54,    // LS ELECTRIC (110,200 → 111,900)
-      '005930': 1.92,    // 삼성전자 (177,500 → 180,900)
-      '000660': 1.84,    // SK하이닉스 (1,085,000 → 1,105,000)
-      '009150': 2.44,    // 삼성전기 (778,000 → 797,000)
-      '240810': 2.44,    // 원익IPS (65,600 → 67,200)
-      '047810': 1.93,    // 한국항공우주 (93,100 → 94,900)
-      '010140': 1.11,    // 삼성중공업 (14,350 → 14,510)
-      '003490': 0.17,    // 대한항공 (30,300 → 30,350)
-      '005380': 0.20,    // 현대차 (247,500 → 248,000)
-      '196170': 0.12,    // 알테오젠 (168,500 → 168,700)
-      '010950': -0.21,   // S-Oil (93,300 → 93,100)
-      '042700': null,    // 한미반도체 (19:50 시간외 데이터 미확인)
-      '015760': null     // 한국전력 (19:50 시간외 데이터 미확인)
+      '058470': -3.81,    // 리노공업 (48,500 → 46,650)
+      '443060': -2.83,    // HD현대마린솔루션 (187,300 → 182,000)
+      '0161M0': null,    // 네오사피엔스 (19:50 시간외 미확인)
+      '010120': -4.59,    // LS ELECTRIC (122,000 → 116,400)
+      '005380': -3.82,    // 현대차 (275,000 → 264,500)
+      '010950': -0.95,    // S-Oil (94,400 → 93,500)
+      '047810': -2.81,    // 한국항공우주 (99,800 → 97,000)
+      '010140': -2.47,    // 삼성중공업 (14,970 → 14,600)
+      '196170': -1.0,    // 알테오젠 (159,700 → 158,100)
+      '003490': null,    // 대한항공 (19:50 시간외 미확인)
+      '005930': -3.48,    // 삼성전자 (189,400 → 182,800)
+      '000660': -4.06,    // SK하이닉스 (1,158,000 → 1,111,000)
+      '042700': -4.77,    // 한미반도체 (163,600 → 155,800)
+      '009150': -4.9,    // 삼성전기 (858,000 → 816,000)
+      '015760': -1.38,    // 한국전력 (25,400 → 25,050)
+      '240810': null,    // 원익IPS (19:50 시간외 미확인)
     };
     // =========================================================================
     // 상단 시장 반등·수급 전환 펄스 배지 (Intraday Rebound & Supply Pulse)
@@ -7433,12 +7448,12 @@
       reboundPct: 2.58,             // 코스피 저점 대비 종가 반등률(%)
       kospiLow: '4,880.16',         // 당일 코스피 장중 저점(=시가)
       kospiClose: '5,006.03',       // 당일 코스피 확정 종가
-      instNet: '+8,692억',          // 기관 순매수 금액 (11-24 잠정)
+      instNet: '+8,734억',          // 기관 순매수 금액 (11-24 확정)
       instTurned: false,            // 전환 아님 → 2일 연속 순매수
       instSuffix: ' 순매수 2일 연속',
-      foreignNet: '+7,255억',       // 외국인 순매수 금액 (11-24 잠정)
+      foreignNet: '+8,090억',       // 외국인 순매수 금액 (11-24 확정)
       foreignTurned: true,          // 8거래일 만 순매도 → 순매수 전환
-      asOf: '11-24 15:30 확정'      // 데이터 기준 시각
+      asOf: '11-24 19:50 야간 확정'  // 데이터 기준 시각
     };
 
     function renderMarketPulseBadge() {
@@ -8546,8 +8561,8 @@
                 const DIFF_DIAGNOSIS_MAP = {
       all: {
         title: "📊 11-24 장마감 — 8대 전략주 종합 진단 (구성 유지 · 순위 재배치)",
-        metrics: "DART 공시·수급·차트 3중 교차 검증 (11-24 15:30 확정 종가 + 잠정 수급)",
-        desc: "<strong>11-24 15:30 확정 종가·잠정 수급</strong>으로 4축 100점을 재산출한 결과 <strong>교체 0건·순위 재배치</strong>입니다. <strong>현대차(79점·275,000원·+10.66%)</strong> 1위, <strong>HD현대마린솔루션(69점·187,300원·1→2위)</strong>, S-Oil(69점·94,400원), 한국항공우주(65점·99,800원), 삼성중공업(62점·14,970원), 알테오젠(61점·159,700원), 대한항공(59점·31,150원), 리노공업(55점·48,500원)입니다. 신규 편입 3조건(쌍끌이 매집·흑자전환 공시·RSI 30 이하 반등 양봉)을 모두 충족한 종목이 없어 <strong>구성은 유지</strong>했습니다. 리노공업은 5일 외인 -49.9만으로 수급 축 3/25·제외 후보 1순위, 알테오젠은 -5.50% 역주행(거래량 2.04배)으로 156,500원 이탈 시 제외 검토입니다."
+        metrics: "DART 공시·수급·차트 3중 교차 검증 (11-24 15:30 확정 종가 + 확정 수급)",
+        desc: "<strong>11-24 15:30 확정 종가·확정 수급</strong>으로 4축 100점을 재산출한 결과 <strong>교체 0건·순위 재배치</strong>입니다. <strong>현대차(79점·275,000원·+10.66%)</strong> 1위, <strong>HD현대마린솔루션(69점·187,300원·1→2위)</strong>, S-Oil(69점·94,400원), 한국항공우주(65점·99,800원), 삼성중공업(62점·14,970원), 알테오젠(61점·159,700원), 대한항공(59점·31,150원), 리노공업(55점·48,500원)입니다. 신규 편입 3조건(쌍끌이 매집·흑자전환 공시·RSI 30 이하 반등 양봉)을 모두 충족한 종목이 없어 <strong>구성은 유지</strong>했습니다. 리노공업은 5일 외인 -49.9만으로 수급 축 3/25·제외 후보 1순위, 알테오젠은 -5.50% 역주행(거래량 2.04배)으로 156,500원 이탈 시 제외 검토입니다."
       },
       oversold: {
         title: "📉 낙폭과대 턴어라운드 정밀 진단 (폭등일에도 남은 과매도)",
@@ -8560,14 +8575,14 @@
         desc: "<strong>대한항공(31,150원·5일 외인 +59.8만·기관 +117.3만 쌍끌이, 52주 최고까지 5.8%)</strong>, <strong>HD현대마린솔루션(187,300원·20일선 위 +8.2%·목표 0.8% 남음)</strong>, <strong>현대차(275,000원·20일선 회복·+10.66%)</strong>, <strong>LS ELECTRIC(122,000원·외인 +6.0만·기관 +2.2만)</strong>이 실적·수급으로 확인된 종목군입니다. 반도체는 삼성전자 +4.87%·SK하이닉스 +5.18%로 반등했지만 5일 수급이 순매도여서 8선 편입은 계속 보류입니다."
       },
       kospi: {
-        title: "🏛️ 코스피 대형주 차별화 진단 (확정: +6.32% · 기관 +8,692억·외인 +7,255억)",
-        metrics: "잠정 수급: 기관 +8,692억 · 외인 +7,255억 · 개인 -20,430억 · 프로그램 +3,541억",
-        desc: "11-24 코스피는 <strong>5,006.03pt(+6.32%, +297.49pt)</strong>로 마감했습니다. 이론 시초 5,041보다 낮은 <strong>4,880.16(-3.2%)</strong>으로 출발해 그 가격이 저가였고, 고가 <strong>5,065.74</strong>까지 올랐습니다. 잠정 수급은 <strong>기관 +8,692억(2일 연속)·외인 +7,255억(8거래일 만 순매수 전환)</strong>·개인 -20,430억, 프로그램 +3,541억이고 거래대금은 14조5,589억입니다. <strong>상승 797 vs 하락 94</strong>로 종목 확산이 동반된 점이 어제(상승 71 vs 하락 824)와 가장 다른 부분입니다."
+        title: "🏛️ 코스피 대형주 차별화 진단 (확정: +6.32% · 기관 +8,734억·외인 +8,090억)",
+        metrics: "확정 수급: 기관 +8,734억 · 외인 +8,090억 · 개인 -21,307억 · 프로그램 +3,541억",
+        desc: "11-24 코스피는 <strong>5,006.03pt(+6.32%, +297.49pt)</strong>로 마감했습니다. 이론 시초 5,041보다 낮은 <strong>4,880.16(-3.2%)</strong>으로 출발해 그 가격이 저가였고, 고가 <strong>5,065.74</strong>까지 올랐습니다. 확정 수급은 <strong>기관 +8,734억(2일 연속)·외인 +8,090억(8거래일 만 순매수 전환)</strong>·개인 -21,307억, 프로그램 +3,541억이고 거래대금은 14조5,589억입니다. <strong>상승 797 vs 하락 94</strong>로 종목 확산이 동반된 점이 어제(상승 71 vs 하락 824)와 가장 다른 부분입니다."
       },
       kosdaq: {
         title: "🔬 코스닥/소부장 차별화 진단 (665.88 · +4.79% · 상한가 10)",
-        metrics: "탄력도 기준: 코스닥 665.88pt(+4.79%) · 기관 +2,064억 · 외인 +1,176억 · 상한가 10",
-        desc: "코스닥은 시가 654.31pt에서 저가 652.21pt까지 눌린 뒤 <strong>665.88pt(+4.79%)</strong>로 마감했고 장중 고가 670.95pt를 기록했습니다. <strong>기관 +2,064억·외인 +1,176억</strong> 동반 순매수(개인 -3,077억), 상승 1,389종목·<strong>상한가 10종목</strong>으로 낙폭과대 반등이 코스피보다 넓게 나왔습니다. 다만 상승률은 코스피(+6.32%)보다 1.5%p 낮았고, <strong>네오사피엔스 +1.79%(거래량 0.31배)·리노공업 +6.01%</strong>로 4대주 내에서도 온도차가 있었습니다."
+        metrics: "탄력도 기준: 코스닥 665.88pt(+4.79%) · 기관 +2,224억 · 외인 +1,285억 · 상한가 10",
+        desc: "코스닥은 시가 654.31pt에서 저가 652.21pt까지 눌린 뒤 <strong>665.88pt(+4.79%)</strong>로 마감했고 장중 고가 670.95pt를 기록했습니다. <strong>기관 +2,224억·외인 +1,285억</strong> 동반 순매수(개인 -3,352억), 상승 1,389종목·<strong>상한가 10종목</strong>으로 낙폭과대 반등이 코스피보다 넓게 나왔습니다. 다만 상승률은 코스피(+6.32%)보다 1.5%p 낮았고, <strong>네오사피엔스 +1.79%(거래량 0.31배)·리노공업 +6.01%</strong>로 4대주 내에서도 온도차가 있었습니다."
       }
     };
             function updateRankingDiffDiagnosis(filterKey) {
@@ -9818,23 +9833,24 @@
     }
 
     // Dedicated Share Hub Callbacks
-    const textMarket = `[YOON STRONG CAPITAL 퀀트 인텔리전스 뷰 · 11-24 15:20 장마감 레이더]
+    const textMarket = `[YOON STRONG CAPITAL 퀀트 인텔리전스 뷰 · 11-24 19:50 야간 결산 레이더]
 - 코스피 5,006.03 (+6.32%) · 시가 4,880.16 / 고가 5,065.74 / 저가 4,880.16 · 코스닥 665.88 (+4.79%) · 코스피200 778.68 (+6.55%)
-- 수급(잠정): 기관 +8,692억(2일 연속) · 외인 +7,255억(8거래일 만 순매수 전환) · 개인 -20,430억 · 프로그램 +3,541억
-- 상승 797 vs 하락 94(코스피) · 코스닥 상승 1,389·상한가 10 · 거래대금 코스피 14조5,589억 · 원/달러 1,343.40원(+0.07%)
-- 야간선물 +7.06%(777.95) 이론 시초 5,041 대비 실제 시가 4,880.16(-3.2%)로 갭 미달 출발 → 저가=시가 후 종가 +2.58% 상승 마감
-- 4대 집중주(11-24 확정): 리노공업 48,500 (+6.01%) · HD현대마린 187,300 (+6.30%, 1차 목표 188,800까지 0.8%) · LS ELECTRIC 122,000 (+8.93%) · 네오사피엔스 4,555 (+1.79%)
-- 8선: 구성 유지(교체 0건)·순위 재배치(현대차 1위 79점, HD현대마린 1→2위) · 신규 편입 0건
-- 11-25 시나리오: 5,065.74 안착 후 연장 40% / 4,950~5,065 박스 소화 40% / 4,880.16 이탈 20%
-* 실전 룰: 급등 추격 금지 · HD현대마린·LS ELECTRIC 목표 근접 분할 익절 · 리노공업은 46,800 지지 확인 후 48,000 이하 눌림만`;
+- 수급(확정): 기관 +8,734억(2일 연속) · 외인 +8,090억(8거래일 만 순매수 전환) · 개인 -21,307억 · 프로그램 +3,541억
+- 코스피200 야간선물 749.55 (-3.67%, 주간 종가 778.10 대비 -28.55pt) · 야간 고 769.95 / 저 749.00 · 거래량 8,658계약
+- NXT 19:50 시간외: 리노공업 46,650 (-3.81%) · HD현대마린 182,000 (-2.83%) · LS ELECTRIC 116,400 (-4.59%) · 네오사피엔스 미체결
+- 혼합 예상 시초가(11-25): 리노공업 46,650 · HD현대마린 181,200 · LS ELECTRIC 116,900 · 네오사피엔스 4,385(야간 100%) · 코스피 4,822
+- 미장 야간: 나스닥100 선물 26,400 (-1.52%) · S&P500 선물 7,205 (-0.69%) · 다우 선물 49,525 (-0.31%) · VIX 28.0 · 원/달러 1,343.2원
+- 8선: 구성·순위 유지(교체 0건, 정규 종가 기준 손절선 전원 사수) · 11-24 종목별 확정 수급 미공표(11-23 기준)
+- 11-25 시나리오: 4,880.16 회복 후 안착 40% / 4,800~4,880 박스 소화 35% / 4,759.88 이탈 25%
+* 실전 룰: 4,880.16 회복 전 신규 매수 금지 · 시간외 손절선 하회 3종목(현대차·리노공업·알테오젠) 시초 추격 금지`;
     // 📋 공유 문구 맵 — TURNAROUND_MASTER_DATA 단일 소스
     //    syncMasterDataToSubmodules()가 master.share에서 파생한다.
     //    (구형 정적 문구 하드코딩 금지 · 11-24 정리)
     const stockStrategyMap = {};
 ;
-    const textTop3 = `1. 현대차 (79점) 275,000원 +10.66% - 손익비 1 : 2.10 | RSI 46.4 · 5일 외인 +13.8만 · 지지 265,000원\n2. HD현대마린솔루션 (69점) 187,300원 +6.30% - 손익비 1 : 2.15 | RSI 52.5 · 5일 외인 -3.1만 · 지지 180,700원\n3. S-Oil (69점) 94,400원 +1.07% - 손익비 1 : 2.09 | RSI 26.6 · 5일 외인 +33.3만 · 지지 91,000원\n* 현대차는 +10.66%로 목표 267,500 도달→296,000 상향, HD현대마린은 목표 188,800까지 0.8%로 분할 익절 구간 · 급등 첫날 추격 금지`;
+    const textTop3 = `1. 현대차 (79점) 275,000원 +10.66% → 시간외 264,500(-3.82%) | 지지 265,000원 · 손익비 1 : 2.10\n2. HD현대마린솔루션 (69점) 187,300원 +6.30% → 시간외 182,000(-2.83%) | 지지 180,700원 · 손익비 1 : 2.15\n3. S-Oil (69점) 94,400원 +1.07% → 시간외 93,500(-0.95%) | RSI 26.6 · 지지 91,000원 · 손익비 1 : 2.09\n* 야간선물 -3.67%·시간외 되돌림 반영 · 현대차는 시간외에서 손절선(265,000) 0.2% 하회 → 내일 시초 회복 확인 전 신규 매수 금지`;
 
-    const textTop8 = `1. 현대차 (79점) 275,000원 +10.66% - 손익비 1 : 2.10 | RSI 46.4 · 5일 외인 +13.8만 · 지지 265,000원\n2. HD현대마린솔루션 (69점) 187,300원 +6.30% - 손익비 1 : 2.15 | RSI 52.5 · 5일 외인 -3.1만 · 지지 180,700원\n3. S-Oil (69점) 94,400원 +1.07% - 손익비 1 : 2.09 | RSI 26.6 · 5일 외인 +33.3만 · 지지 91,000원\n4. 한국항공우주 (65점) 99,800원 +5.05% - 손익비 1 : 2.14 | RSI 44.1 · 5일 외인 -12.6만 · 지지 96,300원\n5. 삼성중공업 (62점) 14,970원 +3.03% - 손익비 1 : 2.13 | RSI 37.1 · 5일 외인 +52.5만 · 지지 14,440원\n6. 알테오젠 (61점) 159,700원 -5.50% - 손익비 1 : 6.72 | RSI 29.3 · 5일 외인 -4.4만 · 지지 156,500원\n7. 대한항공 (59점) 31,150원 +2.47% - 손익비 1 : 2.14 | RSI 55.1 · 5일 외인 +59.8만 · 지지 30,050원\n8. 리노공업 (55점) 48,500원 +6.01% - 손익비 1 : 2.18 | RSI 41.8 · 5일 외인 -49.9만 · 지지 46,800원\n* 11-24 15:30 확정 종가·잠정 수급 기준 4축 재산출 · 교체 0건(신규 편입 3조건 충족 0종목) · 리노공업 5일 외인 -49.9만 제외 후보 1순위 · 알테오젠 -5.50% 역주행 156,500 이탈 시 제외 검토`;
+    const textTop8 = `1. 현대차 (79점) 275,000원 +10.66% → 시간외 264,500(-3.82%) 손절선 265,000 하회\n2. HD현대마린솔루션 (69점) 187,300원 +6.30% → 시간외 182,000(-2.83%) 지지 180,700 턱걸이\n3. S-Oil (69점) 94,400원 +1.07% → 시간외 93,500(-0.95%) 지지 91,000원\n4. 한국항공우주 (65점) 99,800원 +5.05% → 시간외 97,000(-2.81%) 지지 96,300원\n5. 삼성중공업 (62점) 14,970원 +3.03% → 시간외 14,600(-2.47%) 지지 14,440원\n6. 알테오젠 (61점) 159,700원 -5.50% → 시간외 158,100(-1.00%) 지지 156,500원\n7. 대한항공 (59점) 31,150원 +2.47% → 시간외 미체결 지지 30,050원\n8. 리노공업 (55점) 48,500원 +6.01% → 시간외 46,650(-3.81%) 손절선 46,800 하회\n* 11-24 15:30 확정 종가·확정 수급 기준 4축 재산출 · 8선 구성·순위 유지(교체 0건) · 11-24 종목별 확정 수급 미공표(11-23 기준) · 시간외 손절선 하회 3종목은 내일 시초 회복 확인 후 판단`;
 
 
         let currentTopReportMode = 'top3';
@@ -9902,7 +9918,7 @@
     let isTtsBriefingActive = false;
     let audioCurrentRate = 1.1;
     let ttsKeepAliveTimer = null;
-    const briefingText = "11월 24일 화요일, 장 마감 결산 레이더입니다. 코스피는 6.32퍼센트 오른 5,006.03, 코스닥은 4.79퍼센트 오른 665.88로 마감했습니다. 밤사이 야간선물이 7.06퍼센트를 가리켰지만 실제 시가는 이론 시초보다 3.2퍼센트 낮은 4,880.16으로 열렸고, 그 시가가 곧 저가였습니다. 이후 종가까지 2.58퍼센트를 더 올렸습니다. 핵심은 수급입니다. 기관이 8,692억 원으로 이틀 연속 순매수했고, 외국인이 7,255억 원으로 8거래일 만에 매수로 돌아섰습니다. 상승 797종목 대 하락 94종목으로 종목 확산까지 동반된 첫날입니다. 4대주는 전원 상승했습니다. 리노공업 6.01퍼센트 오른 48,500원, 에이치디현대마린솔루션 6.30퍼센트 오른 187,300원으로 목표 188,800원까지 0.8퍼센트만 남았습니다. 엘에스일렉트릭은 8.93퍼센트 오른 122,000원, 네오사피엔스는 1.79퍼센트 오른 4,555원입니다. 내일은 오늘 고가 5,065.74가 지지로 바뀌는지, 기관과 외인의 매수가 3일 연속 이어지는지, 이 두 가지만 확인하시고 급등 종목 추격은 하지 마십시오.";
+    const briefingText = "11월 24일 화요일, 야간 결산 레이더입니다. 코스피는 6.32퍼센트 오른 5,006.03, 코스닥은 4.79퍼센트 오른 665.88로 마감했고, 기관이 8,734억으로 이틀 연속, 외국인이 8,090억으로 여드레 만에 순매수로 돌아섰습니다. 그런데 저녁 시장은 반대입니다. 코스피200 야간선물이 749.55로 주간 종가보다 3.67퍼센트 빠졌고, 나스닥100 선물도 1.52퍼센트 하락했습니다. 시간외에서도 리노공업이 46,650원으로 3.81퍼센트, 에이치디현대마린솔루션이 182,000원으로 2.83퍼센트, 엘에스일렉트릭이 116,400원으로 4.59퍼센트 밀렸습니다. 야간선물과 시간외를 반반 섞은 내일 예상 시초가는 리노공업 46,650원, 에이치디현대마린 181,200원, 엘에스일렉트릭 116,900원이고, 코스피는 4,822 부근 갭하락 출발이 예상됩니다. 내일은 4,880.16, 오늘 시가이자 저가를 회복하는지와 기관과 외인이 사흘 연속 이어지는지만 확인하시고, 시초가 추격 매수는 하지 마십시오. 리노공업은 46,800원 지지 확인 전에는 진입하지 않으시는 게 좋습니다.";
     function formatAudioTime(sec) {
       sec = Math.max(0, Math.floor(sec || 0));
       const m = Math.floor(sec / 60);
@@ -10185,16 +10201,16 @@
 
             const coachMessages = {
       mind: {
-        title: `💡 ${COACH_DATE} ${COACH_WEEKDAY}요일 마감 멘탈 코칭`,
-        text: `오늘 코스피는 <strong>5,006.03(+6.32%)</strong>, 코스닥은 <strong>665.88(+4.79%)</strong>로 마감했습니다. 간밤 미장 폭등(나스닥 +6.51% · SOX +14.03%)과 야간선물 <strong>777.95(${COACH_GAP_TXT})</strong>가 만든 이론 시초 5,041에는 못 미치는 <strong>4,880.16</strong>으로 열렸는데, 그 시가가 곧 저가였고 종가까지 <strong>+2.58%</strong>를 더 올렸습니다. 기관 <strong>+8,692억</strong>(2일 연속)·외인 <strong>+7,255억</strong>(8거래일 만 전환)이 겹친 드문 날입니다. 이런 날 가장 위험한 심리는 <strong>'놓쳤다'는 조급함(FOMO)</strong>입니다. 오늘 +6~10% 오른 종목을 내일 시초에 쫓아 사는 것이 폭등 다음 날의 전형적 손실 경로입니다. 내일 <strong>09:00~09:30은 관찰만</strong> 하시고, 지수는 <strong>5,065.74(오늘 고가)</strong>가 지지로 바뀌는지, 아니면 <strong>4,880.16(오늘 저가)</strong>을 다시 보는지를 먼저 확인하십시오. 리노공업은 11-19 전량 익절 이후 <strong>보유 0주</strong> — 오늘 +6.01%를 놓친 것이 아니라 <strong>현금이라는 포지션을 지킨 것</strong>입니다.`
+        title: `💡 ${COACH_DATE} ${COACH_WEEKDAY}요일 야간 멘탈 코칭`,
+        text: `오늘 코스피는 <strong>5,006.03(+6.32%)</strong>로 폭등 마감했지만, <strong>19:50 야간 결산은 정반대 신호</strong>를 보내고 있습니다. 코스피200 야간선물 <strong>749.55(${COACH_GAP_TXT})</strong>, 나스닥100 선물 <strong>-1.52%</strong>, NXT 시간외에서 4대주가 <strong>리노공업 46,650(-3.81%)·HD현대마린 182,000(-2.83%)·LS ELECTRIC 116,400(-4.59%)</strong>로 밀렸습니다. 하루 만에 +6.32% 오른 시장이 야간에 3~4%를 반납한 것입니다. 이런 날 가장 위험한 심리는 두 가지 — ① 오늘 폭등을 놓쳤다는 <strong>조바심</strong>, ② 야간 급락을 보고 <strong>공포에 투매</strong>하는 것입니다. 내일 <strong>09:00~09:30은 관찰만</strong>. 갭하락 출발(예상 4,822)이 <strong>4,880.16(오늘 시가=저가)을 회복하는지</strong>를 먼저 보십시오. 리노공업은 <strong>보유 0주</strong> — 시간외 46,650원까지 내려와 재진입 기준(48,000 이하)에 다시 들어왔지만, 첫 갭하락 날의 칼날을 잡을 필요는 없습니다.`
       },
       action: {
-        title: `🎯 ${COACH_DATE} 3대 실전 수칙`,
-        text: `① <strong>급등 추격 금지</strong>: 오늘 +6~10% 오른 <strong>현대차(+10.66%)·LS ELECTRIC(+8.93%)·삼성전기(+7.65%)·원익IPS(+6.39%)·한미반도체(+6.16%)</strong>를 다음 날 시초에 사지 마십시오. 매수는 <strong>5,065.74 안착 + 기관·외인 3일 연속 매수</strong> 확인 후 눌림에서 1/3만.<br>② <strong>4대 핵심주</strong>: <strong>HD현대마린 187,300원은 1차 목표 188,800까지 0.8% — 분할 익절 구간</strong>(지지 180,700) · <strong>LS ELECTRIC 122,000원 목표 128,700까지 5.5% — 분할 익절</strong>(지지 117,700) · <strong>리노공업 48,500원은 재진입 기준(48,000 이하) 초과 → 추격 금지</strong>, 46,800 지지 확인 후 눌림만 · <strong>네오사피엔스 락업 3일차 신규 진입 금지</strong>.<br>③ <strong>금지</strong>: 손익비 1:2 미만 자리, 5일 수급 순매도 종목(리노공업·삼성전자·SK하이닉스·삼성전기)의 추격 매수.`
+        title: `🎯 ${COACH_DATE} 야간 3대 실전 수칙`,
+        text: `① <strong>갭하락 대응</strong>: 야간선물 <strong>${COACH_GAP_TXT}</strong> → 코스피 예상 시초 <strong>4,822</strong>. <strong>4,880.16(오늘 시가=저가)</strong> 회복 전 매수 금지, 회복하면 그 가격이 지지로 바뀌는지 30분 관찰 후 1/3만.<br>② <strong>4대 핵심주 내일 대응선</strong>: 리노공업 시간외 <strong>46,650원</strong> — 46,800 지지 확인 후 46,000~46,800 눌림에서만 1/3 · HD현대마린 <strong>182,000원</strong> — 지지 180,700까지 0.7%, 이탈 시 관망 · LS ELECTRIC <strong>116,400원</strong> — 목표 128,700까지 10.6%, 117,700 지지 사수 확인 · 네오사피엔스 <strong>미체결</strong> — 락업 4일차, 신규 진입 금지.<br>③ <strong>금지</strong>: 시간외에서 손절선을 하회한 <strong>현대차(264,500 < 265,000)·리노공업(46,650 < 46,800)</strong>을 시초에 추격 매수하는 것. 손익비 1:2 미만·수급 순매도 종목도 제외.`
       },
       night: {
-        title: `🌙 ${COACH_DATE} 야간·익일 체크포인트`,
-        text: `오늘 <strong>19:50 야간 결산</strong>과 내일 장전에서 확인할 4가지 — ① <strong>시간외·NXT 야간(20:00 마감)에서 오늘 폭등분이 되돌려지는지</strong>(4대주 시간외 등락률) ② <strong>코스피200 야간선물 18:00 재개</strong> 후 등락률로 계산한 익일 예상 시초가(오늘 종가 5,006.03 기준) ③ <strong>기관·외인 매수 3일 연속</strong> 여부(하루 폭등을 추세로 바꾸는 유일한 조건) ④ <strong>4대주 확정 수급</strong> — 리노공업 외인 -49.9만이 줄어드는지, HD현대마린 목표 188,800 돌파 여부. 일정은 <strong>11-25(수) 22:30 미 10월 PCE</strong>, <strong>11-26(목) 한은 금통위·미 추수감사절 휴장</strong>입니다.`
+        title: `🌙 ${COACH_DATE} 야간 체크포인트`,
+        text: `19:50 야간 결산 확정치 — ① <strong>코스피200 야간선물 749.55(${COACH_GAP_TXT})</strong>, 야간 저 749.00 · 거래량 8,658계약 ② <strong>NXT 시간외(20:00 마감)</strong> 4대주 리노공업 46,650(-3.81%)·HD현대마린 182,000(-2.83%)·LS ELECTRIC 116,400(-4.59%)·네오사피엔스 미체결 ③ <strong>기관 +8,734억(2일 연속)·외인 +8,090억(8거래일 만 전환) 확정</strong> — 15:20 잠정치보다 각각 +42억·+835억 상향 ④ <strong>11-24 종목별 수급은 미공표</strong>(11-23 기준 유지). 내일 일정은 <strong>11-25(수) 22:30 미 10월 PCE·3Q GDP</strong>, 11-26(목) 한은 금통위·미 추수감사절 휴장입니다. 야간 06:00 마감치와 미장 마감을 08:00 장전 레이더에서 다시 확인합니다.`
       }
     };
 function switchCoachTab(tabKey) {
