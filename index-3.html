@@ -7687,7 +7687,7 @@
             badges += `<div class="gap-badge info">🌙 시간외 혼합 50:50 — 야간선물 ${gapPctText(NIGHT_FUTURES_CHANGE_PCT)} × 50% + ${AFTERHOURS_MOMENTUM_ASOF} 시간외 ${gapPctText(ahPct)} × 50% = 혼합 ${gapPctText(blendPct)}(종가 대비).</div>`;
           }
           if (breach) {
-            badges += `<div class="gap-badge danger">🔴 손절선 하회 — 혼합 시초가 ${won(gapOpen)}원이 기존 손절선 ${won(stop)}원을 ${Math.abs(stopFromOpen).toFixed(1)}% 하회합니다. 시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
+            badges += `<div class="gap-badge danger">🔴 손절선 하회 — 혼합 시초가 ${won(gapOpen)}원이 기존 손절선 ${won(stop)}원을 ${Math.abs(((gapOpen - stop) / stop) * 100).toFixed(1)}% 하회합니다. 시초가 추격매수 금지, 지지 회복 전까지 관망.</div>`;
           } else {
             badges += `<div class="gap-badge ok">🟢 손절선 사수 — 혼합 시초가가 기존 손절선 ${won(stop)}원보다 ${(((gapOpen - stop) / stop) * 100).toFixed(1)}% 위입니다. 사수 확인 전에는 계획 수량 1/3 이내.</div>`;
           }
@@ -10206,7 +10206,7 @@
       },
       action: {
         title: `🎯 ${COACH_DATE} 야간 3대 실전 수칙`,
-        text: `① <strong>갭하락 대응</strong>: 야간선물 <strong>${COACH_GAP_TXT}</strong> → 코스피 예상 시초 <strong>4,822</strong>. <strong>4,880.16(오늘 시가=저가)</strong> 회복 전 매수 금지, 회복하면 그 가격이 지지로 바뀌는지 30분 관찰 후 1/3만.<br>② <strong>4대 핵심주 내일 대응선</strong>: 리노공업 시간외 <strong>46,650원</strong> — 46,800 지지 확인 후 46,000~46,800 눌림에서만 1/3 · HD현대마린 <strong>182,000원</strong> — 지지 180,700까지 0.7%, 이탈 시 관망 · LS ELECTRIC <strong>116,400원</strong> — 목표 128,700까지 10.6%, 117,700 지지 사수 확인 · 네오사피엔스 <strong>미체결</strong> — 락업 4일차, 신규 진입 금지.<br>③ <strong>금지</strong>: 시간외에서 손절선을 하회한 <strong>현대차(264,500 < 265,000)·리노공업(46,650 < 46,800)</strong>을 시초에 추격 매수하는 것. 손익비 1:2 미만·수급 순매도 종목도 제외.`
+        text: `① <strong>갭하락 대응</strong>: 야간선물 <strong>${COACH_GAP_TXT}</strong> → 코스피 예상 시초 <strong>4,822</strong>. <strong>4,880.16(오늘 시가=저가)</strong> 회복 전 매수 금지, 회복하면 그 가격이 지지로 바뀌는지 30분 관찰 후 1/3만.<br>② <strong>4대 핵심주 내일 대응선</strong>: 리노공업 시간외 <strong>46,650원</strong> — 46,800 지지 확인 후 46,000~46,800 눌림에서만 1/3 · HD현대마린 <strong>182,000원</strong> — 지지 180,700까지 0.7%, 이탈 시 관망 · LS ELECTRIC <strong>116,400원</strong> — 목표 131,200까지 12.7%, 117,700 지지 사수 확인 · 네오사피엔스 <strong>미체결</strong> — 락업 4일차, 신규 진입 금지.<br>③ <strong>금지</strong>: 시간외에서 손절선을 하회한 <strong>현대차(264,500 < 265,000)·리노공업(46,650 < 46,800)</strong>을 시초에 추격 매수하는 것. 손익비 1:2 미만·수급 순매도 종목도 제외.`
       },
       night: {
         title: `🌙 ${COACH_DATE} 야간 체크포인트`,
