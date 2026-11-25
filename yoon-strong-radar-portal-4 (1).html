@@ -7381,11 +7381,25 @@
         var price = btLiveNumber(d.closePrice);
         if (price === null || price <= 0) return;
         var pct = btLiveNumber(d.fluctuationsRatio);
+        var at = d.localTradedAt || '';
+        // 11-26 보강: 정규장 개장 전(PREOPEN)·마감 후(CLOSE)에는 정규장 종가가 0.00%로 고정되므로
+        // NXT 시간외(프리마켓/애프터마켓) 실측가가 있으면 그 값을 우선 표시한다.
+        var ov = d.overMarketPriceInfo || null;
+        var ovPrice = ov ? btLiveNumber(ov.overPrice) : null;
+        var ovPct = ov ? btLiveNumber(ov.fluctuationsRatio) : null;
+        var st = String(d.marketStatus || '');
+        var ovSession = ov ? String(ov.tradingSessionType || '') : '';
+        var ovOpen = ov ? String(ov.overMarketStatus || '') === 'OPEN' : false;
+        if (ovOpen && ovPrice && ovPrice > 0 && (st === 'PREOPEN' || st === 'CLOSE') && (ovSession === 'PRE_MARKET' || ovSession === 'AFTER_MARKET')) {
+          price = ovPrice;
+          if (ovPct !== null) pct = ovPct;
+          if (ov.localTradedAt) at = ov.localTradedAt;
+        }
         map[d.itemCode] = {
           price: price,
           pct: pct === null ? 0 : pct,
-          at: d.localTradedAt || '',
-          status: d.marketStatus || ''
+          at: at,
+          status: st
         };
       });
       return map;
