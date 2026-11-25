@@ -361,6 +361,9 @@
       50% { box-shadow: 0 0 0 4px rgba(244,63,94,0); opacity: 0.55; }
     }
     @media (prefers-reduced-motion: reduce) { .bt-live-led { animation: none !important; } }
+    /* 모바일: 라벨의 상세 문구(em)가 숨겨지므로 점멸 LED 옆에 실시간 시계만 압축 표기 */
+    .bt-mini { display: none; font-size: 0.56rem; font-weight: 800; letter-spacing: 0; font-variant-numeric: tabular-nums; opacity: 0.95; }
+    @media (max-width: 480px) { .bt-mini { display: inline; } }
     .bt-viewport {
       position: relative; flex: 1 1 auto; min-width: 0; overflow: hidden;
       display: flex; align-items: center;
@@ -4254,7 +4257,7 @@
          ※ 이 마크업은 절대 삭제·덮어쓰기 금지.
          =================================================================== -->
     <div class="bottom-ticker-bar" id="bottomStockTicker" aria-label="대표 종목 실시간 현재가 전광판">
-      <span class="bt-label"><span class="bt-line1">📡 LIVE QUOTES<i id="btLiveLed" class="bt-live-led off" aria-hidden="true"></i></span><em>대표 종목 실시간 현재가 · <span id="btAsOf">11-24 확정 종가</span></em></span>
+      <span class="bt-label"><span class="bt-line1">📡 LIVE QUOTES<i id="btLiveLed" class="bt-live-led off" aria-hidden="true"></i><b id="btLiveMini" class="bt-mini">--:--</b></span><em>대표 종목 실시간 현재가 · <span id="btAsOf">11-24 확정 종가</span></em></span>
       <div class="bt-viewport">
         <div class="bt-track" id="bottomTickerTrack"><!-- renderBottomStockTicker() --></div>
       </div>
@@ -7419,8 +7422,10 @@
     function btLiveSetStatus(kind, atIso, marketStatus) {
       var asOf = document.getElementById('btAsOf');
       var led = document.getElementById('btLiveLed');
+      var mini = document.getElementById('btLiveMini');
       BOTTOM_LIVE_STATE.labelKind = kind;
       var clock = btLiveClock(atIso);
+      if (mini) mini.textContent = (kind === 'live') ? clock : (kind === 'stale' ? '유지' : '--:--');
       var st = marketStatus || BOTTOM_LIVE_STATE.marketStatus || '';
       if (kind === 'live') {
         if (asOf) asOf.textContent = '실시간 ' + clock + ' 갱신' + (st === 'OPEN' ? ' · 장중' : (st === 'CLOSE' ? ' · 정규장 마감' : ''));
