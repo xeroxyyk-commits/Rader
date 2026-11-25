@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><title>LIVE QUOTES CORS PROBE</title>
+<style>body{font:13px/1.5 monospace;background:#0b1220;color:#e2e8f0;padding:14px}h2{color:#38bdf8;font-size:14px}pre{white-space:pre-wrap;word-break:break-all}</style>
+</head><body>
+<h2>LIVE QUOTES CORS PROBE <span id="st">running…</span></h2>
+<pre id="out"></pre>
+<script>
+(function(){
+  var N1='https://m.stock.naver.com/api/stock/005930/basic';
+  var N16='https://polling.finance.naver.com/api/realtime/domestic/stock/005930,000660,058470,0161M0';
+  var enc=encodeURIComponent;
+  var tests=[
+    ['naver-direct-basic', N1],
+    ['naver-direct-poll16', N16],
+    ['allorigins-raw', 'https://api.allorigins.win/raw?url='+enc(N16)],
+    ['allorigins-get', 'https://api.allorigins.win/get?url='+enc(N16)],
+    ['codetabs', 'https://api.codetabs.com/v1/proxy?quest='+enc(N16)],
+    ['corsproxy-io', 'https://corsproxy.io/?url='+enc(N16)],
+    ['corslol', 'https://api.cors.lol/?url='+enc(N16)],
+    ['corsfix', 'https://proxy.corsfix.com/?'+N16],
+    ['thingproxy', 'https://thingproxy.freeboard.io/fetch/'+N16],
+    ['isomorphic', 'https://cors.isomorphic-git.org/'+N16],
+    ['cors-eu', 'https://cors.eu.org/'+N16],
+    ['jina', 'https://r.jina.ai/'+N16],
+    ['yacdn', 'https://yacdn.org/proxy/'+N16],
+    ['whateverorigin', 'https://whateverorigin.org/get?url='+enc(N16)],
+    ['yahoo-005930.KS', 'https://query1.finance.yahoo.com/v8/finance/chart/005930.KS?range=1d&interval=1m'],
+    ['yahoo-0161M0.KS', 'https://query1.finance.yahoo.com/v8/finance/chart/0161M0.KS?range=1d&interval=1m'],
+    ['yahoo-058470.KQ', 'https://query1.finance.yahoo.com/v8/finance/chart/058470.KQ?range=1d&interval=1m'],
+    ['daum-direct', 'https://finance.daum.net/api/quotes/A005930?summary=false'],
+    ['stooq', 'https://stooq.com/q/l/?s=005930.ks&f=sd2t2ohlcv&h&e=csv']
+  ];
+  var out=document.getElementById('out'); var lines=[]; var done=0;
+  function show(){ out.textContent=lines.join('\n'); }
+  function parseHint(t, txt){
+    try{
+      var d=JSON.parse(txt);
+      if(d && d.datas && d.datas[0]) return 'PARSE naver datas='+d.datas.length+' '+d.datas[0].stockName+' '+d.datas[0].closePrice+' '+d.datas[0].fluctuationsRatio+'% '+d.datas[0].marketStatus;
+      if(d && d.closePrice) return 'PARSE naver-basic '+d.stockName+' '+d.closePrice+' '+d.fluctuationsRatio+'%';
+      if(d && d.chart && d.chart.result && d.chart.result[0]) { var m=d.chart.result[0].meta; return 'PARSE yahoo '+m.symbol+' '+m.regularMarketPrice+' '+m.regularMarketChangePercent+'% t='+new Date(m.regularMarketTime*1000).toLocaleTimeString('ko-KR'); }
+      if(d && d.contents) return 'PARSE allorigins-get wrapper len='+String(d.contents).length;
+      if(d && d.tradePrice) return 'PARSE daum '+d.name+' '+d.tradePrice+' '+(d.changeRate*100).toFixed(2)+'%';
+      return 'PARSE json keys='+Object.keys(d).slice(0,6).join(',');
+    }catch(e){ return 'RAW '+txt.slice(0,70).replace(/\s+/g,' '); }
+  }
+  tests.forEach(function(t){
+    var name=t[0], url=t[1], t0=Date.now();
+    var ctrl=new AbortController(); var to=setTimeout(function(){ctrl.abort();}, 9000);
+    fetch(url,{signal:ctrl.signal,cache:'no-store',mode:'cors'})
+      .then(function(r){ return r.text().then(function(txt){ return {r:r,txt:txt}; }); })
+      .then(function(o){
+        clearTimeout(to);
+        lines.push('OK   '+name+' ['+o.r.status+'] '+((Date.now()-t0)/1000).toFixed(1)+'s len='+o.txt.length+' :: '+parseHint(name,o.txt));
+        show();
+      })
+      .catch(function(e){
+        clearTimeout(to);
+        lines.push('FAIL '+name+' '+((Date.now()-t0)/1000).toFixed(1)+'s :: '+String(e&&e.message||e));
+        show();
+      })
+      .then(function(){ done++; if(done===tests.length){ document.getElementById('st').textContent='DONE '+done+'/'+tests.length+' @ '+new Date().toLocaleTimeString('ko-KR'); } });
+  });
+})();
+</script></body></html>
