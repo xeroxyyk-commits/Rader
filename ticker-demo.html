@@ -404,5 +404,12 @@ setInterval(function(){
   var s = BOTTOM_LIVE_STATE;
   document.getElementById('dbg').textContent = 'src=' + s.source + ' · lastOk=' + (s.lastOkAt? new Date(s.lastOkAt).toLocaleTimeString('ko-KR'):'-') + ' · codes=' + Object.keys(s.quotes||{}).length + ' · failStreak=' + s.failStreak + ' · tradeAt=' + s.lastTradeAt + ' · label=' + (document.getElementById('btAsOf')||{}).textContent;
 }, 1000);
+
+if (location.search.indexOf('failtest=1') >= 0) {
+  setTimeout(function(){ btLiveApplyFailure(); }, 5000);
+}
+if (location.search.indexOf('failtest=2') >= 0) {
+  setTimeout(function(){ BOTTOM_LIVE_STATE.quotes = {}; btLiveApplyFailure(); }, 5000);
+}
 </script>
 </body></html>
