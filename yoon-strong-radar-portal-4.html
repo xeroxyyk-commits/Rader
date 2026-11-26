@@ -6914,6 +6914,24 @@
       '009150': [{ date: '2026-11-26', label: '편입 보류 · 11-26 확정 784,000(+3.84%) · 5일 외인 -39.1만 · RSI 38.9', level: 'warn' }]
     };
 
+    function getEventBadgesHtml(code) {
+      const events = EVENT_DDAY_MAP[code];
+      if (!events || !events.length) return '';
+      const now = new Date();
+      const kstNow = new Date(now.getTime() + (9 * 60 + now.getTimezoneOffset()) * 60000);
+      const todayStr = kstNow.toISOString().slice(0, 10);
+      const todayMs = new Date(todayStr + 'T00:00:00Z').getTime();
+      return events.map(ev => {
+        const evMs = new Date(ev.date + 'T00:00:00Z').getTime();
+        const diffDays = Math.round((evMs - todayMs) / 86400000);
+        if (diffDays < -1 || diffDays > 7) return '';
+        const dTag = diffDays === 0 ? 'D-DAY' : (diffDays > 0 ? `D-${diffDays}` : `D+${Math.abs(diffDays)}`);
+        const cls = ev.level || (diffDays <= 2 ? 'danger' : 'warn');
+        return `<div class="dday-badge ${cls}">⏰ ${dTag} · ${ev.label}</div>`;
+      }).join('');
+    }
+
+    let REINVEST_WEIGHTS = { '058470': 50, '443060': 30, '010120': 20, '0161M0': 0 };
     const REINVEST_ENTRY_PRICES = { '058470': 44100, '443060': 184200, '010120': 110200, '0161M0': 4205 };
 
     function setReinvestCash(val) {
