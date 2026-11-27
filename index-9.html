@@ -1951,7 +1951,7 @@
     .share-card-desc { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45; }
     .share-preview-box {
       background: var(--surface); border: 1px dashed var(--border); border-radius: 12px;
-      padding: 10px 12px; font-size: 0.76rem; color: var(--text-sub); white-space: pre-line;
+      padding: 10px 12px; font-size: 0.76rem; color: var(--text-sub); white-space: pre-wrap;
       line-height: 1.5; margin-bottom: 14px; max-height: 110px; overflow-y: auto;
     }
     .share-btn-row { display: flex; gap: 8px; }
@@ -3545,6 +3545,7 @@
                 <div style="display:flex; gap:6px; flex-wrap:wrap;" id="calcPresetButtonsRow">
                     <!-- TOP 8 프리셋 버튼은 renderCalcPresets()가 TURNAROUND_MASTER_DATA 단일 소스에서 실시간 렌더링합니다. -->
                 </div>
+      </div>
 
       <!-- 🎯 4대 핵심 전략주 즉시 세팅 (계산기·수급·분할매수 1클릭 연동) -->
       <div style="margin-bottom:16px; background:var(--surface-sub); border:1px solid var(--border); border-radius:14px; padding:10px 12px;">
@@ -3928,7 +3929,7 @@
               <span class="tag tag-highlight" style="font-size:0.7rem;">매크로 핵심</span>
             </div>
             <div class="share-card-desc">야간선물 728.00(+0.17%)·이론 시초 4,719.22 · 미장 추수감사절 휴장(11-25 다우 +0.33%·SOX -0.65%) · 미 선물 ES +0.54%/NQ +0.46% · 유럽 DAX +2.08% · 08:09 프리마켓 HD현대마린 190,400(+1.12%)·알테오젠 173,100(+1.64%)·리노공업 47,000(+0.53%) · CNN 공포탐욕 15(극단적 공포) · 오늘 밤 미장 조기 폐장</div>
-                        <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 시장 뷰 · 11-27 08:00 장전 레이더]\n- 11-26 확정: 코스피 4,711.21 (+0.29%) · 시 4,745.10 / 고 4,817.77 / 저 4,704.65 · 코스닥 655.71 (+0.78%) · 코스피200 727.08 (+0.45%)\n- 수급(11-26 확정): 기관 +7,529억(2일 연속) · 외인 -905억 · 개인 -1조712억 · 프로그램 +1,623억\n- 4대주 3단 흐름: 리노공업 46,750 → 47,050 → 47,100(+0.75%) · HD현대마린 188,300 → 188,900 → 188,600(+0.16%) · LS 113,400 → 112,900 → 113,000(-0.35%) · 네오사피엔스 4,350 → 4,360 → 4,375(+0.57%)\n- 간밤 미장: 추수감사절 휴장(11-25 마감 다우 50,182.95 +0.33% · S&P500 7,182.78 -0.25% · 나스닥 23,585.80 -0.62% · SOX 8,774.86 -0.65%) · 미 선물 ES +0.54%·NQ +0.46% · VIX 26.80 · 공포탐욕 15 · 원/달러 1,343.05\n- 야간선물 728.00(+0.17%) → 이론 시초 4,719.22 · 08:09 프리마켓: HD현대마린 190,400(+1.12%) · 알테오젠 173,100(+1.64%) · S-Oil 99,400(+1.22%) · 리노공업 47,000(+0.53%) · 네오사피엔스 미체결\n* 실전 룰: 09:00~09:30 시초가 추격 금지 · 갭 동조 13(이탈 0) · 손익비 1:2 미만 알테오젠·S-Oil·한국항공우주·HD현대마린 추격 금지 · 손절선(리노공업 45,100 · HD현대마린 181,700 · LS 109,400 · 네오 4,195) 기계적 준수 · 오늘 밤 미장 블랙프라이데이 조기 폐장</div></div>
+                        <div class="share-preview-box" id="prevMarketReport">[YOON STRONG CAPITAL 시장 뷰 · 11-27 08:00 장전 레이더]\n- 11-26 확정: 코스피 4,711.21 (+0.29%) · 시 4,745.10 / 고 4,817.77 / 저 4,704.65 · 코스닥 655.71 (+0.78%) · 코스피200 727.08 (+0.45%)\n- 수급(11-26 확정): 기관 +7,529억(2일 연속) · 외인 -905억 · 개인 -1조712억 · 프로그램 +1,623억\n- 4대주 3단 흐름: 리노공업 46,750 → 47,050 → 47,100(+0.75%) · HD현대마린 188,300 → 188,900 → 188,600(+0.16%) · LS 113,400 → 112,900 → 113,000(-0.35%) · 네오사피엔스 4,350 → 4,360 → 4,375(+0.57%)\n- 간밤 미장: 추수감사절 휴장(11-25 마감 다우 50,182.95 +0.33% · S&P500 7,182.78 -0.25% · 나스닥 23,585.80 -0.62% · SOX 8,774.86 -0.65%) · 미 선물 ES +0.54%·NQ +0.46% · VIX 26.80 · 공포탐욕 15 · 원/달러 1,343.05\n- 야간선물 728.00(+0.17%) → 이론 시초 4,719.22 · 08:09 프리마켓: HD현대마린 190,400(+1.12%) · 알테오젠 173,100(+1.64%) · S-Oil 99,400(+1.22%) · 리노공업 47,000(+0.53%) · 네오사피엔스 미체결\n* 실전 룰: 09:00~09:30 시초가 추격 금지 · 갭 동조 13(이탈 0) · 손익비 1:2 미만 알테오젠·S-Oil·한국항공우주·HD현대마린 추격 금지 · 손절선(리노공업 45,100 · HD현대마린 181,700 · LS 109,400 · 네오 4,195) 기계적 준수 · 오늘 밤 미장 블랙프라이데이 조기 폐장</div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyMarket" onclick="copyMarketReport(this)">
@@ -3960,7 +3961,11 @@
           <button class="flow-tab-btn" data-code="003490" onclick="switchShareStock('003490', this)">✈️ 대한항공</button>
           <button class="flow-tab-btn" data-code="010950" onclick="switchShareStock('010950', this)">🛢️ S-Oil</button>
                       </div>
-                        <div class="share-preview-box" id="prevStockStrategy">[리노공업(058470) 실전 대응 퀀트 가이드]\n1. 주가 스펙: 11-26 확정 46,750원 (+2.19%) | 목표가 51,600원 | 손절가 45,100원\n2. 손익비: 1 : 2.94 — 5일 저가 43,150원 · 20일선 50,007원 대비 -9.9%\n3. 수급: 11-24 외인 +18.4만·기관 -0.9만 (5일 외인 -24.9만·기관 +6.7만) · 수급 축 9/25 · RSI 38.3 · 거래량 0.90배\n4. 보유 0주(11-19 20주 53,500원 전량 익절 · 매도금 107만원) — 재진입 기준 48,000원 이하 구간에 들어왔지만 46,800원 지지 이탈, 회복 확인 전 진입 금지</div></div>
+                        <div class="share-preview-box" id="prevStockStrategy">[S-Oil(010950) 실전 대응 퀀트 가이드]
+1. 주가 스펙: 11-27 프리마켓 99,400원 (+1.22%) | 11-26 정규장 +1.97% | 목표가 105,600원 | 손절가 94,700원
+2. 손익비: 1 : 1.32
+3. 수급: 외인 5일 +37.5만주 · 기관 5일 -14.4만주 · RSI 32.7
+4. 11-26 확정 종가·확정 수급 + 11-27 08:09 프리마켓 실측 반영 · 네이버 금융 시세 100% 일치 연동 · 포털 https://xeroxyyk-commits.github.io/Rader/</div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyStockStrategy" onclick="copyStockStrategy(this)">
@@ -3986,7 +3991,10 @@
               <button class="btn-preset" id="btnToggleTop8" style="font-size:0.72rem; padding:4px 10px;" onclick="setTopReportMode('top8', this)">🌟 주도 8선 전 종목</button>
             </div>
 
-                        <div class="share-preview-box" id="prevTopReport">[YOON STRONG 턴어라운드 8선 · 11-27 08:00 장전 레이더]\n1. S-Oil (77점) 98,200원 +1.97% → 프리 99,400(+1.22%) · 지지 94,700 / 목표 105,600\n2. 한국전력 (77점) 25,550원 +1.19% → 25,600(+0.20%) · 지지 24,650 / 목표 27,550\n3. 현대차 (72점) 259,000원 -3.90% → 261,000(+0.77%) · 지지 249,500 / 목표 291,500\n4. 알테오젠 (70점) 170,300원 +0.41% → 173,100(+1.64%) · 지지 164,300 / 목표 183,100\n5. 한국항공우주 (69점) 98,900원 +0.82% → 99,900(+1.01%) · 지지 95,400 / 목표 107,700\n6. LS ELECTRIC (67점) 113,400원 -0.79% → 113,200(-0.18%) · 지지 109,400 / 목표 127,600\n7. HD현대마린솔루션 (66점·재편입) 188,300원 -1.36% → 190,400(+1.12%) · 지지 181,700 / 목표 206,500\n8. 원익IPS (65점) 64,500원 +1.10% → 미체결(64,500) · 지지 62,200 / 목표 71,900\n* 11-26 확정 수급 반영 재산출 · 교체 1건(HD현대마린 재편입 / 삼성중공업 편출) · 네오사피엔스(69점)는 진입 금지로 편입 보류\n* 프리마켓 기준 손익비 1:2 미만: 알테오젠 1:1.14 · S-Oil 1:1.32 · 한국항공우주 1:1.73 · HD현대마린 1:1.85 → 추격 금지</div>
+                        <div class="share-preview-box" id="prevTopReport">1. S-Oil (77점) 99,400원 +1.22% | 지지 94,700원 · 목표 105,600원 · 손익비 1 : 1.32 · RSI 32.7 과매도 탈출 양봉 2일차 · 5일 외인 +37.5만주
+2. 한국전력 (77점) 25,600원 +0.20% | 지지 24,650원 · 목표 27,550원 · 손익비 1 : 2.05 · 11-26 외인 +28.7만주 · 5일 외인 +127.6만주
+3. 현대차 (72점) 261,000원 +0.77% | 지지 249,500원 · 목표 291,500원 · 손익비 1 : 2.65 · 11-26 기관 +1.9만주 · 5일 기관 +33.4만주
+* 11-27 08:09 NXT 프리마켓 기준 · 손익비 1:2 미만(S-Oil 1:1.32)은 추격 금지 · 09:00~09:30 시초가 추격 금지</div>
           </div>
           <div class="share-btn-row">
             <button class="btn-copy-action" id="btnCopyTop" onclick="copyTopReport(this)">
@@ -4276,6 +4284,8 @@
         정기 브리핑 스케줄: 평일 08:00 / 15:20 / 19:50 (피클 앱 & 네이버 메일 younking76@naver.com 발송)
       </div>
     </footer>
+
+  </div>
 
   <!-- TradingView Chart Modal -->
   <div class="modal-overlay" id="chartModal">
@@ -8412,6 +8422,9 @@
       switchCompassStock(firstCode);
       switchTimelineStock(firstCode);
       switchShareStock(firstCode);
+      setTopReportMode(currentTopReportMode);
+      const marketPrevEl = document.getElementById('prevMarketReport');
+      if (marketPrevEl && typeof textMarket === 'string') marketPrevEl.textContent = textMarket;
     }
 
     // Stock Switcher Hub UI Operations
@@ -10141,41 +10154,99 @@
     //    syncMasterDataToSubmodules()가 master.share에서 파생한다.
     //    (구형 정적 문구 하드코딩 금지 · 11-24 정리)
     const stockStrategyMap = {};
-    const textTop3 = `1. 알테오젠 (70점) 170,300원 +0.41% | 지지 164,300원 · 손익비 1 : 2.13 · 11-25 외인 +27.8만·기관 +6.4만 쌍끌이 + 연속 양봉\n2. S-Oil (77점) 98,200원 +1.97% | 지지 94,700원 · 손익비 1 : 2.11 · RSI 32.9 과매도 탈출 양봉(고 100,600)\n3. 원익IPS (67점·신규) 64,500원 +1.10%(정규 +4.54%) | 지지 62,200원 · 손익비 1 : 3.22 · 5일 외인 +15.2만 · 52주 구간 6.9%`;
 
-    const textTop8 = `1. 한국전력 (78점) 25,550원 +1.19% → 지지 24,650 / 목표 27,550 (52주 최저 +5.6%)\n2. S-Oil (77점) 98,200원 +1.97% → 지지 94,700 / 목표 105,600 (RSI 32.9 과매도 탈출 양봉)\n3. 현대차 (73점) 259,000원 -3.90% → 지지 249,500 / 목표 291,500 (5일 쌍끌이 외인 +14.4만·기관 +26.2만)\n4. LS ELECTRIC (72점·8선 편입) 113,400원 -0.79%(정규 +2.44%) → 지지 109,400 / 목표 127,600\n5. 알테오젠 (70점) 170,300원 +0.41% → 지지 164,300 / 목표 183,100 (외인 +27.8만·기관 +6.4만)\n6. 한국항공우주 (69점) 98,900원 +0.82% → 지지 95,400 / 목표 107,700\n7. 삼성중공업 (68점) 13,900원 -1.84% → 지지 13,530 / 목표 15,640 (14,440 이탈 지속)\n8. 원익IPS (67점·신규 편입) 64,500원 +1.10%(정규 +4.54%) → 지지 62,200 / 목표 71,900 (5일 외인 +15.2만)\n* 편출: HD현대마린(66점·10위) · 대한항공(59점·12위, -6.16%)`;
+    // 🎯 [11-27 복구] 8대 주도 종목 실전 가이드 — 탭 전환 · 복사 · 공유
+    let currentShareStockCode = (typeof DEFAULT_TURNAROUND_CODES !== 'undefined' && DEFAULT_TURNAROUND_CODES.length) ? DEFAULT_TURNAROUND_CODES[0] : '010950';
+
+    // 마스터 share.text 는 JSON 이스케이프 상태(리터럴 \n)로 들어오므로 실제 줄바꿈으로 정규화한다.
+    function normalizeGuideText(text) {
+      const BS = String.fromCharCode(92); // backslash
+      let t = String(text == null ? '' : text);
+      t = t.split(BS + BS + 'n').join('\n');
+      t = t.split(BS + 'n').join('\n');
+      return t;
+    }
+
+    function getShareStrategy(code) {
+      const c = code || currentShareStockCode;
+      const master = (typeof TURNAROUND_MASTER_DATA !== 'undefined') ? TURNAROUND_MASTER_DATA[c] : null;
+      const s = (stockStrategyMap && stockStrategyMap[c]) || (master && master.share) || null;
+      if (!s) return { name: (master && master.name) || '종목', text: '' };
+      return { name: s.name || (master && master.name) || '종목', text: normalizeGuideText(s.text || '') };
+    }
+
+    function switchShareStock(code, btn) {
+      if (!code) return;
+      document.querySelectorAll('#shareStockTabs .flow-tab-btn').forEach(b => b.classList.remove('active'));
+      let targetBtn = btn || null;
+      if (!targetBtn) targetBtn = document.querySelector(`#shareStockTabs .flow-tab-btn[data-code="${code}"]`);
+      if (targetBtn) targetBtn.classList.add('active');
+      currentShareStockCode = code;
+      const s = getShareStrategy(code);
+      const prevEl = document.getElementById('prevStockStrategy');
+      if (prevEl) prevEl.textContent = s.text;
+      const copyEl = document.getElementById('btnCopyStockText');
+      if (copyEl) copyEl.textContent = `${s.name} 가이드 복사`;
+      if (btn) showToast(`🎯 [${s.name}] 실전 대응 퀀트 가이드로 전환되었습니다!`);
+    }
+
+    function copyStockStrategy(btn) {
+      const s = getShareStrategy(currentShareStockCode);
+      universalCopy(s.text, btn, `📋 [${s.name}] 실전 가이드가 복사되었습니다! 카톡에 붙여넣기하세요.`);
+    }
+
+    function shareStockStrategy(btn) {
+      const s = getShareStrategy(currentShareStockCode);
+      nativeShareText(`YOON STRONG ${s.name} 실전 가이드`, s.text, btn);
+    }
+    const textTop3 = `1. S-Oil (77점) 99,400원 +1.22% | 지지 94,700원 · 목표 105,600원 · 손익비 1 : 1.32 · RSI 32.7 과매도 탈출 양봉 2일차 · 5일 외인 +37.5만주
+2. 한국전력 (77점) 25,600원 +0.20% | 지지 24,650원 · 목표 27,550원 · 손익비 1 : 2.05 · 11-26 외인 +28.7만주 · 5일 외인 +127.6만주
+3. 현대차 (72점) 261,000원 +0.77% | 지지 249,500원 · 목표 291,500원 · 손익비 1 : 2.65 · 11-26 기관 +1.9만주 · 5일 기관 +33.4만주
+* 11-27 08:09 NXT 프리마켓 기준 · 손익비 1:2 미만(S-Oil 1:1.32)은 추격 금지 · 09:00~09:30 시초가 추격 금지`;
+
+    const textTop8 = `1. S-Oil (77점) 99,400원 +1.22% → 지지 94,700 / 목표 105,600 · 손익비 1 : 1.32
+2. 한국전력 (77점) 25,600원 +0.20% → 지지 24,650 / 목표 27,550 · 손익비 1 : 2.05
+3. 현대차 (72점) 261,000원 +0.77% → 지지 249,500 / 목표 291,500 · 손익비 1 : 2.65
+4. 알테오젠 (70점) 173,100원 +1.64% → 지지 164,300 / 목표 183,100 · 손익비 1 : 1.14
+5. 한국항공우주 (69점) 99,900원 +1.01% → 지지 95,400 / 목표 107,700 · 손익비 1 : 1.73
+6. LS ELECTRIC (67점) 113,200원 -0.18% → 지지 109,400 / 목표 127,600 · 손익비 1 : 3.79
+7. HD현대마린솔루션 (66점·재편입) 190,400원 +1.12% → 지지 181,700 / 목표 206,500 · 손익비 1 : 1.85
+8. 원익IPS (65점) 64,500원 +0.00%(프리 미체결) → 지지 62,200 / 목표 71,900 · 손익비 1 : 3.22
+* 11-27 08:00 장전 레이더 · 11-26 확정 수급 반영 재산출 · 교체 1건(HD현대마린 재편입 / 삼성중공업 편출) · 네오사피엔스는 진입 금지로 편입 보류
+* 손익비 1:2 미만: 알테오젠 1:1.14 · S-Oil 1:1.32 · 한국항공우주 1:1.73 · HD현대마린 1:1.85 → 추격 금지`;
 
 
         let currentTopReportMode = 'top3';
 
     function setTopReportMode(mode, btn) {
-      currentTopReportMode = mode;
+      currentTopReportMode = (mode === 'top8') ? 'top8' : 'top3';
       document.querySelectorAll('#btnToggleTop3, #btnToggleTop8').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      const activeBtn = btn || document.getElementById(currentTopReportMode === 'top3' ? 'btnToggleTop3' : 'btnToggleTop8');
+      if (activeBtn) activeBtn.classList.add('active');
       const prevEl = document.getElementById('prevTopReport');
       const titleEl = document.getElementById('shareTopTitle');
       const textEl = document.getElementById('btnCopyTopText');
-      if (mode === 'top3') {
-        if (prevEl) prevEl.textContent = textTop3;
+      if (currentTopReportMode === 'top3') {
+        if (prevEl) prevEl.textContent = normalizeGuideText(textTop3);
         if (titleEl) titleEl.textContent = "🏆 턴어라운드 탑3 리포트";
         if (textEl) textEl.textContent = "탑3 리포트 복사";
-        showToast("🏆 TOP 3 핵심 리포트 모드로 전환되었습니다.");
+        if (btn) showToast("🏆 TOP 3 핵심 리포트 모드로 전환되었습니다.");
       } else {
-        if (prevEl) prevEl.textContent = textTop8;
+        if (prevEl) prevEl.textContent = normalizeGuideText(textTop8);
         if (titleEl) titleEl.textContent = "🌟 주도 8선 전 종목 리포트";
         if (textEl) textEl.textContent = "8선 리포트 복사";
-        showToast("🌟 주도 8선 전 종목 리포트 모드로 전환되었습니다.");
+        if (btn) showToast("🌟 주도 8선 전 종목 리포트 모드로 전환되었습니다.");
       }
     }
 
     function copyTopReport(btn) {
-      const text = currentTopReportMode === 'top3' ? textTop3 : textTop8;
+      const text = normalizeGuideText(currentTopReportMode === 'top3' ? textTop3 : textTop8);
       const label = currentTopReportMode === 'top3' ? '턴어라운드 탑3' : '주도 8선 전 종목';
       universalCopy(text, btn, `🏆 [${label}] 텍스트가 복사되었습니다! 카톡에 붙여넣기하세요.`);
     }
 
     function shareTopReport(btn) {
-      const text = currentTopReportMode === 'top3' ? textTop3 : textTop8;
+      const text = normalizeGuideText(currentTopReportMode === 'top3' ? textTop3 : textTop8);
       const label = currentTopReportMode === 'top3' ? '턴어라운드 탑3' : '주도 8선 전 종목';
       nativeShareText(`YOON STRONG ${label}`, text, btn);
     }
